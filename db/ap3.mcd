@@ -1,0 +1,7 @@
+:
+rayons: ra_id, ra_libelle
+APPARTIENT, 1n produits, 0n rayons
+
+magasins: ma_id, ma_libelle
+STOCK, 1n magasins, 1n produits : st_qte
+produits: pr_id, pr_prix, pr_libelle
