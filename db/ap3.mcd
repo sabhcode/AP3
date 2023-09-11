@@ -4,4 +4,12 @@ APPARTIENT, 1n produits, 0n rayons
 
 magasins: ma_id, ma_libelle
 STOCK, 1n magasins, 1n produits : st_qte
-produits: pr_id, pr_prix, pr_libelle
+produits: pr_id, pr_prix, pr_libelle, pr_qteweb
+
+:
+utilisateurs: ut_id, ut_nom, ut_prenom, ut_email
+COMMANDE, 0n utilisateurs, 0n produits : co_id, co_date, co_details
+
+:
+S'IDENTIFIE, 11 utilisateurs, 11 infosidentifications
+infosidentifications: ut_email, ii_motdepasse, ii_datederniereconnexion, ii_a2f, ii_a2fcode
