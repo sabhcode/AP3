@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: ap3
+-- Host: localhost    Database: ap3
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -14,28 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `baskets`
---
-
-DROP TABLE IF EXISTS `baskets`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `baskets` (
-  `ba_uuid` varchar(36) NOT NULL,
-  PRIMARY KEY (`ba_uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `baskets`
---
-
-LOCK TABLES `baskets` WRITE;
-/*!40000 ALTER TABLE `baskets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `baskets` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `categories`
@@ -72,7 +50,7 @@ CREATE TABLE `credentials` (
   `cr_password` varchar(60) NOT NULL,
   `cr_lastlog` datetime NOT NULL,
   PRIMARY KEY (`us_uuid`),
-  CONSTRAINT `fk_us_id` FOREIGN KEY (`us_uuid`) REFERENCES `users` (`us_uuid`)
+  CONSTRAINT `cr_fk_us_id` FOREIGN KEY (`us_uuid`) REFERENCES `users` (`us_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,8 +97,13 @@ CREATE TABLE `orders` (
   `or_uuid` varchar(36) NOT NULL,
   `or_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `or_total` int unsigned NOT NULL,
-  `fk_os_id` int unsigned NOT NULL,
-  PRIMARY KEY (`or_uuid`)
+  `fk_os_uuid` varchar(36) NOT NULL,
+  `fk_us_uuid` varchar(36) NOT NULL,
+  PRIMARY KEY (`or_uuid`),
+  KEY `fk_os_uuid_idx` (`fk_os_uuid`),
+  KEY `fk_us_uuid_idx` (`fk_us_uuid`),
+  CONSTRAINT `fk_os_uuid` FOREIGN KEY (`fk_os_uuid`) REFERENCES `order_states` (`os_uuid`),
+  CONSTRAINT `fk_us_uuid` FOREIGN KEY (`fk_us_uuid`) REFERENCES `users` (`us_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,7 +128,10 @@ CREATE TABLE `products` (
   `pr_libeller` varchar(45) NOT NULL,
   `pr_desc` text NOT NULL,
   `pr_price` double NOT NULL,
-  PRIMARY KEY (`pr_uuid`)
+  `fk_ca_uuid` varchar(36) NOT NULL,
+  PRIMARY KEY (`pr_uuid`),
+  KEY `pr_fk_ca_uuid_idx` (`fk_ca_uuid`),
+  CONSTRAINT `pr_fk_ca_uuid` FOREIGN KEY (`fk_ca_uuid`) REFERENCES `categories` (`ca_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -166,10 +152,13 @@ DROP TABLE IF EXISTS `products_baskets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products_baskets` (
-  `ba_uuid` varchar(36) NOT NULL,
+  `us_uuid` varchar(36) NOT NULL,
   `pr_uuid` varchar(36) NOT NULL,
   `pb_quantity` int unsigned NOT NULL,
-  PRIMARY KEY (`ba_uuid`,`pr_uuid`)
+  PRIMARY KEY (`us_uuid`,`pr_uuid`),
+  KEY `pb_fk_pr_uuid_idx` (`pr_uuid`),
+  CONSTRAINT `pb_fk_pr_uuid` FOREIGN KEY (`pr_uuid`) REFERENCES `products` (`pr_uuid`),
+  CONSTRAINT `pb_fk_us_uuid` FOREIGN KEY (`us_uuid`) REFERENCES `users` (`us_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -194,7 +183,10 @@ CREATE TABLE `products_orders` (
   `pr_uuid` varchar(36) NOT NULL,
   `po_quantity` int unsigned NOT NULL,
   `po_price` double unsigned NOT NULL,
-  PRIMARY KEY (`or_uuid`,`pr_uuid`)
+  PRIMARY KEY (`or_uuid`,`pr_uuid`),
+  KEY `po_fk_pr_uuid_idx` (`pr_uuid`),
+  CONSTRAINT `po_fk_or_uuid` FOREIGN KEY (`or_uuid`) REFERENCES `orders` (`or_uuid`),
+  CONSTRAINT `po_fk_pr_uuid` FOREIGN KEY (`pr_uuid`) REFERENCES `products` (`pr_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,8 +209,11 @@ DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
   `st_uuid` varchar(36) NOT NULL,
   `pr_uuid` varchar(36) NOT NULL,
-  `st_quantity` int DEFAULT NULL,
-  PRIMARY KEY (`st_uuid`,`pr_uuid`)
+  `st_quantity` int unsigned NOT NULL,
+  PRIMARY KEY (`st_uuid`,`pr_uuid`),
+  KEY `st_fk_pr_uuid_idx` (`pr_uuid`),
+  CONSTRAINT `st_fk_pr_uuid` FOREIGN KEY (`pr_uuid`) REFERENCES `products` (`pr_uuid`),
+  CONSTRAINT `st_fk_st_uuid` FOREIGN KEY (`st_uuid`) REFERENCES `stores` (`st_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -290,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-12 18:12:02
+-- Dump completed on 2023-09-12 19:02:19

@@ -1,15 +1,31 @@
 :
-rayons: ra_id, ra_libelle
-APPARTIENT, 1n produits, 0n rayons
+stores: st_id, st_libelle, st_city
+stock, 0n products, 0n stores: st_quantity
+:
+:
+:
+:
 
-magasins: ma_id, ma_libelle
-STOCK, 1n magasins, 1n produits : st_qte
-produits: pr_id, pr_prix, pr_libelle, pr_qteweb
+categories: ca_id, ca_name
+BELONGS, 11 products, 0n categories
+products: pr_id, pr_libelle, pr_desc, pr_price
+products_orders, 0n products, 0n orders: po_quantity, po_price
+orders: or_id, or_date, or_total
+HAS, 11 orders, 0n orders_states
+orders_states: os_id, os_libelle
 
 :
-utilisateurs: ut_id, ut_nom, ut_prenom, ut_email
-COMMANDE, 0n utilisateurs, 0n produits : co_id, co_date, co_details
+:
+products_baskets, 0n users, 0n products : pb_quantity
+users: us_id, us_name, us_firstname, us_email
+ORDER, 0n users, 11 orders
+:
+:
 
 :
-S'IDENTIFIE, 11 utilisateurs, 11 infosidentifications
-infosidentifications: ut_email, ii_motdepasse, ii_datederniereconnexion, ii_a2f, ii_a2fcode
+:
+:
+LOGS, 11 users, 11 credentials
+credentials: us_id, cr_password, cr_lastlog
+:
+:
