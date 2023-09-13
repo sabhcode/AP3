@@ -16,7 +16,7 @@ orders_states: os_uuid, os_libelle
 
 :
 :
-products_baskets, 0n users, 0n products : pb_quantity
+baskets, 0n users, 0n products : b_quantity
 users: us_uuid, us_name, us_firstname
 ORDER, 0n users, 11 orders
 :
