@@ -1,23 +1,23 @@
 :
-stores: st_id, st_libelle, st_city
+stores: st_uuid, st_libelle, st_city
 stock, 0n products, 0n stores: st_quantity
 :
 :
 :
 :
 
-categories: ca_id, ca_name
+categories: ca_uuid, ca_name
 BELONGS, 11 products, 0n categories
-products: pr_id, pr_libelle, pr_desc, pr_price
+products: pr_uuid, pr_libelle, pr_desc, pr_price
 products_orders, 0n products, 0n orders: po_quantity, po_price
-orders: or_id, or_date, or_total
+orders: or_uuid, or_date, or_total
 HAS, 11 orders, 0n orders_states
-orders_states: os_id, os_libelle
+orders_states: os_uuid, os_libelle
 
 :
 :
 products_baskets, 0n users, 0n products : pb_quantity
-users: us_id, us_name, us_firstname, us_email
+users: us_uuid, us_name, us_firstname
 ORDER, 0n users, 11 orders
 :
 :
@@ -25,7 +25,7 @@ ORDER, 0n users, 11 orders
 :
 :
 :
-LOGS, 11 users, 11 credentials
-credentials: us_id, cr_password, cr_lastlog
+LOGS, 01 users, _11 credentials
+credentials: cr_email, cr_password, cr_lastlog
 :
 :
