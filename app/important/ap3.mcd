@@ -1,0 +1,22 @@
+:
+stores: uuid, libelle, city
+stock, 0n products, 0n stores: quantity
+:
+:
+:
+:
+
+categories: uuid, name
+BELONGS, 11 products, 0n categories
+products: uuid, libelle, desc, price
+products_orders, 0n products, 0n orders: quantity, price
+orders: uuid, date, total
+HAS, 11 orders, 0n orders_states
+orders_states: uuid, libelle
+
+:
+:
+baskets, 0n users, 0n products : quantity
+users: uuid, email, name, firstname, password
+ORDER, 0n users, 11 orders
+:
