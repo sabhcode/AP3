@@ -1,22 +1,22 @@
 :
-stores: uuid, libelle, city
-stock, 0n products, 0n stores: quantity
+store: uuid, name, city
+stock, 0n product, 0n store: quantity
 :
 :
 :
 :
 
-categories: uuid, name
-BELONGS, 11 products, 0n categories
-products: uuid, libelle, desc, price
-products_orders, 0n products, 0n orders: quantity, price
-orders: uuid, date, total
-HAS, 11 orders, 0n orders_states
-orders_states: uuid, libelle
+category: uuid, name
+BELONGS, 11 product, 0n category
+product: uuid, name, desc, price
+product_order, 0n product, 0n order: quantity, price
+order: uuid, date, total
+HAS, 11 order, 0n order_state
+order_state: uuid, name
 
 :
 :
-baskets, 0n users, 0n products : quantity
-users: uuid, email, name, firstname, password
-ORDER, 0n users, 11 orders
+basket, 0n user, 0n product : quantity
+user: uuid, email, name, firstname, password
+ORDER, 0n user, 11 order
 :

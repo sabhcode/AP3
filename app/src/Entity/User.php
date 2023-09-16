@@ -3,29 +3,32 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     #[ORM\Id]
-    #[ORM\Column(length: 36)]
+    #[ORM\Column(type: 'uuid')]
     private ?string $uuid = null;
 
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(unique: true, length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $firstname = null;    
+    private ?string $firstname = null;  
 
     /**
      * @var string The hashed password
@@ -33,16 +36,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Basket::class)]
+    private Collection $basket;
+
+    public function __construct()
+    {
+        $this->uuid = Uuid::v4();
+        $this->basket = new ArrayCollection();
+    }
+
     public function getUuid(): ?string
     {
         return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): static
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     /**
@@ -72,30 +77,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
 
         return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials(): void
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     public function getEmail(): ?string
@@ -132,5 +113,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->firstname = $firstname;
 
         return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Basket>
+     */
+    public function getBasket(): Collection
+    {
+        return $this->basket;
     }
 }
