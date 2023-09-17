@@ -1,3 +1,3 @@
 # AP3
 
-ap [app]
+ap [app](./app)
