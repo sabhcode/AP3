@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -20,6 +22,18 @@ class Order
 
     #[ORM\Column]
     private ?float $totalPrice = null;
+
+    #[ORM\OneToMany(mappedBy: "order_uuid", targetEntity: OrderDetail::class)]
+    private Collection $orderDetails;
+
+    #[ORM\ManyToOne(inversedBy: "order")]
+    #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
+    private ?OrderState $orderState = null;
+
+    public function __construct()
+    {
+        $this->orderDetails = new ArrayCollection();
+    }
 
     public function getUuid(): ?Uuid
     {
@@ -46,6 +60,26 @@ class Order
     public function setTotalPrice(float $totalPrice): static
     {
         $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderDetail>
+     */
+    public function getOrderDetail(): Collection
+    {
+        return $this->orderDetails;
+    }
+
+    public function getOrderState(): ?OrderState
+    {
+        return $this->orderState;
+    }
+
+    public function setOrderState(?OrderState $orderState): static
+    {
+        $this->orderState = $orderState;
 
         return $this;
     }

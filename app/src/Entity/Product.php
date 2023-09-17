@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -28,10 +26,13 @@ class Product
     private ?float $price = null;
 
     #[ORM\OneToMany(mappedBy: "product_uuid", targetEntity: Basket::class)]
-    private Collection $basket;
+    private Collection $baskets;
 
     #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: Stock::class)]
     private Collection $stocks;
+
+    #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: OrderDetail::class)]
+    private Collection $orderDetails;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(name: "category_uuid", referencedColumnName: "uuid", nullable: false)]
@@ -40,8 +41,9 @@ class Product
     public function __construct()
     {
         $this->uuid = Uuid::v4();
-        $this->basket = new ArrayCollection();
+        $this->baskets = new ArrayCollection();
         $this->stocks = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
     public function getUuid(): ?string
@@ -88,9 +90,30 @@ class Product
     /**
      * @return Collection<int, Basket>
      */
-    public function getBasket(): Collection
+    public function getBaskets(): Collection
     {
-        return $this->basket;
+        return $this->baskets;
+    }
+    public function addBasket(Basket $basket): static
+    {
+        if (!$this->baskets->contains($basket)) {
+            $this->baskets->add($basket);
+            $basket->setProductUuid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBasket(Basket $basket): static
+    {
+        if ($this->baskets->removeElement($basket)) {
+            // set the owning side to null (unless already changed)
+            if ($basket->getProductUuid() === $this) {
+                $basket->setProductUuid(null);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -121,6 +144,14 @@ class Product
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderDetail>
+     */
+    public function getOrderDetails(): Collection
+    {
+        return $this->orderDetails;
     }
 
     public function getCategory(): ?Category

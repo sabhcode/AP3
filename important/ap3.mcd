@@ -9,10 +9,10 @@ stock, 0n product, 0n store: quantity
 category: uuid, name
 BELONGS, 11 product, 0n category
 product: uuid, name, desc, price
-product_order, 0n product, 0n order: quantity, price
+orderDetail, 0n product, 0n order: quantity, price
 order: uuid, date, total
-HAS, 11 order, 0n order_state
-order_state: uuid, name
+HAS, 11 order, 0n orderState
+orderState: uuid, name
 
 :
 :

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230916115825 extends AbstractMigration
+final class Version20230917105925 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,6 +22,8 @@ final class Version20230916115825 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE basket (user_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', product_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', quantity INT NOT NULL, INDEX IDX_2246507BABFE1C6F (user_uuid), INDEX IDX_2246507B5C977207 (product_uuid), PRIMARY KEY(user_uuid, product_uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', name VARCHAR(100) NOT NULL, PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE `order` (uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', date_time DATETIME NOT NULL, total_price DOUBLE PRECISION NOT NULL, PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE order_detail (order_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', product_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', quantity INT NOT NULL, price DOUBLE PRECISION NOT NULL, PRIMARY KEY(order_uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE product (uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', category_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', name VARCHAR(100) NOT NULL, description LONGTEXT NOT NULL, price DOUBLE PRECISION NOT NULL, INDEX IDX_D34A04AD5AE42AE1 (category_uuid), PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE stock (store_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', product_uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', quantity INT NOT NULL, INDEX IDX_4B36566033C6FE68 (store_uuid), INDEX IDX_4B3656605C977207 (product_uuid), PRIMARY KEY(store_uuid, product_uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE store (uuid BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid)\', name VARCHAR(100) NOT NULL, city VARCHAR(100) NOT NULL, PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -29,6 +31,7 @@ final class Version20230916115825 extends AbstractMigration
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE basket ADD CONSTRAINT FK_2246507BABFE1C6F FOREIGN KEY (user_uuid) REFERENCES user (uuid)');
         $this->addSql('ALTER TABLE basket ADD CONSTRAINT FK_2246507B5C977207 FOREIGN KEY (product_uuid) REFERENCES product (uuid)');
+        $this->addSql('ALTER TABLE order_detail ADD CONSTRAINT FK_ED896F469C8E6AB1 FOREIGN KEY (order_uuid) REFERENCES `order` (uuid)');
         $this->addSql('ALTER TABLE product ADD CONSTRAINT FK_D34A04AD5AE42AE1 FOREIGN KEY (category_uuid) REFERENCES category (uuid)');
         $this->addSql('ALTER TABLE stock ADD CONSTRAINT FK_4B36566033C6FE68 FOREIGN KEY (store_uuid) REFERENCES store (uuid)');
         $this->addSql('ALTER TABLE stock ADD CONSTRAINT FK_4B3656605C977207 FOREIGN KEY (product_uuid) REFERENCES product (uuid)');
@@ -39,11 +42,14 @@ final class Version20230916115825 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE basket DROP FOREIGN KEY FK_2246507BABFE1C6F');
         $this->addSql('ALTER TABLE basket DROP FOREIGN KEY FK_2246507B5C977207');
+        $this->addSql('ALTER TABLE order_detail DROP FOREIGN KEY FK_ED896F469C8E6AB1');
         $this->addSql('ALTER TABLE product DROP FOREIGN KEY FK_D34A04AD5AE42AE1');
         $this->addSql('ALTER TABLE stock DROP FOREIGN KEY FK_4B36566033C6FE68');
         $this->addSql('ALTER TABLE stock DROP FOREIGN KEY FK_4B3656605C977207');
         $this->addSql('DROP TABLE basket');
         $this->addSql('DROP TABLE category');
+        $this->addSql('DROP TABLE `order`');
+        $this->addSql('DROP TABLE order_detail');
         $this->addSql('DROP TABLE product');
         $this->addSql('DROP TABLE stock');
         $this->addSql('DROP TABLE store');

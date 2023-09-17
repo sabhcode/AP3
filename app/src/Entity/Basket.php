@@ -11,12 +11,12 @@ class Basket
 {
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'basket')]
+    #[ORM\ManyToOne(inversedBy: 'baskets')]
     #[ORM\JoinColumn(name: "user_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?User $user_uuid = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'basket')]
+    #[ORM\ManyToOne(inversedBy: 'baskets')]
     #[ORM\JoinColumn(name: "product_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?Product $product_uuid = null;
 

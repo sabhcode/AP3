@@ -37,12 +37,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Basket::class)]
-    private Collection $basket;
+    private Collection $baskets;
 
     public function __construct()
     {
         $this->uuid = Uuid::v4();
-        $this->basket = new ArrayCollection();
+        $this->baskets = new ArrayCollection();
     }
 
     public function getUuid(): ?string
@@ -144,6 +144,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getBasket(): Collection
     {
-        return $this->basket;
+        return $this->baskets;
     }
 }
