@@ -3,4 +3,4 @@
 [app](app) - contient l'architecture de l'application (ALL4SPORT)
 [important](important) - contient les fichiers de création de l'application (mcd, maquette, ...)
 
-- [] test
+- [ ] test
