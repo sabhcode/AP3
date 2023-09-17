@@ -14,8 +14,9 @@
 > | Google Chrome | 116.0.5845.180 |
 > | Git | 2.42.0 |
 > | PHP | 8.2.10 |
-> | Composer | 2.6.2 |
+> | Symfony | 6.3.4 |
 > | Symfony CLI | 5.5.8 |
+> | Composer | 2.6.2 |
 > | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
 >
