@@ -16,12 +16,12 @@
 > | PHP | 8.2.10 |
 > | Composer | 2.6.2 |
 > | Symfony CLI | 5.5.8 |
-> | Workbench | 8.0.32 |
+> | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
 >
 > **Charte développeur :**<br>
 > Écriture des variable : camelCase (jeSuisUneVariable)<br>
-> Langue des commentaires : Anglais<br>
+> Langue de la documentation de l'application : Anglais<br>
 >
 > **Git branch :**<br>
 > Chaque nouvelle fonctionnalité à une branche précise (F -> Feature, BF -> Bug Fix, HF -> Hot Fix)
