@@ -8,6 +8,7 @@
 > Nombre de séances : XX
 
 > [!WARNING]
+> **Outils :**<br>
 > Visual Studio Code (1.82.0)<br>
 > Google Chrome (116.0.5845.180)<br>
 > Git (2.42.0)<br>
@@ -16,8 +17,10 @@
 > Symfony CLI (5.5.8)<br>
 > Workbench (8.0.32)<br>
 > MySQL (InnoDB) (8.0.31)<br>
+>
 > **Charte développeur :**<br>
 > Écriture des variable : camelCase (jeSuisUneVariable)<br>
 > Langue des commentaires : Anglais<br>
+>
 > **Git branch :**<br>
 > Chaque nouvelle fonctionnalité à une branche précise (F -> Feature, BF -> Bug Fix, HF -> Hot Fix)
