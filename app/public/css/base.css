@@ -16,3 +16,7 @@ html {
 body {
     font-family: "Montserrat";
 }
+
+.header-app__content {
+    display: flex;
+}
