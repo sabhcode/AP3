@@ -32,6 +32,7 @@ class Order
 
     public function __construct()
     {
+        $this->uuid = Uuid::v4();
         $this->orderDetails = new ArrayCollection();
     }
 

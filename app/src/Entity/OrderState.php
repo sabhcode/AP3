@@ -23,6 +23,7 @@ class OrderState
 
     public function __construct()
     {
+        $this->uuid = Uuid::v4();
         $this->orders = new ArrayCollection();
     }
 
