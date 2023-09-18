@@ -9,6 +9,14 @@
     box-sizing: border-box;
 }
 
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 html {
     font-size: 16px;
 }
@@ -17,6 +25,53 @@ body {
     font-family: "Montserrat";
 }
 
+.header-app {
+    position: relative;
+    box-shadow: 0 0 6px #ddd;
+}
+
 .header-app__content {
     display: flex;
+    justify-content: space-between;
+    padding: 0 6%;
+}
+
+.header-app__logo a {
+    display: flex;
+    align-items: center;
+    height: 58px;
+}
+
+.header-app__nav {
+    position: relative;
+}
+
+.header-app__nav div {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+}
+
+.header-app__nav ul {
+    display: flex;
+}
+
+.header-app__nav a {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    padding: 0 20px;
+}
+
+.header-app__toolbar {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    top: 3px;
+}
+
+.header-app__toolbar div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
