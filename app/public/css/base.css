@@ -3,6 +3,11 @@
     src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
 }
 
+:root {
+    --primaryColor: #002153;
+    --boxShadowColor: #ddd;
+}
+
 *, ::before, ::after {
     margin: 0;
     padding: 0;
@@ -27,7 +32,7 @@ body {
 
 .header-app {
     position: relative;
-    box-shadow: 0 0 6px #ddd;
+    box-shadow: 0 0 6px var(--boxShadowColor);
 }
 
 .header-app__content {
@@ -50,6 +55,9 @@ body {
     display: flex;
     position: absolute;
     bottom: 0;
+    transform: translateX(-50%);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .header-app__nav ul {
@@ -59,8 +67,16 @@ body {
 .header-app__nav a {
     display: flex;
     align-items: center;
+    color: #999;
     height: 58px;
     padding: 0 20px;
+}
+.header-app__nav a.on,
+.header-app__nav a:hover {
+    color: var(--primaryColor);
+}
+.header-app__nav a.on {
+    background-color: #00215320;
 }
 
 .header-app__toolbar {
