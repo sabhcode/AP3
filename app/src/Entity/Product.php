@@ -38,6 +38,9 @@ class Product
     #[ORM\JoinColumn(name: "category_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\Column(type: Types::BLOB)]
+    private $image = null;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
@@ -162,6 +165,18 @@ class Product
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
