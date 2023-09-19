@@ -1,0 +1,39 @@
+/* Styles pour le conteneur du slider */
+.slider-container {
+    width: 100%;
+    max-width: 600px; /* Largeur maximale du slider */
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-container h3 {
+
+text-align: center;
+margin-bottom: 15px;
+
+
+}
+/* Styles pour les images du slider */
+.slider-image {
+    width: 100%;
+    display: none; /* Masquer toutes les images par défaut */
+    border-radius: 10px;
+}
+
+/* Style pour les boutons de navigation */
+.slider-nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.slider-nav button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
