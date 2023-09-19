@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+
+		/* Ajoutez du style pour le formulaire */
+		.contact-form {
+			margin-top: 20px;
+		}
+
+		/* Style pour le formulaire d'entrée */
+		.form-input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+
+		/* Style pour le bouton d'envoi */
+		.submit-button {
+			background-color: #007bff;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Contactez-nous!</h1>
+
+		<!-- Informations de contact -->
+		<p>Nous sommes joignables par les moyens suivants :</p>
+		<ul>
+			<li>Numéro de téléphone : 03.27.40.13.13</li>
+			<li>Email : bastien.mohamed.corentin.soufiane@gmail.com</li>
+			<li>Adresse postale : 85 Av. de Denain, 59300 Valenciennes</li>
+		</ul>
+
+		<!-- Formulaire de contact -->
+		<div class="contact-form">
+			<h2>Envoyez-nous un message</h2>
+			<form
+				action="#" method="post">
+				<!-- Mettez l'action du formulaire à l'URL de votre choix -->
+				<input type="text" class="form-input" placeholder="Nom" name="name" required>
+				<input type="email" class="form-input" placeholder="Email" name="email" required>
+				<textarea class="form-input" placeholder="Message" name="message" required></textarea>
+				<button type="submit" class="submit-button">Envoyer</button>
+			</form>
+		</div>
+
+		<!-- Lien vers le contrôleur et le modèle -->
+
+	</div>
+{% endblock %}
