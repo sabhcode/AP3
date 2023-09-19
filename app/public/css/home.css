@@ -33,6 +33,18 @@
 .card-content {
     background-color: #fff;
     padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Égal espacement entre les éléments gauche et droit */
+    align-items: flex-start; /* Alignement en haut pour les éléments gauche */
+}
+
+.card-content h4 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.card-content p {
+    margin: 5px 0;
 }
 
 /* Style pour les boutons de navigation */
