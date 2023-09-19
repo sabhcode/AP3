@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilUserController!
+{% block body %}
+	<h1>Profil de
+		{{ user.name }},
+		{{user.firstname }}</h1>
+
+	<p>Email :
+		{{ user.email }}</p>
 {% endblock %}
 
-{% block body %}
+{% block style %}
 	<style>
 		.example-wrapper {
 			margin: 1em auto;
