@@ -1,21 +1,19 @@
 <?php
 
-// src/Controller/ProfileController.php
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class ProfileController extends AbstractController
+class ProfilUserController extends AbstractController
 {
-    /**
-     * @Route("/profile", name="profile")
-     */
-    public function index(UserInterface $user)
+    #[Route('/profilUser', name: 'app_profilUser')]
+    public function index(): Response
     {
-        return $this->render('profile/index.html.twig', [
-            'user' => $user,
+        return $this->render('profil_user/profil.html.twig', [
+            'controller_name' => '¨ProfilUserController',
+          
         ]);
     }
 }
