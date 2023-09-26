@@ -1,9 +1,30 @@
 /* Styles pour le conteneur du slider */
+
+.top-content {
+
+    
+
+}
+
+
+.top-content h2{
+
+    text-align: center;
+    color: white;
+    background-color: black;
+    
+    padding: 10px;
+    border: none;
+
+}
+
+
 .slider-container {
     width: 100%;
     max-width: 600px; /* Largeur maximale du slider */
     margin: auto;
     margin-top: 50px;
+    
     overflow: hidden;
     position: relative;
 }
@@ -23,6 +44,11 @@
     width: 100%;
     display: none;
     text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -43,20 +69,157 @@
     margin: 0;
 }
 
-.card-content p {
+.card-content p:nth-child(2) {
     margin: 5px 0;
+    font-size: 10px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
 }
 
 /* Style pour les boutons de navigation */
 .slider-nav {
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 .slider-nav button {
-    background: #333;
+    background: #000000;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
 }
+
+/* ----------------------------------------------------------------------------------*/ 
+
+.bottom-content h2{
+
+    text-align: center;
+    color: white;
+    background-color: black;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+
+}
+
+/* Style de la section de la catégorie */
+.category-container {
+    text-align: center;
+    margin: 20px;
+}
+
+/* Style du titre de la catégorie */
+.category-container h4 {
+    
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: left;
+    color: white;
+    background-color: black;
+    margin: 10px 0;
+    padding: 10px;
+    width: max-content;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Style des cartes de produit */
+.bottom-product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+/* Style d'une carte de produit individuelle */
+.bottom-card {
+    width: 200px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style de l'image du produit */
+.bottom-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Style du titre du produit */
+.bottom-card h3 {
+    font-size: 18px;
+    color: black;
+    margin: 10px 0;
+    
+}
+
+/* Style de la description du produit */
+.bottom-card p {
+    font-size: 14px;
+    margin: 5px 0;
+    
+}
+
+.bottom-product-categorie {
+
+    font-size: 10px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+   
+
+}
+
+.bottom-product-categorie:hover{
+    
+    background-color: rgb(29, 29, 29);
+    cursor: grab;
+    
+}
+
+/* Style du prix du produit */
+.bottom-product-price {
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(247, 136, 45);
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+    font-weight: bold;
+}
+
+.bottom-card button {
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+}
+
+.bottom-card button:hover{
+    
+    background-color: rgb(29, 29, 29);
+    cursor: grab;
+    
+}
+
+
+
