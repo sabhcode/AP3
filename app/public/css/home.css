@@ -1,4 +1,24 @@
 /* Styles pour le conteneur du slider */
+
+.top-content {
+
+    
+
+}
+
+
+.top-content h2{
+
+    text-align: center;
+    color: white;
+    background-color: black;
+    
+    padding: 10px;
+    border: none;
+
+}
+
+
 .slider-container {
     width: 100%;
     max-width: 600px; /* Largeur maximale du slider */
