@@ -35,6 +35,10 @@
     display: flex;
 }
 
+.header-app__nav li:hover {
+    background-color: rgb(39, 39, 39);
+}
+
 .header-app__nav a {
     display: flex;
     align-items: center;
