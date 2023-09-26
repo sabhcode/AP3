@@ -4,6 +4,7 @@
     max-width: 600px; /* Largeur maximale du slider */
     margin: auto;
     margin-top: 50px;
+    
     overflow: hidden;
     position: relative;
 }
@@ -23,6 +24,11 @@
     width: 100%;
     display: none;
     text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -51,10 +57,11 @@
 .slider-nav {
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 .slider-nav button {
-    background: #333;
+    background: #000000;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -63,6 +70,17 @@
 }
 
 /* ----------------------------------------------------------------------------------*/ 
+
+.bottom-content h2{
+
+    text-align: center;
+    color: white;
+    background-color: black;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+
+}
 
 /* Style de la section de la catégorie */
 .category-container {
@@ -73,9 +91,16 @@
 /* Style du titre de la catégorie */
 .category-container h4 {
     
-    color: #333;
+    color: #000000;
     margin-bottom: 20px;
     text-align: left;
+    color: white;
+    background-color: black;
+    margin: 10px 0;
+    padding: 10px;
+    width: max-content;
+    border: none;
+    border-radius: 5px;
 }
 
 /* Style des cartes de produit */
