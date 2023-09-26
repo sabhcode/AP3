@@ -3,7 +3,56 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<div class="slider-container">
+    <h3>Nos articles les plus populaires !</h3>
+    <div class="card-slider">
+        <div class="card">
+            <img src="/media/images/home/slider/chaussure1-slider.jpg" alt="Image 1">
+            <div class="card-content">
+                <div class="left">
+                    <h4>Nom de l'article 1</h4>
+                    <p>Description de l'article 1.</p>
+                </div>
+                <div class="right">
+                    <p>Prix : $50</p>
+                    <p>Nombre de ventes : 100</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/images/home/slider/chaussure2-slider.jpg" alt="Image 2">
+            <div class="card-content">
+                <div class="left">
+                    <h4>Nom de l'article 1</h4>
+                    <p>Description de l'article 1.</p>
+                </div>
+                <div class="right">
+                    <p>Prix : $50</p>
+                    <p>Nombre de ventes : 100</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/media/images/home/slider/chaussure3-slider.jpg" alt="Image 3">
+            <div class="card-content">
+                <div class="left">
+                    <h4>Nom de l'article 1</h4>
+                    <p>Description de l'article 1.</p>
+                </div>
+                <div class="right">
+                    <p>Prix : $50</p>
+                    <p>Nombre de ventes : 100</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Page d'accueil</h2>
+<div class="slider-nav">
+    <button id="prevButton">&lt;</button>
+    <button id="nextButton">&gt;</button>
+</div>
 
+<script src="{{ asset('js/home.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 {% endblock %}
