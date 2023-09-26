@@ -24,8 +24,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column(unique: true, length: 255)]
-    private ?string $email = null;
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
@@ -39,20 +37,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Basket::class)]
-    private Collection $baskets;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $address = null;
+    private ?string $adress = null;
 
-    public function __construct()
-    {
-        $this->uuid = Uuid::v4();
-        $this->baskets = new ArrayCollection();
-    }
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Credentials $credential_email = null;
+
+
 
     public function getUuid(): ?string
     {
@@ -66,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return "";
     }
 
     /**
@@ -90,12 +86,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEmail(): ?string
     {
-        return $this->email;
+        return "";
     }
 
     public function setEmail(string $email): static
     {
-        $this->email = $email;
+     
 
         return $this;
     }
@@ -151,10 +147,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Basket>
      */
-    public function getBasket(): Collection
-    {
-        return $this->baskets;
-    }
+
 
     public function isVerified(): bool
     {
@@ -168,14 +161,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAdress(): ?string
     {
-        return $this->address;
+        return $this->adress;
     }
 
-    public function setAddress(string $adress): static
+    public function setAdress(string $adress): static
     {
-        $this->address = $adress;
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getCredentialEmail(): ?Credentials
+    {
+        return $this->credential_email;
+    }
+
+    public function setCredentialEmail(Credentials $credential_email): static
+    {
+        $this->credential_email = $credential_email;
 
         return $this;
     }

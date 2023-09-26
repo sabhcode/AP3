@@ -19,7 +19,7 @@ class Order
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
-
+    
     #[ORM\Column]
     private ?float $totalPrice = null;
 
@@ -30,10 +30,14 @@ class Order
     #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?OrderState $orderState = null;
 
+    #[ORM\OneToMany(mappedBy: 'order_uuid', targetEntity: OrderRank::class)]
+    private Collection $orderRanks;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
         $this->orderDetails = new ArrayCollection();
+        $this->orderRanks = new ArrayCollection();
     }
 
     public function getUuid(): ?Uuid
@@ -81,6 +85,36 @@ class Order
     public function setOrderState(?OrderState $orderState): static
     {
         $this->orderState = $orderState;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderRank>
+     */
+    public function getOrderRanks(): Collection
+    {
+        return $this->orderRanks;
+    }
+
+    public function addOrderRank(OrderRank $orderRank): static
+    {
+        if (!$this->orderRanks->contains($orderRank)) {
+            $this->orderRanks->add($orderRank);
+            $orderRank->setOrderUuid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderRank(OrderRank $orderRank): static
+    {
+        if ($this->orderRanks->removeElement($orderRank)) {
+            // set the owning side to null (unless already changed)
+            if ($orderRank->getOrderUuid() === $this) {
+                $orderRank->setOrderUuid(null);
+            }
+        }
 
         return $this;
     }
