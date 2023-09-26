@@ -65,28 +65,28 @@
 /* ----------------------------------------------------------------------------------*/ 
 
 /* Style de la section de la catégorie */
-.top-bottom-category-container {
+.category-container {
     text-align: center;
     margin: 20px;
 }
 
 /* Style du titre de la catégorie */
-.top-bottom-category-container h3 {
-    font-size: 24px;
+.category-container h4 {
+    
     color: #333;
     margin-bottom: 20px;
     text-align: left;
 }
 
 /* Style des cartes de produit */
-.top-bottom-product-cards {
+.bottom-product-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
 }
 
 /* Style d'une carte de produit individuelle */
-.top-bottom-card {
+.bottom-card {
     width: 200px;
     margin: 10px;
     padding: 15px;
@@ -98,14 +98,14 @@
 }
 
 /* Style de l'image du produit */
-.top-bottom-card img {
+.bottom-card img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
 /* Style du titre du produit */
-.top-bottom-card h3 {
+.bottom-card h3 {
     font-size: 18px;
     color: black;
     margin: 10px 0;
@@ -113,7 +113,7 @@
 }
 
 /* Style de la description du produit */
-.top-bottom-card p {
+.bottom-card p {
     font-size: 14px;
     color: #000000;
     margin: 5px 0;
@@ -123,13 +123,13 @@
 
 
 /* Style du prix du produit */
-.top-bottom-card p:last-child {
+.bottom-card p:last-child {
     font-weight: bold;
     color: #ff6600;
     margin-top: 10px;
 }
 
-.top-bottom-card button {
+.bottom-card button {
     font-size: 18px;
     color: white;
     background-color: black;
@@ -140,7 +140,7 @@
     border: none;
 }
 
-.top-bottom-card button:hover{
+.bottom-card button:hover{
     
     background-color: rgb(29, 29, 29);
     cursor: grab;
