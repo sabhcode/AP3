@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -32,8 +30,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'user_email', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: 'user_email', referencedColumnName: 'user_email', nullable: false)]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
     private ?Credential $credential = null;
 
     public function __construct()
@@ -53,7 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->getCredential();
+        return $this->getCredential()->getEmail();
     }
 
     /**
@@ -102,14 +100,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
-        return $this->credential->getPassword();
+        return $this->getCredential()->getPassword();
     }
 
     public function setPassword(string $password): Credential
     {
         $this->getCredential()->setPassword($password);
+
+        return $this->getCredential();
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->getCredential()->getEmail();
+    }
+
+    public function setEmail(string $email): Credential
+    {
+        $this->getCredential()->setEmail($email);
 
         return $this->getCredential();
     }
@@ -142,16 +152,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setCredential(?Credential $credential): static
     {
-        // unset the owning side of the relation if necessary
-        if ($credential === null && $this->credential !== null) {
-            $this->credential->setUserEmail(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($credential !== null && $credential->getUserEmail() !== $this) {
-            $credential->setUserEmail($this);
-        }
-
         $this->credential = $credential;
 
         return $this;

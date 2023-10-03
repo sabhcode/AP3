@@ -10,24 +10,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Credential
 {
     #[ORM\Id]
-    #[ORM\Column(length: 255)]
-    #[ORM\OneToOne(mappedBy: 'credential', cascade: ['persist', 'remove'])]
-    private ?User $user_email = null;
+    #[ORM\Column]
+    private ?string $email = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(options: ["fixed" => true], length: 60)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_connection = null;
 
-    public function getUserEmail(): ?User
+    public function getEmail(): ?string
     {
-        return $this->user_email;
+        return $this->email;
     }
 
-    public function setUserEmail(?User $user_email): static
+    public function setEmail(string $email): static
     {
-        $this->user_email = $user_email;
+        $this->email = $email;
 
         return $this;
     }
