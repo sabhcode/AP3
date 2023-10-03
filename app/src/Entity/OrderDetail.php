@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\OrderDetailRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: OrderDetailRepository::class)]
 class OrderDetail

@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Credential
 {
     #[ORM\Id]
-    #[ORM\OneToOne(inversedBy: 'credential', cascade: ['persist', 'remove'])]
+    #[ORM\Column(length: 255)]
+    #[ORM\OneToOne(mappedBy: 'credential', cascade: ['persist', 'remove'])]
     private ?User $user_email = null;
 
     #[ORM\Column(length: 60)]
