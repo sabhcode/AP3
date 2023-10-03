@@ -23,25 +23,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column(unique: true, length: 255)]
-    private ?string $email = null;
-
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;  
 
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
-
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
     #[ORM\OneToOne(mappedBy: 'user_email', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'user_email', referencedColumnName: 'user_email', nullable: false)]
     private ?Credential $credential = null;
 
     public function __construct()
@@ -61,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->getCredential();
     }
 
     /**
@@ -79,18 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
 
         return $this;
     }
@@ -124,14 +104,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return $this->credential->getPassword();
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): Credential
     {
-        $this->password = $password;
+        $this->getCredential()->setPassword($password);
 
-        return $this;
+        return $this->getCredential();
     }
 
     /**

@@ -21,10 +21,14 @@ class OrderState
     #[ORM\OneToMany(mappedBy: "orderState", targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'order_state_uuid', targetEntity: OrderRank::class)]
+    private Collection $orderRanks;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
         $this->orders = new ArrayCollection();
+        $this->orderRanks = new ArrayCollection();
     }
 
     public function getUuid(): ?Uuid
@@ -50,5 +54,35 @@ class OrderState
     public function getOrders(): Collection
     {
         return $this->orders;
+    }
+
+    /**
+     * @return Collection<int, OrderRank>
+     */
+    public function getOrderRanks(): Collection
+    {
+        return $this->orderRanks;
+    }
+
+    public function addOrderRank(OrderRank $orderRank): static
+    {
+        if (!$this->orderRanks->contains($orderRank)) {
+            $this->orderRanks->add($orderRank);
+            $orderRank->setOrderStateUuid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderRank(OrderRank $orderRank): static
+    {
+        if ($this->orderRanks->removeElement($orderRank)) {
+            // set the owning side to null (unless already changed)
+            if ($orderRank->getOrderStateUuid() === $this) {
+                $orderRank->setOrderStateUuid(null);
+            }
+        }
+
+        return $this;
     }
 }
