@@ -25,9 +25,6 @@ class Product
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\OneToMany(mappedBy: "product_uuid", targetEntity: Basket::class)]
-    private Collection $baskets;
-
     #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: Stock::class)]
     private Collection $stocks;
 
@@ -44,7 +41,6 @@ class Product
     public function __construct()
     {
         $this->uuid = Uuid::v4();
-        $this->baskets = new ArrayCollection();
         $this->stocks = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
     }
@@ -86,35 +82,6 @@ class Product
     public function setPrice(float $price): static
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Basket>
-     */
-    public function getBaskets(): Collection
-    {
-        return $this->baskets;
-    }
-    public function addBasket(Basket $basket): static
-    {
-        if (!$this->baskets->contains($basket)) {
-            $this->baskets->add($basket);
-            $basket->setProductUuid($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBasket(Basket $basket): static
-    {
-        if ($this->baskets->removeElement($basket)) {
-            // set the owning side to null (unless already changed)
-            if ($basket->getProductUuid() === $this) {
-                $basket->setProductUuid(null);
-            }
-        }
 
         return $this;
     }

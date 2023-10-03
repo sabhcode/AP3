@@ -1,22 +1,27 @@
 :
+:
+:
+orderState: uuid, name
+:
+:
+
 store: uuid, name, city
 stock, 0n product, 0n store: quantity
 :
-:
+orderRank, 0n order, 0n orderState : datetime
 :
 :
 
-category: uuid, name
 BELONGS, 11 product, 0n category
 product: uuid, name, desc, price
 orderDetail, 0n product, 0n order: quantity, price
-order: uuid, date, total
-HAS, 11 order, 0n orderState
-orderState: uuid, name
-
-:
-:
-basket, 0n user, 0n product : quantity
-user: uuid, email, name, firstname, password
+order: uuid, datetime, total
 ORDER, 0n user, 11 order
+user: uuid, name, firstname
+
+category: uuid, name
 :
+:
+:
+credential: email, password, lastconnection
+IDENTIFY BY, 11 user, 01 credential

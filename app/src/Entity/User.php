@@ -38,16 +38,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_uuid', targetEntity: Basket::class)]
-    private Collection $baskets;
-
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToOne(mappedBy: 'user_email', cascade: ['persist', 'remove'])]
+    private ?Credential $credential = null;
 
     public function __construct()
     {
         $this->uuid = Uuid::v4();
-        $this->baskets = new ArrayCollection();
     }
 
     public function getUuid(): ?string
@@ -144,14 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, Basket>
-     */
-    public function getBasket(): Collection
-    {
-        return $this->baskets;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -160,6 +151,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getCredential(): ?Credential
+    {
+        return $this->credential;
+    }
+
+    public function setCredential(?Credential $credential): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($credential === null && $this->credential !== null) {
+            $this->credential->setUserEmail(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($credential !== null && $credential->getUserEmail() !== $this) {
+            $credential->setUserEmail($this);
+        }
+
+        $this->credential = $credential;
 
         return $this;
     }
