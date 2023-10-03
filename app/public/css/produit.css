@@ -1,4 +1,6 @@
-/* Styles CSS mis à jour */
+
+/* ------------------ Section affiche du produit ---------------------- */ 
+
 .product {
     display: flex;
     align-items: center;
@@ -70,6 +72,10 @@
     cursor: grab;
 }
 
+
+/* ------------------ Section stock du produit ---------------------- */ 
+
+
 .stock-info {
     text-align: left;
     padding: 10px;
@@ -112,7 +118,7 @@
 }
 
 
-
+/* ------------------ Section suggestions de produits ---------------------- */ 
 
 .products-suggestions h3{
 
@@ -155,9 +161,10 @@
 /* Style du titre du produit */
 .bottom-card h3 {
     font-size: 18px;
-    color: rgb(255, 255, 255);
+    color: black;
     margin: 10px 0;
-    
+    background-color: white;
+    border: 1px solid #ddd;    
 }
 
 /* Style de la description du produit */
@@ -170,19 +177,19 @@
 .bottom-product-categorie {
 
     font-size: 10px;
-    color: white;
-    background-color: black;
+    color: black;
+    font-weight: bold;
     padding: 10px;
     width: 100%;
     border-radius: 7px;
-    border: none;
+    border: 1px solid #ddd;
    
 
 }
 
 .bottom-product-categorie:hover{
     
-    background-color: rgb(29, 29, 29);
+    background-color: #ddd;
     cursor: grab;
     
 }
