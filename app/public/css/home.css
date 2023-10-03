@@ -94,6 +94,7 @@
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 /* ----------------------------------------------------------------------------------*/ 
@@ -204,10 +205,10 @@
 }
 
 .bottom-card button {
-    font-size: 18px;
+    font-size: 14px;
     color: white;
     background-color: black;
-    
+    font-weight: bold;
     padding: 10px;
     width: 100%;
     border-radius: 7px;
