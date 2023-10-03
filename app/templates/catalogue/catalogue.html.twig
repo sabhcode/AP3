@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<h1>Catalogue</h1>
+
+	<ul>
+		{% for category in categories %}
+			<li>
+				<h2>{{ category.getName() }}</h2>
+				<ul>
+					{% for product in products if product.getCategory() == category %}
+						<li>
+							{{ product.getName() }}
+							-
+							{{ product.getPrice() }}
+							€
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
