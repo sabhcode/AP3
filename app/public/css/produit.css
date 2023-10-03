@@ -1,0 +1,113 @@
+/* Styles CSS mis à jour */
+.product {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.product-image {
+    flex: 1;
+    text-align: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product-details {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+    
+}
+
+.product-details p{
+    
+    margin-bottom: 10px;
+    color: black;
+    width: max-content;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 10px;
+
+}
+
+
+
+
+.product h2 {
+    color: white;
+    background-color: black;
+    margin: 0;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    
+}
+
+.product p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.product button {
+    font-size: 18px;
+    color: black;
+    background-color: rgb(247, 136, 45);
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+    
+}
+
+.product button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transition-duration: 0.2s;
+    cursor: grab;
+}
+
+.stock-info {
+    text-align: left;
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    height: max-content;
+    
+}
+.stock-info ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+
+.stock-info h3 {
+    margin-top: 0;
+    color: white;
+    width: 100%;
+    background-color: black;
+    border-radius: 7px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.stock-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stock-info li {
+    margin-bottom: 10px;
+    color: black;
+    width: max-content;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.stock-location {
+    font-weight: bold;
+}
