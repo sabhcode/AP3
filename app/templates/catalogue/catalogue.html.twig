@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+
+{% block body %}
 	<h1>Catalogue</h1>
+
 
 	<ul>
 		{% for category in categories %}
 			<li>
 				<h2>{{ category.getName() }}</h2>
 				<ul>
-					{% for product in products if product.getCategory() == category %}
+					{% for product in category.getProducts() %}
 						<li>
 							{{ product.getName() }}
 							-
