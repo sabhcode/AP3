@@ -23,3 +23,17 @@
 		{% endfor %}
 	</ul>
 {% endblock %}
+
+{% block stylesheets %}
+	<link
+	rel="stylesheet" href="{{ asset('css/home.css') }}">
+
+	{# Ce CSS sera inclus dans le Twig #}
+	{% set custom_css %}
+	body {
+					            background-color: #fff;
+					        }
+	{% endset %}
+
+	{{ custom_css|inline_css }}
+{% endblock %}

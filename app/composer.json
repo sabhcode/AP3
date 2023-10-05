@@ -40,6 +40,7 @@
         "symfony/web-link": "6.3.*",
         "symfony/yaml": "6.3.*",
         "symfonycasts/verify-email-bundle": "^1.13",
+        "twig/cssinliner-extra": "^2.0",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
@@ -86,6 +87,11 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "twig": {
+            "extensions": [
+                "Twig\\Extra\\CssInlinerExtension"
+            ]
+        },
         "symfony": {
             "allow-contrib": false,
             "require": "6.3.*"
