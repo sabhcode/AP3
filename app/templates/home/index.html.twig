@@ -11,46 +11,24 @@
 <div class="slider-container">
     
     <div class="card-slider">
-        <div class="card">
-            <img src="/media/images/home/slider/chaussure1-slider.jpg" alt="Image 1">
-            <div class="card-content">
-                <div class="left">
-                    <h4>Nom de l'article 1</h4>
-                    <p>Description de l'article 1.</p>
-                </div>
-                <div class="right">
-                    <p class="bottom-product-price"> $50</p>
-                    <p>Nombre de ventes : 100</p>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <img src="/media/images/home/slider/chaussure2-slider.jpg" alt="Image 2">
-            <div class="card-content">
-                <div class="left">
-                    <h4>Nom de l'article 1</h4>
-                    <p>Description de l'article 1.</p>
-                </div>
-                <div class="right">
-                    <p class="bottom-product-price"> $50</p>
-                    <p>Nombre de ventes : 100</p>
+        {% for product in bestSells %}
+            <div class="card">
+                <img src="/media/images/product/{{ product.uuid }}/{{ product.image }}" alt="Image">
+                <div class="card-content">
+                    <div class="left">
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <div class="right">
+                        <p class="bottom-product-price"> Prix : {{ product.price }}</p>
+                        <p>{{ product.nbVentes }} ventes </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="/media/images/home/slider/chaussure3-slider.jpg" alt="Image 3">
-            <div class="card-content">
-                <div class="left">
-                    <h4>Nom de l'article 1</h4>
-                    <p>Description de l'article 1.</p>
-                </div>
-                <div class="right">
-                    <p class="bottom-product-price"> $50</p>
-                    <p>Nombre de ventes : 100</p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+    
+
 </div>
 
 <div class="slider-nav">
@@ -158,7 +136,7 @@
 
 </section>
 
-{{dump(products)}}
+
 
 <script src="{{ asset('js/home.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">

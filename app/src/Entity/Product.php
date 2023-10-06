@@ -35,7 +35,7 @@ class Product
     #[ORM\JoinColumn(name: "category_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\Column(type: Types::BLOB)]
+    #[ORM\Column]
     private $image = null;
 
     #[ORM\Column]
