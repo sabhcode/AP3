@@ -8,9 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilController extends AbstractController
 {
-    #[Route('/mon-profil', name: 'app_profil')]
-    public function index(): Response
+    #[Route('/profil', name: 'app_profil')]
+    public function profile(): Response
     {
-        return $this->render('profil/profil.html.twig');
+        // Récupère l'utilisateur connecté
+        $user = $this->getUser();
+    
+        // Renvoie à la vue avec l'utilisateur comme variable
+        return $this->render('profil/profil.html.twig', [
+            'user' => $user,
+        ]);
     }
 }

@@ -1,32 +1,46 @@
-
 <header class="header-app">
-    <div class="header-app__content">
-        <div class="header-app__logo">
-            <a href="/">
-                <img style="width: 55px;" src="{{ asset('media/images/header/logo3.png') }}">
-            </a>
-        </div>
-        <nav class="header-app__nav">
-            <ul>
-                <li><a href="/" class="{{ app.request.getPathInfo() == '/' ? 'on' : '' }}">Accueil</a></li>
-                <li><a href="/connexion" class="{{ app.request.getPathInfo() == '/connexion' ? 'on' : '' }}">Connexion</a></li>
-                <li><a href="/inscription" class="{{ app.request.getPathInfo() == '/inscription' ? 'on' : '' }}">Inscription</a></li>
-                <li><a href="/contact" class="{{ app.request.getPathInfo() == '/contact' ? 'on' : '' }}">Contact</a></li>
-				
-            </ul>
-            <div id="header-app__indicator-link">
-                <imgs src="{{ asset('media/images/header/header-app__indicator-link.svg') }}">
-            </div>
-        </nav>
-        <div class="header-app__toolbar">
-            <div>
-                <img src="{{ asset('media/images/header/search.svg') }}">
-            </div>
-            <div>
-                <img src="{{ asset('media/images/header/basket.svg') }}">
-            </div>
-        </div>
-    </div>
-</header>
+	<div class="header-app__content">
+		<div class="header-app__logo">
+			<a href="/">
+				<img style="width: 55px;" src="{{ asset('media/images/header/logo3.png') }}">
+			</a>
+		</div>
+		<nav class="header-app__nav">
+			<ul>
+				<li>
+					<a href="/" class="{{ app.request.getPathInfo() == '/' ? 'on' : '' }}">Accueil</a>
+				</li>
+				{% if app.user %}
+					<li>
+						<a href="/profil" class="{{ app.request.getPathInfo() == '/profil' ? 'on' : '' }}">Profil</a>
+					</li>
+					<li>
+						<a href="/deconnexion" class="{{ app.request.getPathInfo() == '/deconnexion' ? 'on' : '' }}">Déconnexion</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="/connexion" class="{{ app.request.getPathInfo() == '/connexion' ? 'on' : '' }}">Connexion</a>
+					</li>
+					<li>
+						<a href="/inscription" class="{{ app.request.getPathInfo() == '/inscription' ? 'on' : '' }}">Inscription</a>
+					</li>
+				{% endif %}
+				<li>
+					<a href="/contact" class="{{ app.request.getPathInfo() == '/contact' ? 'on' : '' }}">Contact</a>
+				</li>
+			</ul>
+			<div id="header-app__indicator-link">
+				<imgs src="{{ asset('media/images/header/header-app__indicator-link.svg') }}"></div>
+			</nav>
+			<div class="header-app__toolbar">
+				<div>
+					<img src="{{ asset('media/images/header/search.svg') }}">
+				</div>
+				<div>
+					<img src="{{ asset('media/images/header/basket.svg') }}">
+				</div>
+			</div>
+		</div>
+	</header>
 
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/header.css') }}">
