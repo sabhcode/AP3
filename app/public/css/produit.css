@@ -207,6 +207,14 @@
     font-weight: bold;
 }
 
+.bottom-buttons-card {
+
+    display: flex;
+    justify-content: flex;
+    gap: 5px;
+    
+    }
+
 .bottom-card button {
     font-size: 14px;
     color: white;
@@ -224,3 +232,4 @@
     cursor: grab;
     
 }
+

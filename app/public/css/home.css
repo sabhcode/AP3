@@ -122,6 +122,16 @@
     font-weight: bold;
 }
 
+.slider-nav button:hover {
+   
+    color: black;
+    background-color: rgb(247, 136, 45);
+    cursor: grab;
+    transition-duration: 0.2s;
+   
+
+}
+
 /* ----------------------------------------------------------------------------------*/ 
 
 .bottom-content h2{
@@ -174,6 +184,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
+
 
 /* Style de l'image du produit */
 .bottom-card img {
@@ -231,6 +243,14 @@
     border: none;
     font-weight: bold;
 }
+
+.bottom-buttons-card {
+
+    display: flex;
+    justify-content: flex;
+    gap: 5px;
+    
+    }
 
 .bottom-card button {
     font-size: 14px;
