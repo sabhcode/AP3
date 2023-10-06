@@ -38,6 +38,9 @@ class Product
     #[ORM\Column(type: Types::BLOB)]
     private $image = null;
 
+    #[ORM\Column]
+    private ?int $nbVentes = null;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
@@ -144,6 +147,18 @@ class Product
     public function setImage($image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getNbVentes(): ?int
+    {
+        return $this->nbVentes;
+    }
+
+    public function setNbVentes(int $nbVentes): static
+    {
+        $this->nbVentes = $nbVentes;
 
         return $this;
     }
