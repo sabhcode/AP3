@@ -35,20 +35,30 @@
     display: flex;
 }
 
+
+
+
 .header-app__nav li:hover {
-    background-color: rgb(39, 39, 39);
+   scale: 1.1;
+   transition-duration: 0.2s;
+    
 }
+
+
 
 .header-app__nav a {
     display: flex;
     align-items: center;
     color: #ffffff;
     height: 58px;
-    padding: 0 20px;
+    padding: 15px;
+    margin: 10px;
 }
 
 .header-app__nav a.on {
     background-color: #60606020;
+    border-radius: 10px;
+    
 }
 
 .header-app__toolbar {
