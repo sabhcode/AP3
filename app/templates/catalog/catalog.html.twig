@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+
+{% block body %}
 	<h1>Catalogue</h1>
+
 
 	<ul>
 		{% for category in categories %}
 			<li>
+
+
 				<h2>{{ category.getName() }}</h2>
 				<ul>
 					{% for product in category.getProducts() %}
 						<li>
+							<img src="/media/images/product/{{ product.getUuid() }}/{{ product.image }}" alt="Image">
+							-
 							{{ product.getName() }}
 							-
 							{{ product.getPrice() }}
@@ -20,4 +26,11 @@
 			</li>
 		{% endfor %}
 	</ul>
+{% endblock %}
+
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
+
+
 {% endblock %}
