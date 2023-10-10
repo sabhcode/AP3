@@ -1,5 +1,6 @@
 /* Styles for the catalog page */
 
+
 /* Style for the main heading */
 h1 {
     text-align: center;
@@ -10,11 +11,13 @@ h1 {
     border: none;
 }
 
+
 /* Style for unordered list */
 ul {
     list-style-type: none;
     padding: 0;
 }
+
 
 /* Style for list items */
 .product-item {
@@ -29,18 +32,22 @@ ul {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 200px;
 
+
 }
+
 
 /* Style for product image */
 .product-item img {
     width: 100px;
 }
 
+
 /* Style for product title */
 .product-item h3 {
     font-size: 1.2rem;
     margin: 10px 0;
 }
+
 
 /* Style for product price */
 .product-item .product-price {
@@ -53,6 +60,7 @@ ul {
     border: none;
     font-weight: bold;
 }
+
 
 /* Style for product price button (if needed) */
 .product-price-button {
@@ -67,13 +75,17 @@ ul {
     /* Adjust as needed for spacing */
 }
 
+
 .product-price-button:hover {
     background-color: rgb(29, 29, 29);
 }
 
+
 .products-list {
+
 
     display: flex;
     gap: 10px;
+
 
 }
