@@ -8,10 +8,13 @@
 	<ul>
 		{% for category in categories %}
 			<li>
+
 				<h2>{{ category.getName() }}</h2>
 				<ul>
 					{% for product in category.getProducts() %}
 						<li>
+							<img src="/media/images/product/{{ product.getUuid() }}/{{ product.image }}" alt="Image">
+							-
 							{{ product.getName() }}
 							-
 							{{ product.getPrice() }}
@@ -25,15 +28,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link
-	rel="stylesheet" href="{{ asset('css/home.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
 
-	{# Ce CSS sera inclus dans le Twig #}
-	{% set custom_css %}
-	body {
-						            background-color: #fff;
-						        }
-	{% endset %}
 
-	{{ custom_css|inline_css }}
 {% endblock %}
