@@ -183,6 +183,9 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -196,7 +199,7 @@
 
 /* Style du titre du produit */
 .bottom-card h3 {
-    font-size: 18px;
+    font-size: 10px;
     color: black;
     margin: 10px 0;
     background-color: white;
