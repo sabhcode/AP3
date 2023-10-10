@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue
+{% endblock %}
+
+{% block body %}
+<h1>Catalogue</h1>
+
+<!-- Barre de recherche -->
+<div class="search-bar">
+	<input type="text" id="search-input" placeholder="Rechercher un produit">
+	<select id="category-filter">
+		<option value="">Toutes les catégories</option>
+		<!-- Boucle pour afficher les options de catégorie -->
+		{% for category in categories %}
+			<option value="{{ category.getName() }}">{{ category.getName() }}</option>
+		{% endfor %}
+	</select>
+	<button id="search-button">Rechercher</button>
+</div>
+
+<ul>
+	<!-- Boucle pour afficher les catégories -->
+	{% for category in categories %}
+		<li>
+			<h2>{{ category.getName() }}</h2>
+			<ul
+				class="products-list">
+				<!-- Boucle pour afficher les produits de chaque catégorie -->
+				{% for product in category.getProducts() %}
+					<li class="product-item" data-category="{{ category.getName() | lower }}">
+						<img src="/media/images/product/{{ product.getUuid() }}/{{ product.image }}" alt="Image">
+						<h3>{{ product.getName() }}</h3>
+						<p class="product-price">{{ product.getPrice() }}
+							€</p>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+	{% endfor %}
+</ul>
+
+<!-- Inclusion de la feuille de style CSS -->
+<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}"></div><script>
+// Fonction pour filtrer les produits en fonction des critères de recherche et de catégorie
+function filterProducts() {
+const searchInput = document.getElementById('search-input').value.toLowerCase(); // value.toLowerCase --> renvoie la valeur de la chaîne convertie en minuscules.
+const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+
+const productItems = document.querySelectorAll('.product-item');
+
+// Boucle à travers les éléments de produit pour les afficher ou les masquer en fonction des critères
+productItems.forEach(item => {
+const productName = item.querySelector('h3').textContent.toLowerCase();
+const productCategory = item.dataset.category;
+
+if ((searchInput === '' || productName.includes(searchInput)) && (categoryFilter === '' || productCategory === categoryFilter)) {
+item.style.display = 'block'; // Affiche le produit
+} else {
+item.style.display = 'none'; // Masque le produit
+}
+});
+}
+
+// Ajout d'événements pour déclencher la fonction de filtrage
+document.getElementById('search-button').addEventListener('click', filterProducts);
+document.getElementById('category-filter').addEventListener('change', filterProducts);
+
+filterProducts(); // Appel initial pour afficher tous les produits</script>
+{% endblock %}
