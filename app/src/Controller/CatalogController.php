@@ -15,13 +15,10 @@ class CatalogController extends AbstractController
     {
         // Récupérez les catégories depuis la base de données
         $categories = $categorie->findAll();
+        
 
-        // Récupérez tous les produits depuis la base de données
-        $products = $product->findAll();
-
-        return $this->render('catalogue/catalogue.html.twig', [
+        return $this->render('catalog/catalog.html.twig', [
             'categories' => $categories,
-            'products' => $products,
         ]);
     }
 }

@@ -8,7 +8,7 @@
 			<li>
 				<h2>{{ category.getName() }}</h2>
 				<ul>
-					{% for product in products if product.getCategory() == category %}
+					{% for product in category.getProducts() %}
 						<li>
 							{{ product.getName() }}
 							-
