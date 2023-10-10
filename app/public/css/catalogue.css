@@ -1,131 +1,79 @@
 /* Styles for the catalog page */
 
-
-h h1 {
-
-
-
-
+/* Style for the main heading */
+h1 {
     text-align: center;
     color: white;
     background-color: black;
-
-
-
-
     margin: 10px 0;
-
-
-
-
     padding: 10px;
     border: none;
 }
 
-
+/* Style for unordered list */
 ul {
-
-
-
-
     list-style-type: none;
     padding: 0;
 }
 
-
-li {
-
-
-
-
+/* Style for list items */
+.product-item {
     margin: 20px 0;
-}
-
-
-/* Style for category title */
-h2 {
-    text-align: left;
-
-
-
-
-    color: white;
-
-
-
-
-    background-color: black;
-
-
-
-
-    margin: 10px 0;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-}
-
-
-/* Style for product list */
-ul ul {
-    list-style-type: none;
-
-
-
-
-    padding: 0;
-}
-
-
-/* Style for product item */
-li li {
-
-
-
-
-    margin: 10px 0;
     display: flex;
-
-
-
-
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+
 }
 
+/* Style for product image */
+.product-item img {
+    width: 100px;
+}
 
-/* Style for product name */
-li li h4 {
+/* Style for product title */
+.product-item h3 {
     font-size: 1.2rem;
-    margin: 0;
+    margin: 10px 0;
 }
-
 
 /* Style for product price */
-li li p {
+.product-item .product-price {
     font-size: 1rem;
-
-
-
-
     color: rgb(0, 0, 0);
     background-color: rgb(247, 136, 45);
     padding: 10px;
     width: max-content;
     border-radius: 7px;
-
-
-
-
     border: none;
-
-
-
-
     font-weight: bold;
+}
+
+/* Style for product price button (if needed) */
+.product-price-button {
+    background-color: rgb(247, 136, 45);
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    /* Adjust as needed for spacing */
+}
+
+.product-price-button:hover {
+    background-color: rgb(29, 29, 29);
+}
+
+.products-list {
+
+    display: flex;
+    gap: 10px;
+
 }

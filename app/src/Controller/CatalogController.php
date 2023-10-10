@@ -11,14 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CatalogController extends AbstractController
 {
     #[Route('/catalogue', name: 'catalogue')]
-    public function index(CategoryRepository $categorie, ProductRepository $product): Response
+    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
         // Récupérez les catégories depuis la base de données
-        $categories = $categorie->findAll();
-        
+        $categories = $categoryRepository->findAll();
+        $products = $productRepository->findAll();
 
         return $this->render('catalog/catalog.html.twig', [
             'categories' => $categories,
+            'products' => $products
         ]);
     }
 }
