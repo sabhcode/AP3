@@ -48,16 +48,20 @@
 <div class="category-container">
     <h4>Nos meilleurs produits par catégories</h4>
     <div class="bottom-product-cards">
+
+        {% for product in BestProductByCategory %}
+        {% if (product != null) %}
         <div class="bottom-card">
-            <img src="/media/images/home/slider/chaussure1-slider.jpg" alt="Produit 1">
-            <h3>Produit 1</h3>
-            <p class="bottom-product-price"> $20</p>
+            <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+            <h3>{{ product.getName() }}</h3>
+            <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
             <div class="bottom-buttons-card">
                 <button>👀</button>
                 <button>🛒</button>
             </div>
         </div>
-        
+{% endif  %}        
+        {% endfor %}
 </div>
 
 </section>

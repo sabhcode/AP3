@@ -27,6 +27,12 @@ class Category
         $this->products = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->uuid;
+    }
+
+
     public function getUuid(): ?Uuid
     {
         return $this->uuid;

@@ -20,20 +20,18 @@ class HomeController extends AbstractController
 
             $BestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getUuid()], ['nbVentes' => 'DESC']);
 
-
-
         }
 
-
-        dump($BestProductByCategory);
-        die;
-
         $bestSells = $productRepository->findBy([], ['nbVentes' => 'DESC'], 5);
+
+
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'categories' => $categories,
-            'bestSells' => $bestSells
+            'bestSells' => $bestSells,
+            'BestProductByCategory' => $BestProductByCategory
         ]);
     }
 }
