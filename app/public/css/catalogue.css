@@ -1,0 +1,131 @@
+/* Styles for the catalog page */
+
+
+h h1 {
+
+
+
+
+    text-align: center;
+    color: white;
+    background-color: black;
+
+
+
+
+    margin: 10px 0;
+
+
+
+
+    padding: 10px;
+    border: none;
+}
+
+
+ul {
+
+
+
+
+    list-style-type: none;
+    padding: 0;
+}
+
+
+li {
+
+
+
+
+    margin: 20px 0;
+}
+
+
+/* Style for category title */
+h2 {
+    text-align: left;
+
+
+
+
+    color: white;
+
+
+
+
+    background-color: black;
+
+
+
+
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+/* Style for product list */
+ul ul {
+    list-style-type: none;
+
+
+
+
+    padding: 0;
+}
+
+
+/* Style for product item */
+li li {
+
+
+
+
+    margin: 10px 0;
+    display: flex;
+
+
+
+
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style for product name */
+li li h4 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+
+/* Style for product price */
+li li p {
+    font-size: 1rem;
+
+
+
+
+    color: rgb(0, 0, 0);
+    background-color: rgb(247, 136, 45);
+    padding: 10px;
+    width: max-content;
+    border-radius: 7px;
+
+
+
+
+    border: none;
+
+
+
+
+    font-weight: bold;
+}
