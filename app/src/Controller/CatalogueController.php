@@ -8,18 +8,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CatalogController extends AbstractController
+class CatalogueController extends AbstractController
 {
     #[Route('/catalogue', name: 'catalogue')]
-    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
+    public function index(CategoryRepository $categorie, ProductRepository $product): Response
     {
         // Récupérez les catégories depuis la base de données
-        $categories = $categoryRepository->findAll();
-        $products = $productRepository->findAll();
+        $categories = $categorie->findAll();
 
-        return $this->render('catalog/catalog.html.twig', [
+        // Récupérez tous les produits depuis la base de données
+        $products = $product->findAll();
+
+        return $this->render('catalogue/catalogue.html.twig', [
             'categories' => $categories,
-            'products' => $products
+            'products' => $products,
         ]);
     }
 }

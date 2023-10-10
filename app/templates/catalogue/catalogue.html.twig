@@ -9,7 +9,6 @@
 		{% for category in categories %}
 			<li>
 
-
 				<h2>{{ category.getName() }}</h2>
 				<ul>
 					{% for product in category.getProducts() %}
@@ -27,7 +26,6 @@
 		{% endfor %}
 	</ul>
 {% endblock %}
-
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
