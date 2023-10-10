@@ -14,6 +14,10 @@
 		Votre email:
 		{{ app.user.email}}
 		!</p>
+
+	<a href="{{ path('app_changePassword') }}">Change Password</a>
+
+	{{ dump(user)}}
 {% else %}
 	<p>Vous n'êtes pas connecté.</p>
 {% endif %}{% endblock %}
