@@ -3,6 +3,7 @@
 .top-content {
 
     
+    
 
 }
 
@@ -12,7 +13,6 @@
     text-align: center;
     color: white;
     background-color: black;
-    
     padding: 10px;
     border: none;
 
@@ -82,19 +82,32 @@
 
 .card-content {
     background-color: #fff;
-    padding: 10px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between; /* Égal espacement entre les éléments gauche et droit */
     align-items: flex-start; /* Alignement en haut pour les éléments gauche */
 }
 
 .card-content h4 {
-    font-size: 1.2rem;
-    margin: 0;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+
 }
 
-.card-content p:nth-child(2) {
-    margin: 5px 0;
+.right {
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.right p {
+    
     font-size: 10px;
     color: black;
     padding: 10px;
@@ -102,6 +115,14 @@
     width: 100%;
     border-radius: 7px;
     font-weight: bold;
+    
+}
+
+.left p {
+   
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
     
 }
 
@@ -183,6 +204,9 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -196,7 +220,7 @@
 
 /* Style du titre du produit */
 .bottom-card h3 {
-    font-size: 18px;
+    font-size: 10px;
     color: black;
     margin: 10px 0;
     background-color: white;
