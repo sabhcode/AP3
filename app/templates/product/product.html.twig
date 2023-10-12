@@ -41,7 +41,7 @@
         
         <div class="bottom-product-cards">
             {% for productOfSameCategory in product.getCategory.getProducts %}      
-            {% if (productOfSameCategory.getUuid) == product.getUuid %}      
+            {% if (productOfSameCategory.getUuid) != product.getUuid %}      
             <div class="bottom-card">
                 <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
                 <h3>{{ productOfSameCategory.getName }}</h3>
