@@ -16,7 +16,7 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('image')
-            ->add('nbVentes')
+            ->add('nb_sales')
             ->add('category')
         ;
     }

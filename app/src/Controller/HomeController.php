@@ -18,7 +18,7 @@ class HomeController extends AbstractController
 
         foreach ($categories as $category) {
 
-            $BestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getUuid()], ['nbVentes' => 'DESC']);
+            $BestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getUuid()], ['nb_sales' => 'DESC']);
 
         }
 

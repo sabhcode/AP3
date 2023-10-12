@@ -39,7 +39,7 @@ class Product
     private $image = null;
 
     #[ORM\Column]
-    private ?int $nbVentes = null;
+    private ?int $nb_sales = null;
 
     public function __construct()
     {
@@ -151,14 +151,14 @@ class Product
         return $this;
     }
 
-    public function getNbVentes(): ?int
+    public function getNbSales(): ?int
     {
-        return $this->nbVentes;
+        return $this->nb_sales;
     }
 
-    public function setNbVentes(int $nbVentes): static
+    public function setNbSales(int $nb_sales): static
     {
-        $this->nbVentes = $nbVentes;
+        $this->nb_sales = $nb_sales;
 
         return $this;
     }
