@@ -11,7 +11,7 @@
 
 <!-- Barre de recherche -->
 <div class="search-bar">
-	<input type="text" id="search-input" placeholder="Rechercher un produit">
+	<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
 	<select id="category-filter">
 		<option value="">Toutes les catégories</option>
 		<!-- Boucle pour afficher les options de catégorie -->
@@ -19,7 +19,7 @@
 			<option value="{{ category.getName() }}">{{ category.getName() }}</option>
 		{% endfor %}
 	</select>
-	<button id="search-button">Rechercher</button>
+	<button id="search-button">🔍</button>
 </div>
 
 
@@ -45,40 +45,5 @@
 </ul>
 
 
-<!-- Inclusion de la feuille de style CSS -->
 <link rel="stylesheet" href="{{ asset('css/catalogue.css') }}"></div><script>
-// Fonction pour filtrer les produits en fonction des critères de recherche et de catégorie
-function filterProducts() {
-const searchInput = document.getElementById('search-input').value.toLowerCase(); // value.toLowerCase --> renvoie la valeur de la chaîne convertie en minuscules.
-const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
-
-
-const productItems = document.querySelectorAll('.product-item');
-
-
-// Boucle à travers les éléments de produit pour les afficher ou les masquer en fonction des critères
-productItems.forEach(item => {
-const productName = item.querySelector('h3').textContent.toLowerCase();
-const productCategory = item.dataset.category;
-
-
-if ((searchInput === '' || productName.includes(searchInput)) && (categoryFilter === '' || productCategory === categoryFilter)) {
-item.style.display = 'block'; // Affiche le produit
-} else {
-item.style.display = 'none'; //      Masque le produit
-}
-});
-}
-
-
-
-
-
-
-// Ajout d'événements pour déclencher la fonction de filtrage
-document.getElementById('search-button').addEventListener('click', filterProducts);
-document.getElementById('category-filter').addEventListener('change', filterProducts);
-
-
-filterProducts(); // Appel initial pour afficher tous les produits</script>
 {% endblock %}
