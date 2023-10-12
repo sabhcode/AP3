@@ -56,7 +56,7 @@
                     <h3>{{ product.getName() }}</h3>
                     <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
                     <div class="bottom-buttons-card">
-                        <button>👀</button>
+                        <a href="{{ path('app_produit', {produit : product.uuid} )}}" class="btn">👀</button>
                         <button>🛒</button>
                     </div>
                 </div>
