@@ -22,7 +22,7 @@ class HomeController extends AbstractController
 
         }
 
-        $bestSells = $productRepository->findBy([], ['nbVentes' => 'DESC'], 5);
+        $bestSells = $productRepository->findBy([], ['nb_sales' => 'DESC'], 5);
 
 
 
