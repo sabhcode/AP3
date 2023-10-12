@@ -11,7 +11,7 @@
 
 <!-- Barre de recherche -->
 <div class="search-bar">
-	<input type="text" id="search-input" placeholder="Rechercher un produit">
+	<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
 	<select id="category-filter">
 		<option value="">Toutes les catégories</option>
 		<!-- Boucle pour afficher les options de catégorie -->
@@ -19,7 +19,7 @@
 			<option value="{{ category.getName() }}">{{ category.getName() }}</option>
 		{% endfor %}
 	</select>
-	<button id="search-button">Rechercher</button>
+	<button id="search-button">🔍</button>
 </div>
 
 
