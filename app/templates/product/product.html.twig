@@ -40,17 +40,19 @@
         <h3>Des produits qui pourraient vous intéresser</h3>
         
         <div class="bottom-product-cards">
-            
+            {% for productOfSameCategory in product.getCategory.getProducts %}      
+            {% if (productOfSameCategory.getUuid) != product.getUuid %}      
             <div class="bottom-card">
-                <img src="/media/images/home/slider/chaussure1-slider.jpg" alt="Produit 1">
-                <h3>Produit 1</h3>
-                <p class="bottom-product-price"> $20</p>
+                <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
+                <h3>{{ productOfSameCategory.getName }}</h3>
+                <p class="bottom-product-price">{{ productOfSameCategory.getPrice }} 💲</p>
                 <div class="bottom-buttons-card">
-                    <button>👀</button>
-                    <button>🛒</button>
+                    <button><a href="{{ path('app_product', {product : productOfSameCategory.uuid} )}}">👀</a></button>
+                    <button><a href="">🛒</a></button>
                 </div>
             </div>
-            
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 

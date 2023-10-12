@@ -29,7 +29,7 @@ class Category
 
     public function __toString()
     {
-        return $this->uuid;
+        return $this->name;
     }
 
 

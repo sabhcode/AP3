@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/product/crud')]
+#[Route('/productcrud')]
 class ProductCrudController extends AbstractController
 {
     #[Route('/', name: 'app_product_crud_index', methods: ['GET'])]
@@ -71,7 +71,7 @@ class ProductCrudController extends AbstractController
     #[Route('/{uuid}', name: 'app_product_crud_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getUuid(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getUuid(), $request->request->get('_token'))) {
             $entityManager->remove($product);
             $entityManager->flush();
         }
