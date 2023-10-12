@@ -151,12 +151,12 @@ class Product
         return $this;
     }
 
-    public function getNbVentes(): ?int
+    public function getNbSales(): ?int
     {
         return $this->nb_sales;
     }
 
-    public function setNbVentes(int $nb_sales): static
+    public function setNbSales(int $nb_sales): static
     {
         $this->nb_sales = $nb_sales;
 
