@@ -20,9 +20,16 @@
                         <p>{{ product.getDescription() }}</p>
                     </div>
                     <div class="right">
-                        <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
-                        <p>{{ product.getNbSales() }} ventes </p>
-                        <button>🛒</button>
+                        <div class="left-of-right">
+                            <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
+                            <p>{{ product.getNbSales() }} ventes </p>
+                        </div>
+                    
+                        <div class="right-of-right">
+                            <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                            <button><a href="">🛒</a></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -56,8 +63,8 @@
                     <h3>{{ product.getName() }}</h3>
                     <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
                     <div class="bottom-buttons-card">
-                        <a href="{{ path('app_product', {product : product.uuid} )}}" class="btn">👀</button>
-                        <button>🛒</button>
+                        <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                        <button><a href="">🛒</a></button>
                     </div>
                 </div>
             {% endif  %}        
