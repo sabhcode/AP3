@@ -13,7 +13,7 @@
 <div class="search-bar">
 	<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
 	<select id="category-filter">
-		<option value="">Toutes les catégories</option>
+		<option class="select-category" value="">Toutes catégories</option>
 		<!-- Boucle pour afficher les options de catégorie -->
 		{% for category in categories %}
 			<option value="{{ category.getName() }}">{{ category.getName() }}</option>
@@ -27,17 +27,22 @@
 	<!-- Boucle pour afficher les catégories -->
 	{% for category in categories %}
 		<li>
-			<h2>{{ category.getName() }}</h2>
+			
 			<ul
 				class="products-list">
 				<!-- Boucle pour afficher les produits de chaque catégorie -->
 				{% for product in category.getProducts() %}
-					<li class="product-item" data-category="{{ category.getName() | lower }}">
-						<img src="/media/images/product/{{ product.getUuid() }}/{{ product.image }}" alt="Image">
-						<h3>{{ product.getName() }}</h3>
-						<p class="product-price">{{ product.getPrice() }}
-							€</p>
-					</li>
+					<h4 class="category-name">{{ category.getName() | lower }}</h4>
+						<div class="card">
+                    <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                    <h3>{{ product.getName() }}</h3>
+                    <p class="product-price">{{ product.getPrice() }} 💲</p>
+                    <div class="buttons-card">
+                        <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                        <button><a href="">🛒</a></button>
+                    </div>
+                </div>
+					
 				{% endfor %}
 			</ul>
 		</li>

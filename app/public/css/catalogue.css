@@ -18,80 +18,105 @@ ul {
     padding: 0;
 }
 
+.category-name {
 
-/* Style for list items */
-.product-item {
-    margin: 20px 0;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: left;
+    color: white;
+    background-color: black;
+    margin: 10px 0;
+    padding: 10px;
+    width: max-content;
+    border: none;
+    border-radius: 5px;
+
+}
+
+
+.card {
+    width: 200px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 200px;
-
-
+    justify-content: space-between;
 }
 
 
-/* Style for product image */
-.product-item img {
-    width: 100px;
+
+/* Style de l'image du produit */
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-
-/* Style for product title */
-.product-item h3 {
-    font-size: 1.2rem;
+/* Style du titre du produit */
+.card h3 {
+    font-size: 10px;
+    color: black;
     margin: 10px 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
 }
 
+/* Style de la description du produit */
+.card p {
+    font-size: 14px;
+    margin: 5px 0;
 
-/* Style for product price */
-.product-item .product-price {
-    font-size: 1rem;
+}
+
+.product-price {
+    font-size: 10px;
     color: rgb(0, 0, 0);
     background-color: rgb(247, 136, 45);
     padding: 10px;
-    width: max-content;
+    width: 100%;
     border-radius: 7px;
     border: none;
     font-weight: bold;
 }
 
-
-/* Style for product price button (if needed) */
-.product-price-button {
-    background-color: rgb(247, 136, 45);
-    color: white;
-    font-weight: bold;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 5px;
-    /* Adjust as needed for spacing */
-}
-
-
-.product-price-button:hover {
-    background-color: rgb(29, 29, 29);
-}
-
-
-.products-list {
-
+.buttons-card {
 
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 5px;
+
+}
+
+.card button {
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
 
 
 }
 
+.card button:hover {
 
-/* ---------------------- search bar ------------------------ */ 
+    background-color: rgb(29, 29, 29);
+    cursor: grab;
+    transition-duration: 0.2s;
+
+}
+
+
+/* ---------------------- search bar ------------------------ */
 
 /* Styles pour la barre de recherche */
 .search-bar {
@@ -103,7 +128,7 @@ ul {
     border-radius: 10px;
     margin: 15px;
     border: 1px solid #ddd;
-    
+
 }
 
 #search-input {
@@ -113,15 +138,15 @@ ul {
     border-radius: 5px;
     margin-right: 10px;
     border: 1px solid #ddd;
-    
-    
+
+
 }
 
 #search-input:focus {
-   
-outline: none !important;
-background-color: #f4f4f4;
-color: #fff;
+
+    outline: none !important;
+    background-color: #f4f4f4;
+    color: #fff;
 
 }
 
@@ -135,6 +160,8 @@ color: #fff;
     margin-right: 10px;
 }
 
+
+
 #search-button {
     background-color: #ff8800;
     color: #ffffff;
@@ -145,7 +172,7 @@ color: #fff;
 }
 
 #search-button:hover {
-    
+
     background-color: #000000;
     transition-duration: 0.2s;
 }
