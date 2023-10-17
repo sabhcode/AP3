@@ -1,0 +1,125 @@
+/* Styles for the Inscription page */
+
+/* Alert for email verification error */
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+/* Style for the registration form */
+form {
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+/* Style for form elements */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Style for the "Accepter les conditions" checkbox */
+input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(247, 136, 45);
+}
+
+/* Style for form errors */
+ul.errors {
+    list-style-type: none;
+    padding: 0;
+    color: #f44336;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ConnexionStatus {
+    margin: 25px;
+    width: 100%;
+    text-align: center;
+
+}
+
+
+
+/* Styles for the "Vous êtes connecté en tant que" section */
+.ConnexionStatus a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    line-gap-override: 15px;
+}
+
+.ConnexionStatus a:hover {
+
+    transition-duration: 0.2s;
+    background-color: rgb(247, 136, 45);
+}
+
+.GoToSignIn {
+
+    margin: 40px;
+    text-align: center;
+}
+
+.GoToSignIn a {
+
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    line-gap-override: 15px;
+
+}
+
+.GoToSignIn a:hover {
+
+    transition-duration: 0.2s;
+    background-color: rgb(247, 136, 45);
+
+
+}

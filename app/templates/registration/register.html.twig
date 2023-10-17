@@ -8,6 +8,13 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
+	{% if app.user %}
+        <div class="ConnexionStatus">
+            Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> -  <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    
+    {% else %}
+
 	<h1>Inscription</h1>
 
 	{{ form_errors(registrationForm) }}
@@ -41,4 +48,11 @@
 
 	<button type="submit" class="btn">S'inscrire</button>
 	{{ form_end(registrationForm) }}
+
+	<p class="GoToSignIn">Vous êtes déjà inscrit ? <a href="connexion">Connexion</a></p>
+
+	{% endif %}
+
+
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 {% endblock %}
