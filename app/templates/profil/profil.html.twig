@@ -6,6 +6,7 @@
 
 {% block body %}
 
+<h1>Profil</h1>
 
 	{% if user %}
 		<br>
@@ -29,4 +30,8 @@
 	{{ dump(user)}}
 {% else %}
 	<p>Vous n'êtes pas connecté.</p>
-{% endif %}{% endblock %}
+{% endif %}
+
+<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+
+{% endblock %}
