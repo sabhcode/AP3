@@ -9,23 +9,28 @@
     {% endif %}
 
     {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        <div class="ConnexionStatus">
+            Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> -  <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
-    {% endif %}
-
+    
+    {% else %}
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
     <label for="inputEmail">Email</label>
     <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="username" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
     <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+           value="{{ csrf_token('authenticate') }}">
 
     <button class="btn btn-lg btn-primary" type="submit">
         Connexion
     </button>
 </form>
-<p>Vous n'êtes pas encore inscrit ? <a href="inscription">inscrivez-vous</a></p>
+
+
+<p class="GoToSignUp">Vous n'êtes pas encore inscrit ? <a href="inscription">Inscription</a></p>
+
+{% endif %}
+
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
