@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+{% if products is not empty %}
+    {% set priceOrder = 0 %}
+    <div class="bottom-product-cards">
+        {% for item in products %}
+            <div class="bottom-card">
+                {% set product = item[0] %}
+                {% set quantity = item[1] %}
+                {% set priceOrder = priceOrder + product.getPrice() * quantity %}
+                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                <div class="card-content">
+                    <div class="left">
+                        <h4>{{ product.getName() }}</h4>
+                        <p>{{ product.getDescription() }}</p>
+                    </div>
+                    <div class="right">
+                        <div class="left-of-right">
+                            <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
+                            <p>{{ product.getNbSales() }} ventes </p>
+                        </div>
+                    
+                        <div class="right-of-right">
+                            <a href="{{ path('app_product', {product : product.uuid} )}}">👀</a>
+                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+                            <div>
+                                <p>Qté : {{ quantity }}</p>
+                            </div>
+                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">Retirer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <p>Total de la commande : {{ priceOrder }} €</p>
+{% else %}
+    <p>Votre panier ne contient pas de produit</p>
+{% endif %}
+{% endblock %}
