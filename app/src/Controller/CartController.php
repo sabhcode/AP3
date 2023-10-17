@@ -65,6 +65,10 @@ class CartController extends AbstractController
 
             } else if($action === "remove") {
 
+                $cart->$productUuid--;
+
+            } else if($action === "delete") {
+
                 unset($cart->$productUuid);
 
             }
