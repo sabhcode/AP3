@@ -73,15 +73,13 @@ ul.errors {
 }
 
 .ConnexionStatus {
-    margin: 25px;
+    margin: 55px;
     width: 100%;
     text-align: center;
 
 }
 
 
-
-/* Styles for the "Vous êtes connecté en tant que" section */
 .ConnexionStatus a {
     text-decoration: none;
     color: white;
@@ -90,6 +88,7 @@ ul.errors {
     padding: 5px;
     border-radius: 5px;
     line-gap-override: 15px;
+
 }
 
 .ConnexionStatus a:hover {
