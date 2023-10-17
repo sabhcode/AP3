@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/category/crud')]
+#[Route('/categorycrud')]
 class CategoryCrudController extends AbstractController
 {
     #[Route('/', name: 'app_category_crud_index', methods: ['GET'])]
