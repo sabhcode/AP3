@@ -1,0 +1,13 @@
+.price-order {
+    background-color: #f7882d20;
+    text-align: center;
+    max-width: max-content;
+    margin: 20px auto;
+    padding: 4px 10px;
+    border-left: 2px solid #f7882d;
+}
+
+.price-order span {
+    font-weight: bold;
+    font-size: 1.2em;
+}

@@ -142,7 +142,7 @@ ul {
 .card button:hover {
 
     background-color: rgb(29, 29, 29);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
 
 }

@@ -66,7 +66,7 @@
 
     color: black;
     background-color: rgb(247, 136, 45);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
 
 }
@@ -162,7 +162,7 @@
 
     color: black;
     background-color: rgb(247, 136, 45);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
 
 
@@ -267,7 +267,7 @@
 .bottom-product-categorie:hover {
 
     background-color: #ddd;
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
 
 }
@@ -308,7 +308,7 @@
 .bottom-card button:hover {
 
     background-color: rgb(29, 29, 29);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
 
 }
