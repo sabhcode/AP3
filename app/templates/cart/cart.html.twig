@@ -4,9 +4,11 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 {% endblock %}
 
 {% block body %}
+<h2>Mon panier</h2>
 {% if products is not empty %}
     {% set priceOrder = 0 %}
     <div class="bottom-product-cards">
@@ -16,31 +18,17 @@
                 {% set quantity = item[1] %}
                 {% set priceOrder = priceOrder + product.getPrice() * quantity %}
                 <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                <div class="card-content">
-                    <div class="left">
-                        <h4>{{ product.getName() }}</h4>
-                        <p>{{ product.getDescription() }}</p>
-                    </div>
-                    <div class="right">
-                        <div class="left-of-right">
-                            <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
-                            <p>{{ product.getNbSales() }} ventes </p>
-                        </div>
-                    
-                        <div class="right-of-right">
-                            <a href="{{ path('app_product', {product : product.uuid} )}}">👀</a>
-                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-                            <div>
-                                <p>Qté : {{ quantity }}</p>
-                            </div>
-                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">Retirer</button>
-                        </div>
-                    </div>
+                <h3>{{ product.getName() }}</h3>
+                <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
+                <div class="bottom-buttons-card">
+                    <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">❌</button>
                 </div>
+                <p>Qté : {{ quantity }}</p>
             </div>
         {% endfor %}
     </div>
-    <p>Total de la commande : {{ priceOrder }} €</p>
+    <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
 {% else %}
     <p>Votre panier ne contient pas de produit</p>
 {% endif %}
