@@ -138,8 +138,11 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    
 
 }
+
+
 
 /* Style pour les boutons de navigation */
 .slider-nav {
