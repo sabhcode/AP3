@@ -1,3 +1,12 @@
+.main-app {
+    padding: 20px;
+}
+
+.cart-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .price-order {
     background-color: #f7882d20;
     text-align: center;
