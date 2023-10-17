@@ -12,6 +12,13 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(): Response
     {
-        return $this->render('contact/contact.html.twig');
+
+        $email = 'bastien.mohamed.corentin.soufiane@gmail.com';
+
+        return $this->render('contact/contact.html.twig', [
+
+            'email' => $email,
+
+        ]);
     }
 }
