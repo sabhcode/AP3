@@ -39,3 +39,30 @@
     background-color: #f7882d;
     color: #fff;
 }
+
+
+.GoToSignIn {
+
+    margin: 40px;
+    text-align: center;
+}
+
+.GoToSignIn a {
+
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    line-gap-override: 15px;
+
+}
+
+.GoToSignIn a:hover {
+
+    transition-duration: 0.2s;
+    background-color: rgb(247, 136, 45);
+
+
+}
