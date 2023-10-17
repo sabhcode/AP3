@@ -1,15 +1,9 @@
 /* Styles pour le conteneur du slider */
 
-.top-content {
-
-    
-    
-    
-
-}
+.top-content {}
 
 
-.top-content h2{
+.top-content h2 {
 
     text-align: center;
     color: white;
@@ -22,10 +16,11 @@
 
 .slider-container {
     width: 100%;
-    max-width: 600px; /* Largeur maximale du slider */
+    max-width: 600px;
+    /* Largeur maximale du slider */
     margin: auto;
     margin-top: 50px;
-    
+
     overflow: hidden;
     position: relative;
 }
@@ -52,9 +47,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card button{
+.card button {
 
-    
+
     font-size: 10px;
     color: white;
     background-color: black;
@@ -63,17 +58,17 @@
     border-radius: 7px;
     border: none;
     font-weight: bold;
-   
+
 }
 
-.card button:hover{
+.card button:hover {
 
-    
+
     color: black;
     background-color: rgb(247, 136, 45);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
-   
+
 }
 
 .card img {
@@ -85,8 +80,10 @@
     background-color: #fff;
     margin-top: 15px;
     display: flex;
-    justify-content: space-between; /* Égal espacement entre les éléments gauche et droit */
-    align-items: flex-start; /* Alignement en haut pour les éléments gauche */
+    justify-content: space-between;
+    /* Égal espacement entre les éléments gauche et droit */
+    align-items: flex-start;
+    /* Alignement en haut pour les éléments gauche */
 }
 
 .card-content h4 {
@@ -108,7 +105,7 @@
 
 
 .right p {
-    
+
     font-size: 10px;
     color: black;
     padding: 10px;
@@ -116,15 +113,15 @@
     width: 100%;
     border-radius: 7px;
     font-weight: bold;
-    
+
 }
 
 .left p {
-   
+
     font-size: 10px;
     font-weight: 600;
     text-align: center;
-    
+
 }
 
 .left-of-right {
@@ -132,7 +129,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    
+
 
 }
 
@@ -141,8 +138,11 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    
 
 }
+
+
 
 /* Style pour les boutons de navigation */
 .slider-nav {
@@ -162,18 +162,18 @@
 }
 
 .slider-nav button:hover {
-   
+
     color: black;
     background-color: rgb(247, 136, 45);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
-   
+
 
 }
 
-/* ----------------------------------------------------------------------------------*/ 
+/* ----------------------------------------------------------------------------------*/
 
-.bottom-content h2{
+.bottom-content h2 {
 
     text-align: center;
     color: white;
@@ -192,7 +192,7 @@
 
 /* Style du titre de la catégorie */
 .category-container h4 {
-    
+
     color: #000000;
     margin-bottom: 20px;
     text-align: left;
@@ -242,7 +242,7 @@
     color: black;
     margin: 10px 0;
     background-color: white;
-    border: 1px solid #ddd;    
+    border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
 }
@@ -251,7 +251,7 @@
 .bottom-card p {
     font-size: 14px;
     margin: 5px 0;
-    
+
 }
 
 .bottom-product-categorie {
@@ -263,16 +263,16 @@
     width: 100%;
     border-radius: 7px;
     border: 1px solid #ddd;
-   
+
 
 }
 
-.bottom-product-categorie:hover{
-    
+.bottom-product-categorie:hover {
+
     background-color: #ddd;
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
-    
+
 }
 
 /* Style du prix du produit */
@@ -292,8 +292,8 @@
     display: flex;
     justify-content: space-between;
     gap: 5px;
-    
-    }
+
+}
 
 .bottom-card button {
     font-size: 14px;
@@ -304,14 +304,14 @@
     width: 100%;
     border-radius: 7px;
     border: none;
-    
+
 
 }
 
-.bottom-card button:hover{
-    
+.bottom-card button:hover {
+
     background-color: rgb(29, 29, 29);
-    cursor: grab;
+    cursor: pointer;
     transition-duration: 0.2s;
-    
+
 }

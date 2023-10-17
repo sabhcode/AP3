@@ -35,3 +35,26 @@ headerAppNavLinks.forEach(link => {
     });
 
 });
+
+// Add product in cart
+const btnsUpdateProductInCart = document.querySelectorAll(".update-product-cart");
+
+btnsUpdateProductInCart.forEach(btn => {
+
+    btn.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        const productUuid = this.getAttribute("data-productUuid");
+        const action = this.getAttribute("data-action");
+
+        const form = new FormData();
+
+        form.append("productUuid", productUuid);
+        form.append("action", action);
+
+        fetch("ajout-produit-panier", {method: "POST", body: form})
+
+    });
+
+});

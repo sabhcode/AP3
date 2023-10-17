@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+{% endblock %}
+
+{% block body %}
+<h2 class="cart-title">Mon panier</h2>
+{% if products is not empty %}
+    {% set priceOrder = 0 %}
+    <div class="bottom-product-cards">
+        {% for item in products %}
+            <div class="bottom-card">
+                {% set product = item[0] %}
+                {% set quantity = item[1] %}
+                {% set priceOrder = priceOrder + product.getPrice() * quantity %}
+                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                <h3>{{ product.getName() }}</h3>
+                <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
+                <div class="bottom-buttons-card">
+                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
+                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
+                    <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete">❌</button>
+                </div>
+                <p>Qté : {{ quantity }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
+    <button class="confirm-order">Valider la commande</button>
+{% else %}
+    <p>Votre panier ne contient pas de produit</p>
+{% endif %}
+{% endblock %}

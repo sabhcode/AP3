@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue
-{% endblock %}
+{% block title %}Catalogue{% endblock %}
 
 {% block body %}
 	<h1>Catalogue</h1>
@@ -42,16 +41,16 @@
 										<a href="{{ path('app_product', {'product': product.getUuid()}) }}">👀</a>
 									</button>
 									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-
-								</div>
-							</div>
-						{% endfor %}
+						</div>
 					</div>
-				</li>
-			{% endif %}
-		{% endfor %}
-	</ul>
+				{% endfor %}
+			</div>
+		</li>
+		{% endif %}
+	{% endfor %}
+</ul>
 
-	<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
-	<script></script>
+<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
+<script>
+</script>
 {% endblock %}

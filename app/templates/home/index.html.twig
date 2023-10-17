@@ -2,47 +2,47 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
 
+{% block body %}
 <section class="top-content">
 
     <h2>Nos meilleures ventes</h2>
 
-<div class="slider-container">
-    
-    <div class="card-slider">
-        {% for product in bestSells %}
-            <div class="card">
-                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                <div class="card-content">
-                    <div class="left">
-                        <h4>{{ product.getName() }}</h4>
-                        <p>{{ product.getDescription() }}</p>
-                    </div>
-                    <div class="right">
-                        <div class="left-of-right">
-                            <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
-                            <p>{{ product.getNbSales() }} ventes </p>
+    <div class="slider-container">
+        
+        <div class="card-slider">
+            {% for product in bestSells %}
+                <div class="card">
+                    <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                    <div class="card-content">
+                        <div class="left">
+                            <h4>{{ product.getName() }}</h4>
+                            <p>{{ product.getDescription() }}</p>
                         </div>
-                    
-                        <div class="right-of-right">
-                            <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
-                            <button><a href="">🛒</a></button>
+                        <div class="right">
+                            <div class="left-of-right">
+                                <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
+                                <p>{{ product.getNbSales() }} ventes </p>
+                            </div>
+                        
+                            <div class="right-of-right">
+                                <button class="seeProduct"><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                                <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-    
 
-</div>
-
-<div class="slider-nav">
-    <button id="prevButton">←</button>
-    <button id="nextButton">→</button>
-</div>
+    <div class="slider-nav">
+        <button id="prevButton">←</button>
+        <button id="nextButton">→</button>
+    </div>
 
 </section>
 
@@ -64,7 +64,7 @@
                     <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
                     <div class="bottom-buttons-card">
                         <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
-                        <button><a href="">🛒</a></button>
+                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                     </div>
                 </div>
             {% endif  %}        
@@ -72,9 +72,8 @@
 </div>
 
 </section>
+{% endblock %}
 
-
-
+{% block javascripts_body %}
 <script src="{{ asset('js/home.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 {% endblock %}
