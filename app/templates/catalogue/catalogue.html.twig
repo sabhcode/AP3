@@ -34,12 +34,9 @@
 						<h3>{{ product.getName() }}</h3>
 						<p class="product-price">{{ product.getPrice() }} 💲</p>
 						<div class="buttons-card">
-							<button>
-								<a href="{{ path('app_product', {'product': product.getUuid()}) }}">👀</a>
-							</button>
-							<button>
-								<a href="">🛒</a>
-							</button>
+							<button><a href="{{ path('app_product', {'product': product.getUuid()}) }}">👀</a></button>
+							<button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+
 						</div>
 					</div>
 				{% endfor %}

@@ -29,7 +29,7 @@
                             </div>
                         
                             <div class="right-of-right">
-                                <a href="{{ path('app_product', {product : product.uuid} )}}">👀</a>
+                                <button class="seeProduct"><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
                                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                             </div>
                         </div>
