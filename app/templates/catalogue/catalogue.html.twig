@@ -3,40 +3,44 @@
 {% block title %}Catalogue{% endblock %}
 
 {% block body %}
-<h1>Catalogue</h1>
+	<h1>Catalogue</h1>
 
-<!-- Barre de recherche -->
-<div class="search-bar">
-	<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
-	<select id="category-filter">
-		<option class="select-category" value="">Toutes catégories</option>
-		<!-- Boucle pour afficher les options de catégorie -->
+	<!-- Barre de recherche -->
+	<div class="search-bar">
+		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
+		<select id="category-filter">
+			<option class="select-category" value="">Toutes catégories</option>
+			<!-- Boucle pour afficher les options de catégorie -->
+			{% for category in categories %}
+				<option value="{{ category.getName() }}">{{ category.getName() }}</option>
+			{% endfor %}
+		</select>
+		<button id="search-button">🔍</button>
+	</div>
+
+	<ul>
+		<!-- Boucle pour afficher les catégories -->
 		{% for category in categories %}
-			<option value="{{ category.getName() }}">{{ category.getName() }}</option>
-		{% endfor %}
-	</select>
-	<button id="search-button">🔍</button>
-</div>
-
-<ul>
-	<!-- Boucle pour afficher les catégories -->
-	{% for category in categories %}
-		{% if category.getProducts()|length  != 0 %}
-		<li class="category-container">
-			<div class="category-title">
-				<a class="category-name" href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">{{ category.getName() | upper }} 🔗</a>
-			</div>
-			<div class="products-list">
-				<!-- Boucle pour afficher les produits de chaque catégorie -->
-				{% for product in category.getProducts() %}
-					<div class="card">
-						<img src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image">
-						<h3>{{ product.getName() }}</h3>
-						<p class="product-price">{{ product.getPrice() }} 💲</p>
-						<div class="buttons-card">
-							<button><a href="{{ path('app_product', {'product': product.getUuid()}) }}">👀</a></button>
-							<button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-
+			{% if category.getProducts()|length  != 0 %}
+				<li class="category-container">
+					<div class="category-title">
+						<a class="category-name" href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">{{ category.getName() | upper }}
+							🔗</a>
+					</div>
+					<div
+						class="products-list">
+						<!-- Boucle pour afficher les produits de chaque catégorie -->
+						{% for product in category.getProducts() %}
+							<div class="card">
+								<img src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image">
+								<h3>{{ product.getName() }}</h3>
+								<p class="product-price">{{ product.getPrice() }}
+									💲</p>
+								<div class="buttons-card">
+									<button>
+										<a href="{{ path('app_product', {'product': product.getUuid()}) }}">👀</a>
+									</button>
+									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 						</div>
 					</div>
 				{% endfor %}
