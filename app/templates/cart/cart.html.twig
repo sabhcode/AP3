@@ -8,6 +8,9 @@
 {% endblock %}
 
 {% block body %}
+
+{% if app.user %}
+
 <h2 class="cart-title">Mon panier</h2>
 {% if products is not empty %}
     {% set priceOrder = 0 %}
@@ -34,5 +37,11 @@
     <button class="confirm-order">Valider la commande</button>
 {% else %}
     <p>Votre panier ne contient pas de produit</p>
+{% endif %}
+
+{% else %}
+
+<p class="GoToSignIn">Vous n'êtes pas connecté - <a href="connexion">Connexion</a></p>
+
 {% endif %}
 {% endblock %}
