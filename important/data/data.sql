@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `all4sport` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `all4sport`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: all4sport
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,43 +16,14 @@ USE `all4sport`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
---
-
-DROP TABLE IF EXISTS `category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `category` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `category`
 --
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (_binary 'ï¿½Bï¿½Zï¿½\ï¿½','Boxe'),(_binary 'ï¿½8ï¿½Zï¿½\ï¿½','Foot'),(_binary 'ï¿½bï¿½Zï¿½\ï¿½','VÃ©lo'),(_binary 'ï¿½ï¿½bï¿½Zï¿½','Tennis');
+INSERT INTO `category` VALUES (_binary 'ï¿½Bï¿½Zï¿½\ï¿','Boxe'),(_binary 'ï¿½8ï¿½Zï¿½\ï¿','Foot'),(_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ©lo'),(_binary 'ï¿½ï¿½bï¿½Zï¿½','Tennis');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `credential`
---
-
-DROP TABLE IF EXISTS `credential`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `credential` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` char(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_connection` datetime DEFAULT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `credential`
@@ -67,21 +36,6 @@ INSERT INTO `credential` VALUES ('user1@gmail.com','$2a$15$WCyI5dhiIE2ad8I0i4PVM
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
---
-
-DROP TABLE IF EXISTS `order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `date_time` datetime NOT NULL,
-  `total_price` double NOT NULL,
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `order`
 --
 
@@ -89,26 +43,6 @@ LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `order_detail`
---
-
-DROP TABLE IF EXISTS `order_detail`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_detail` (
-  `order_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `product_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `quantity` int NOT NULL,
-  `price` double NOT NULL,
-  PRIMARY KEY (`order_uuid`,`product_uuid`),
-  KEY `IDX_ED896F469C8E6AB1` (`order_uuid`),
-  KEY `IDX_ED896F465C977207` (`product_uuid`),
-  CONSTRAINT `FK_ED896F465C977207` FOREIGN KEY (`product_uuid`) REFERENCES `product` (`uuid`),
-  CONSTRAINT `FK_ED896F469C8E6AB1` FOREIGN KEY (`order_uuid`) REFERENCES `order` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `order_detail`
@@ -120,25 +54,6 @@ LOCK TABLES `order_detail` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_rank`
---
-
-DROP TABLE IF EXISTS `order_rank`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_rank` (
-  `order_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `orderstate_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `date_time` datetime NOT NULL,
-  PRIMARY KEY (`order_uuid`,`orderstate_uuid`),
-  KEY `IDX_C588D2F29C8E6AB1` (`order_uuid`),
-  KEY `IDX_C588D2F2B4870385` (`orderstate_uuid`),
-  CONSTRAINT `FK_C588D2F29C8E6AB1` FOREIGN KEY (`order_uuid`) REFERENCES `order` (`uuid`),
-  CONSTRAINT `FK_C588D2F2B4870385` FOREIGN KEY (`orderstate_uuid`) REFERENCES `order_state` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `order_rank`
 --
 
@@ -148,50 +63,14 @@ LOCK TABLES `order_rank` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_state`
---
-
-DROP TABLE IF EXISTS `order_state`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_state` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `order_state`
 --
 
 LOCK TABLES `order_state` WRITE;
 /*!40000 ALTER TABLE `order_state` DISABLE KEYS */;
-INSERT INTO `order_state` VALUES (_binary '\\ï¿½ï¿½Z	ï¿½\ï¿½','transmise'),(_binary 'b8tZ	ï¿½ï¿½ï¿½','validÃ©e'),(_binary 'eï¿½×µZ	ï¿½ï¿½\ï¿½','en prÃ©paration'),(_binary 'iï¿½a:Z	ï¿½ï¿½\ï¿½','expÃ©diÃ©e'),(_binary 'm4ï¿½\rZ	ï¿½ï¿½\ï¿½','livrÃ©e'),(_binary 'prï¿½ï¿½Z	ï¿½\ï¿½','retirÃ©e');
+INSERT INTO `order_state` VALUES (_binary '\\ï¿½ï¿½Z	ï¿½\ï¿','transmise'),(_binary 'b8tZ	ï¿½ï¿½ï¿½','validÃ©e'),(_binary 'eï¿½×µZ	ï¿½ï¿½\ï','en prÃ©paration'),(_binary 'iï¿½a:Z	ï¿½ï¿½\ï','expÃ©diÃ©e'),(_binary 'm4ï¿½\rZ	ï¿½ï¿½\ï','livrÃ©e'),(_binary 'prï¿½ï¿½Z	ï¿½\ï¿','retirÃ©e');
 /*!40000 ALTER TABLE `order_state` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `product`
---
-
-DROP TABLE IF EXISTS `product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `product` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `category_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` double NOT NULL,
-  `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nb_sales` int NOT NULL,
-  PRIMARY KEY (`uuid`),
-  UNIQUE KEY `UNIQ_1CF73D315E237E06` (`name`),
-  KEY `IDX_1CF73D315AE42AE1` (`category_uuid`),
-  CONSTRAINT `FK_1CF73D315AE42AE1` FOREIGN KEY (`category_uuid`) REFERENCES `category` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `product`
@@ -199,28 +78,9 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (_binary '\rï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿½','But de football SG 500 taille M Bleu orange','Ceci est la description du But de football SG 500 taille M Bleu orange',75,'But de football SG 500 taille M Bleu orange.jpg', 0),(_binary '9ï¿½\'HZï¿½ï¿½\ï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿½','Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA','Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',220,'Chaussures de football FUTURE ULTIMATE ENERGY FG.jpg', 0),(_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿½','Ballon Coupe Du Monde 2018','Ceci est la description du Ballon Coupe Du Monde 2018',49.99,'ballon-futsal-match-ball-coupe-du-monde-2018-repli.webp', 0),(_binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',_binary 'ï¿½bï¿½Zï¿½\ï¿½','VÃ©lo VTT Ã©lectrique semi-rigide 27,5 pouces - E-ST 500 NOIR','Ceci est la description du VÃ©lo VTT Ã©lectrique semi-rigide 27,5\" - E-ST 500 NOIR',1499,'velo-vtt-electrique-semi-rigide-275-e-st-500-noir.jpg', 0),(_binary 'ï¿½4Zï¿½ï¿½\ï¿½',_binary 'ï¿½ï¿½bï¿½Zï¿½','BANDEAU DE SPORT ADIDAS NOIR','Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',13,'bandeau-de-sport-adidas-noir.jpg', 0),(_binary 'ï¿½[Cï¿½Zï¿½\ï¿½',_binary 'ï¿½bï¿½Zï¿½\ï¿½','VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES','Ceci est la description du VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5\"',339,'velo-vtt-randonnee-st-120-noir-bleu-275.jpg', 0),(_binary 'ï¿½ï¿½\'ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿½','Hyperflex HN Gants De Gardien','Ceci est la description des Hyperflex HN Gants De Gardien',99.99,'101128601_pngUpLWrxnMjshAs.jpg', 0),(_binary 'ï¿½ï¿½YjZï¿½\ï¿½',_binary 'ï¿½Bï¿½Zï¿½\ï¿½','Sac de frappe pied/poing 32 kg adulte','Ceci est la description du Sac de frappe pied/poing 32 kg adulte',119.99,'sac-de-frappe-piedpoing-32-kg-adulte.jpg', 0);
+INSERT INTO `product` VALUES (_binary '\rï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿','But de football SG 500 taille M Bleu orange','Ceci est la description du But de football SG 500 taille M Bleu orange',75,'But de football SG 500 taille M Bleu orange.jpg',0),(_binary '9ï¿½\'HZï¿½ï¿½\ï',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA','Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',220,'Chaussures de football FUTURE ULTIMATE ENERGY FG.jpg',0),(_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Ballon Coupe Du Monde 2018','Ceci est la description du Ballon Coupe Du Monde 2018',49.99,'ballon-futsal-match-ball-coupe-du-monde-2018-repli.webp',0),(_binary 'ï¿½R\\Zï¿½ï¿½\ï',_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ©lo VTT Ã©lectrique semi-rigide 27,5 pouces - E-ST 500 NOIR','Ceci est la description du VÃ©lo VTT Ã©lectrique semi-rigide 27,5\" - E-ST 500 NOIR',1499,'velo-vtt-electrique-semi-rigide-275-e-st-500-noir.jpg',0),(_binary 'ï¿½4Zï¿½ï¿½\ï',_binary 'ï¿½ï¿½bï¿½Zï¿½','BANDEAU DE SPORT ADIDAS NOIR','Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',13,'bandeau-de-sport-adidas-noir.jpg',0),(_binary 'ï¿½[Cï¿½Zï¿½\ï¿',_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES','Ceci est la description du VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5\"',339,'velo-vtt-randonnee-st-120-noir-bleu-275.jpg',0),(_binary 'ï¿½ï¿½\'ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Hyperflex HN Gants De Gardien','Ceci est la description des Hyperflex HN Gants De Gardien',99.99,'101128601_pngUpLWrxnMjshAs.jpg',0),(_binary 'ï¿½ï¿½YjZï¿½\ï¿',_binary 'ï¿½Bï¿½Zï¿½\ï¿','Sac de frappe pied/poing 32 kg adulte','Ceci est la description du Sac de frappe pied/poing 32 kg adulte',119.99,'sac-de-frappe-piedpoing-32-kg-adulte.jpg',0);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `stock`
---
-
-DROP TABLE IF EXISTS `stock`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stock` (
-  `store_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `product_uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `quantity` int NOT NULL,
-  PRIMARY KEY (`store_uuid`,`product_uuid`),
-  KEY `IDX_8AF7796433C6FE68` (`store_uuid`),
-  KEY `IDX_8AF779645C977207` (`product_uuid`),
-  CONSTRAINT `FK_8AF7796433C6FE68` FOREIGN KEY (`store_uuid`) REFERENCES `store` (`uuid`),
-  CONSTRAINT `FK_8AF779645C977207` FOREIGN KEY (`product_uuid`) REFERENCES `product` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `stock`
@@ -228,23 +88,9 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',6),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï¿½',44),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',124),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',4),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿½',19),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',65),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿½',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',7),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï¿½',41),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',133),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',1),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿½',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿½',9),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï¿½',34),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',99),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',3),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿½',33),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿½',5),(_binary 'ï¿½ï¿½^KZï¿½\ï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï¿½',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',88),(_binary 'ï¿½ï¿½^KZï¿½\ï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',19),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',12),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',121),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿½',15),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',42),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿½',32),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',54),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',16),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',23),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿½',32);
+INSERT INTO `stock` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',6),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï',44),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',124),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï',4),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',19),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',65),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary '\rï¿½ï¿½ï¿½Zï¿½',7),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary '9ï¿½\'HZï¿½ï¿½\ï',41),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',133),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½R\\Zï¿½ï¿½\ï',1),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½ï¿½YjZï¿½\ï¿',9),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï',34),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',99),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï',3),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',33),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',5),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary '\rï¿½ï¿½ï¿½Zï¿½',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary '9ï¿½\'HZï¿½ï¿½\ï',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',88),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',19),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',12),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',121),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',15),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',42),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',32),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',54),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½R\\Zï¿½ï¿½\ï',16),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',23),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½ï¿½YjZï¿½\ï¿',32);
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `store`
---
-
-DROP TABLE IF EXISTS `store`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `store` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `city` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `store`
@@ -252,29 +98,9 @@ CREATE TABLE `store` (
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½','Valenciennes'),(_binary '|ï¿½ï¿½DZï¿½\ï¿½','Lille'),(_binary 'ï¿½ï¿½Zï¿½Zï¿½','Metz'),(_binary 'ï¿½ï¿½^KZï¿½\ï¿½','Lens'),(_binary 'ï¿½ï¿½ï¿½Zï¿½','Arras'),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½','Dunkerque');
+INSERT INTO `store` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½','Valenciennes'),(_binary '|ï¿½ï¿½DZï¿½\ï¿','Lille'),(_binary 'ï¿½ï¿½Zï¿½Zï¿½','Metz'),(_binary 'ï¿½ï¿½^KZï¿½\ï¿','Lens'),(_binary 'ï¿½ï¿½ï¿½Zï¿½','Arras'),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï','Dunkerque');
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `uuid` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
-  `credential_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` json NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_verified` tinyint(1) NOT NULL,
-  PRIMARY KEY (`uuid`),
-  UNIQUE KEY `UNIQ_2DA17977A5D24B55` (`credential_email`),
-  CONSTRAINT `FK_2DA17977A5D24B55` FOREIGN KEY (`credential_email`) REFERENCES `credential` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -282,7 +108,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '8ï¿½ï¿½Z\nï¿½\ï¿½','user1@gmail.com','[]','NomUser1','PrenomUser1',1),(_binary '\\Eï¿½ï¿½Z\nï¿½\ï¿½','user2@gmail.com','[]','NomUser2','PrenomUser2',1);
+INSERT INTO `user` VALUES (_binary '8ï¿½ï¿½Z\nï¿½\ï¿','user1@gmail.com','[]','NomUser1','PrenomUser1',1),(_binary '\\Eï¿½ï¿½Z\nï¿½\ï¿','user2@gmail.com','[]','NomUser2','PrenomUser2',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -295,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-29 18:52:11
+-- Dump completed on 2023-10-12 16:37:14
