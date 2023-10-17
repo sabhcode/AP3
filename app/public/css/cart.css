@@ -11,3 +11,22 @@
     font-weight: bold;
     font-size: 1.2em;
 }
+
+.confirm-order {
+    display: block;
+    background-color: transparent;
+    font: inherit;
+    max-width: max-content;
+    margin: 20px auto;
+    padding: 4px 10px;
+    border: 1px solid #f7882d;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: .2s ease;
+    transition-property: background-color, color;
+}
+.confirm-order:hover {
+    background-color: #f7882d;
+    color: #fff;
+}
