@@ -24,8 +24,8 @@
 	{% for category in categories %}
 		<li>
 			<h4 class="category-name">
-				<a href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">Catégorie</a>
-				{{ category.getName() | lower }}</a>
+				<a href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">{{ category.getName() | upper }}</a>
+			</li>
 		</li>
 	</h4>
 	<ul
