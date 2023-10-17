@@ -1,5 +1,4 @@
-
-/* ------------------ Section affiche du produit ---------------------- */ 
+/* ------------------ Section affiche du produit ---------------------- */
 
 .product {
     display: flex;
@@ -14,7 +13,7 @@
 
 .product-image img {
     width: 400px;
-    
+
     border-radius: 10px;
 }
 
@@ -22,11 +21,18 @@
     flex: 1;
     text-align: left;
     padding: 20px;
-    
+
+
 }
 
-.product-details p{
-    
+.product-details p {
+
+
+    max-width: 700px
+}
+
+.product-details p {
+
     margin-bottom: 10px;
     color: black;
     width: max-content;
@@ -46,7 +52,7 @@
     padding: 10px;
     border: none;
     border-radius: 7px;
-    
+
 }
 
 .product p {
@@ -63,7 +69,7 @@
     border-radius: 7px;
     border: none;
     font-weight: bold;
-    
+
 }
 
 .product button:hover {
@@ -74,24 +80,25 @@
 }
 
 
-/* ------------------ Section stock du produit ---------------------- */ 
+/* ------------------ Section stock du produit ---------------------- */
 
 
 .stock-info {
     text-align: left;
     padding: 10px;
     height: max-content;
-    
+
 }
-.stock-info ul{
+
+.stock-info ul {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    
+
 }
 
 .stock-info h3 {
-    
+
     color: white;
     width: 100%;
     background-color: black;
@@ -119,9 +126,9 @@
 }
 
 
-/* ------------------ Section suggestions de produits ---------------------- */ 
+/* ------------------ Section suggestions de produits ---------------------- */
 
-.products-suggestions h3{
+.products-suggestions h3 {
 
     color: white;
     width: 98.5%;
@@ -165,7 +172,7 @@
     color: black;
     margin: 10px 0;
     background-color: white;
-    border: 1px solid #ddd;    
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
@@ -173,7 +180,7 @@
 .bottom-card p {
     font-size: 14px;
     margin: 5px 0;
-    
+
 }
 
 .bottom-product-categorie {
@@ -185,15 +192,20 @@
     width: 100%;
     border-radius: 7px;
     border: 1px solid #ddd;
-   
+
 
 }
 
-.bottom-product-categorie:hover{
-    
+.bottom-product-categorie:hover {
+
     background-color: #ddd;
+<<<<<<< HEAD
     cursor: pointer;
     
+=======
+    cursor: grab;
+
+>>>>>>> ea5c5658768842236b0d180074d5dc24adb3530d
 }
 
 /* Style du prix du produit */
@@ -213,8 +225,8 @@
     display: flex;
     justify-content: flex;
     gap: 5px;
-    
-    }
+
+}
 
 .bottom-card button {
     font-size: 14px;
@@ -227,10 +239,15 @@
     border: none;
 }
 
-.bottom-card button:hover{
-    
+.bottom-card button:hover {
+
     background-color: rgb(29, 29, 29);
+<<<<<<< HEAD
     cursor: pointer;
     
 }
+=======
+    cursor: grab;
+>>>>>>> ea5c5658768842236b0d180074d5dc24adb3530d
 
+}

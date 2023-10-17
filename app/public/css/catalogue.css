@@ -18,6 +18,11 @@ ul {
     padding: 0;
 }
 
+.product-list {
+    display: flex;
+    flex-direction: row;
+}
+
 .category-name {
 
     color: #000000;

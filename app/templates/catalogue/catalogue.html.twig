@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Catalogue
 {% endblock %}
 
-
 {% block body %}
 <h1>Catalogue</h1>
-
 
 <!-- Barre de recherche -->
 <div class="search-bar">
@@ -22,33 +19,33 @@
 	<button id="search-button">🔍</button>
 </div>
 
-
 <ul>
 	<!-- Boucle pour afficher les catégories -->
 	{% for category in categories %}
 		<li>
-			
-			<ul
-				class="products-list">
-				<!-- Boucle pour afficher les produits de chaque catégorie -->
-				{% for product in category.getProducts() %}
-					<h4 class="category-name">{{ category.getName() | lower }}</h4>
-						<div class="card">
-                    <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                    <h3>{{ product.getName() }}</h3>
-                    <p class="product-price">{{ product.getPrice() }} 💲</p>
-                    <div class="buttons-card">
-                        <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
-                        <button><a href="">🛒</a></button>
-                    </div>
-                </div>
-					
-				{% endfor %}
-			</ul>
+			<h4 class="category-name">
+				<a href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">Catégorie</a>
+				{{ category.getName() | lower }}</a>
 		</li>
-	{% endfor %}
-</ul>
-
-
-<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}"></div><script>
-{% endblock %}
+	</h4>
+	<ul
+		class="products-list">
+		<!-- Boucle pour afficher les produits de chaque catégorie -->
+		{% for product in category.getProducts() %}
+			<div class="card">
+				<img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+				<h3>{{ product.getName() }}</h3>
+				<p class="product-price">{{ product.getPrice() }}
+					💲</p>
+				<div class="buttons-card">
+					<button>
+						<a href="{{ path('app_product', {product : product.uuid}) }}">👀</a>
+					</button>
+					<button>
+						<a href="">🛒</a>
+					</button>
+				</div>
+			</div>
+		{% endfor %}
+	</ul>
+</li>{% endfor %}</ul><link rel="stylesheet" href="{{ asset('css/catalogue.css') }}"><script>{% endblock %}
