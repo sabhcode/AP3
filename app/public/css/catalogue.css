@@ -18,30 +18,57 @@ ul {
     padding: 0;
 }
 
-.product-list {
-    display: flex;
-    flex-direction: row;
+.category-container {
+
+    margin: 35px;
+
+}
+
+.category-title {
+
+    margin-bottom: 25px;
+
 }
 
 .category-name {
 
     color: #000000;
-    margin-bottom: 20px;
     text-align: left;
     color: white;
     background-color: black;
-    margin: 10px 0;
     padding: 10px;
     width: max-content;
     border: none;
     border-radius: 5px;
+    font-weight: bold;
+
+
+
+}
+
+.category-name:hover {
+
+
+    background-color: #ff8800;
+    transition-duration: 0.2s;
+
+
 
 }
 
 
+
+.products-list {
+
+    display: flex;
+    gap: 15px;
+
+
+}
+
 .card {
     width: 200px;
-    margin: 10px;
+
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
