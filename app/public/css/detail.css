@@ -2,11 +2,11 @@
 
 
 /* Style for the main heading */
-h1 {
+h2 {
     text-align: center;
     color: white;
     background-color: black;
-    margin: 10px 0;
+
     padding: 10px;
     border: none;
 }
@@ -23,6 +23,7 @@ ul {
     flex-direction: row;
 }
 
+
 .category-name {
 
     color: #000000;
@@ -38,6 +39,13 @@ ul {
 
 }
 
+.cards-container {
+
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
 
 .card {
     width: 200px;
@@ -118,66 +126,4 @@ ul {
     cursor: grab;
     transition-duration: 0.2s;
 
-}
-
-
-/* ---------------------- search bar ------------------------ */
-
-/* Styles pour la barre de recherche */
-.search-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 15px;
-    border: 1px solid #ddd;
-
-}
-
-#search-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-
-
-}
-
-#search-input:focus {
-
-    outline: none !important;
-    background-color: #f4f4f4;
-    color: #fff;
-
-}
-
-
-#category-filter {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #000000;
-    margin-right: 10px;
-}
-
-
-
-#search-button {
-    background-color: #ff8800;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#search-button:hover {
-
-    background-color: #000000;
-    transition-duration: 0.2s;
 }

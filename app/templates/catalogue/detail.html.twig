@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail de la Catégorie
+{% block title %}Détail de la catégorie {{ category.name | upper  }}
 {% endblock %}
 
 {% block body %}
 
-	<h2>{{ category.name }}</h2>
+	<h2>{{ category.name | upper  }}</h2>
 
-	<h3>Nom de la Catégorie :
-		{{ category.name }}</h3>
-	{# Autres détails de la catégorie #}
+
+	<div class="cards-container">
 	{% for product in category.getProducts() %}
 		<div class="card">
 			<img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
@@ -20,11 +19,15 @@
 				<button>
 					<a href="{{ path('app_product', {product : product.uuid}) }}">👀</a>
 				</button>
-				<button>
-					<a href="">🛒</a>
-				</button>
+				<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+
 			</div>
 		</div>
 	{% endfor %}
+
+	</div>
+
+
+<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 
 {% endblock %}
