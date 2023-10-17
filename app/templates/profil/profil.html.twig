@@ -8,12 +8,21 @@
 
 
 	{% if user %}
+		<br>
 		<h3>Bonjour,
 			{{ app.user.name }}
-			{{ app.user.firstname}}<br></h4>
+			{{ app.user.firstname}}<br><br></h4>
 		Votre email:
-		{{ app.user.email}}
-		!</p>
+		{{ app.user.email}}<br><br>
+		Votre numéro de téléphone:
+		{{ app.user.phone}}<br><br>
+		Votre adresse:
+		{{ app.user.address}},
+		{{app.user.postcode}}
+		{{app.user.city}}
+
+
+	</p><br>
 
 	<a href="{{ path('app_changePassword') }}">Change Password</a>
 
