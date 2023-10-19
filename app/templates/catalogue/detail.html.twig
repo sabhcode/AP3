@@ -1,33 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail de la catégorie {{ category.name | upper  }}
+{% block title %}Détail de la catégorie
+	{{ category.name | upper  }}
 {% endblock %}
 
 {% block body %}
 
 	<h2>{{ category.name | upper  }}</h2>
-
+	<div class="search-bar">
+		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
+		<button id="search-button">🔍</button>
+	</div>
 
 	<div class="cards-container">
-	{% for product in category.getProducts() %}
-		<div class="card">
-			<img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-			<h3>{{ product.getName() }}</h3>
-			<p class="product-price">{{ product.getPrice() }}
-				💲</p>
-			<div class="buttons-card">
-				<button>
-					<a href="{{ path('app_product', {product : product.uuid}) }}">👀</a>
-				</button>
-				<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+		{% for product in category.getProducts() %}
+			<div class="card">
+				<img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+				<h3>{{ product.getName() }}</h3>
+				<p class="product-price">{{ product.getPrice() }}
+					💲</p>
+				<div class="buttons-card">
+					<button>
+						<a href="{{ path('app_product', {product : product.uuid}) }}">👀</a>
+					</button>
+					<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 
+				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
 
 	</div>
 
 
-<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 
 {% endblock %}
