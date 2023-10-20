@@ -27,4 +27,4 @@
 > **Git branch :**<br>
 > Chaque nouvelle fonctionnalité à une branche précise (F -> Feature, BF -> Bug Fix, HF -> Hot Fix)
 > 
-> Syntaxe nom d'une branche : nomDeLaPersonne-PageOuTuTravaille-ceQueTuFaisDessus (ex: sabhcode-home-building)
+> **Syntaxe nom d'une branche** : nomDeLaPersonne-PageOuTuTravaille-ceQueTuFaisDessus (ex: sabhcode-home-sliderImproving)
