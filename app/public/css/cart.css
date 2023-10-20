@@ -62,7 +62,7 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
-    background-color: #ddd;
+    background-color: #c6c6c6;
     padding: 5px;
     border-radius: 5px;
     line-gap-override: 15px;
@@ -139,5 +139,17 @@
 
     background-color: rgb(29, 29, 29);
     cursor: pointer;
+
+}
+
+.priceAndConfirmOrder {
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0px 10px;
+    width: max-content;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 }

@@ -33,8 +33,11 @@
             </div>
         {% endfor %}
     </div>
-    <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
-    <button class="confirm-order">Valider 💳</button>
+
+    <div class="priceAndConfirmOrder">
+        <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
+        <button class="confirm-order">Valider 💳</button>
+    </div>
 {% else %}
     <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="catalogue">ici</a></p>
 {% endif %}

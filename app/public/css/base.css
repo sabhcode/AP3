@@ -30,3 +30,9 @@ body {
     font-family: "Montserrat";
 }
 
+.update-product-cart:active {
+
+background-color: red;
+
+}
+
