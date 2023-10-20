@@ -8,11 +8,11 @@
 	<!-- Barre de recherche -->
 	<div class="search-bar">
 		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
-		<select id="category-filter">
-			<option class="select-category" value="">Toutes catégories</option>
+		<select onchange="selectToLink()" id="category-filter">
+			<option value="">Toutes catégories</option>
 			<!-- Boucle pour afficher les options de catégorie -->
 			{% for category in categories %}
-				<option value="{{ category.getName() }}">{{ category.getName() }}</option>
+				<option id="options-category" data-url="{{ path('category_detail', {'categoryId': category.getUuid()}) }}" value="{{ category.getName() }}">{{ category.getName() }}</option>
 			{% endfor %}
 		</select>
 		<button id="search-button">🔍</button>
@@ -52,4 +52,8 @@
 
 <link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
 
+{% endblock %}
+
+{% block javascripts_body %}
+<script src="{{ asset('js/catalogue.js') }}"></script>
 {% endblock %}
