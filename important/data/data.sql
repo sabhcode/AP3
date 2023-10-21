@@ -3,122 +3,377 @@
 -- Host: 127.0.0.1    Database: all4sport
 -- ------------------------------------------------------
 -- Server version	8.0.31
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
+;
+
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
+;
+
+/*!50503 SET NAMES utf8 */
+;
+
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */
+;
+
+/*!40103 SET TIME_ZONE='+00:00' */
+;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */
+;
+
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */
+;
+
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */
+;
+
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */
+;
 
 --
 -- Dumping data for table `category`
 --
-
 LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (_binary 'ï¿½Bï¿½Zï¿½\ï¿','Boxe'),(_binary 'ï¿½8ï¿½Zï¿½\ï¿','Foot'),(_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ©lo'),(_binary 'ï¿½ï¿½bï¿½Zï¿½','Tennis');
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `category` DISABLE KEYS */
+;
+
+INSERT INTO
+    `category`
+VALUES
+    (_binary 'ï¿½Bï¿½Zï¿½\ï¿½', 'Boxe', 'boxe'),
+(_binary 'ï¿½8ï¿½Zï¿½\ï¿½', 'Foot', 'foot'),
+(_binary 'ï¿½bï¿½Zï¿½\ï¿½', 'VÃ©lo', 'velo'),
+(_binary 'ï¿½ï¿½bï¿½Zï¿½', 'Tennis', 'tennis');
+
+/*!40000 ALTER TABLE `category` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `credential`
 --
-
 LOCK TABLES `credential` WRITE;
-/*!40000 ALTER TABLE `credential` DISABLE KEYS */;
-INSERT INTO `credential` VALUES ('user1@gmail.com','$2a$15$WCyI5dhiIE2ad8I0i4PVMeaBFxFBNBzX773m4UOjHX75vwohX66li',NULL),('user2@gmail.com','$2a$15$msiz4F1QrhtkB8yKCMj7o.Gzoqb8gPZHtdYbPGrHiun1Ya1IEP7bq',NULL);
-/*!40000 ALTER TABLE `credential` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `credential` DISABLE KEYS */
+;
+
+INSERT INTO
+    `credential`
+VALUES
+    (
+        'user1@gmail.com',
+        '$2a$15$WCyI5dhiIE2ad8I0i4PVMeaBFxFBNBzX773m4UOjHX75vwohX66li',
+        NULL
+    ),
+(
+        'user2@gmail.com',
+        '$2a$15$msiz4F1QrhtkB8yKCMj7o.Gzoqb8gPZHtdYbPGrHiun1Ya1IEP7bq',
+        NULL
+    );
+
+/*!40000 ALTER TABLE `credential` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `order`
 --
-
 LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `order` DISABLE KEYS */
+;
+
+/*!40000 ALTER TABLE `order` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `order_detail`
 --
-
 LOCK TABLES `order_detail` WRITE;
-/*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `order_detail` DISABLE KEYS */
+;
+
+/*!40000 ALTER TABLE `order_detail` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `order_rank`
 --
-
 LOCK TABLES `order_rank` WRITE;
-/*!40000 ALTER TABLE `order_rank` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_rank` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `order_rank` DISABLE KEYS */
+;
+
+/*!40000 ALTER TABLE `order_rank` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `order_state`
 --
-
 LOCK TABLES `order_state` WRITE;
-/*!40000 ALTER TABLE `order_state` DISABLE KEYS */;
-INSERT INTO `order_state` VALUES (_binary '\\ï¿½ï¿½Z	ï¿½\ï¿','transmise'),(_binary 'b8tZ	ï¿½ï¿½ï¿½','validÃ©e'),(_binary 'eï¿½×µZ	ï¿½ï¿½\ï','en prÃ©paration'),(_binary 'iï¿½a:Z	ï¿½ï¿½\ï','expÃ©diÃ©e'),(_binary 'm4ï¿½\rZ	ï¿½ï¿½\ï','livrÃ©e'),(_binary 'prï¿½ï¿½Z	ï¿½\ï¿','retirÃ©e');
-/*!40000 ALTER TABLE `order_state` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `order_state` DISABLE KEYS */
+;
+
+INSERT INTO
+    `order_state`
+VALUES
+    (_binary '\\ï¿½ï¿½Z	ï¿½\ï¿½', 'transmise'),
+(_binary 'b8tZ	ï¿½ï¿½ï¿½', 'validÃ©e'),
+(_binary 'eï¿½×µZ	ï¿½ï¿½\ï¿½', 'en prÃ©paration'),
+(_binary 'iï¿½a:Z	ï¿½ï¿½\ï¿½', 'expÃ©diÃ©e'),
+(_binary 'm4ï¿½\rZ	ï¿½ï¿½\ï¿½', 'livrÃ©e'),
+(_binary 'prï¿½ï¿½Z	ï¿½\ï¿½', 'retirÃ©e');
+
+/*!40000 ALTER TABLE `order_state` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `product`
 --
-
 LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (_binary '\rï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿','But de football SG 500 taille M Bleu orange','Ceci est la description du But de football SG 500 taille M Bleu orange',75,'But de football SG 500 taille M Bleu orange.jpg',0),(_binary '9ï¿½\'HZï¿½ï¿½\ï',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA','Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',220,'Chaussures de football FUTURE ULTIMATE ENERGY FG.jpg',0),(_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Ballon Coupe Du Monde 2018','Ceci est la description du Ballon Coupe Du Monde 2018',49.99,'ballon-futsal-match-ball-coupe-du-monde-2018-repli.webp',0),(_binary 'ï¿½R\\Zï¿½ï¿½\ï',_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ©lo VTT Ã©lectrique semi-rigide 27,5 pouces - E-ST 500 NOIR','Ceci est la description du VÃ©lo VTT Ã©lectrique semi-rigide 27,5\" - E-ST 500 NOIR',1499,'velo-vtt-electrique-semi-rigide-275-e-st-500-noir.jpg',0),(_binary 'ï¿½4Zï¿½ï¿½\ï',_binary 'ï¿½ï¿½bï¿½Zï¿½','BANDEAU DE SPORT ADIDAS NOIR','Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',13,'bandeau-de-sport-adidas-noir.jpg',0),(_binary 'ï¿½[Cï¿½Zï¿½\ï¿',_binary 'ï¿½bï¿½Zï¿½\ï¿','VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES','Ceci est la description du VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5\"',339,'velo-vtt-randonnee-st-120-noir-bleu-275.jpg',0),(_binary 'ï¿½ï¿½\'ï¿½Zï¿½',_binary 'ï¿½8ï¿½Zï¿½\ï¿','Hyperflex HN Gants De Gardien','Ceci est la description des Hyperflex HN Gants De Gardien',99.99,'101128601_pngUpLWrxnMjshAs.jpg',0),(_binary 'ï¿½ï¿½YjZï¿½\ï¿',_binary 'ï¿½Bï¿½Zï¿½\ï¿','Sac de frappe pied/poing 32 kg adulte','Ceci est la description du Sac de frappe pied/poing 32 kg adulte',119.99,'sac-de-frappe-piedpoing-32-kg-adulte.jpg',0);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `product` DISABLE KEYS */
+;
+
+INSERT INTO
+    `product`
+VALUES
+    (
+        _binary '\rï¿½ï¿½ï¿½Zï¿½',
+        _binary 'ï¿½8ï¿½Zï¿½\ï¿½',
+        'But de football SG 500 taille M Bleu orange',
+        'Ceci est la description du But de football SG 500 taille M Bleu orange',
+        75,
+        'But de football SG 500 taille M Bleu orange.jpg',
+        0,
+        'but-de-football-sg-500-taille-m-bleu-orange'
+    ),
+(
+        _binary '9ï¿½\'HZï¿½ï¿½\ï¿½',
+        _binary 'ï¿½8ï¿½Zï¿½\ï¿½',
+        'Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',
+        'Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',
+        220,
+        'Chaussures de football FUTURE ULTIMATE ENERGY FG.jpg',
+        0,
+        'chaussures-de-football-future-ultimate-energy-fg-ag-puma'
+    ),
+(
+        _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½',
+        _binary 'ï¿½8ï¿½Zï¿½\ï¿½',
+        'Ballon Coupe Du Monde 2018',
+        'Ceci est la description du Ballon Coupe Du Monde 2018',
+        49.99,
+        'ballon-futsal-match-ball-coupe-du-monde-2018-repli.webp',
+        0,
+        'ballon-coupe-du-monde-2018'
+    ),
+(
+        _binary 'ï¿½R\\Zï¿½ï¿½\ï¿½',
+        _binary 'ï¿½bï¿½Zï¿½\ï¿½',
+        'VÃ©lo VTT Ã©lectrique semi-rigide 27,5 pouces - E-ST 500 NOIR',
+        'Ceci est la description du VÃ©lo VTT Ã©lectrique semi-rigide 27,5 pouces - E-ST 500 NOIR',
+        1499,
+        'velo-vtt-electrique-semi-rigide-275-e-st-500-noir.jpg',
+        0,
+        'velo-vtt-electrique-semi-rigide-27-5-pouces-e-st-500-noir'
+    ),
+(
+        _binary 'ï¿½4Zï¿½ï¿½\ï¿½',
+        _binary 'ï¿½ï¿½bï¿½Zï¿½',
+        'BANDEAU DE SPORT ADIDAS NOIR',
+        'Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',
+        13,
+        'bandeau-de-sport-adidas-noir.jpg',
+        0,
+        'bandeau-de-sport-adidas-noir'
+    ),
+(
+        _binary 'ï¿½[Cï¿½Zï¿½\ï¿½',
+        _binary 'ï¿½bï¿½Zï¿½\ï¿½',
+        'VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES',
+        'Ceci est la description du VÃ‰LO VTT RANDONNEE ST 120 NOIR BLEU 27,5 pouces',
+        339,
+        'velo-vtt-randonnee-st-120-noir-bleu-275.jpg',
+        0,
+        'velo-vtt-randonnee-st-120-noir-bleu-27-5-pouces'
+    ),
+(
+        _binary 'ï¿½ï¿½\'ï¿½Zï¿½',
+        _binary 'ï¿½8ï¿½Zï¿½\ï¿½',
+        'Hyperflex HN Gants De Gardien',
+        'Ceci est la description des Hyperflex HN Gants De Gardien',
+        99.99,
+        '101128601_pngUpLWrxnMjshAs.jpg',
+        0,
+        'hyperflex-hn-gants-de-gardien'
+    ),
+(
+        _binary 'ï¿½ï¿½YjZï¿½\ï¿½',
+        _binary 'ï¿½Bï¿½Zï¿½\ï¿½',
+        'Sac de frappe pied/poing 32 kg adulte',
+        'Ceci est la description du Sac de frappe pied/poing 32 kg adulte',
+        119.99,
+        'sac-de-frappe-piedpoing-32-kg-adulte.jpg',
+        0,
+        'sac-de-frappe-pied-point-32-kg-adulte'
+    );
+
+/*!40000 ALTER TABLE `product` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `stock`
 --
-
 LOCK TABLES `stock` WRITE;
-/*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',6),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï',44),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',124),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï',4),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',19),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',65),(_binary 'u\rH:Zï¿½ï¿½ï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary '\rï¿½ï¿½ï¿½Zï¿½',7),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary '9ï¿½\'HZï¿½ï¿½\ï',41),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',133),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½R\\Zï¿½ï¿½\ï',1),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',12),(_binary '|ï¿½ï¿½DZï¿½\ï¿',_binary 'ï¿½ï¿½YjZï¿½\ï¿',9),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary '9ï¿½\'HZï¿½ï¿½\ï',34),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',99),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½R\\Zï¿½ï¿½\ï',3),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',33),(_binary 'ï¿½ï¿½Zï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',5),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary '\rï¿½ï¿½ï¿½Zï¿½',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary '9ï¿½\'HZï¿½ï¿½\ï',22),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',88),(_binary 'ï¿½ï¿½^KZï¿½\ï¿',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',19),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary '\rï¿½ï¿½ï¿½Zï¿½',12),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',121),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½[Cï¿½Zï¿½\ï¿',15),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',42),(_binary 'ï¿½ï¿½ï¿½Zï¿½',_binary 'ï¿½ï¿½YjZï¿½\ï¿',32),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'Q7ï¿½ï¿½Zï¿½\ï¿',54),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½R\\Zï¿½ï¿½\ï',16),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½ï¿½\'ï¿½Zï¿½',23),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï',_binary 'ï¿½ï¿½YjZï¿½\ï¿',32);
-/*!40000 ALTER TABLE `stock` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `stock` DISABLE KEYS */
+;
+
+INSERT INTO
+    `stock`
+VALUES
+    (_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary '\rï¿½ï¿½ï¿½Zï¿½', 6),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary '9ï¿½\'HZï¿½ï¿½\ï¿½', 44),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 124),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary 'ï¿½R\\Zï¿½ï¿½\ï¿½', 4),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary 'ï¿½[Cï¿½Zï¿½\ï¿½', 19),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary 'ï¿½ï¿½\'ï¿½Zï¿½', 65),
+(_binary 'u\rH:Zï¿½ï¿½ï¿½', _binary 'ï¿½ï¿½YjZï¿½\ï¿½', 12),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary '\rï¿½ï¿½ï¿½Zï¿½', 7),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary '9ï¿½\'HZï¿½ï¿½\ï¿½', 41),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 133),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary 'ï¿½R\\Zï¿½ï¿½\ï¿½', 1),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary 'ï¿½[Cï¿½Zï¿½\ï¿½', 12),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', _binary 'ï¿½ï¿½YjZï¿½\ï¿½', 9),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', _binary '9ï¿½\'HZï¿½ï¿½\ï¿½', 34),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 99),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', _binary 'ï¿½R\\Zï¿½ï¿½\ï¿½', 3),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', _binary 'ï¿½[Cï¿½Zï¿½\ï¿½', 33),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', _binary 'ï¿½ï¿½YjZï¿½\ï¿½', 5),
+(_binary 'ï¿½ï¿½^KZï¿½\ï¿½', _binary '\rï¿½ï¿½ï¿½Zï¿½', 22),
+(_binary 'ï¿½ï¿½^KZï¿½\ï¿½', _binary '9ï¿½\'HZï¿½ï¿½\ï¿½', 22),
+(_binary 'ï¿½ï¿½^KZï¿½\ï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 88),
+(_binary 'ï¿½ï¿½^KZï¿½\ï¿½', _binary 'ï¿½ï¿½\'ï¿½Zï¿½', 19),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', _binary '\rï¿½ï¿½ï¿½Zï¿½', 12),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 121),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', _binary 'ï¿½[Cï¿½Zï¿½\ï¿½', 15),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', _binary 'ï¿½ï¿½\'ï¿½Zï¿½', 42),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', _binary 'ï¿½ï¿½YjZï¿½\ï¿½', 32),
+(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½', _binary 'Q7ï¿½ï¿½Zï¿½\ï¿½', 54),
+(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½', _binary 'ï¿½R\\Zï¿½ï¿½\ï¿½', 16),
+(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½', _binary 'ï¿½ï¿½\'ï¿½Zï¿½', 23),
+(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½', _binary 'ï¿½ï¿½YjZï¿½\ï¿½', 32);
+
+/*!40000 ALTER TABLE `stock` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `store`
 --
-
 LOCK TABLES `store` WRITE;
-/*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (_binary 'u\rH:Zï¿½ï¿½ï¿½','Valenciennes'),(_binary '|ï¿½ï¿½DZï¿½\ï¿','Lille'),(_binary 'ï¿½ï¿½Zï¿½Zï¿½','Metz'),(_binary 'ï¿½ï¿½^KZï¿½\ï¿','Lens'),(_binary 'ï¿½ï¿½ï¿½Zï¿½','Arras'),(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï','Dunkerque');
-/*!40000 ALTER TABLE `store` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `store` DISABLE KEYS */
+;
+
+INSERT INTO
+    `store`
+VALUES
+    (_binary 'u\rH:Zï¿½ï¿½ï¿½', 'Valenciennes'),
+(_binary '|ï¿½ï¿½DZï¿½\ï¿½', 'Lille'),
+(_binary 'ï¿½ï¿½Zï¿½Zï¿½', 'Metz'),
+(_binary 'ï¿½ï¿½^KZï¿½\ï¿½', 'Lens'),
+(_binary 'ï¿½ï¿½ï¿½Zï¿½', 'Arras'),
+(_binary 'ï¿½ï¿½ï¿½ï¿½Z\ï¿½', 'Dunkerque');
+
+/*!40000 ALTER TABLE `store` ENABLE KEYS */
+;
+
 UNLOCK TABLES;
 
 --
 -- Dumping data for table `user`
 --
-
 LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '8ï¿½ï¿½Z\nï¿½\ï¿','user1@gmail.com','[]','NomUser1','PrenomUser1',1),(_binary '\\Eï¿½ï¿½Z\nï¿½\ï¿','user2@gmail.com','[]','NomUser2','PrenomUser2',1);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */
+;
+
+INSERT INTO
+    `user`
+VALUES
+    (
+        _binary '8ï¿½ï¿½Z\nï¿½\ï¿½',
+        'user1@gmail.com',
+        '[]',
+        'NomUser1',
+        'PrenomUser1',
+        '2414 Pleasant Hill Road',
+        '33432',
+        'Boca Raton',
+        '561-962-2040',
+        1
+    ),
+(
+        _binary '\\Eï¿½ï¿½Z\nï¿½\ï¿½',
+        'user2@gmail.com',
+        '[]',
+        'NomUser2',
+        'PrenomUser2',
+        '2263 Post Avenue',
+        '56469',
+        'Palisade',
+        '218-845-7546',
+        1
+    );
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */
+;
+
+UNLOCK TABLES;
+
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */
+;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */
+;
+
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */
+;
+
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */
+;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
+;
+
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
+;
+
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
+;
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
+;
 
 -- Dump completed on 2023-10-12 16:37:14
