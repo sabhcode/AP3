@@ -3,33 +3,30 @@
 namespace App\Controller;
 
 use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/catalogue', name: 'catalogue')]
-    public function index(CategoryRepository $categorie, ProductRepository $product): Response
+    #[Route('/c', name: 'app_categories')]
+    public function viewAllCategories(CategoryRepository $category): Response
     {
         // Récupérez les catégories depuis la base de données
-        $categories = $categorie->findAll();
+        $categories = $category->findAll();
 
-        // Récupérez tous les produits depuis la base de données
-        $products = $product->findAll();
-
-        return $this->render('catalogue/catalogue.html.twig', [
-            'categories' => $categories,
-            'products' => $products,
+        // Rendre le template en passant la catégorie
+        return $this->render('categories/categories.html.twig', [
+            'categories' => $categories
         ]);
     }
-    #[Route('/catalogue/{categoryId}', name: 'category_detail')]
-    public function categoryDetail(string $categoryId, CategoryRepository $categoryRepository): Response
+
+    #[Route('/c/{slug}', name: 'app_category', requirements: ['slug'=> Requirement::ASCII_SLUG])]
+    public function viewCategory($slug, CategoryRepository $categoryRepository): Response
     {
         // Rechercher la catégorie en fonction de l'ID
-        $category = $categoryRepository->find($categoryId);
+        $category = $categoryRepository->findOneBy(['slug' => $slug]);
 
         if (!$category) {
             // Gérer le cas où la catégorie n'a pas été trouvée
@@ -37,8 +34,8 @@ class CategoryController extends AbstractController
         }
 
         // Rendre le template en passant la catégorie
-        return $this->render('catalogue/detail.html.twig', [
-            'category' => $category,
+        return $this->render('categories/detail.html.twig', [
+            'category' => $category
         ]);
     }
 }

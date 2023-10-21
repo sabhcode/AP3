@@ -30,14 +30,14 @@
 	{{ form_row(registrationForm.phone, {
             label: 'Téléphone'
         }) }}
-	{{ form_row(registrationForm.address, {
-            label: 'Adresse'
+	{{ form_row(registrationForm.street, {
+            label: 'Rue'
+        }) }}
+	{{ form_row(registrationForm.zip_code, {
+            label: 'Code Postal '
         }) }}
 	{{ form_row(registrationForm.city, {
             label: 'Ville'
-        }) }}
-	{{ form_row(registrationForm.postcode, {
-            label: 'Code Postal '
         }) }}
 	{{ form_row(registrationForm.plainPassword, {
             label: 'Mot de passe'
@@ -49,7 +49,7 @@
 	<button type="submit" class="btn">S'inscrire</button>
 	{{ form_end(registrationForm) }}
 
-	<p class="GoToSignIn">Vous êtes déjà inscrit ? <a href="connexion">Connexion</a></p>
+	<p class="GoToSignIn">Vous êtes déjà inscrit ? <a href="{{ path('app_login') }}">Connexion</a></p>
 
 	{% endif %}
 

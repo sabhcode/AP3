@@ -17,9 +17,6 @@ class Store
     private ?Uuid $uuid = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $name = null;
-
-    #[ORM\Column(length: 100)]
     private ?string $city = null;
 
     #[ORM\OneToMany(mappedBy: 'store_uuid', targetEntity: Stock::class)]
@@ -33,18 +30,6 @@ class Store
     public function getUuid(): ?Uuid
     {
         return $this->uuid;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getCity(): ?string

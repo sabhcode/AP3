@@ -1,7 +1,7 @@
 # <div align="center">AP3</div>
 
 > [!NOTE]
-> [app](ap3/tree/main/app) - contient l'architecture de l'application (ALL4SPORT)<br>
+> [app](ap3/tree/main/lotA) - contient l'architecture de l'application LotA de ALL4SPORT<br>
 > [important](ap3/tree/main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
 
 > [!IMPORTANT]
@@ -26,5 +26,3 @@
 >
 > **Git branch :**<br>
 > Chaque nouvelle fonctionnalité à une branche précise (F -> Feature, BF -> Bug Fix, HF -> Hot Fix)
-> 
-> **Syntaxe nom d'une branche** : nomDeLaPersonne-PageOuTuTravaille-ceQueTuFaisDessus (ex: sabhcode-home-building)

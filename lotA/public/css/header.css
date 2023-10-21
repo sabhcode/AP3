@@ -1,9 +1,6 @@
 .header-app {
     position: relative;
-  
     background-color: black;
-    
-    
 }
 
 .header-app__content {
@@ -35,16 +32,11 @@
     display: flex;
 }
 
-
-
-
 .header-app__nav li:hover {
    scale: 1.1;
    transition-duration: 0.2s;
     
 }
-
-
 
 .header-app__nav a {
     display: flex;
@@ -58,7 +50,6 @@
 .header-app__nav a.on {
     background-color: #60606020;
     border-radius: 10px;
-    
 }
 
 .header-app__toolbar {

@@ -24,11 +24,10 @@
 			{% if category.getProducts()|length  != 0 %}
 				<li class="category-container">
 					<div class="category-title">
-						<a class="category-name" href="{{ path('category_detail', {'categoryId': category.getUuid()}) }}">{{ category.getName() | upper }}
+						<a class="category-name" href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }}
 							🔗</a>
 					</div>
-					<div
-						class="products-list">
+					<div class="products-list">
 						<!-- Boucle pour afficher les produits de chaque catégorie -->
 						{% for product in category.getProducts() %}
 							<div class="card">

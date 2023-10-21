@@ -1,55 +1,39 @@
 <header class="header-app">
 	<div class="header-app__content">
 		<div class="header-app__logo">
-			<a href="/">
-				<img style="width: 60px; margin-top:20px;" src="{{ asset('media/images/header/logo3.png') }}">
+			<a href="{{ path('app_home') }}">
+				<img style="width: 60px; margin-top:20px;" src="{{ asset('media/images/header/logo.png') }}">
 			</a>
 		</div>
 		<nav class="header-app__nav">
 			<ul>
 				<li>
-					<a href="/" class="{{ app.request.getPathInfo() == '/' ? 'on' : '' }}">Accueil</a>
+					<a href="{{ path('app_home') }}" class="{{ app.request.getPathInfo() == '/' ? 'on' : '' }}">Accueil</a>
 				</li>
+				<li>
+					<a href="{{ path('app_categories') }}" class="{{ app.request.getPathInfo() == '/c' ? 'on' : '' }}">Catalogue</a>
+				</li>
+				{# Si l'utilisateur est connecté alors on affiche ceci #}
 				{% if app.user %}
 					<li>
-						<a href="/catalogue" class="{{ app.request.getPathInfo() == '/catalogue' ? 'on' : '' }}">Catalogue</a>
+						<a href="{{ path('app_profil') }}" class="{{ app.request.getPathInfo() == '/profil' ? 'on' : '' }}">Profil</a>
 					</li>
 					<li>
-						<a href="/profil" class="{{ app.request.getPathInfo() == '/profil' ? 'on' : '' }}">Profil</a>
+						<a href="{{ path('app_logout') }}" class="{{ app.request.getPathInfo() == '/deconnexion' ? 'on' : '' }}">Déconnexion</a>
 					</li>
-					<li>
-						<a href="/logout" class="{{ app.request.getPathInfo() == '/deconnexion' ? 'on' : '' }}">Déconnexion</a>
-					</li>
-					<li>
-						<a href="/mon-panier" class="{{ app.request.getPathInfo() == '/mon-panier' ? 'on' : '' }}">🛒</a>
-					</li>
+				{# Sinon ceci #}
 				{% else %}
 					<li>
-						<a href="/catalogue" class="{{ app.request.getPathInfo() == '/catalogue' ? 'on' : '' }}">Catalogue</a>
+						<a href="{{ path('app_login') }}" class="{{ app.request.getPathInfo() == '/connexion' ? 'on' : '' }}">Connexion</a>
 					</li>
 					<li>
-						<a href="/connexion" class="{{ app.request.getPathInfo() == '/connexion' ? 'on' : '' }}">Connexion</a>
+						<a href="{{ path('app_register') }}" class="{{ app.request.getPathInfo() == '/inscription' ? 'on' : '' }}">Inscription</a>
 					</li>
-					<li>
-						<a href="/inscription" class="{{ app.request.getPathInfo() == '/inscription' ? 'on' : '' }}">Inscription</a>
-					</li>
-					
 				{% endif %}
-
-				
+				<li>
+					<a href="{{ path('app_cart') }}" class="{{ app.request.getPathInfo() == '/mon-panier' ? 'on' : '' }}">🛒</a>
+				</li>
 			</ul>
-			<div id="header-app__indicator-link">
-				<imgs src="{{ asset('media/images/header/header-app__indicator-link.svg') }}"></div>
-			</nav>
-			<div class="header-app__toolbar">
-				<div>
-					<img src="{{ asset('media/images/header/search.svg') }}">
-				</div>
-				<div>
-					<img src="{{ asset('media/images/header/basket.svg') }}">
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+		</nav>
+	</div>
+</header>

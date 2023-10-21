@@ -15,8 +15,11 @@ class Category
     #[ORM\Column(type: 'uuid')]
     private ?Uuid $uuid = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $name = null;
+
+    #[ORM\Column(unique: true)]
+    private ?string $slug = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $products;
@@ -46,6 +49,18 @@ class Category
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

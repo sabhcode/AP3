@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '/deconnexion', name: 'app_logout')]
     public function logout()
     {
         // on a rien a ajouter ici, la déco est directement gérée par symfony car elle détecte le nom de la fonction

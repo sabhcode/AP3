@@ -3,48 +3,39 @@
 {% block title %}Mon panier{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 {% endblock %}
 
 {% block body %}
-
-{% if app.user %}
-
-<h2 class="cart-title">Mon panier</h2>
-{% if products is not empty %}
-    {% set priceOrder = 0 %}
-    <div class="bottom-product-cards">
-        {% for item in products %}
-            <div class="bottom-card">
-                {% set product = item[0] %}
-                {% set quantity = item[1] %}
-                {% set priceOrder = priceOrder + product.getPrice() * quantity %}
-                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                <h3>{{ product.getName() }}</h3>
-                <p class="bottom-product-price">{{ product.getPrice()}} 💲</p>
-                <div class="bottom-buttons-card">
-                    <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add" onclick="history.go(0)">➕</button>
-                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove" onclick="history.go(0)">➖</button>
-                    <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
-                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete" onclick="history.go(0)">❌</button>
+    <h2 class="cart-title">Mon panier</h2>
+    {% if products is not empty %}
+        {% set priceOrder = 0 %}
+        <div class="bottom-product-cards">
+            {% for item in products %}
+                <div class="bottom-card">
+                    {% set product = item[0] %}
+                    {% set quantity = item[1] %}
+                    {% set priceOrder = priceOrder + product.getPrice() * quantity %}
+                    <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                    <h3>{{ product.getName() }}</h3>
+                    <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
+                    <div class="bottom-buttons-card">
+                        <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add" onclick="history.go(0)">➕</button>
+                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove" onclick="history.go(0)">➖</button>
+                        <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete" onclick="history.go(0)">❌</button>
+                    </div>
+                    <p class="product-quantity">x{{ quantity }}</p>
                 </div>
-                <p class="product-quantity">x{{ quantity }}</p>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
 
-    <div class="priceAndConfirmOrder">
-        <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
-        <button class="confirm-order">Valider 💳</button>
-    </div>
-{% else %}
-    <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="catalogue">ici</a></p>
-{% endif %}
-
-{% else %}
-
-<p class="GoToSignIn">Vous n'êtes pas connecté - <a href="connexion">Connexion</a></p>
-
-{% endif %}
+        <div class="priceAndConfirmOrder">
+            <p class="price-order">Total de la commande : <span>{{ priceOrder }}</span> 💲</p>
+            <button class="confirm-order">Valider 💳</button>
+        </div>
+    {% else %}
+        <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_categories') }}">ici</a></p>
+    {% endif %}
 {% endblock %}

@@ -13,7 +13,6 @@
 
 .product-image img {
     width: 400px;
-
     border-radius: 10px;
 }
 
@@ -26,24 +25,17 @@
 }
 
 .product-details p {
-
-
     max-width: 700px
 }
 
 .product-details p {
-
     margin-bottom: 10px;
     color: black;
     width: max-content;
     border: 1px solid #ddd;
     border-radius: 7px;
     padding: 10px;
-
 }
-
-
-
 
 .product h2 {
     color: white;
@@ -79,26 +71,20 @@
     cursor: pointer;
 }
 
-
 /* ------------------ Section stock du produit ---------------------- */
-
-
 .stock-info {
     text-align: left;
     padding: 10px;
     height: max-content;
-
 }
 
 .stock-info ul {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
 }
 
 .stock-info h3 {
-
     color: white;
     width: 100%;
     background-color: black;
@@ -125,11 +111,9 @@
     font-weight: bold;
 }
 
-
 /* ------------------ Section suggestions de produits ---------------------- */
 
 .products-suggestions h3 {
-
     color: white;
     width: 98.5%;
     background-color: black;
@@ -137,7 +121,6 @@
     padding: 10px;
     margin-bottom: 10px;
     margin: 10px;
-
 }
 
 /* Style des cartes de produit */
@@ -183,8 +166,7 @@
 
 }
 
-.bottom-product-categorie {
-
+.bottom-product-category {
     font-size: 10px;
     color: black;
     font-weight: bold;
@@ -192,20 +174,11 @@
     width: 100%;
     border-radius: 7px;
     border: 1px solid #ddd;
-
-
 }
 
-.bottom-product-categorie:hover {
-
+.bottom-product-category:hover {
     background-color: #ddd;
-<<<<<<< HEAD
     cursor: pointer;
-    
-=======
-    cursor: grab;
-
->>>>>>> ea5c5658768842236b0d180074d5dc24adb3530d
 }
 
 /* Style du prix du produit */
@@ -221,11 +194,9 @@
 }
 
 .bottom-buttons-card {
-
     display: flex;
     justify-content: flex;
     gap: 5px;
-
 }
 
 .bottom-card button {
@@ -240,14 +211,6 @@
 }
 
 .bottom-card button:hover {
-
     background-color: rgb(29, 29, 29);
-<<<<<<< HEAD
     cursor: pointer;
-    
-}
-=======
-    cursor: grab;
->>>>>>> ea5c5658768842236b0d180074d5dc24adb3530d
-
 }

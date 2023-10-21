@@ -27,24 +27,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;  
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
-    private ?Credential $credential = null;
+    #[ORM\Column(length: 255)]
+    private ?string $street = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $address = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $postcode = null;
+    private ?string $zip_code = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
+    private ?Credential $credential = null;
 
     public function __construct()
     {
@@ -169,26 +169,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getStreet(): ?string
     {
-        return $this->address;
+        return $this->street;
     }
 
-    public function setAddress(string $address): static
+    public function setStreet(string $street): static
     {
-        $this->address = $address;
+        $this->street = $street;
 
         return $this;
     }
 
-    public function getPostcode(): ?string
+    public function getZipCode(): ?string
     {
-        return $this->postcode;
+        return $this->zip_code;
     }
 
-    public function setPostcode(string $postcode): static
+    public function setZipCode(string $zip_code): static
     {
-        $this->postcode = $postcode;
+        $this->zip_code = $zip_code;
 
         return $this;
     }

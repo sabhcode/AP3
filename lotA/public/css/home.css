@@ -254,7 +254,7 @@
 
 }
 
-.bottom-product-categorie {
+.bottom-product-category {
 
     font-size: 10px;
     color: black;
@@ -267,7 +267,7 @@
 
 }
 
-.bottom-product-categorie:hover {
+.bottom-product-category:hover {
 
     background-color: #ddd;
     cursor: pointer;

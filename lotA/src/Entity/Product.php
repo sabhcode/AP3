@@ -16,7 +16,7 @@ class Product
     #[ORM\Column(type: 'uuid')]
     private ?string $uuid = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -24,6 +24,15 @@ class Product
 
     #[ORM\Column]
     private ?float $price = null;
+
+    #[ORM\Column]
+    private $image = null;
+
+    #[ORM\Column]
+    private ?int $nb_sales = null;
+
+    #[ORM\Column(unique: true)]
+    private ?string $slug = null;
 
     #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: Stock::class)]
     private Collection $stocks;
@@ -34,12 +43,6 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(name: "category_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?Category $category = null;
-
-    #[ORM\Column]
-    private $image = null;
-
-    #[ORM\Column]
-    private ?int $nb_sales = null;
 
     public function __construct()
     {
@@ -159,6 +162,18 @@ class Product
     public function setNbSales(int $nb_sales): static
     {
         $this->nb_sales = $nb_sales;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
