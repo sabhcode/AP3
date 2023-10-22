@@ -104,7 +104,7 @@ class Product
     {
         if (!$this->stocks->contains($stock)) {
             $this->stocks->add($stock);
-            $stock->setProductUuid($this);
+            $stock->setProduct($this);
         }
 
         return $this;
@@ -114,8 +114,8 @@ class Product
     {
         if ($this->stocks->removeElement($stock)) {
             // set the owning side to null (unless already changed)
-            if ($stock->getProductUuid() === $this) {
-                $stock->setProductUuid(null);
+            if ($stock->getProduct() === $this) {
+                $stock->setProduct(null);
             }
         }
 
@@ -172,6 +172,13 @@ class Product
     }
 
     public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function formatPrice(?string $slug): static
     {
         $this->slug = $slug;
 

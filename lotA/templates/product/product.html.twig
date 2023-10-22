@@ -14,7 +14,7 @@
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
-                <p><strong>{{ product.getPrice() }} 💲</strong></p>
+                <p><strong>{{ cart.formatPrice(product.getPrice()) }}</strong></p>
                 <p><strong>{{ product.getDescription() }}</strong></p>
                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
             </div>
@@ -39,7 +39,7 @@
                         <div class="bottom-card">
                             <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
                             <h3>{{ productOfSameCategory.getName }}</h3>
-                            <p class="bottom-product-price">{{ productOfSameCategory.getPrice }} 💲</p>
+                            <p class="bottom-product-price">{{ cart.formatPrice(productOfSameCategory.getPrice()) }}</p>
                             <div class="bottom-buttons-card">
                                 <a href="{{ path('app_product', {'slug': productOfSameCategory.getSlug()}) }}">👀</a>
                                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>

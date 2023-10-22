@@ -19,13 +19,11 @@ class CartService {
         $responseJSON = [
             "ok" => false
         ];
-
         $product = $this->productRepository->find($productUuid);
 
         if($product) {
 
             $session = $this->request->getSession();
-
             $cart = (object) $session->get("cart", []);
 
             if($action === "add") {
@@ -61,9 +59,7 @@ class CartService {
     public function getNbProducts(): int {
 
         $session = $this->request->getSession();
-
         $cart = (object) $session->get("cart", []);
-
         $nbProducts = 0;
 
         foreach($cart as $productUuid => $qty) {
@@ -78,6 +74,22 @@ class CartService {
 
         }
         return $nbProducts;
+
+    }
+
+    public function formatPrice(float $price): string {
+
+        $price = strval($price);
+
+        if(!str_contains($price,".")) {
+            $price .= ",00";
+        }
+
+        if(preg_match("/[.][0-9]$/", $price)) {
+            $price .= "0";
+        }
+
+        return str_replace(".", ",", $price) . " €";
 
     }
 
