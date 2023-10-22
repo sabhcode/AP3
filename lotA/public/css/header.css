@@ -1,7 +1,7 @@
 .header-app {
     position: fixed;
     z-index: 10;
-    background-color: black;
+    background-color: var(--primaryColor);
     width: 100%;
 }
 
@@ -23,17 +23,18 @@
     transition: transform 0.2s ease;
 }
 .header-app__nav li:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .header-app__nav a {
     display: flex;
     align-items: center;
+    position: relative;
     color: #ffffff;
     padding: 10px 15px;
-    margin: 10px;
+    margin: 15px 10px;
     border: 1px solid #222;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: .2s ease;
     transition-property: background-color, border-color;
 }
@@ -46,4 +47,18 @@
 
 .header-app__nav a.on {
     border-color: var(--secondColor);
+}
+
+.nb-products-in-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    background-color: var(--primaryColor);
+    padding: 1px 4px;
+    border: 1px solid var(--secondColor);
+    border-radius: 4px;
 }

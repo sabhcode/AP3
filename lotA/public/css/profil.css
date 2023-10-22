@@ -1,7 +1,7 @@
 h1 {
     text-align: center;
     color: white;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 10px;
     border: none;
 }

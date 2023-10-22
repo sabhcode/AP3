@@ -4,7 +4,7 @@
 }
 
 :root {
-    --primaryColor: #002153;
+    --primaryColor: #000;
     --secondColor: #f7882d;
     --boxShadowColor: #ddd;
 }
@@ -47,7 +47,7 @@ body {
 .bottom-buttons-card a {
     font-size: 14px;
     color: white;
-    background-color: black;
+    background-color: var(--primaryColor);
     font-weight: bold;
     padding: 10px;
     width: 100%;

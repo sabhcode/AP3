@@ -30,7 +30,7 @@
 
 .product-details p {
     margin-bottom: 10px;
-    color: black;
+    color: var(--primaryColor);
     width: max-content;
     border: 1px solid #ddd;
     border-radius: 7px;
@@ -39,7 +39,7 @@
 
 .product h2 {
     color: white;
-    background-color: black;
+    background-color: var(--primaryColor);
     margin: 0;
     padding: 10px;
     border: none;
@@ -54,7 +54,7 @@
 
 .product button {
     font-size: 18px;
-    color: black;
+    color: var(--primaryColor);
     background-color: rgb(247, 136, 45);
     padding: 10px;
     width: 100%;
@@ -87,7 +87,7 @@
 .stock-info h3 {
     color: white;
     width: 100%;
-    background-color: black;
+    background-color: var(--primaryColor);
     border-radius: 7px;
     padding: 10px;
     margin-bottom: 10px;
@@ -100,7 +100,7 @@
 
 .stock-info li {
     margin-bottom: 10px;
-    color: black;
+    color: var(--primaryColor);
     width: max-content;
     border: 1px solid #ddd;
     border-radius: 7px;
@@ -116,7 +116,7 @@
 .products-suggestions h3 {
     color: white;
     width: 98.5%;
-    background-color: black;
+    background-color: var(--primaryColor);
     border-radius: 7px;
     padding: 10px;
     margin-bottom: 10px;
@@ -152,7 +152,7 @@
 /* Style du titre du produit */
 .bottom-card h3 {
     font-size: 10px;
-    color: black;
+    color: var(--primaryColor);
     margin: 10px 0;
     background-color: white;
     border: 1px solid #ddd;
@@ -168,7 +168,7 @@
 
 .bottom-product-category {
     font-size: 10px;
-    color: black;
+    color: var(--primaryColor);
     font-weight: bold;
     padding: 10px;
     width: 100%;

@@ -2,41 +2,82 @@
 
 namespace App\Service;
 
+use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CartService {
 
-    public function __construct(private RequestStack $requestStack) {}
+    private Request $request;
 
-    public function add(string $productUuid, string $action) {
+    public function __construct(private ProductRepository $productRepository, RequestStack $requestStack) {
+        $this->request = $requestStack->getCurrentRequest();
+    }
 
-        $request = $this->requestStack->getCurrentRequest();
+    public function add(string $productUuid, string $action): array {
 
-        $session = $request->getSession();
+        $responseJSON = [
+            "ok" => false
+        ];
+
+        $product = $this->productRepository->find($productUuid);
+
+        if($product) {
+
+            $session = $this->request->getSession();
+
+            $cart = (object) $session->get("cart", []);
+
+            if($action === "add") {
+
+                if(property_exists($cart, $productUuid)) {
+                    $cart->$productUuid++;
+                } else {
+                    $cart->$productUuid = 1;
+                }
+
+            }
+            
+            if($action === "remove") {
+                $cart->$productUuid--;
+            }
+            
+            if($action === "delete" || $cart->$productUuid <= 0) {
+                unset($cart->$productUuid);
+            }
+
+            $session->set("cart", $cart);
+
+            $responseJSON["ok"] = true;
+            $responseJSON["qty"] = $this->getNbProducts();
+
+            return $responseJSON;
+
+        }
+        return $responseJSON;
+
+    }
+
+    public function getNbProducts(): int {
+
+        $session = $this->request->getSession();
 
         $cart = (object) $session->get("cart", []);
 
-        if($action === "add") {
+        $nbProducts = 0;
 
-            if(property_exists($cart, $productUuid)) {
-                $cart->$productUuid++;
-            } else {
-                $cart->$productUuid = 1;
+        foreach($cart as $productUuid => $qty) {
+
+            $product = $this->productRepository->find($productUuid);
+
+            if($product) {
+
+                $nbProducts += $qty;
+
             }
 
         }
-        
-        if($action === "remove") {
-            $cart->$productUuid--;
-        }
-        
-        if($action === "delete" || $cart->$productUuid <= 0) {
-            unset($cart->$productUuid);
-        }
-
-        $session->set("cart", $cart);
-
-        return true;
+        return $nbProducts;
 
     }
 

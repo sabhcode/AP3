@@ -2,7 +2,7 @@
 h1 {
     text-align: center;
     color: white;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 10px;
     border: none;
 }
@@ -25,7 +25,7 @@ ul {
     color: #000000;
     text-align: left;
     color: white;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 10px;
     width: max-content;
     border: none;
@@ -66,7 +66,7 @@ ul {
 /* Style du titre du produit */
 .card h3 {
     font-size: 10px;
-    color: black;
+    color: var(--primaryColor);
     margin: 10px 0;
     background-color: white;
     border: 1px solid #ddd;

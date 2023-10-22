@@ -10,6 +10,7 @@ addEventListener("load", () => {
 
 // cart
 const btnsUpdateProductInCart = document.querySelectorAll(".update-product-cart");
+const nbProductsInCart = document.getElementById("nb-products-in-cart");
 
 btnsUpdateProductInCart.forEach(btn => {
 
@@ -24,7 +25,17 @@ btnsUpdateProductInCart.forEach(btn => {
         form.append("productUuid", productUuid);
         form.append("action", action);
 
-        fetch("/ajout-produit-panier", {method: "POST", body: form});
+        fetch("/ajout-produit-panier", {method: "POST", body: form})
+        .then(res => res.json())
+        .then(res => {
+
+            if(res.ok) {
+
+                nbProductsInCart.innerText = res.qty;
+
+            }
+
+        });
 
     });
 

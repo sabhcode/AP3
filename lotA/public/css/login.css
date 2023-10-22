@@ -1,7 +1,7 @@
 /* Styles for the Connexion page */
 .top-content {
     text-align: center;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 10px;
 }
 
@@ -19,12 +19,12 @@ form {
 form h1 {
     text-align: center;
     margin-bottom: 15px;
-    color: black;
+    color: var(--primaryColor);
 }
 
 label {
     display: block;
-    color: black;
+    color: var(--primaryColor);
     font-weight: bold;
     margin-top: 10px;
 }
@@ -81,7 +81,7 @@ button:hover {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 5px;
     border-radius: 5px;
     transition-duration: 0.2s;
@@ -101,7 +101,7 @@ button:hover {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 5px;
     border-radius: 5px;
     transition-duration: 0.2s;

@@ -31,7 +31,10 @@
 					</li>
 				{% endif %}
 				<li>
-					<a href="{{ path('app_cart') }}" class="{{ app.request.getPathInfo() == path('app_cart') ? 'on' : '' }}" title="Mon panier">Mon panier</a>
+					<a href="{{ path('app_cart') }}" class="{{ app.request.getPathInfo() == path('app_cart') ? 'on' : '' }}" title="Mon panier">
+						Mon panier
+						<span id="nb-products-in-cart" class="nb-products-in-cart">{{ cart.getNbProducts() }}</span>
+					</a>
 				</li>
 			</ul>
 		</nav>

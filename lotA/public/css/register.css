@@ -84,7 +84,7 @@ ul.errors {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 5px;
     border-radius: 5px;
     line-gap-override: 15px;
@@ -108,7 +108,7 @@ ul.errors {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    background-color: black;
+    background-color: var(--primaryColor);
     padding: 5px;
     border-radius: 5px;
     line-gap-override: 15px;
