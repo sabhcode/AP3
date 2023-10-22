@@ -27,6 +27,7 @@ class Store
         $this->uuid = Uuid::v4();
         $this->stocks = new ArrayCollection();
     }
+
     public function getUuid(): ?Uuid
     {
         return $this->uuid;
@@ -56,7 +57,7 @@ class Store
     {
         if (!$this->stocks->contains($stock)) {
             $this->stocks->add($stock);
-            $stock->setStoreUuid($this);
+            $stock->setStore($this);
         }
 
         return $this;
@@ -66,8 +67,8 @@ class Store
     {
         if ($this->stocks->removeElement($stock)) {
             // set the owning side to null (unless already changed)
-            if ($stock->getStoreUuid() === $this) {
-                $stock->setStoreUuid(null);
+            if ($stock->getStore() === $this) {
+                $stock->setStore(null);
             }
         }
 

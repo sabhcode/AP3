@@ -22,31 +22,31 @@ class Stock
     #[ORM\Column]
     private ?int $quantity = null;
 
-    public function getStoreUuid(): ?Store
+    public function getStore(): ?Store
     {
         return $this->store_uuid;
     }
 
-    public function setStoreUuid(?Store $store_uuid): static
+    public function setStore(?Store $store_uuid): static
     {
         $this->store_uuid = $store_uuid;
 
         return $this;
     }
 
-    public function getProductUuid(): ?Product
+    public function getProduct(): ?Product
     {
         return $this->product_uuid;
     }
 
-    public function setProductUuid(?Product $product_uuid): static
+    public function setProduct(?Product $product_uuid): static
     {
         $this->product_uuid = $product_uuid;
 
         return $this;
     }
 
-    public function getQuantity(): ?Product
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }
