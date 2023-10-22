@@ -3,6 +3,7 @@
     z-index: 10;
     background-color: var(--primaryColor);
     width: 100%;
+    border-bottom: 1px solid #202020;
 }
 
 .header-app__content {

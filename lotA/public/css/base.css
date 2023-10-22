@@ -23,6 +23,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 html {
     font-size: 16px;
 }
@@ -53,6 +57,7 @@ body {
     width: 100%;
     border-radius: 7px;
     border: none;
+    transition: background-color .2s ease;
 }
 
 .card button:hover,
@@ -60,6 +65,4 @@ body {
 .bottom-buttons-card button:hover,
 .bottom-buttons-card a:hover {
     background-color: rgb(29, 29, 29);
-    cursor: pointer;
-    transition-duration: 0.2s;
 }

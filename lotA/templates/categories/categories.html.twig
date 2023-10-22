@@ -23,20 +23,18 @@
 	<ul>
 		<!-- Boucle pour afficher les catégories -->
 		{% for category in categories %}
-			{% if category.getProducts()|length  != 0 %}
-				<li class="category-container">
+			{% if category.getProducts() %}
+				<div class="category-container">
 					<div class="category-title">
-						<a class="category-name" href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }}
-							🔗</a>
+						<a class="category-name" href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
 					</div>
 					<div class="products-list">
 						<!-- Boucle pour afficher les produits de chaque catégorie -->
 						{% for product in category.getProducts() %}
 							<div class="card">
-								<img src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image">
+								<img src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image du produit">
 								<h3>{{ product.getName() }}</h3>
-								<p class="product-price">{{ product.getPrice() }}
-									💲</p>
+								<p class="product-price">{{ product.getPrice() }}💲</p>
 								<div class="buttons-card">
 									<a href="{{ path('app_product', {'slug': product.getSlug()}) }}">👀</a>
 									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
@@ -44,7 +42,7 @@
 							</div>
 						{% endfor %}
 					</div>
-				</li>
+				</div>
 			{% endif %}
 		{% endfor %}
 	</ul>

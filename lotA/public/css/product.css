@@ -61,14 +61,13 @@
     border-radius: 7px;
     border: none;
     font-weight: bold;
-
+    transition: .2s ease;
+    transition-property: background-color, color;
 }
 
 .product button:hover {
     background-color: rgb(0, 0, 0);
     color: white;
-    transition-duration: 0.2s;
-    cursor: pointer;
 }
 
 /* ------------------ Section stock du produit ---------------------- */
@@ -178,7 +177,6 @@
 
 .bottom-product-category:hover {
     background-color: #ddd;
-    cursor: pointer;
 }
 
 /* Style du prix du produit */

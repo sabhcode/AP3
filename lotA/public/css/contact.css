@@ -100,7 +100,6 @@ iframe {
     border: none;
     border-radius: 5px;
     font-size: 18px;
-    cursor: pointer;
     transition: background-color .2s ease;
 }
 

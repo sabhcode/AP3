@@ -14,7 +14,7 @@ ul {
 }
 
 .category-container {
-    margin: 35px;
+    margin: 40px 20px 60px;
 }
 
 .category-title {
@@ -29,18 +29,19 @@ ul {
     padding: 10px;
     width: max-content;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     font-weight: bold;
+    transition: background-color .2s ease;
 }
 
 .category-name:hover {
     background-color: #ff8800;
-    transition-duration: 0.2s;
 }
 
 .products-list {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -142,11 +143,9 @@ ul {
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    cursor: pointer;
+    transition: background-color .2s ease;
 }
 
 #search-button:hover {
-
     background-color: #000000;
-    transition-duration: 0.2s;
 }

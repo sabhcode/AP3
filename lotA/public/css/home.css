@@ -1,6 +1,5 @@
 /* Styles pour le conteneur du slider */
 .top-content h2 {
-
     text-align: center;
     color: white;
     background-color: var(--primaryColor);
@@ -115,16 +114,15 @@
     color: #fff;
     border: none;
     padding: 5px 10px;
-    cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
+    transition: .2s ease;
+    transition-property: background-color, color;
 }
 
 .slider-nav button:hover {
     color: var(--primaryColor);
     background-color: rgb(247, 136, 45);
-    cursor: pointer;
-    transition-duration: 0.2s;
 }
 
 /* ----------------------------------------------------------------------------------*/
@@ -212,13 +210,11 @@
     width: 100%;
     border-radius: 7px;
     border: 1px solid #ddd;
+    transition: background-color .2s ease;
 }
 
 .bottom-product-category:hover {
     background-color: #ddd;
-    cursor: pointer;
-    transition-duration: 0.2s;
-
 }
 
 /* Style du prix du produit */
