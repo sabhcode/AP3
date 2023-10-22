@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -46,9 +48,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
     private ?Credential $credential = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: order::class)]
+    private Collection $orders;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
+        $this->orders = new ArrayCollection();
     }
 
     public function getUuid(): ?string
@@ -213,6 +219,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, order>
+     */
+    public function getOrderUuid(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrderUuid(order $orderUuid): static
+    {
+        if (!$this->orders->contains($orderUuid)) {
+            $this->orders->add($orderUuid);
+            $orderUuid->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderUuid(order $orderUuid): static
+    {
+        if ($this->orders->removeElement($orderUuid)) {
+            // set the owning side to null (unless already changed)
+            if ($orderUuid->getUser() === $this) {
+                $orderUuid->setUser(null);
+            }
+        }
 
         return $this;
     }

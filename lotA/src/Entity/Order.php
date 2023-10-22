@@ -30,6 +30,10 @@ class Order
     #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?OrderState $orderState = null;
 
+    #[ORM\ManyToOne(inversedBy: 'order_uuid')]
+    #[ORM\JoinColumn(name: "user_uuid", referencedColumnName: "uuid", nullable: false)]
+    private ?User $user = null;
+
     #[ORM\OneToMany(mappedBy: 'order_uuid', targetEntity: OrderRank::class)]
     private Collection $orderRanks;
 
@@ -115,6 +119,18 @@ class Order
                 $orderRank->setOrderUuid(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
