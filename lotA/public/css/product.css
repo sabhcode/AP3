@@ -198,19 +198,3 @@
     justify-content: flex;
     gap: 5px;
 }
-
-.bottom-card button {
-    font-size: 14px;
-    color: white;
-    background-color: black;
-    font-weight: bold;
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
-}
-
-.bottom-card button:hover {
-    background-color: rgb(29, 29, 29);
-    cursor: pointer;
-}

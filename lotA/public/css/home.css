@@ -42,26 +42,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card button,
-.card a {
-    font-size: 10px;
-    color: white;
-    background-color: black;
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
-    font-weight: bold;
-}
-
-.card button:hover,
-.card a:hover {
-    color: black;
-    background-color: rgb(247, 136, 45);
-    cursor: pointer;
-    transition-duration: 0.2s;
-}
-
 .card img {
     width: 100%;
     border-radius: 10px;
@@ -257,24 +237,4 @@
     display: flex;
     justify-content: space-between;
     gap: 5px;
-}
-
-.bottom-card button,
-.bottom-card a {
-    font-size: 14px;
-    color: white;
-    background-color: black;
-    font-weight: bold;
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
-}
-
-.bottom-card button:hover,
-.bottom-card a:hover {
-    background-color: rgb(29, 29, 29);
-    cursor: pointer;
-    transition-duration: 0.2s;
-
 }

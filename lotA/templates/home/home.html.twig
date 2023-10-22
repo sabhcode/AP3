@@ -25,7 +25,7 @@
                                     <p>{{ product.getNbSales() }} ventes </p>
                                 </div>
                                 <div class="right-of-right">
-                                    <a href="{{ path('app_product', {product : product.uuid} )}}">👀</a>
+                                    <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
                                     <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                                 </div>
                             </div>
@@ -45,13 +45,13 @@
         <div class="category-container">
             <h4>Nos produits les plus vendu</h4>
             <div class="bottom-product-cards">
-                {% for product in BestProductByCategory %}
+                {% for product in bestProductByCategory %}
                     <div class="bottom-card">
                         <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
                         <h3>{{ product.getName() }}</h3>
                         <p class="bottom-product-price">{{ product.getPrice() }} 💲</p>
                         <div class="bottom-buttons-card">
-                            <a href="{{ path('app_product', {product : product.getUuid()} )}}">👀</a>
+                            <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
                             <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                         </div>
                     </div>     

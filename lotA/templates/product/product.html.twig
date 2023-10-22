@@ -46,9 +46,8 @@
                         <h3>{{ productOfSameCategory.getName }}</h3>
                         <p class="bottom-product-price">{{ productOfSameCategory.getPrice }} 💲</p>
                         <div class="bottom-buttons-card">
-                            <button><a href="{{ path('app_product', {product : productOfSameCategory.uuid} )}}">👀</a></button>
+                            <a href="{{ path('app_product', {'slug' : productOfSameCategory.getSlug()}) }}">👀</a>
                             <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-
                         </div>
                     </div>
                     {% endif %}

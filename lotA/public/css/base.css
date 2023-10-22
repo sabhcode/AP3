@@ -41,3 +41,25 @@ body {
     flex-grow: 1;
 }
 
+.card button,
+.card a,
+.bottom-buttons-card button,
+.bottom-buttons-card a {
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+}
+
+.card button:hover,
+.card a:hover,
+.bottom-buttons-card button:hover,
+.bottom-buttons-card a:hover {
+    background-color: rgb(29, 29, 29);
+    cursor: pointer;
+    transition-duration: 0.2s;
+}

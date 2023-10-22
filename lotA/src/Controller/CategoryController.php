@@ -22,10 +22,10 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/c/{slug}', name: 'app_category', requirements: ['slug'=> Requirement::ASCII_SLUG])]
+    #[Route('/c/{slug}', name: 'app_category', requirements: ['slug' => Requirement::ASCII_SLUG])]
     public function viewCategory($slug, CategoryRepository $categoryRepository): Response
     {
-        // Rechercher la catégorie en fonction de l'ID
+        // Rechercher la catégorie en fonction du slug saisi
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
 
         if (!$category) {

@@ -6,7 +6,6 @@ h2 {
     text-align: center;
     color: white;
     background-color: black;
-
     padding: 10px;
     border: none;
 }
@@ -20,7 +19,6 @@ h2 {
     border-radius: 10px;
     margin: 15px;
     border: 1px solid #ddd;
-
 }
 
 #search-input {
@@ -30,16 +28,12 @@ h2 {
     border-radius: 5px;
     margin-right: 10px;
     border: 1px solid #ddd;
-
-
 }
 
 #search-input:focus {
-
     outline: none !important;
     background-color: #f4f4f4;
     color: #fff;
-
 }
 
 #search-button {
@@ -52,7 +46,6 @@ h2 {
 }
 
 #search-button:hover {
-
     background-color: #000000;
     transition-duration: 0.2s;
 }
@@ -68,9 +61,7 @@ ul {
     flex-direction: row;
 }
 
-
 .category-name {
-
     color: #000000;
     margin-bottom: 20px;
     text-align: left;
@@ -81,15 +72,12 @@ ul {
     width: max-content;
     border: none;
     border-radius: 5px;
-
 }
 
 .cards-container {
-
     display: flex;
     flex-wrap: wrap;
     margin: 15px;
-
 }
 
 .card {
@@ -105,8 +93,6 @@ ul {
     flex-direction: column;
     justify-content: space-between;
 }
-
-
 
 /* Style de l'image du produit */
 .card img {
@@ -130,7 +116,6 @@ ul {
 .card p {
     font-size: 14px;
     margin: 5px 0;
-
 }
 
 .product-price {
@@ -145,30 +130,7 @@ ul {
 }
 
 .buttons-card {
-
     display: flex;
     justify-content: space-between;
     gap: 5px;
-
-}
-
-.card button {
-    font-size: 14px;
-    color: white;
-    background-color: black;
-    font-weight: bold;
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
-
-
-}
-
-.card button:hover {
-
-    background-color: rgb(29, 29, 29);
-    cursor: grab;
-    transition-duration: 0.2s;
-
 }

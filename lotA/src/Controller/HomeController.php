@@ -13,12 +13,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
-        $BestProductByCategory = [];
+        $bestProductByCategory = [];
 
         $categories = $categoryRepository->findAll();
 
         foreach ($categories as $category) {
-            $BestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getUuid()], ['nb_sales' => 'DESC']);
+            $bestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getUuid()], ['nb_sales' => 'DESC']);
         }
 
         $bestSells = $productRepository->findBy([], ['nb_sales' => 'DESC'], 5);
@@ -26,7 +26,7 @@ class HomeController extends AbstractController
         return $this->render('home/home.html.twig', [
             'categories' => $categories,
             'bestSells' => $bestSells,
-            'BestProductByCategory' => $BestProductByCategory
+            'bestProductByCategory' => $bestProductByCategory
         ]);
     }
 }

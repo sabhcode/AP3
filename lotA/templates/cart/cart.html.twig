@@ -23,7 +23,7 @@
                     <div class="bottom-buttons-card">
                         <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
                         <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
-                        <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
+                        <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
                         <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete">❌</button>
                     </div>
                     <p class="product-quantity">x{{ quantity }}</p>

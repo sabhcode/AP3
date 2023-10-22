@@ -20,9 +20,7 @@
 				<p class="product-price">{{ product.getPrice() }}
 					💲</p>
 				<div class="buttons-card">
-					<button>
-						<a href="{{ path('app_product', {product : product.uuid}) }}">👀</a>
-					</button>
+					<a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
 					<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 
 				</div>
