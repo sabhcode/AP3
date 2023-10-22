@@ -33,7 +33,7 @@
 
         <div class="priceAndConfirmOrder">
             <p class="price-order">Total de la commande : <span>{{ cart.formatPrice(priceOrderHT) }}</span></p>
-            <button class="confirm-order">Valider 💳</button>
+            <button class="confirm-order">Passer la commande 💳</button>
         </div>
     {% else %}
         <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_categories') }}">ici</a></p>
