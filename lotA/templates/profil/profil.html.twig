@@ -14,5 +14,9 @@
 		<p>Votre numéro de téléphone : {{ app.user.phone}}</p>
 		<p>Votre adresse : {{ app.user.street}}, {{app.user.zipcode}} {{app.user.city}}</p>
 	{% endif %}
-	{{ dump(app.user.getOrders()) }}
+	{% if app.user.getOrders() is not empty %}
+		<h3>Vos commandes</h3>
+	{% else %}
+		<h3>Vous n'avez pas encore passé de commande sur notre site</h3>
+	{% endif %}
 {% endblock %}
