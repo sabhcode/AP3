@@ -11,6 +11,12 @@
     padding: 0 6%;
 }
 
+.header-app__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header-app__logo img {
     height: 60px;
 }
