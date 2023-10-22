@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail de la catégorie
-	{{ category.name | upper  }}
+{% block title %}Détail de la catégorie {{ category.name }}{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/category.css') }}">
 {% endblock %}
 
 {% block body %}
-
-	<h2>{{ category.name | upper  }}</h2>
+	<h2>{{ category.name  }}</h2>
 	<div class="search-bar">
 		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:black;">
 		<button id="search-button">🔍</button>
 	</div>
-
 	<div class="cards-container">
 		{% for product in category.getProducts() %}
 			<div class="card">
@@ -28,10 +28,5 @@
 				</div>
 			</div>
 		{% endfor %}
-
 	</div>
-
-
-	<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
-
 {% endblock %}

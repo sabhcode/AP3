@@ -21,10 +21,10 @@
                     <h3>{{ product.getName() }}</h3>
                     <p class="bottom-product-price">{{ product.getPrice() * quantity }} 💲</p>
                     <div class="bottom-buttons-card">
-                        <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add" onclick="history.go(0)">➕</button>
-                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove" onclick="history.go(0)">➖</button>
+                        <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
+                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
                         <button><a href="{{ path('app_product', {product : product.uuid} )}}">👀</a></button>
-                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete" onclick="history.go(0)">❌</button>
+                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete">❌</button>
                     </div>
                     <p class="product-quantity">x{{ quantity }}</p>
                 </div>

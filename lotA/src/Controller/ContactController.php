@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(): Response
+    public function contact(): Response
     {
 
         $email = 'bastien.mohamed.corentin.soufiane@gmail.com';

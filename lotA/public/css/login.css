@@ -13,7 +13,6 @@ form {
     max-width: 600px;
     margin: 0 auto;
     margin-top: 50px;
-    overflow: hidden;
     position: relative;
 }
 
@@ -54,11 +53,11 @@ button {
     width: 100%;
     margin-top: 20px;
     cursor: pointer;
+    transition-duration: 0.2s;
 }
 
 button:hover {
     background-color: rgb(247, 136, 45);
-    transition-duration: 0.2s;
 }
 
 .alert-danger {
@@ -77,8 +76,6 @@ button:hover {
 
 }
 
-
-
 /* Styles for the "Vous êtes connecté en tant que" section */
 .ConnexionStatus a {
     text-decoration: none;
@@ -87,54 +84,29 @@ button:hover {
     background-color: black;
     padding: 5px;
     border-radius: 5px;
-    line-gap-override: 15px;
+    transition-duration: 0.2s;
 }
 
 .ConnexionStatus a:hover {
-
-    transition-duration: 0.2s;
     background-color: rgb(247, 136, 45);
 }
 
 /* Style for the "Vous n'êtes pas encore inscrit ?" link */
-p {
-    text-align: center;
-    margin-top: 20px;
-}
-
-p a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-}
-
-p a:hover {
-    background-color: #ddd;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
 .GoToSignUp {
-
-    margin: 40px
+    text-align: center;
+    margin-top: 40px
 }
 
 .GoToSignUp a {
-
     text-decoration: none;
     color: white;
     font-weight: bold;
     background-color: black;
     padding: 5px;
     border-radius: 5px;
-    line-gap-override: 15px;
-
+    transition-duration: 0.2s;
 }
 
 .GoToSignUp a:hover {
-
-    transition-duration: 0.2s;
     background-color: rgb(247, 136, 45);
-
-
 }

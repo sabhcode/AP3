@@ -1,8 +1,4 @@
 /* Styles pour le conteneur du slider */
-
-.top-content {}
-
-
 .top-content h2 {
 
     text-align: center;
@@ -20,7 +16,6 @@
     /* Largeur maximale du slider */
     margin: auto;
     margin-top: 50px;
-
     overflow: hidden;
     position: relative;
 }
@@ -47,9 +42,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card button {
-
-
+.card button,
+.card a {
     font-size: 10px;
     color: white;
     background-color: black;
@@ -58,17 +52,14 @@
     border-radius: 7px;
     border: none;
     font-weight: bold;
-
 }
 
-.card button:hover {
-
-
+.card button:hover,
+.card a:hover {
     color: black;
     background-color: rgb(247, 136, 45);
     cursor: pointer;
     transition-duration: 0.2s;
-
 }
 
 .card img {
@@ -93,11 +84,9 @@
     width: max-content;
     padding: 10px;
     border-radius: 10px;
-
 }
 
 .right {
-
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -105,7 +94,6 @@
 
 
 .right p {
-
     font-size: 10px;
     color: black;
     padding: 10px;
@@ -113,7 +101,6 @@
     width: 100%;
     border-radius: 7px;
     font-weight: bold;
-
 }
 
 .left p {
@@ -125,24 +112,16 @@
 }
 
 .left-of-right {
-
     display: flex;
     flex-direction: column;
     gap: 5px;
-
-
 }
 
 .right-of-right {
-
     display: flex;
     flex-direction: column;
     gap: 5px;
-    
-
 }
-
-
 
 /* Style pour les boutons de navigation */
 .slider-nav {
@@ -162,26 +141,21 @@
 }
 
 .slider-nav button:hover {
-
     color: black;
     background-color: rgb(247, 136, 45);
     cursor: pointer;
     transition-duration: 0.2s;
-
-
 }
 
 /* ----------------------------------------------------------------------------------*/
 
 .bottom-content h2 {
-
     text-align: center;
     color: white;
     background-color: black;
     margin: 10px 0;
     padding: 10px;
     border: none;
-
 }
 
 /* Style de la section de la catégorie */
@@ -192,7 +166,6 @@
 
 /* Style du titre de la catégorie */
 .category-container h4 {
-
     color: #000000;
     margin-bottom: 20px;
     text-align: left;
@@ -227,8 +200,6 @@
     justify-content: space-between;
 }
 
-
-
 /* Style de l'image du produit */
 .bottom-card img {
     max-width: 100%;
@@ -251,11 +222,9 @@
 .bottom-card p {
     font-size: 14px;
     margin: 5px 0;
-
 }
 
 .bottom-product-category {
-
     font-size: 10px;
     color: black;
     font-weight: bold;
@@ -263,12 +232,9 @@
     width: 100%;
     border-radius: 7px;
     border: 1px solid #ddd;
-
-
 }
 
 .bottom-product-category:hover {
-
     background-color: #ddd;
     cursor: pointer;
     transition-duration: 0.2s;
@@ -288,14 +254,13 @@
 }
 
 .bottom-buttons-card {
-
     display: flex;
     justify-content: space-between;
     gap: 5px;
-
 }
 
-.bottom-card button {
+.bottom-card button,
+.bottom-card a {
     font-size: 14px;
     color: white;
     background-color: black;
@@ -304,12 +269,10 @@
     width: 100%;
     border-radius: 7px;
     border: none;
-
-
 }
 
-.bottom-card button:hover {
-
+.bottom-card button:hover,
+.bottom-card a:hover {
     background-color: rgb(29, 29, 29);
     cursor: pointer;
     transition-duration: 0.2s;

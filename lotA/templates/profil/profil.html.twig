@@ -1,37 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profil
+{% block title %}Mon Profil{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 {% endblock %}
 
-
 {% block body %}
-
-<h1>Profil</h1>
-
-	{% if user %}
-		<br>
-		<h3>Bonjour,
-			{{ app.user.name }}
-			{{ app.user.firstname}}<br><br></h4>
-		Votre email:
-		{{ app.user.email}}<br><br>
-		Votre numéro de téléphone:
-		{{ app.user.phone}}<br><br>
-		Votre adresse:
-		{{ app.user.address}},
-		{{app.user.postcode}}
-		{{app.user.city}}
-
-
-	</p><br>
-
-	<a href="{{ path('app_changePassword') }}">Change Password</a>
-
-	{{ dump(user)}}
-{% else %}
-	<p>Vous n'êtes pas connecté.</p>
-{% endif %}
-
-<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
-
+	<h1>Mon profil</h1>
+	{% if app.user %}
+		<h3>Bonjour, {{ app.user.getName() }}{{ app.user.firstname}}</h3>
+		<p>Votre email: {{ app.user.email}}</p>
+		<p>Votre numéro de téléphone: {{ app.user.phone}}</p>
+		<p>Votre adresse: {{ app.user.street}}, {{app.user.zipcode}} {{app.user.city}}</p>
+	{% endif %}
 {% endblock %}

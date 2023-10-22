@@ -5,6 +5,7 @@
 
 :root {
     --primaryColor: #002153;
+    --secondColor: #f7882d;
     --boxShadowColor: #ddd;
 }
 
@@ -30,9 +31,13 @@ body {
     font-family: "Montserrat";
 }
 
-.update-product-cart:active {
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-background-color: red;
-
+.app .main-app {
+    flex-grow: 1;
 }
 

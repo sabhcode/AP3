@@ -1,39 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact
+{% block title %}Contact{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 {% endblock %}
 
 {% block body %}
-	
-
 	<div class="example-wrapper">
 		<h1>Contactez-nous!</h1>
-
 		<!-- Insérer la carte Google Maps -->
-		
-		
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2545.6548705081796!2d3.4993608999999997!3d50.3543423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2ec4b0f1d836f%3A0x5bb9254680943dd7!2sLyc%C3%A9e%20Dampierre!5e0!3m2!1sfr!2sfr!4v1695127085022!5m2!1sfr!2sfr" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-
-	
-
-<!-- Formulaire de contact -->
-
-<div class="contact-form">
-
-
-<h2>Envoyez-nous un message</h2>
-
-
-	<button type="submit" class="submit-button"><a href="mailto:{{ email }}" class="btn btn-primary">📤</a></button>
-
-
-
-
-</div>
-
-
-
-
-<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+	</div>
+	<!-- Formulaire de contact -->
+	<div class="contact-form">
+		<h2>Envoyez-nous un message</h2>
+		<button type="submit" class="submit-button"><a href="mailto:{{ email }}" class="btn btn-primary">📤</a></button>
+	</div>
 {% endblock %}

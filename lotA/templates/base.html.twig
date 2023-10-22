@@ -7,14 +7,14 @@
         <link rel="icon" type="image/jpg" href="{{ asset('media/images/header/logo.png') }}" />
         <link rel="stylesheet" href="{{ asset('css/base.css') }}">
         <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/foter.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
         {% block stylesheets %}{% endblock %}
         {% block javascripts_head %}{% endblock %}
     </head>
     <body>
         <div class="app">
             {% include 'header.html.twig' %}
-            <main class="main-app">
+            <main id="main-app" class="main-app">
                 {% block body %}{% endblock %}
             </main>
             {% include 'footer.html.twig' %}

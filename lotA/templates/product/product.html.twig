@@ -1,67 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ product.getName }} {% endblock %}
+{% block title %}{{ product.getName }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+{% endblock %}
 
 {% block body %}
-
-
-<section class="content">
-
-    <div class="product">
-        <div class="product-image">
-            <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image du produit">
-        </div>
-        <div class="product-details">
-            <h2>{{ product.getName }}</h2>
-            <p><strong>{{ product.getPrice }} 💲</strong></p>
-            <p><strong>{{ product.getDescription }}</strong></p>
-            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-
-        </div>
-    </div>
-    <div class="stock-info">
-        <h3>Lieux et quantités de stockage :</h3>
-        <ul>
-            <li><span class="stock-location">Magasin 1</span> : 50 unit.</li>
-            <li><span class="stock-location">Magasin 2</span> : 20 unit.</li>
-            <li><span class="stock-location">Magasin 3</span> : 30 unit.</li>
-            <li><span class="stock-location">Magasin 4</span> : 50 unit.</li>
-            <li><span class="stock-location">Magasin 5</span> : 20 unit.</li>
-            <li><span class="stock-location">Magasin 6</span> : 30 unit.</li>
-            <li><span class="stock-location">Magasin 7</span> : 50 unit.</li>
-            <li><span class="stock-location">Magasin 8</span> : 20 unit.</li>
-            <li><span class="stock-location">Magasin 9</span> : 30 unit.</li>
-            <li><span class="stock-location">Magasin 7</span> : 50 unit.</li>
-            <li><span class="stock-location">Magasin 8</span> : 20 unit.</li>
-            <li><span class="stock-location">Magasin 9</span> : 30 unit.</li>
-        </ul>
-    </div>
-
-    <div class="products-suggestions">
-        <h3>Des produits qui pourraient vous intéresser</h3>
-        
-        <div class="bottom-product-cards">
-            {% for productOfSameCategory in product.getCategory.getProducts %}      
-            {% if (productOfSameCategory.getUuid) != product.getUuid %}      
-            <div class="bottom-card">
-                <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
-                <h3>{{ productOfSameCategory.getName }}</h3>
-                <p class="bottom-product-price">{{ productOfSameCategory.getPrice }} 💲</p>
-                <div class="bottom-buttons-card">
-                    <button><a href="{{ path('app_product', {product : productOfSameCategory.uuid} )}}">👀</a></button>
-                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-
-                </div>
+    <section class="content">
+        <div class="product">
+            <div class="product-image">
+                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image du produit">
             </div>
-            {% endif %}
-            {% endfor %}
+            <div class="product-details">
+                <h2>{{ product.getName }}</h2>
+                <p><strong>{{ product.getPrice }} 💲</strong></p>
+                <p><strong>{{ product.getDescription }}</strong></p>
+                <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+            </div>
         </div>
-    </div>
+        <div class="stock-info">
+            <h3>Lieux et quantités de stockage :</h3>
+            <ul>
+                <li><span class="stock-location">Magasin 1</span> : 50 unit.</li>
+                <li><span class="stock-location">Magasin 2</span> : 20 unit.</li>
+                <li><span class="stock-location">Magasin 3</span> : 30 unit.</li>
+                <li><span class="stock-location">Magasin 4</span> : 50 unit.</li>
+                <li><span class="stock-location">Magasin 5</span> : 20 unit.</li>
+                <li><span class="stock-location">Magasin 6</span> : 30 unit.</li>
+                <li><span class="stock-location">Magasin 7</span> : 50 unit.</li>
+                <li><span class="stock-location">Magasin 8</span> : 20 unit.</li>
+                <li><span class="stock-location">Magasin 9</span> : 30 unit.</li>
+                <li><span class="stock-location">Magasin 7</span> : 50 unit.</li>
+                <li><span class="stock-location">Magasin 8</span> : 20 unit.</li>
+                <li><span class="stock-location">Magasin 9</span> : 30 unit.</li>
+            </ul>
+        </div>
+        <div class="products-suggestions">
+            <h3>Des produits qui pourraient vous intéresser</h3>
+            <div class="bottom-product-cards">
+                {% for productOfSameCategory in product.getCategory.getProducts %}      
+                    {% if (productOfSameCategory.getUuid) != product.getUuid %}      
+                    <div class="bottom-card">
+                        <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
+                        <h3>{{ productOfSameCategory.getName }}</h3>
+                        <p class="bottom-product-price">{{ productOfSameCategory.getPrice }} 💲</p>
+                        <div class="bottom-buttons-card">
+                            <button><a href="{{ path('app_product', {product : productOfSameCategory.uuid} )}}">👀</a></button>
+                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 
-    
-
-</section>
-
-
-<link rel="stylesheet" href="{{ asset('css/produit.css') }}">
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}
