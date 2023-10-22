@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
     private ?Credential $credential = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: order::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
 
     public function __construct()
@@ -226,27 +226,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, order>
      */
-    public function getOrderUuid(): Collection
+    public function getOrders(): Collection
     {
         return $this->orders;
     }
 
-    public function addOrderUuid(order $orderUuid): static
+    public function addOrders(order $order): static
     {
-        if (!$this->orders->contains($orderUuid)) {
-            $this->orders->add($orderUuid);
-            $orderUuid->setUser($this);
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeOrderUuid(order $orderUuid): static
+    public function removeOrders(order $order): static
     {
-        if ($this->orders->removeElement($orderUuid)) {
+        if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
-            if ($orderUuid->getUser() === $this) {
-                $orderUuid->setUser(null);
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
             }
         }
 
