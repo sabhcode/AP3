@@ -15,13 +15,13 @@ orderRank, 0n order, 0n orderState : datetime
 BELONGS, 11 product, 0n category
 product: uuid, name, desc, price
 orderDetail, 0n product, 0n order: quantity, price
-order: uuid, datetime, total
-ORDER, 0n user, 11 order
-user: uuid, name, firstname
-
+order: uuid, datetime, totalPriceHT, totalPriceTTC, tax
+PLACE, 0n user, 11 order
+user: uuid, name, firstname, street, zip_code, city, phone
+      
 category: uuid, name
 :
 :
 :
 credential: email, password, lastconnection
-IDENTIFY BY, 11 user, 01 credential
+IDENTIFY BY, 11 user, 11 credential
