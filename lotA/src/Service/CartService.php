@@ -8,11 +8,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class CartService {
 
-    private Request $request;
-
-    public function __construct(private ProductRepository $productRepository, RequestStack $requestStack) {
-        $this->request = $requestStack->getCurrentRequest();
-    }
+    public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack) {}
 
     public function add(string $productUuid, string $action): array {
 
@@ -23,7 +19,7 @@ class CartService {
 
         if($product) {
 
-            $session = $this->request->getSession();
+            $session = $this->requestStack->getSession();
             $cart = (object) $session->get("cart", []);
 
             if($action === "add") {
@@ -58,7 +54,7 @@ class CartService {
 
     public function getNbProducts(): int {
 
-        $session = $this->request->getSession();
+        $session = $this->requestStack->getSession();
         $cart = (object) $session->get("cart", []);
         $nbProducts = 0;
 
