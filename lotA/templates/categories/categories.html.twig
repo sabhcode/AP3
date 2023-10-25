@@ -31,11 +31,11 @@
 					<div class="products-list">
 						<!-- Boucle pour afficher les produits de chaque catégorie -->
 						{% for product in category.getProducts() %}
-							<div class="card">
-								<img src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image du produit">
-								<h3>{{ product.getName() }}</h3>
-								<p class="product-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
-								<div class="buttons-card">
+							<div class="product_card">
+								<img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image du produit">
+								<h3 class="product_card-name">{{ product.getName() }}</h3>
+								<p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+								<div class="product_card-buttons">
 									<a href="{{ path('app_product', {'slug': product.getSlug()}) }}">👀</a>
 									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 								</div>

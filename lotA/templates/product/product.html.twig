@@ -35,14 +35,14 @@
         </div>
         <div class="products-suggestions">
             <h3>Des produits qui pourraient vous intéresser</h3>
-            <div class="bottom-product-cards">
+            <div class="product_cards">
                 {% for productOfSameCategory in product.getCategory().getProducts() %} 
-                    {% if productOfSameCategory.getUuid != product.getUuid() %}      
-                        <div class="bottom-card">
-                            <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}">
-                            <h3>{{ productOfSameCategory.getName }}</h3>
-                            <p class="bottom-product-price">{{ cart.formatPrice(productOfSameCategory.getUnitPrice()) }}</p>
-                            <div class="bottom-buttons-card">
+                    {% if productOfSameCategory.getUuid() != product.getUuid() %}      
+                        <div class="product_card">
+                            <img class="product_card-image" src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}">
+                            <h3 class="product_card-name">{{ productOfSameCategory.getName() }}</h3>
+                            <p class="product_card-price">{{ cart.formatPrice(productOfSameCategory.getUnitPrice()) }}</p>
+                            <div class="product_card-buttons">
                                 <a href="{{ path('app_product', {'slug': productOfSameCategory.getSlug()}) }}">👀</a>
                                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                             </div>

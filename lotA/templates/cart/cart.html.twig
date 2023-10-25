@@ -19,8 +19,8 @@
                     {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
                     <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
                     <h3>{{ product.getName() }}</h3>
-                    <p class="bottom-product-price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
-                    <div class="bottom-buttons-card">
+                    <p class="product-card_price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
+                    <div class="product-card_buttons">
                         <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
                         <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
                         <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>

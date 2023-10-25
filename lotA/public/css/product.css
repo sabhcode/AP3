@@ -8,6 +8,7 @@
 .product {
     display: flex;
     gap: 20px;
+    margin-bottom: 40px;
 }
 
 .product-image {
@@ -85,49 +86,6 @@ h3 {
 }
 
 /* ------------------ Section suggestions de produits ---------------------- */
-
-/* Style des cartes de produit */
-.bottom-product-cards {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-/* Style d'une carte de produit individuelle */
-.bottom-card {
-    width: 200px;
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Style de l'image du produit */
-.bottom-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Style du titre du produit */
-.bottom-card h3 {
-    font-size: 10px;
-    color: var(--primaryColor);
-    margin: 10px 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Style de la description du produit */
-.bottom-card p {
-    font-size: 14px;
-    margin: 5px 0;
-
-}
-
 .bottom-product-category {
     font-size: 10px;
     color: var(--primaryColor);
@@ -143,7 +101,7 @@ h3 {
 }
 
 /* Style du prix du produit */
-.bottom-product-price {
+.product-card_price {
     font-size: 10px;
     color: rgb(0, 0, 0);
     background-color: var(--secondColor);
@@ -154,7 +112,7 @@ h3 {
     font-weight: bold;
 }
 
-.bottom-buttons-card {
+.product-card_buttons {
     display: flex;
     justify-content: flex;
     gap: 5px;

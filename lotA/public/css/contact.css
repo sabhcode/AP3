@@ -89,7 +89,7 @@ iframe {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: var(--radiusBorder);
     font-size: 16px;
 }
 
@@ -98,7 +98,7 @@ iframe {
     color: #fff;
     padding: 15px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--radiusBorder);
     font-size: 18px;
     transition: background-color .2s ease;
 }
