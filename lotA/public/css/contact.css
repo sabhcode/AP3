@@ -3,14 +3,13 @@
 /* En-tête */
 h1 {
     text-align: center;
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     margin: 10px 0;
     padding: 10px;
     border: none;
     border-radius: 7px;
 }
-
 
 /* Conteneur principal */
 .example-wrapper {
@@ -44,7 +43,7 @@ iframe {
 .contact-info {
     margin-top: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--whiteColor);
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -53,11 +52,6 @@ iframe {
 .contact-info p {
     font-size: 18px;
     margin-bottom: 10px;
-}
-
-.contact-info ul {
-    list-style: none;
-    padding: 0;
 }
 
 .contact-info li {
@@ -69,14 +63,14 @@ iframe {
 .contact-form {
     margin-top: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--whiteColor);
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form h2 {
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     margin-bottom: 10px;
     padding: 10px;
@@ -95,7 +89,7 @@ iframe {
 
 .submit-button {
     background-color: var(--secondColor);
-    color: #fff;
+    color: var(--whiteColor);
     padding: 15px 30px;
     border: none;
     border-radius: var(--radiusBorder);

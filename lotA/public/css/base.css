@@ -6,6 +6,7 @@
 :root {
     --primaryColor: #000;
     --secondColor: #f7882d;
+    --whiteColor: #fff;
     --boxShadowColor: #ddd;
     --radiusBorder: 4px;
 }
@@ -24,10 +25,15 @@ a {
     text-decoration: none;
 }
 
+input {
+    font: inherit;
+}
+
 button {
-    cursor: pointer;
+    font: inherit;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 html {
@@ -73,7 +79,7 @@ h1 {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
-    background-color: #fff;
+    background-color: var(--whiteColor);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

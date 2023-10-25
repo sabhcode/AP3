@@ -16,7 +16,7 @@ class Store
     #[ORM\Column(type: 'uuid')]
     private ?Uuid $uuid = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $city = null;
 
     #[ORM\OneToMany(mappedBy: 'store_uuid', targetEntity: Stock::class)]

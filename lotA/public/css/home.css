@@ -1,7 +1,7 @@
 /* Styles pour le conteneur du slider */
 .top-content h2 {
     text-align: center;
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     padding: 10px;
 }
@@ -33,7 +33,7 @@
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--whiteColor);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,7 +43,7 @@
 }
 
 .card-content {
-    background-color: #fff;
+    background-color: var(--whiteColor);
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
@@ -64,7 +64,6 @@
     flex-direction: row;
     gap: 5px;
 }
-
 
 .right p {
     font-size: 10px;
@@ -103,7 +102,7 @@
 
 .slider-nav button {
     background: #000000;
-    color: #fff;
+    color: var(--whiteColor);
     border: none;
     padding: 5px 10px;
     border-radius: var(--radiusBorder);
@@ -121,7 +120,7 @@
 
 .bottom-content h2 {
     text-align: center;
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     margin: 10px 0;
     padding: 10px;
@@ -139,7 +138,7 @@
     color: #000000;
     margin-bottom: 20px;
     text-align: left;
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     margin: 10px 0;
     padding: 10px;

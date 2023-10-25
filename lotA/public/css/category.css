@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--whiteColor);
     padding: 10px;
     border-radius: 10px;
     margin: 15px;
@@ -21,12 +21,12 @@
 #search-input:focus {
     outline: none !important;
     background-color: #f4f4f4;
-    color: #fff;
+    color: var(--whiteColor);
 }
 
 #search-button {
     background-color: #ff8800;
-    color: #ffffff;
+    color: var(--whiteColor);
     border: none;
     padding: 10px 20px;
     border-radius: var(--radiusBorder);

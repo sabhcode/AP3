@@ -6,7 +6,7 @@
 }
 
 .top-content h2 {
-    color: #fff;
+    color: var(--whiteColor);
 }
 
 form {
@@ -16,16 +16,16 @@ form {
 }
 
 label {
-    display: block;
     color: var(--primaryColor);
     font-weight: bold;
     margin-top: 10px;
 }
 
 input {
+    display: block;
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
+    margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
     font-size: 14px;
@@ -33,12 +33,12 @@ input {
 
 input[type="text"],
 input[type="password"] {
-    background-color: #fff;
+    background-color: var(--whiteColor);
 }
 
 button {
     background-color: #000;
-    color: #fff;
+    color: var(--whiteColor);
     border: none;
     padding: 10px;
     border-radius: var(--radiusBorder);
@@ -54,7 +54,7 @@ button:hover {
 
 .alert-danger {
     background-color: #f44336;
-    color: #fff;
+    color: var(--whiteColor);
     padding: 10px;
     border-radius: var(--radiusBorder);
     margin-top: 10px;
@@ -71,7 +71,7 @@ button:hover {
 /* Styles for the "Vous êtes connecté en tant que" section */
 .ConnexionStatus a {
     text-decoration: none;
-    color: #fff;
+    color: var(--whiteColor);
     font-weight: bold;
     background-color: var(--primaryColor);
     padding: 5px;
@@ -91,7 +91,7 @@ button:hover {
 
 .GoToSignUp a {
     text-decoration: none;
-    color: #fff;
+    color: var(--whiteColor);
     font-weight: bold;
     background-color: var(--primaryColor);
     padding: 5px;

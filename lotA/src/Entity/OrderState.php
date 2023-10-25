@@ -15,7 +15,7 @@ class OrderState
     #[ORM\Column(type: 'uuid')]
     private ?Uuid $uuid = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: "orderState", targetEntity: Order::class)]

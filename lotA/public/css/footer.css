@@ -1,6 +1,6 @@
 .footer-app {
     background-color: var(--primaryColor);
-    color: #fff;
+    color: var(--whiteColor);
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
 }

@@ -3,7 +3,7 @@
 /* Alert for email verification error */
 .alert-danger {
     background-color: #f44336;
-    color: #fff;
+    color: var(--whiteColor);
     padding: 10px;
     border-radius: var(--radiusBorder);
     margin-top: 10px;
@@ -18,19 +18,21 @@ form {
 
 /* Style for form elements */
 label {
-    display: block;
     font-weight: bold;
-    margin-top: 10px;
 }
 
 input[type="text"],
 input[type="password"] {
+    display: block;
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
+    margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
     font-size: 14px;
+}
+input[type="checkbox"] {
+    margin: 0 10px;
 }
 
 /* Style for the "Accepter les conditions" checkbox */
@@ -41,7 +43,7 @@ input[type="checkbox"] {
 /* Style for the submit button */
 button[type="submit"] {
     background-color: #000;
-    color: #fff;
+    color: var(--whiteColor);
     border: none;
     padding: 10px;
     border-radius: var(--radiusBorder);
@@ -72,7 +74,7 @@ ul.errors {
 
 .ConnexionStatus a {
     text-decoration: none;
-    color: #fff;
+    color: var(--whiteColor);
     font-weight: bold;
     background-color: var(--primaryColor);
     padding: 5px;
@@ -91,7 +93,7 @@ ul.errors {
 
 .GoToSignIn a {
     text-decoration: none;
-    color: #fff;
+    color: var(--whiteColor);
     font-weight: bold;
     background-color: var(--primaryColor);
     padding: 5px;

@@ -9,7 +9,7 @@
 
 .category-name {
     display: block;
-    color: #fff;
+    color: var(--whiteColor);
     margin-bottom: 20px;
     background-color: var(--primaryColor);
     padding: 10px;
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--whiteColor);
     padding: 10px;
     border-radius: 10px;
     margin: 15px;
@@ -47,21 +47,21 @@
 
 #search-input:focus {
     background-color: #f4f4f4;
-    color: #fff;
+    color: var(--whiteColor);
 }
 
 #category-filter {
     padding: 5px;
     border: none;
     border-radius: var(--radiusBorder);
-    background-color: #ffffff;
+    background-color: var(--whiteColor);
     color: #000000;
     margin-right: 10px;
 }
 
 #search-button {
     background-color: #ff8800;
-    color: #ffffff;
+    color: var(--whiteColor);
     border: none;
     padding: 10px 20px;
     border-radius: var(--radiusBorder);

@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['uuid'], message: 'There is already an account with this uuid')]
+#[UniqueEntity(fields: ['credential'], message: 'Adresse e-mail déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
@@ -23,23 +23,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $name = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     private ?string $firstname = null;  
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
+    private ?string $phone = null;
+
+    #[ORM\Column]
     private ?string $street = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
     private ?string $zip_code = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
     private ?string $city = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $phone = null;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
@@ -111,6 +111,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstname(string $firstname): static
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }
@@ -207,18 +219,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): static
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): static
-    {
-        $this->phone = $phone;
 
         return $this;
     }

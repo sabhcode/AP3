@@ -1,6 +1,6 @@
 h1 {
     text-align: center;
-    color: #fff;
+    color: var(--whiteColor);
     background-color: var(--primaryColor);
     padding: 10px;
 }

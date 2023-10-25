@@ -32,6 +32,7 @@ class RegistrationController extends AbstractController
         $credential = new Credential();
         $user = new User();
         $user->setCredential($credential);
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
