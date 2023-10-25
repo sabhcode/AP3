@@ -20,7 +20,7 @@ class Order
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?float $total_price_ht = null;
 
     #[ORM\Column]

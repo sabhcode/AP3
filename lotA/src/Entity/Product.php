@@ -22,11 +22,11 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?float $unit_price = null;
 
     #[ORM\Column]
-    private $image = null;
+    private ?string $image = null;
 
     #[ORM\Column]
     private ?int $nb_sales = null;
@@ -142,12 +142,12 @@ class Product
         return $this;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
 

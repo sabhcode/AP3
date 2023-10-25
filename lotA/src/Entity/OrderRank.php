@@ -20,7 +20,7 @@ class OrderRank
     private ?Order $order_uuid = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $datetime = null;
+    private ?\DateTimeInterface $date_time = null;
 
     public function getOrderStateUuid(): ?OrderState
     {
@@ -48,12 +48,12 @@ class OrderRank
 
     public function getDatetime(): ?\DateTimeInterface
     {
-        return $this->datetime;
+        return $this->date_time;
     }
 
-    public function setDatetime(\DateTimeInterface $datetime): static
+    public function setDatetime(\DateTimeInterface $date_time): static
     {
-        $this->datetime = $datetime;
+        $this->date_time = $date_time;
 
         return $this;
     }

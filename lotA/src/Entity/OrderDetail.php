@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderDetailRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderDetailRepository;
 
 #[ORM\Entity(repositoryClass: OrderDetailRepository::class)]
 class OrderDetail
@@ -21,7 +22,7 @@ class OrderDetail
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?float $unit_price = null;
 
     public function getOrderUuid(): ?Order
