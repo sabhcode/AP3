@@ -16,10 +16,10 @@
                 <div class="bottom-card">
                     {% set product = item[0] %}
                     {% set quantity = item[1] %}
-                    {% set priceOrderHT = priceOrderHT + product.getPrice() * quantity %}
+                    {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
                     <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
                     <h3>{{ product.getName() }}</h3>
-                    <p class="bottom-product-price">{{ cart.formatPrice(product.getPrice() * quantity) }}</p>
+                    <p class="bottom-product-price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
                     <div class="bottom-buttons-card">
                         <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
                         <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>

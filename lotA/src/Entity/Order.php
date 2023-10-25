@@ -18,13 +18,13 @@ class Order
     private ?Uuid $uuid = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateTime = null;
+    private ?\DateTimeInterface $date_time = null;
 
     #[ORM\Column]
-    private ?float $totalPrice = null;
+    private ?float $total_price_ht = null;
 
-    #[ORM\OneToMany(mappedBy: "order_uuid", targetEntity: OrderDetail::class)]
-    private Collection $orderDetails;
+    #[ORM\Column]
+    private ?float $tax = null;
 
     #[ORM\ManyToOne(inversedBy: "order")]
     #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
@@ -33,6 +33,9 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'order_uuid')]
     #[ORM\JoinColumn(name: "user_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: "order_uuid", targetEntity: OrderDetail::class)]
+    private Collection $orderDetails;
 
     #[ORM\OneToMany(mappedBy: 'order_uuid', targetEntity: OrderRank::class)]
     private Collection $orderRanks;
@@ -51,24 +54,36 @@ class Order
 
     public function getDateTime(): ?\DateTimeInterface
     {
-        return $this->dateTime;
+        return $this->date_time;
     }
 
-    public function setDateTime(\DateTimeInterface $dateTime): static
+    public function setDateTime(\DateTimeInterface $date_time): static
     {
-        $this->dateTime = $dateTime;
+        $this->date_time = $date_time;
 
         return $this;
     }
 
-    public function getTotalPrice(): ?float
+    public function getTotalPriceHT(): ?float
     {
-        return $this->totalPrice;
+        return $this->total_price_ht;
     }
 
-    public function setTotalPrice(float $totalPrice): static
+    public function setTotalPriceHT(float $total_price_ht): static
     {
-        $this->totalPrice = $totalPrice;
+        $this->total_price_ht = $total_price_ht;
+
+        return $this;
+    }
+
+    public function getTax(): ?int
+    {
+        return $this->tax;
+    }
+
+    public function setTax(int $tax): static
+    {
+        $this->tax = $tax;
 
         return $this;
     }

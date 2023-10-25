@@ -22,7 +22,7 @@ class OrderDetail
     private ?int $quantity = null;
 
     #[ORM\Column]
-    private ?float $price = null;
+    private ?float $unit_price = null;
 
     public function getOrderUuid(): ?Order
     {
@@ -60,14 +60,14 @@ class OrderDetail
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getUnitPrice(): ?float
     {
-        return $this->price;
+        return $this->unit_price;
     }
 
-    public function setPrice(float $price): static
+    public function setUnitPrice(float $unit_price): static
     {
-        $this->price = $price;
+        $this->unit_price = $unit_price;
 
         return $this;
     }

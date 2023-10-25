@@ -21,7 +21,7 @@
                             </div>
                             <div class="right">
                                 <div class="left-of-right">
-                                    <p class="bottom-product-price">{{ cart.formatPrice(product.getPrice()) }}</p>
+                                    <p class="bottom-product-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                                     <p>{{ product.getNbSales() }} ventes </p>
                                 </div>
                                 <div class="right-of-right">
@@ -50,7 +50,7 @@
                         <div class="bottom-card">
                             <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
                             <h3>{{ product.getName() }}</h3>
-                            <p class="bottom-product-price">{{ cart.formatPrice(product.getPrice()) }}</p>
+                            <p class="bottom-product-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                             <div class="bottom-buttons-card">
                                 <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
                                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
