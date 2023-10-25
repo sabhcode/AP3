@@ -35,7 +35,7 @@
     max-width: max-content;
     margin: 20px auto;
     padding: 6px 10px;
-    border-radius: 4px;
+    border-radius: var(--radiusBorder);
     border: none;
     outline: none;
     transition: .2s ease;

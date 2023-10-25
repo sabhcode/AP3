@@ -22,7 +22,7 @@ class OrderDetail
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     private ?float $unit_price = null;
 
     public function getOrderUuid(): ?Order

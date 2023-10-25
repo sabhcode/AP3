@@ -94,7 +94,7 @@ iframe {
 }
 
 .submit-button {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
     color: #fff;
     padding: 15px 30px;
     border: none;

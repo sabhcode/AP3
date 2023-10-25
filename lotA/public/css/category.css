@@ -120,7 +120,7 @@ ul {
 .product-price {
     font-size: 10px;
     color: rgb(0, 0, 0);
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
     padding: 10px;
     width: 100%;
     border-radius: 7px;

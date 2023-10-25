@@ -56,7 +56,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }
 
 .alert-danger {
@@ -87,7 +87,7 @@ button:hover {
 }
 
 .ConnexionStatus a:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }
 
 /* Style for the "Vous n'êtes pas encore inscrit ?" link */
@@ -107,5 +107,5 @@ button:hover {
 }
 
 .GoToSignUp a:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }

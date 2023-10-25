@@ -7,6 +7,7 @@
     --primaryColor: #000;
     --secondColor: #f7882d;
     --boxShadowColor: #ddd;
+    --radiusBorder: 4px;
 }
 
 *, ::before, ::after {
@@ -25,6 +26,8 @@ a {
 
 button {
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 html {
@@ -43,6 +46,7 @@ body {
 
 .app .main-app {
     flex-grow: 1;
+    padding-top: 60px;
 }
 
 .card button,

@@ -77,7 +77,7 @@ class CartService {
 
         $price = strval($price);
 
-        if(!str_contains($price,".")) {
+        if(!str_contains($price, ".")) {
             $price .= ",00";
         }
 

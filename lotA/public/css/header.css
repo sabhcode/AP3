@@ -41,7 +41,7 @@
     padding: 10px 15px;
     margin: 15px 10px;
     border: 1px solid #222;
-    border-radius: 4px;
+    border-radius: var(--radiusBorder);
     transition: .2s ease;
     transition-property: background-color, border-color;
 }
@@ -67,5 +67,5 @@
     background-color: var(--primaryColor);
     padding: 1px 4px;
     border: 1px solid var(--secondColor);
-    border-radius: 4px;
+    border-radius: var(--radiusBorder);
 }

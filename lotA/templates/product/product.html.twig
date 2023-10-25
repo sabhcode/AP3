@@ -14,30 +14,32 @@
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
-                <p><strong>{{ cart.formatPrice(product.getUnitPrice()) }}</strong></p>
-                <p><strong>{{ product.getDescription() }}</strong></p>
+                <p>{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+                <p>{{ product.getDescription() }}</p>
                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
             </div>
         </div>
         <div class="stock-info">
-            <h3>Lieux et quantités de stockage :</h3>
+            <h3>Nos magasins avec ce produit en stock :</h3>
             <ul>
-                {% if product.getStocks() is not empty %}
-                    {% for stock in product.getStocks() %}
+                {% for stock in product.getStocks() %}
+                    {% if stock.getQuantity() > 10 %}
+                        <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : En stock</li>
+                    {% else %}
                         <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : {{ stock.getQuantity() }} unit.</li>
-                    {% endfor %}
+                    {% endif %}
                 {% else %}
                     <p>Produit en rupture de stock</p>
-                {% endif %}
+                {% endfor %}
             </ul>
         </div>
         <div class="products-suggestions">
             <h3>Des produits qui pourraient vous intéresser</h3>
             <div class="bottom-product-cards">
-                {% for productOfSameCategory in product.getCategory().getProducts %}      
-                    {% if (productOfSameCategory.getUuid) != product.getUuid %}      
+                {% for productOfSameCategory in product.getCategory().getProducts() %} 
+                    {% if productOfSameCategory.getUuid != product.getUuid() %}      
                         <div class="bottom-card">
-                            <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}" alt="Produit 1">
+                            <img src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}">
                             <h3>{{ productOfSameCategory.getName }}</h3>
                             <p class="bottom-product-price">{{ cart.formatPrice(productOfSameCategory.getUnitPrice()) }}</p>
                             <div class="bottom-buttons-card">

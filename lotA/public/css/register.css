@@ -58,7 +58,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }
 
 /* Style for form errors */
@@ -88,7 +88,7 @@ ul.errors {
 }
 
 .ConnexionStatus a:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }
 
 .GoToSignIn {
@@ -107,5 +107,5 @@ ul.errors {
 }
 
 .GoToSignIn a:hover {
-    background-color: rgb(247, 136, 45);
+    background-color: var(--secondColor);
 }
