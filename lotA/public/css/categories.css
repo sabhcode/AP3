@@ -18,9 +18,9 @@
 }
 
 .category-name a {
-    color: white;
+    color: #fff;
 }
-.category-name a:hover {
+.category-name:hover {
     background-color: #ff8800;
 }
 

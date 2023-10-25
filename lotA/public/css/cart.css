@@ -22,7 +22,7 @@
     transition: .2s ease;
     transition-property: background-color, color;
     background-color: var(--primaryColor);
-    color: white;
+    color: #fff;
 }
 
 .confirm-order:hover {
@@ -44,14 +44,14 @@
     padding: 10px;
     width: max-content;
     margin: 0 auto;
-    color: white;
+    color: #fff;
 }
 
 .noProductInCart a {
     background-color: var(--primaryColor);
     border-radius: var(--radiusBorder);
     padding: 5px;
-    color: white;
+    color: #fff;
 }
 
 .noProductInCart a:hover {

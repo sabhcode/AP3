@@ -1,7 +1,7 @@
 <header id="header-app" class="header-app">
 	<div class="header-app__content">
 		<div class="header-app__logo">
-			<a href="{{ path('app_home') }}">
+			<a href="{{ path('app_home') }}" title="All4Sport">
 				<img src="{{ asset('media/images/header/logo.png') }}">
 			</a>
 		</div>
@@ -21,7 +21,7 @@
 					<li>
 						<a href="{{ path('app_logout') }}" class="{{ app.request.getPathInfo() == path('app_logout') ? 'on' : '' }}" title="Déconnexion">Déconnexion</a>
 					</li>
-				{# Sinon ceci #}
+				{# Sinon ça #}
 				{% else %}
 					<li>
 						<a href="{{ path('app_login') }}" class="{{ app.request.getPathInfo() == path('app_login') ? 'on' : '' }}" title="Connexion">Connexion</a>

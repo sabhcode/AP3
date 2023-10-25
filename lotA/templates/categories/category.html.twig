@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail de la catégorie {{ category.name }}{% endblock %}
+{% block title %}Catégorie {{ category.getName() }}{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/category.css') }}">
 {% endblock %}
 
 {% block body %}
-	<h2>{{ category.name  }}</h2>
+	<h1>{{ category.getName() }}</h1>
 	<div class="search-bar">
 		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:var(--primaryColor);">
 		<button id="search-button">🔍</button>
 	</div>
-	<div class="cards-container">
+	<div class="product_cards">
 		{% for product in category.getProducts() %}
-			<div class="card">
-				<img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-				<h3>{{ product.getName() }}</h3>
-				<p class="product-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
-				<div class="buttons-card">
+			<div class="product_card">
+				<img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+				<p class="product_card-name">{{ product.getName() }}</p>
+				<p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+				<div class="product_card-buttons">
 					<a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
 					<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 				</div>

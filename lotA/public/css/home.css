@@ -1,7 +1,7 @@
 /* Styles pour le conteneur du slider */
 .top-content h2 {
     text-align: center;
-    color: white;
+    color: #fff;
     background-color: var(--primaryColor);
     padding: 10px;
 }
@@ -121,7 +121,7 @@
 
 .bottom-content h2 {
     text-align: center;
-    color: white;
+    color: #fff;
     background-color: var(--primaryColor);
     margin: 10px 0;
     padding: 10px;
@@ -139,7 +139,7 @@
     color: #000000;
     margin-bottom: 20px;
     text-align: left;
-    color: white;
+    color: #fff;
     background-color: var(--primaryColor);
     margin: 10px 0;
     padding: 10px;

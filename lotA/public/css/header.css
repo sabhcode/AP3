@@ -38,8 +38,8 @@
     align-items: center;
     position: relative;
     color: #ffffff;
-    padding: 10px 15px;
     margin: 15px 10px;
+    padding: 8px 15px;
     border: 1px solid #222;
     border-radius: var(--radiusBorder);
     transition: .2s ease;
