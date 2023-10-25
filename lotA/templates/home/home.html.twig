@@ -49,7 +49,7 @@
                     {% if product %}
                         <div class="product_card">
                             <img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                            <h3 class="product_card-name">{{ product.getName() }}</h3>
+                            <p class="product_card-name">{{ product.getName() }}</p>
                             <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                             <div class="product_card-buttons">
                                 <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>

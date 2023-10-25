@@ -1,13 +1,10 @@
 /* Style for the main heading */
-h1 {
-    text-align: center;
-    color: white;
-    background-color: var(--primaryColor);
-    padding: 10px;
+.categories {
+    padding: 40px 20px;
 }
 
-.category-container {
-    padding: 40px 20px;
+.category {
+    margin-bottom: 60px;
 }
 
 .category-name {
@@ -23,14 +20,8 @@ h1 {
 .category-name a {
     color: white;
 }
-
 .category-name a:hover {
     background-color: #ff8800;
-}
-
-.products-list {
-    display: flex;
-    gap: 15px;
 }
 
 /* ---------------------- search bar ------------------------ */

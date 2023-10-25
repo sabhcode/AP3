@@ -8,19 +8,19 @@
 {% endblock %}
 
 {% block body %}
-    <h2 class="cart-title">Mon panier</h2>
+    <h1>Mon panier</h1>
     {% if products is not empty %}
         {% set priceOrderHT = 0 %}
-        <div class="bottom-product-cards">
+        <div class="product_cards">
             {% for item in products %}
-                <div class="bottom-card">
+                <div class="product_card">
                     {% set product = item[0] %}
                     {% set quantity = item[1] %}
                     {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
-                    <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                    <h3>{{ product.getName() }}</h3>
-                    <p class="product-card_price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
-                    <div class="product-card_buttons">
+                    <img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                    <p class="product_card-name">{{ product.getName() }}</p>
+                    <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
+                    <div class="product_card-buttons">
                         <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
                         <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
                         <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
@@ -30,7 +30,6 @@
                 </div>
             {% endfor %}
         </div>
-
         <div class="priceAndConfirmOrder">
             <p class="price-order">Total de la commande : <span>{{ cart.formatPrice(priceOrderHT) }}</span></p>
             <button class="confirm-order">Passer la commande 💳</button>

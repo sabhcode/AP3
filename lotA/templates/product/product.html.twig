@@ -14,13 +14,13 @@
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
-                <p>{{ cart.formatPrice(product.getUnitPrice()) }}</p>
-                <p>{{ product.getDescription() }}</p>
+                <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+                <p class="product_card-description">{{ product.getDescription() }}</p>
                 <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
             </div>
         </div>
         <div class="stock-info">
-            <h3>Nos magasins avec ce produit en stock :</h3>
+            <h3>Nos magasins avec ce produit en stock</h3>
             <ul>
                 {% for stock in product.getStocks() %}
                     {% if stock.getQuantity() > 10 %}
@@ -40,7 +40,7 @@
                     {% if productOfSameCategory.getUuid() != product.getUuid() %}      
                         <div class="product_card">
                             <img class="product_card-image" src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}">
-                            <h3 class="product_card-name">{{ productOfSameCategory.getName() }}</h3>
+                            <p class="product_card-name">{{ productOfSameCategory.getName() }}</p>
                             <p class="product_card-price">{{ cart.formatPrice(productOfSameCategory.getUnitPrice()) }}</p>
                             <div class="product_card-buttons">
                                 <a href="{{ path('app_product', {'slug': productOfSameCategory.getSlug()}) }}">👀</a>

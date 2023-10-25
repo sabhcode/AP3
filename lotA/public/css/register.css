@@ -10,17 +10,10 @@
     text-align: center;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-    margin-top: 30px;
-}
-
 /* Style for the registration form */
 form {
     max-width: 600px;
-    margin: 30px auto;
+    margin: 0 auto;
 }
 
 /* Style for form elements */

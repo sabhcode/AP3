@@ -12,14 +12,7 @@
 form {
     max-width: 600px;
     margin: 0 auto;
-    margin-top: 50px;
     position: relative;
-}
-
-form h1 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: var(--primaryColor);
 }
 
 label {

@@ -10,7 +10,7 @@
 	<h1>Catalogue</h1>
 	<!-- Barre de recherche -->
 	<div class="search-bar">
-		<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:var(--primaryColor);">
+		<input type="text" id="search-input" placeholder="Rechercher un produit">
 		<select id="category-filter">
 			<option class="select-category" value="">Toutes catégories</option>
 			<!-- Boucle pour afficher les options de catégorie -->
@@ -20,30 +20,28 @@
 		</select>
 		<button id="search-button">🔍</button>
 	</div>
-	<ul>
+	<div class="categories">
 		<!-- Boucle pour afficher les catégories -->
 		{% for category in categories %}
-			{% if category.getProducts() %}
-				<div class="category-container">
-					<div class="category-title">
-						<a class="category-name" href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
-					</div>
-					<div class="products-list">
-						<!-- Boucle pour afficher les produits de chaque catégorie -->
-						{% for product in category.getProducts() %}
-							<div class="product_card">
-								<img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image du produit">
-								<h3 class="product_card-name">{{ product.getName() }}</h3>
-								<p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
-								<div class="product_card-buttons">
-									<a href="{{ path('app_product', {'slug': product.getSlug()}) }}">👀</a>
-									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
+			<div class="category">
+				<div class="category-name">
+					<a href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
 				</div>
-			{% endif %}
+				<div class="product_cards">
+					<!-- Boucle pour afficher les produits de chaque catégorie -->
+					{% for product in category.getProducts() %}
+						<div class="product_card">
+							<img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getUuid() ~ '/' ~ product.getImage()) }}" alt="Image du produit">
+							<p class="product_card-name">{{ product.getName() }}</p>
+							<p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+							<div class="product_card-buttons">
+								<a href="{{ path('app_product', {'slug': product.getSlug()}) }}">👀</a>
+								<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 		{% endfor %}
-	</ul>
+	</div>
 {% endblock %}
