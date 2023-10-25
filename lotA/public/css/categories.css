@@ -8,6 +8,8 @@
 }
 
 .category-name {
+    display: block;
+    color: #fff;
     margin-bottom: 20px;
     background-color: var(--primaryColor);
     padding: 10px;
@@ -15,10 +17,6 @@
     border-radius: var(--radiusBorder);
     font-weight: bold;
     transition: background-color .2s ease;
-}
-
-.category-name a {
-    color: #fff;
 }
 .category-name:hover {
     background-color: #ff8800;

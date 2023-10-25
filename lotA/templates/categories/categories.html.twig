@@ -24,9 +24,7 @@
 		<!-- Boucle pour afficher les catégories -->
 		{% for category in categories %}
 			<div class="category">
-				<div class="category-name">
-					<a href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
-				</div>
+				<a class="category-name" href="{{ path('app_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
 				<div class="product_cards">
 					<!-- Boucle pour afficher les produits de chaque catégorie -->
 					{% for product in category.getProducts() %}
