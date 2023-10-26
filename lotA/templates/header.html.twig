@@ -34,7 +34,7 @@
 				<li>
 					<a href="{{ path('app_cart') }}" class="{{ path == path('app_cart') ? 'on' : '' }}" title="Mon panier">
 						Mon panier
-						<span id="header-app_price-order" class="header-app_price-order">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
+						<span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
 					</a>
 				</li>
 			</ul>

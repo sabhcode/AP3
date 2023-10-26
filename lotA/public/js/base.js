@@ -10,7 +10,8 @@ addEventListener("load", () => {
 
 // cart
 const btnsUpdateProductInCart = document.querySelectorAll(".update-product-cart");
-const nbProductsInCart = document.getElementById("header-app_price-order");
+const orderPrice = document.querySelectorAll(".order_price_value");
+let requestCartAllowed = true;
 
 btnsUpdateProductInCart.forEach(btn => {
 
@@ -18,24 +19,46 @@ btnsUpdateProductInCart.forEach(btn => {
 
         event.preventDefault();
 
-        const productUuid = this.getAttribute("data-productUuid");
-        const action = this.getAttribute("data-action");
-        const form = new FormData();
+        if(requestCartAllowed) {
 
-        form.append("productUuid", productUuid);
-        form.append("action", action);
+            requestCartAllowed = false;
+            const productUuid = this.getAttribute("data-productUuid");
+            const action = this.getAttribute("data-action");
+            const form = new FormData();
 
-        fetch("/ajout-produit-panier", {method: "POST", body: form})
-        .then(res => res.json())
-        .then(res => {
+            form.append("productUuid", productUuid);
+            form.append("action", action);
 
-            if(res.ok) {
+            fetch("/ajout-produit-panier", {method: "POST", body: form})
+            .then(res => res.json())
+            .then(res => {
 
-                nbProductsInCart.innerText = res.priceOrder;
+                requestCartAllowed = true;
 
-            }
+                if(res.ok) {
 
-        });
+                    const product = document.getElementById(productUuid);
+
+                    if(res.productQty === 0) {
+
+                        product.remove();
+
+                    } else if(product) {
+
+                        const productQty = product.querySelector(".product_card-quantity_value");
+                        const productPrice = product.querySelector(".product_card-price");
+
+                        productQty.innerText = res.productQty;
+                        productPrice.innerText = res.productPrice;
+
+                    }
+                    orderPrice.forEach(el => el.innerHTML = res.orderPrice);
+
+                }
+
+            });
+
+        }
 
     });
 
