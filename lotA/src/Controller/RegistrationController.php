@@ -37,33 +37,37 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if(!filter_var($form->get("email")->getData(), FILTER_VALIDATE_EMAIL)) {
+        if($form->isSubmitted()) {
 
-            $form->get("email")->addError(new FormError("Veuillez saisir une adresse e-mail valide"));
+            if(!filter_var($form->get("email")->getData(), FILTER_VALIDATE_EMAIL)) {
 
-        } else if($form->isSubmitted() && $form->isValid()) {
+                $form->get("email")->addError(new FormError("Veuillez saisir une adresse e-mail valide"));
 
-            $credential->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+            } else if($form->isValid()) {
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-            
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            (new TemplatedEmail())
-                ->from(new Address('no-reply@all4sport.fr'))
-                ->to($user->getCredential()->getEmail())
-                ->subject('Merci de confirmer votre email')
-                ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
-            // do anything else you need here, like send an email
+                $credential->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
 
-            return $this->redirectToRoute('app_login');
+                $entityManager->persist($user);
+                $entityManager->flush();
+                
+                // generate a signed url and email it to the user
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('no-reply@all4sport.fr'))
+                    ->to($user->getCredential()->getEmail())
+                    ->subject('Merci de confirmer votre email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+                // do anything else you need here, like send an email
+
+                return $this->redirectToRoute('app_login');
+
+            }
 
         }
 
