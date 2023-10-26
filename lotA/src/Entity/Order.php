@@ -26,11 +26,11 @@ class Order
     #[ORM\Column]
     private ?float $tax = null;
 
-    #[ORM\ManyToOne(inversedBy: "order")]
+    #[ORM\ManyToOne(inversedBy: "orders")]
     #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?OrderState $orderState = null;
 
-    #[ORM\ManyToOne(inversedBy: 'order_uuid')]
+    #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(name: "user_uuid", referencedColumnName: "uuid", nullable: false)]
     private ?User $user = null;
 
