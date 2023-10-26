@@ -9,32 +9,34 @@
 
 {% block body %}
     <h1>Mon panier</h1>
-    {% if products is not empty %}
-        {% set priceOrderHT = 0 %}
-        <div class="product_cards">
-            {% for item in products %}
-                {% set product = item[0] %}
-                {% set quantity = item[1] %}
-                {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
-                <div id="{{ product.getUuid() }}" class="product_card">
-                    <img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-                    <p class="product_card-name">{{ product.getName() }}</p>
-                    <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
-                    <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
-                    <div class="product_card-buttons">
-                        <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
-                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
-                        <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
-                        <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete">❌</button>
+    <div class="app_container">
+        {% if products is not empty %}
+            {% set priceOrderHT = 0 %}
+            <div class="product_cards">
+                {% for item in products %}
+                    {% set product = item[0] %}
+                    {% set quantity = item[1] %}
+                    {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
+                    <div id="{{ product.getUuid() }}" class="product_card">
+                        <img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                        <p class="product_card-name">{{ product.getName() }}</p>
+                        <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
+                        <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * quantity) }}</p>
+                        <div class="product_card-buttons">
+                            <button href="{{ path('app_cart') }}" class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">➕</button>
+                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="remove">➖</button>
+                            <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
+                            <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="delete">❌</button>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="priceAndConfirmOrder">
-            <p class="order_price">Total de la commande : <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span></p>
-            <button class="confirm-order">Passer la commande 💳</button>
-        </div>
-    {% else %}
-        <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_categories') }}">ici</a></p>
-    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="priceAndConfirmOrder">
+                <p class="order_price">Total de la commande : <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span></p>
+                <button class="confirm-order">Passer la commande 💳</button>
+            </div>
+        {% else %}
+            <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_categories') }}">ici</a></p>
+        {% endif %}
+    </div>
 {% endblock %}

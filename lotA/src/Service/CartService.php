@@ -17,12 +17,12 @@ class CartService {
         ];
         $product = $this->productRepository->find($productUuid);
 
-        if($product && !$product->getStocks()->isEmpty()) {
+        if($product) {
 
             $session = $this->requestStack->getSession();
             $cart = (object) $session->get("cart", []);
 
-            if($action === "add") {
+            if($action === "add" && !$product->getStocks()->isEmpty()) {
 
                 if(property_exists($cart, $productUuid)) {
                     $cart->$productUuid++;
@@ -36,7 +36,7 @@ class CartService {
                 $cart->$productUuid--;
             }
             
-            if($action === "delete" || $cart->$productUuid <= 0) {
+            if($action === "delete" || (property_exists($cart, $productUuid) && $cart->$productUuid <= 0)) {
                 unset($cart->$productUuid);
             }
 

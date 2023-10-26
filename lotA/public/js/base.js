@@ -22,6 +22,7 @@ btnsUpdateProductInCart.forEach(btn => {
         if(requestCartAllowed) {
 
             requestCartAllowed = false;
+
             const productUuid = this.getAttribute("data-productUuid");
             const action = this.getAttribute("data-action");
             const form = new FormData();
@@ -39,7 +40,7 @@ btnsUpdateProductInCart.forEach(btn => {
 
                     const product = document.getElementById(productUuid);
 
-                    if(res.productQty === 0) {
+                    if(res.productQty === 0 && action !== "add") {
 
                         product.remove();
 
