@@ -124,8 +124,8 @@ h1 {
     margin-top: 5px;
 }
 
-.product_card button,
-.product_card a {
+.product_card-buttons button,
+.product_card-buttons a {
     background-color: var(--primaryColor);
     font-weight: bold;
     padding: 10px;
@@ -134,7 +134,7 @@ h1 {
     transition: background-color .2s ease;
 }
 
-.product_card button:hover,
-.product_card a:hover {
+.product_card-buttons button:hover,
+.product_card-buttons a:hover {
     background-color: rgb(29, 29, 29);
 }

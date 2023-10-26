@@ -16,15 +16,15 @@
                         <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
                         <div class="card-content">
                             <div class="left">
-                                <h4>{{ product.getName() }}</h4>
+                                <p class="product_card-name">{{ product.getName() }}</p>
                                 <p>{{ product.getDescription() }}</p>
                             </div>
                             <div class="right">
                                 <div class="left-of-right">
-                                    <p class="product-card_price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+                                    <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                                     <p>{{ product.getNbSales() }} ventes </p>
                                 </div>
-                                <div class="right-of-right">
+                                <div class="right-of-right product_card-buttons">
                                     <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
                                     <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
                                 </div>

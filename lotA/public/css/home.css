@@ -32,22 +32,21 @@
     text-align: center;
     padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: var(--radiusBorder);
     background-color: var(--whiteColor);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--radiusBorder);
 }
 
 .card-content {
     background-color: var(--whiteColor);
     margin-top: 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    gap: 10px;
 }
 
 .card-content h4 {
@@ -56,7 +55,7 @@
     border: 1px solid #ddd;
     width: max-content;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: var(--radiusBorder);
 }
 
 .right {
@@ -66,19 +65,10 @@
 }
 
 .right p {
-    font-size: 10px;
     color: var(--primaryColor);
     padding: 10px;
     border: 1px solid #ddd;
-    width: 100%;
-    border-radius: 7px;
-    font-weight: bold;
-}
-
-.left p {
-    font-size: 10px;
-    font-weight: 600;
-    text-align: center;
+    border-radius: var(--radiusBorder);
 }
 
 .left-of-right {
@@ -87,10 +77,12 @@
     gap: 5px;
 }
 
+.product_card-buttons {
+    margin-top: unset;
+}
 .right-of-right {
     display: flex;
     flex-direction: column;
-    gap: 5px;
 }
 
 /* Style pour les boutons de navigation */
@@ -153,29 +145,11 @@
     font-weight: bold;
     padding: 10px;
     width: 100%;
-    border-radius: 7px;
+    border-radius: var(--radiusBorder);
     border: 1px solid #ddd;
     transition: background-color .2s ease;
 }
 
 .bottom-product-category:hover {
     background-color: #ddd;
-}
-
-/* Style du prix du produit */
-.product-card_price {
-    font-size: 10px;
-    color: rgb(0, 0, 0);
-    background-color: var(--secondColor);
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
-    font-weight: bold;
-}
-
-.product-card_buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
 }
