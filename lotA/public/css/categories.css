@@ -1,10 +1,9 @@
 /* Style for the main heading */
 .categories {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
     padding: 40px 20px;
-}
-
-.category {
-    margin-bottom: 60px;
 }
 
 .category-name {
