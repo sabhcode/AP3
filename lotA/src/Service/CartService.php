@@ -43,7 +43,7 @@ class CartService {
             $session->set("cart", $cart);
 
             $responseJSON["ok"] = true;
-            $responseJSON["qty"] = $this->getNbProducts();
+            $responseJSON["priceOrder"] = $this->formatPrice($this->getOrderPriceHT());
 
             return $responseJSON;
 
@@ -70,6 +70,27 @@ class CartService {
 
         }
         return $nbProducts;
+
+    }
+
+    public function getOrderPriceHT(): float {
+
+        $session = $this->requestStack->getSession();
+        $cart = (object) $session->get("cart", []);
+        $priceHT = 0;
+
+        foreach($cart as $productUuid => $qty) {
+
+            $product = $this->productRepository->find($productUuid);
+
+            if($product) {
+
+                $priceHT += $product->getUnitPrice() * $qty;
+
+            }
+
+        }
+        return $priceHT;
 
     }
 

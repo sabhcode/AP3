@@ -7,33 +7,34 @@
 		</div>
 		<nav class="header-app__nav">
 			<ul>
+				{% set path = app.request.getPathInfo() %}
 				<li>
-					<a href="{{ path('app_home') }}" class="{{ app.request.getPathInfo() == path('app_home') ? 'on' : '' }}" title="Accueil">Accueil</a>
+					<a href="{{ path('app_home') }}" class="{{ path == path('app_home') ? 'on' : '' }}" title="Accueil">Accueil</a>
 				</li>
 				<li>
-					<a href="{{ path('app_categories') }}" class="{{ app.request.getPathInfo() == path('app_categories') ? 'on' : '' }}" title="Catalogue">Catalogue</a>
+					<a href="{{ path('app_categories') }}" class="{{ path == path('app_categories') ? 'on' : '' }}" title="Catalogue">Catalogue</a>
 				</li>
 				{# Si l'utilisateur est connecté alors on affiche ceci #}
 				{% if app.user %}
 					<li>
-						<a href="{{ path('app_profil') }}" class="{{ app.request.getPathInfo() == path('app_profil') ? 'on' : '' }}" title="Profil">Profil</a>
+						<a href="{{ path('app_profil') }}" class="{{ path == path('app_profil') ? 'on' : '' }}" title="Profil">Profil</a>
 					</li>
 					<li>
-						<a href="{{ path('app_logout') }}" class="{{ app.request.getPathInfo() == path('app_logout') ? 'on' : '' }}" title="Déconnexion">Déconnexion</a>
+						<a href="{{ path('app_logout') }}" class="{{ path == path('app_logout') ? 'on' : '' }}" title="Déconnexion">Déconnexion</a>
 					</li>
 				{# Sinon ça #}
 				{% else %}
 					<li>
-						<a href="{{ path('app_login') }}" class="{{ app.request.getPathInfo() == path('app_login') ? 'on' : '' }}" title="Connexion">Connexion</a>
+						<a href="{{ path('app_login') }}" class="{{ path == path('app_login') ? 'on' : '' }}" title="Connexion">Connexion</a>
 					</li>
 					<li>
-						<a href="{{ path('app_register') }}" class="{{ app.request.getPathInfo() == path('app_register') ? 'on' : '' }}" title="Inscription">Inscription</a>
+						<a href="{{ path('app_register') }}" class="{{ path == path('app_register') ? 'on' : '' }}" title="Inscription">Inscription</a>
 					</li>
 				{% endif %}
 				<li>
-					<a href="{{ path('app_cart') }}" class="{{ app.request.getPathInfo() == path('app_cart') ? 'on' : '' }}" title="Mon panier">
+					<a href="{{ path('app_cart') }}" class="{{ path == path('app_cart') ? 'on' : '' }}" title="Mon panier">
 						Mon panier
-						<span id="nb-products-in-cart" class="nb-products-in-cart">{{ cart.getNbProducts() }}</span>
+						<span id="header-app_price-order" class="header-app_price-order">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
 					</a>
 				</li>
 			</ul>

@@ -56,16 +56,17 @@
     border-color: var(--secondColor);
 }
 
-.nb-products-in-cart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header-app_price-order {
     position: absolute;
-    right: 0;
-    top: 0;
-    transform: translate(50%, -50%);
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
     background-color: var(--primaryColor);
-    padding: 1px 4px;
-    border: 1px solid var(--secondColor);
-    border-radius: var(--radiusBorder);
+    font-size: .8em;
+    line-height: 1.2;
+    white-space: nowrap;
+    padding: 0 4px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: inherit;
 }

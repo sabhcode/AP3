@@ -10,7 +10,7 @@ addEventListener("load", () => {
 
 // cart
 const btnsUpdateProductInCart = document.querySelectorAll(".update-product-cart");
-const nbProductsInCart = document.getElementById("nb-products-in-cart");
+const nbProductsInCart = document.getElementById("header-app_price-order");
 
 btnsUpdateProductInCart.forEach(btn => {
 
@@ -31,7 +31,7 @@ btnsUpdateProductInCart.forEach(btn => {
 
             if(res.ok) {
 
-                nbProductsInCart.innerText = res.qty;
+                nbProductsInCart.innerText = res.priceOrder;
 
             }
 

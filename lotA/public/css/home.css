@@ -23,14 +23,13 @@
 /* Styles pour les cartes du slider */
 .card-slider {
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .card {
-    width: 100%;
     display: none;
-    text-align: center;
-    padding: 15px;
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
     background-color: var(--whiteColor);
@@ -44,24 +43,22 @@
 
 .card-content {
     background-color: var(--whiteColor);
-    margin-top: 15px;
+    margin-top: 20px;
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.card-content h4 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    width: max-content;
-    padding: 10px;
-    border-radius: var(--radiusBorder);
+.left .product_card-name {
+    font-size: 1.2em;
+    padding: 10px 0;
 }
 
 .right {
     display: flex;
     flex-direction: row;
     gap: 5px;
+    min-width: max-content;
 }
 
 .right p {
@@ -77,7 +74,8 @@
     gap: 5px;
 }
 
-.product_card-buttons {
+.right-of-right.product_card-buttons {
+    justify-content: initial;
     margin-top: unset;
 }
 .right-of-right {
@@ -95,10 +93,9 @@
 .slider-nav button {
     background: #000000;
     color: var(--whiteColor);
-    border: none;
-    padding: 5px 10px;
+    font-size: 1.5em;
+    padding: 2px 10px;
     border-radius: var(--radiusBorder);
-    font-weight: bold;
     transition: .2s ease;
     transition-property: background-color, color;
 }
