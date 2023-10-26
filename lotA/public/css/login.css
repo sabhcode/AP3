@@ -61,10 +61,7 @@ button:hover {
 }
 
 .ConnexionStatus {
-    margin: 15px;
-    margin-bottom: 45px;
-    width: 100%;
-
+    text-align: center;
 }
 
 /* Styles for the "Vous êtes connecté en tant que" section */

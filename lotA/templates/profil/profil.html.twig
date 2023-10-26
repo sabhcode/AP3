@@ -8,15 +8,16 @@
 
 {% block body %}
 	<h1>Mon profil</h1>
-	{% if app.user %}
+	<div class="app_container">
+		<a href="{{ path('app_logout') }}">Déconnexion</a>
 		<h3>Bonjour, {{ app.user.firstname}} {{ app.user.getName() }}</h3>
 		<p>Votre email : {{ app.user.email}}</p>
 		<p>Votre numéro de téléphone : {{ app.user.phone}}</p>
 		<p>Votre adresse : {{ app.user.street}}, {{app.user.zipcode}} {{app.user.city}}</p>
-	{% endif %}
-	{% if app.user.getOrders() is not empty %}
-		<h3>Vos commandes</h3>
-	{% else %}
-		<h3>Vous n'avez pas encore passé de commande sur notre site</h3>
-	{% endif %}
+		{% if app.user.getOrders() is not empty %}
+			<h3>Vos commandes</h3>
+		{% else %}
+			<h3>Vous n'avez pas encore passé de commande sur notre site</h3>
+		{% endif %}
+	</div>
 {% endblock %}

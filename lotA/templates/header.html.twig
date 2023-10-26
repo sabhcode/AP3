@@ -17,10 +17,7 @@
 				{# Si l'utilisateur est connecté alors on affiche ceci #}
 				{% if app.user %}
 					<li>
-						<a href="{{ path('app_profil') }}" class="{{ path == path('app_profil') ? 'on' : '' }}" title="Profil">Profil</a>
-					</li>
-					<li>
-						<a href="{{ path('app_logout') }}" class="{{ path == path('app_logout') ? 'on' : '' }}" title="Déconnexion">Déconnexion</a>
+						<a href="{{ path('app_profil') }}" class="{{ path == path('app_profil') ? 'on' : '' }}" title="Mon profil">Mon profil</a>
 					</li>
 				{# Sinon ça #}
 				{% else %}
