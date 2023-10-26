@@ -1,10 +1,13 @@
 // header
-const headerApp = document.getElementById("header-app");
+const app = document.getElementById("app");
 const mainApp = document.getElementById("main-app");
+const headerApp = document.getElementById("header-app");
 
 addEventListener("load", () => {
 
     mainApp.style.setProperty("margin-top", headerApp.offsetHeight + "px");
+    
+    app.classList.remove("hidden");
 
 });
 
