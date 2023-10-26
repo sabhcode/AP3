@@ -17,7 +17,7 @@ class CartService {
         ];
         $product = $this->productRepository->find($productUuid);
 
-        if($product) {
+        if($product && !$product->getStocks()->isEmpty()) {
 
             $session = $this->requestStack->getSession();
             $cart = (object) $session->get("cart", []);

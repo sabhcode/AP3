@@ -61,12 +61,20 @@ h1 {
     margin-bottom: 40px;
 }
 
+.app_container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.app_padding {
+    padding: 0 20px;
+}
+
 /* Style des cartes de produit */
 .product_cards {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    padding: 0 20px;
 }
 
 /* Style d'une carte de produit individuelle */

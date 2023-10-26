@@ -1,5 +1,5 @@
 /* Styles pour le conteneur du slider */
-.top-content h2 {
+h2 {
     text-align: center;
     color: var(--whiteColor);
     background-color: var(--primaryColor);
@@ -107,32 +107,19 @@
 
 /* ----------------------------------------------------------------------------------*/
 
-.bottom-content h2 {
-    text-align: center;
-    color: var(--whiteColor);
-    background-color: var(--primaryColor);
-    margin: 10px 0;
-    padding: 10px;
-    border: none;
-}
-
 /* Style de la section de la catégorie */
-.category-container {
-    text-align: center;
-    margin: 20px;
+.app_container {
+    padding: 40px 20px;
 }
 
 /* Style du titre de la catégorie */
-.category-container h4 {
+h4 {
     color: #000000;
     margin-bottom: 20px;
-    text-align: left;
     color: var(--whiteColor);
     background-color: var(--primaryColor);
-    margin: 10px 0;
     padding: 10px;
     width: max-content;
-    border: none;
     border-radius: var(--radiusBorder);
 }
 
