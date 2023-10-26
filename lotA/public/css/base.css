@@ -137,6 +137,14 @@ h1 {
     margin-top: 5px;
 }
 
+.product_card-stock {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
 .product_card-buttons button,
 .product_card-buttons a {
     background-color: var(--primaryColor);

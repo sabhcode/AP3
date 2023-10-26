@@ -37,6 +37,11 @@
 									<a href="{{ path('app_product', {'slug': product.getSlug()}) }}">👀</a>
 									<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
 								</div>
+								{% set stock = (product.getStocks() is not empty ? "check" : "not-check") %}
+								<p class="product_card-stock">
+									Stock
+									<img src="{{ asset('media/images/base/' ~ stock ~ '.svg') }}">
+								</p>
 							</div>
 						{% endfor %}
 					</div>
