@@ -15,20 +15,7 @@
 		</div>
 		<div class="product_cards">
 			{% for product in category.getProducts() %}
-				<div class="product_card">
-					<img class="product_card-image" src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
-					<p class="product_card-name">{{ product.getName() }}</p>
-					<p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
-					<div class="product_card-buttons">
-						<a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
-						<button class="update-product-cart" data-productuuid="{{ product.getUuid() }}" data-action="add">🛒</button>
-					</div>
-					{% set stock = (product.getStocks() is not empty ? "check" : "not-check") %}
-					<p class="product_card-stock">
-						Stock
-						<img src="{{ asset('media/images/base/' ~ stock ~ '.svg') }}">
-					</p>
-				</div>
+				{% include 'product_card.html.twig' with {'product': product} %}
 			{% endfor %}
 		</div>
 	</div>

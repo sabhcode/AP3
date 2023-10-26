@@ -43,20 +43,7 @@
             <div class="product_cards">
                 {% for productOfSameCategory in product.getCategory().getProducts() %} 
                     {% if productOfSameCategory.getUuid() != product.getUuid() %}      
-                        <div class="product_card">
-                            <img class="product_card-image" src="/media/images/product/{{ productOfSameCategory.getUuid() }}/{{ productOfSameCategory.getImage() }}">
-                            <p class="product_card-name">{{ productOfSameCategory.getName() }}</p>
-                            <p class="product_card-price">{{ cart.formatPrice(productOfSameCategory.getUnitPrice()) }}</p>
-                            <div class="product_card-buttons">
-                                <a href="{{ path('app_product', {'slug': productOfSameCategory.getSlug()}) }}">👀</a>
-                                <button class="update-product-cart" data-productUuid="{{ productOfSameCategory.getUuid() }}" data-action="add">🛒</button>
-                            </div>
-                            {% set stock = (productOfSameCategory.getStocks() is not empty ? "check" : "not-check") %}
-                            <p class="product_card-stock">
-                                Stock
-                                <img src="{{ asset('media/images/base/' ~ stock ~ '.svg') }}">
-                            </p>
-                        </div>
+                        {% include 'product_card.html.twig' with {'product': productOfSameCategory} %}
                     {% endif %}
                 {% endfor %}
             </div>
