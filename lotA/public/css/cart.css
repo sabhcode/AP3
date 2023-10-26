@@ -2,6 +2,7 @@
     display: flex;
     gap: 10px;
     padding-top: unset;
+    padding-bottom: 40px;
 }
 
 .priceAndConfirmOrder {
@@ -10,13 +11,14 @@
 
 .priceAndConfirmOrder .order_price {
     background-color: #f7882d20;
-    text-align: center;
     margin: 0 auto 20px;
     padding: 4px 10px;
     border-left: 3px solid #f7882d;
 }
-
-.priceAndConfirmOrder .order_price_value {
+.priceAndConfirmOrder .order_price p {
+    margin: 20px 0;
+}
+.priceAndConfirmOrder .order_price span {
     font-weight: bold;
     font-size: 1.2em;
 }

@@ -14,6 +14,7 @@ addEventListener("load", () => {
 // cart
 const btnsUpdateProductInCart = document.querySelectorAll(".update-product-cart");
 const orderPrice = document.querySelectorAll(".order_price_value");
+const nbProducts = document.querySelector(".nb_products_value");
 let requestCartAllowed = true;
 
 btnsUpdateProductInCart.forEach(btn => {
@@ -55,6 +56,9 @@ btnsUpdateProductInCart.forEach(btn => {
                         productQty.innerText = res.productQty;
                         productPrice.innerText = res.productPrice;
 
+                    }
+                    if(nbProducts) {
+                        nbProducts.innerHTML = res.nbProducts;
                     }
                     orderPrice.forEach(el => el.innerHTML = res.orderPrice);
 

@@ -44,6 +44,7 @@ class CartService {
 
             $responseJSON["ok"] = true;
             $responseJSON["orderPrice"] = $this->formatPrice($this->getOrderPriceHT());
+            $responseJSON["nbProducts"] = $this->getNbProducts();
             $responseJSON["productQty"] = ($cart->$productUuid ?? 0);
             $responseJSON["productPrice"] = $this->formatPrice($responseJSON["productQty"] * $product->getUnitPrice());
 

@@ -20,7 +20,16 @@
                 {% endfor %}
             </div>
             <div class="priceAndConfirmOrder">
-                <p class="order_price">Total de la commande : <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span></p>
+                <div class="order_price">
+                    <p>
+                        Nombre d'articles<br>
+                        <span class="nb_products_value">{{ cart.getNbProducts() }}</span>
+                    </p>
+                    <p>
+                        Total de la commande<br>
+                        <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span>
+                    </p>
+                </div>
                 <button class="confirm-order">Passer la commande 💳</button>
             </div>
         {% else %}
