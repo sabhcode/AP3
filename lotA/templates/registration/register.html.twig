@@ -12,7 +12,7 @@
 	{% endfor %}
 	{% if app.user %}
         <div class="ConnexionStatus">
-            Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> -  <a href="{{ path('app_logout') }}">Déconnexion</a>
+            Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
     {% else %}
         <h1>Inscription</h1>
