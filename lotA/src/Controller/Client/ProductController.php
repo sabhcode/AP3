@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Client;
 
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
