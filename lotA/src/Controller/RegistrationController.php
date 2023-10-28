@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Client;
+namespace App\Controller;
 
 use App\Entity\Credential;
 use App\Entity\User;
