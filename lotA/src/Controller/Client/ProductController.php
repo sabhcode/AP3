@@ -23,7 +23,7 @@ class ProductController extends AbstractController
         }
 
         // Rendre le template en passant le produit
-        return $this->render('product/product.html.twig', [
+        return $this->render('client/product/product.html.twig', [
             'product' => $product
         ]);
     }

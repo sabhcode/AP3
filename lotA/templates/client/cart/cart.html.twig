@@ -16,7 +16,7 @@
                     {% set product = item[0] %}
                     {% set quantity = item[1] %}
                     {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
-                    {% include 'product_card.html.twig' with {'product': product, 'quantity': quantity} %}
+                    {% include 'client/product_card.html.twig' with {'product': product, 'quantity': quantity} %}
                 {% endfor %}
             </div>
             <div class="priceAndConfirmOrder">

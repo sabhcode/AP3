@@ -18,7 +18,7 @@ class CategoryController extends AbstractController
         $categories = $category->findAll();
 
         // Rendre le template en passant la catégorie
-        return $this->render('categories/categories.html.twig', [
+        return $this->render('client/categories/categories.html.twig', [
             'categories' => $categories
         ]);
     }
@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
         }
 
         // Rendre le template en passant la catégorie
-        return $this->render('categories/category.html.twig', [
+        return $this->render('client/categories/category.html.twig', [
             'category' => $category
         ]);
     }

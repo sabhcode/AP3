@@ -43,7 +43,7 @@
             <div class="product_cards">
                 {% for productOfSameCategory in product.getCategory().getProducts() %} 
                     {% if productOfSameCategory.getUuid() != product.getUuid() %}      
-                        {% include 'product_card.html.twig' with {'product': productOfSameCategory} %}
+                        {% include 'client/product_card.html.twig' with {'product': productOfSameCategory} %}
                     {% endif %}
                 {% endfor %}
             </div>

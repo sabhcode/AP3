@@ -24,7 +24,7 @@ class HomeController extends AbstractController
 
         $bestSells = $productRepository->findBy([], ['nb_sales' => 'DESC'], 5);
 
-        return $this->render('home/home.html.twig', [
+        return $this->render('client/home/home.html.twig', [
             'categories' => $categories,
             'bestSells' => $bestSells,
             'bestProductByCategory' => $bestProductByCategory

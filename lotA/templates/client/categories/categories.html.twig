@@ -29,7 +29,7 @@
 					<div class="product_cards">
 						<!-- Boucle pour afficher les produits de chaque catégorie -->
 						{% for product in category.getProducts() %}
-							{% include 'product_card.html.twig' with {'product': product} %}
+							{% include 'client/product_card.html.twig' with {'product': product} %}
 						{% endfor %}
 					</div>
 				</div>

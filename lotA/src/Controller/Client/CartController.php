@@ -32,7 +32,7 @@ class CartController extends AbstractController
 
         }
 
-        return $this->render('cart/cart.html.twig', [
+        return $this->render('client/cart/cart.html.twig', [
             'products' => $products
         ]);
     }

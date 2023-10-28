@@ -51,7 +51,7 @@
             <h4>Nos produits les plus vendu</h4>
             <div class="product_cards">
                 {% for product in bestProductByCategory %}
-                    {% include 'product_card.html.twig' with {'product': product} %}
+                    {% include 'client/product_card.html.twig' with {'product': product} %}
                 {% endfor %}
             </div>
         </div>

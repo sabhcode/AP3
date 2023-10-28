@@ -14,7 +14,7 @@ class ContactController extends AbstractController
     {
         $email = 'bastien.mohamed.corentin.soufiane@gmail.com';
 
-        return $this->render('contact/contact.html.twig', [
+        return $this->render('client/contact/contact.html.twig', [
             'email' => $email
         ]);
     }
