@@ -7,19 +7,13 @@ use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/mon-panier', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'], name: 'app_client_')]
 class CartController extends AbstractController
 {
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack) {
-        $this->requestStack = $requestStack;
-    }
-
-    #[Route('/mon-panier', name: 'app_cart')]
+    #[Route(name: 'cart')]
     public function viewCart(Request $request, ProductRepository $productRepository): Response
     {
         $session = $request->getSession();
@@ -43,7 +37,7 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/ajout-produit-panier', name: 'app_add_product_cart')]
+    #[Route('/ajout-produit-panier', name: 'add_product_cart')]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
         $productUuid = $request->get("productUuid");
@@ -54,6 +48,6 @@ class CartController extends AbstractController
             return new JsonResponse($cartService->add($productUuid, $action));
 
         }
-        return $this->redirectToRoute("app_home");
+        return $this->redirectToRoute("app_client_home");
     }
 }

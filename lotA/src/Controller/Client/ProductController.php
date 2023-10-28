@@ -8,9 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/p', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'], name: 'app_client_')]
 class ProductController extends AbstractController
 {
-    #[Route('/p/{slug}', name: 'app_product', requirements: ['slug' => Requirement::ASCII_SLUG])]
+    #[Route('/{slug}', name: 'product', requirements: ['slug' => Requirement::ASCII_SLUG])]
     public function viewProduct($slug, ProductRepository $productRepository): Response
     {
         // Rechercher le produit en fonction du slug saisi

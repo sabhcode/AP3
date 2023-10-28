@@ -34,7 +34,7 @@ btnsUpdateProductInCart.forEach(btn => {
             form.append("productUuid", productUuid);
             form.append("action", action);
 
-            fetch("/ajout-produit-panier", {method: "POST", body: form})
+            fetch("/mon-panier/ajout-produit-panier", {method: "POST", body: form})
             .then(res => res.json())
             .then(res => {
 

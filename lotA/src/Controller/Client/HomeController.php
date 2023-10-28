@@ -8,9 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 
+#[Route('/', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'], name: 'app_client_')]
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route(name: 'home')]
     public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
         $bestProductByCategory = [];

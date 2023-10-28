@@ -8,9 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 
+#[Route('/c', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'], name: 'app_client_')]
 class CategoryController extends AbstractController
 {
-    #[Route('/c', name: 'app_categories')]
+    #[Route(name: 'categories')]
     public function viewAllCategories(CategoryRepository $category): Response
     {
         // Récupérez les catégories depuis la base de données
@@ -22,7 +23,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/c/{slug}', name: 'app_category', requirements: ['slug' => Requirement::ASCII_SLUG])]
+    #[Route('/{slug}', name: 'category', requirements: ['slug' => Requirement::ASCII_SLUG])]
     public function viewCategory($slug, CategoryRepository $categoryRepository): Response
     {
         // Rechercher la catégorie en fonction du slug saisi

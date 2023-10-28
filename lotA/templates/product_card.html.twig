@@ -13,10 +13,10 @@
         <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * (quantity ?? 1)) }}</p>
         <div class="product_card-buttons">
             {% if hasQuantity %}
-                <button href="{{ path('app_cart') }}" class="update-product-cart" data-productuuid="{{ product_uuid }}" data-action="add">➕</button>
+                <button href="{{ path('app_client_cart') }}" class="update-product-cart" data-productuuid="{{ product_uuid }}" data-action="add">➕</button>
                 <button class="update-product-cart" data-productuuid="{{ product_uuid }}" data-action="remove">➖</button>
             {% endif %}
-            <a href="{{ path('app_product', {'slug' : product.getSlug()}) }}">👀</a>
+            <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}">👀</a>
             {% if hasQuantity %}
                 <button class="update-product-cart" data-productuuid="{{ product_uuid }}" data-action="delete">❌</button>
             {% else %}
