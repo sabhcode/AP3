@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% if app.request.getHost() starts with 'logistics.' %}
+        {% include 'logistics/headerLinks.html.twig' %}
+    {% else %}
+        {% include 'client/headerLinks.html.twig' %}
+    {% endif %}
+{% endblock %}
+
 {% block body %}
     <form method="POST">
         {% if error %}

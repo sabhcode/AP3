@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="{{ asset('css/category.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
 {% block body %}
 	<h1>Catalogue</h1>
 	<div class="app_container app_padding">

@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
 {% block body %}
     <h1>Mon panier</h1>
     <div class="app_container">

@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
 {% block body %}
     <section class="top-content">
         <h2>Nos meilleures ventes</h2>

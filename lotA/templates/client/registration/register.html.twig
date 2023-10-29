@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
 {% block body %}
 	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>

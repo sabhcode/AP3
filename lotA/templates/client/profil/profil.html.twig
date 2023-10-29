@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
 {% block body %}
 	<h1>Mon profil</h1>
 	<div class="app_container">

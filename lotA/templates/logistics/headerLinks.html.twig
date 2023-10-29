@@ -1,0 +1,8 @@
+{% extends 'header.html.twig' %}
+
+{% block headerLinks %}
+    {% set path = app.request.getPathInfo() %}
+    <li>
+        <a href="{{ path('app_logistics_home') }}" class="{{ path == path('app_logistics_home') ? 'on' : '' }}" title="Accueil">Accueil</a>
+    </li>
+{% endblock %}
