@@ -17,7 +17,9 @@
             <div class="card-slider">
                 {% for product in bestSells %}
                     <div class="card">
-                        <img src="/media/images/product/{{ product.getId() }}/{{ product.getImage() }}" alt="Image">
+                        {% for image in product.getProductImgs() %}
+                            <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ image.getName() }}" alt="Image du produit">
+                        {% endfor %}
                         <div class="card-content">
                             <div class="left">
                                 <p class="product_card-name">{{ product.getName() }}</p>

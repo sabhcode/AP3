@@ -5,7 +5,9 @@
     {% set product_id = product.getId() %}
 
     <div {{ hasQuantity ? 'id=' ~ product_id }}  class="product_card">
-        <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ product.getImage() }}" alt="Image">
+        {% for image in product.getProductImgs() %}
+            <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ image.getName() }}" alt="Image du produit">
+        {% endfor %}
         <p class="product_card-name">{{ product.getName() }}</p>
         {% if hasQuantity %}
             <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>

@@ -27,9 +27,6 @@ class Product
     private ?float $unit_price = null;
 
     #[ORM\Column]
-    private ?string $image = null;
-
-    #[ORM\Column]
     private ?int $nb_sales = null;
 
     #[ORM\Column(unique: true)]
@@ -45,10 +42,14 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImg::class, orphanRemoval: true)]
+    private Collection $productImgs;
+
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
+        $this->productImgs = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -142,18 +143,6 @@ class Product
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getNbSales(): ?int
     {
         return $this->nb_sales;
@@ -181,6 +170,36 @@ class Product
     public function formatPrice(?string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Productimg>
+     */
+    public function getProductImgs(): Collection
+    {
+        return $this->productImgs;
+    }
+
+    public function addProductimg(Productimg $productimg): static
+    {
+        if (!$this->productImgs->contains($productimg)) {
+            $this->productImgs->add($productimg);
+            $productimg->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductimg(Productimg $productimg): static
+    {
+        if ($this->productImgs->removeElement($productimg)) {
+            // set the owning side to null (unless already changed)
+            if ($productimg->getProduct() === $this) {
+                $productimg->setProduct(null);
+            }
+        }
 
         return $this;
     }

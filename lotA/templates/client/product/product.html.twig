@@ -14,7 +14,9 @@
     <section class="app_container app_padding">
         <div class="product">
             <div class="product-image">
-                <img src="/media/images/product/{{ product.getid() }}/{{ product.getImage() }}" alt="Image du produit">
+                {% for image in product.getProductImgs() %}
+                    <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ image.getName() }}" alt="Image du produit">
+                {% endfor %}
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
