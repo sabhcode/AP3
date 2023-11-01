@@ -1,7 +1,7 @@
 # <div align="center">AP3</div>
 
 > [!NOTE]
-> [app](ap3/tree/main/lotA) - contient l'architecture de l'application LotA de ALL4SPORT<br>
+> [app](ap3/tree/main/app) - contient l'architecture de l'application ALL4SPORT<br>
 > [important](ap3/tree/main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
 
 > [!IMPORTANT]
@@ -19,10 +19,3 @@
 > | Composer | 2.6.2 |
 > | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
->
-> **Charte développeur :**<br>
-> Écriture des variable : camelCase (jeSuisUneVariable)<br>
-> Langue de la documentation de l'application : Anglais<br>
->
-> **Git branch :**<br>
-> Chaque nouvelle fonctionnalité à une branche précise (F -> Feature, BF -> Bug Fix, HF -> Hot Fix)
