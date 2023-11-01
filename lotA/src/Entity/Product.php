@@ -7,14 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
+    private const NUMBER_REFERENCE_PRODUCT = 12;
+
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?string $uuid = null;
+    #[ORM\Column(columnDefinition: "BIGINT(" . self::NUMBER_REFERENCE_PRODUCT . ") UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT")]
+    private ?int $id = null;
 
     #[ORM\Column]
     private ?string $name = null;
@@ -34,26 +35,25 @@ class Product
     #[ORM\Column(unique: true)]
     private ?string $slug = null;
 
-    #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: Stock::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Stock::class)]
     private Collection $stocks;
 
-    #[ORM\OneToMany(mappedBy: 'product_uuid', targetEntity: OrderDetail::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(name: "category_uuid", referencedColumnName: "uuid", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->stocks = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
     }
 
-    public function getUuid(): ?string
+    public function getId(): ?string
     {
-        return $this->uuid;
+        return str_pad($this->id, self::NUMBER_REFERENCE_PRODUCT, "0", STR_PAD_LEFT);
     }
 
     public function getName(): ?string

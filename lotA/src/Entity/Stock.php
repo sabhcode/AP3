@@ -8,40 +8,39 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StockRepository::class)]
 class Stock
 {
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'stocks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Store $store = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stocks')]
-    #[ORM\JoinColumn(name: "store_uuid", referencedColumnName: "uuid", nullable: false)]
-    private ?Store $store_uuid = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stocks')]
-    #[ORM\JoinColumn(name: "product_uuid", referencedColumnName: "uuid", nullable: false)]
-    private ?Product $product_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
     public function getStore(): ?Store
     {
-        return $this->store_uuid;
+        return $this->store;
     }
 
-    public function setStore(?Store $store_uuid): static
+    public function setStore(?Store $store): static
     {
-        $this->store_uuid = $store_uuid;
+        $this->store = $store;
 
         return $this;
     }
 
     public function getProduct(): ?Product
     {
-        return $this->product_uuid;
+        return $this->product;
     }
 
-    public function setProduct(?Product $product_uuid): static
+    public function setProduct(?Product $product): static
     {
-        $this->product_uuid = $product_uuid;
+        $this->product = $product;
 
         return $this;
     }

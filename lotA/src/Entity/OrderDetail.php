@@ -11,13 +11,13 @@ class OrderDetail
 {
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: "orderDetails")]
-    #[ORM\JoinColumn(name: "order_uuid", referencedColumnName: "uuid", nullable: false)]
-    private ?Order $order_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Order $order = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: "orderDetails")]
-    #[ORM\JoinColumn(name: "product_uuid", referencedColumnName: "uuid", nullable: false)]
-    private ?Product $product_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
@@ -25,26 +25,26 @@ class OrderDetail
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     private ?float $unit_price = null;
 
-    public function getOrderUuid(): ?Order
+    public function getOrder(): ?Order
     {
-        return $this->order_uuid;
+        return $this->order;
     }
 
-    public function setOrderUuid(Order $order_uuid): static
+    public function setOrder(Order $order): static
     {
-        $this->order_uuid = $order_uuid;
+        $this->order = $order;
 
         return $this;
     }
 
-    public function getProductUuid(): ?Product
+    public function getProduct(): ?Product
     {
-        return $this->product_uuid;
+        return $this->product;
     }
 
-    public function setProductUuid(Product $product_uuid): static
+    public function setProduct(Product $product): static
     {
-        $this->product_uuid = $product_uuid;
+        $this->product = $product;
 
         return $this;
     }

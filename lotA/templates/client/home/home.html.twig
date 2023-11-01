@@ -17,7 +17,7 @@
             <div class="card-slider">
                 {% for product in bestSells %}
                     <div class="card">
-                        <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image">
+                        <img src="/media/images/product/{{ product.getId() }}/{{ product.getImage() }}" alt="Image">
                         <div class="card-content">
                             <div class="left">
                                 <p class="product_card-name">{{ product.getName() }}</p>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="right-of-right product_card-buttons">
                                     <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}">👀</a>
-                                    <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+                                    <button class="update-product-cart" data-product-id="{{ product.getId() }}" data-action="add">🛒</button>
                                 </div>
                             </div>
                         </div>

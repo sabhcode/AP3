@@ -6,14 +6,14 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?Uuid $uuid = null;
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $id = null;
 
     #[ORM\Column]
     private ?string $name = null;
@@ -26,19 +26,12 @@ class Category
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->products = new ArrayCollection();
     }
 
-    public function __toString()
+    public function getId(): ?int
     {
-        return $this->name;
-    }
-
-
-    public function getUuid(): ?Uuid
-    {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getName(): ?string

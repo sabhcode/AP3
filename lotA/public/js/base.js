@@ -27,11 +27,11 @@ btnsUpdateProductInCart.forEach(btn => {
 
             requestCartAllowed = false;
 
-            const productUuid = this.getAttribute("data-productUuid");
+            const productId = this.getAttribute("data-product-id");
             const action = this.getAttribute("data-action");
             const form = new FormData();
 
-            form.append("productUuid", productUuid);
+            form.append("productId", productId);
             form.append("action", action);
 
             fetch("/mon-panier/ajout-produit-panier", {method: "POST", body: form})
@@ -42,7 +42,7 @@ btnsUpdateProductInCart.forEach(btn => {
 
                 if(res.ok) {
 
-                    const product = document.getElementById(productUuid);
+                    const product = document.getElementById(productId);
 
                     if(res.productQty === 0 && action !== "add") {
 

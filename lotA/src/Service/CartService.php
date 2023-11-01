@@ -3,19 +3,18 @@
 namespace App\Service;
 
 use App\Repository\ProductRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CartService {
 
     public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack) {}
 
-    public function add(string $productUuid, string $action): array {
+    public function add(string $productId, string $action): array {
 
         $responseJSON = [
             "ok" => false
         ];
-        $product = $this->productRepository->find($productUuid);
+        $product = $this->productRepository->find($productId);
 
         if($product) {
 
@@ -24,20 +23,20 @@ class CartService {
 
             if($action === "add" && !$product->getStocks()->isEmpty()) {
 
-                if(property_exists($cart, $productUuid)) {
-                    $cart->$productUuid++;
+                if(property_exists($cart, $productId)) {
+                    $cart->$productId++;
                 } else {
-                    $cart->$productUuid = 1;
+                    $cart->$productId = 1;
                 }
 
             }
             
             if($action === "remove") {
-                $cart->$productUuid--;
+                $cart->$productId--;
             }
             
-            if($action === "delete" || (property_exists($cart, $productUuid) && $cart->$productUuid <= 0)) {
-                unset($cart->$productUuid);
+            if($action === "delete" || (property_exists($cart, $productId) && $cart->$productId <= 0)) {
+                unset($cart->$productId);
             }
 
             $session->set("cart", $cart);
@@ -45,7 +44,7 @@ class CartService {
             $responseJSON["ok"] = true;
             $responseJSON["orderPrice"] = $this->formatPrice($this->getOrderPriceHT());
             $responseJSON["nbProducts"] = $this->getNbProducts();
-            $responseJSON["productQty"] = ($cart->$productUuid ?? 0);
+            $responseJSON["productQty"] = ($cart->$productId ?? 0);
             $responseJSON["productPrice"] = $this->formatPrice($responseJSON["productQty"] * $product->getUnitPrice());
 
         }
@@ -59,9 +58,9 @@ class CartService {
         $cart = (object) $session->get("cart", []);
         $nbProducts = 0;
 
-        foreach($cart as $productUuid => $qty) {
+        foreach($cart as $productId => $qty) {
 
-            $product = $this->productRepository->find($productUuid);
+            $product = $this->productRepository->find($productId);
 
             if($product) {
 
@@ -80,9 +79,9 @@ class CartService {
         $cart = (object) $session->get("cart", []);
         $priceHT = 0;
 
-        foreach($cart as $productUuid => $qty) {
+        foreach($cart as $productId => $qty) {
 
-            $product = $this->productRepository->find($productUuid);
+            $product = $this->productRepository->find($productId);
 
             if($product) {
 

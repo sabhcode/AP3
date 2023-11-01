@@ -14,13 +14,13 @@
     <section class="app_container app_padding">
         <div class="product">
             <div class="product-image">
-                <img src="/media/images/product/{{ product.getUuid() }}/{{ product.getImage() }}" alt="Image du produit">
+                <img src="/media/images/product/{{ product.getid() }}/{{ product.getImage() }}" alt="Image du produit">
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
                 <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                 <p class="product_card-description">{{ product.getDescription() }}</p>
-                <button class="update-product-cart" data-productUuid="{{ product.getUuid() }}" data-action="add">🛒</button>
+                <button class="update-product-cart" data-product-id="{{ product.getid() }}" data-action="add">🛒</button>
                 {% set stock = (product.getStocks() is not empty ? "check" : "not-check") %}
                 <p class="product_card-stock">
                     Stock
@@ -46,7 +46,7 @@
             <h3>Des produits qui pourraient vous intéresser</h3>
             <div class="product_cards">
                 {% for productOfSameCategory in product.getCategory().getProducts() %} 
-                    {% if productOfSameCategory.getUuid() != product.getUuid() %}      
+                    {% if productOfSameCategory.getId() != product.getId() %}      
                         {% include 'client/product_card.html.twig' with {'product': productOfSameCategory} %}
                     {% endif %}
                 {% endfor %}

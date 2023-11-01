@@ -22,9 +22,9 @@ class CartController extends AbstractController
         
         $products = [];
 
-        foreach($cart as $productUuid => $quantity) {
+        foreach($cart as $productId => $quantity) {
 
-            $product = [$productRepository->find($productUuid), $quantity];
+            $product = [$productRepository->find($productId), $quantity];
 
             if($product[0]) {
                 $products[] = $product;
@@ -40,12 +40,12 @@ class CartController extends AbstractController
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
-        $productUuid = $request->get("productUuid");
+        $productId = $request->get("productId");
         $action = $request->get("action");
 
-        if(isset($productUuid, $action)) {
+        if(isset($productId, $action)) {
 
-            return new JsonResponse($cartService->add($productUuid, $action));
+            return new JsonResponse($cartService->add($productId, $action));
 
         }
         return $this->redirectToRoute("app_client_home");

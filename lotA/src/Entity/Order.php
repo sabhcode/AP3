@@ -7,15 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
 class Order
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?Uuid $uuid = null;
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
@@ -27,29 +26,28 @@ class Order
     private ?float $tax = null;
 
     #[ORM\ManyToOne(inversedBy: "orders")]
-    #[ORM\JoinColumn(name: "orderstate_uuid", referencedColumnName: "uuid", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?OrderState $orderState = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(name: "user_uuid", referencedColumnName: "uuid", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: "order_uuid", targetEntity: OrderDetail::class)]
+    #[ORM\OneToMany(mappedBy: "order", targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
 
-    #[ORM\OneToMany(mappedBy: 'order_uuid', targetEntity: OrderRank::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderRank::class)]
     private Collection $orderRanks;
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->orderDetails = new ArrayCollection();
         $this->orderRanks = new ArrayCollection();
     }
 
-    public function getUuid(): ?Uuid
+    public function getId(): ?int
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getDateTime(): ?\DateTimeInterface
@@ -120,7 +118,7 @@ class Order
     {
         if (!$this->orderRanks->contains($orderRank)) {
             $this->orderRanks->add($orderRank);
-            $orderRank->setOrderUuid($this);
+            $orderRank->setOrder($this);
         }
 
         return $this;
@@ -130,8 +128,8 @@ class Order
     {
         if ($this->orderRanks->removeElement($orderRank)) {
             // set the owning side to null (unless already changed)
-            if ($orderRank->getOrderUuid() === $this) {
-                $orderRank->setOrderUuid(null);
+            if ($orderRank->getOrder() === $this) {
+                $orderRank->setOrder(null);
             }
         }
 

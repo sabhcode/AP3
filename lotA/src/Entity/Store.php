@@ -6,31 +6,30 @@ use App\Repository\StoreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
 {
 
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?Uuid $uuid = null;
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $id = null;
 
     #[ORM\Column]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'store_uuid', targetEntity: Stock::class)]
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Stock::class)]
     private Collection $stocks;
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->stocks = new ArrayCollection();
     }
 
-    public function getUuid(): ?Uuid
+    public function getId(): ?int
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getCity(): ?string

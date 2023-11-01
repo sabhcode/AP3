@@ -6,14 +6,14 @@ use App\Repository\OrderStateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: OrderStateRepository::class)]
 class OrderState
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?Uuid $uuid = null;
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $id = null;
 
     #[ORM\Column]
     private ?string $name = null;
@@ -21,19 +21,18 @@ class OrderState
     #[ORM\OneToMany(mappedBy: "orderState", targetEntity: Order::class)]
     private Collection $orders;
 
-    #[ORM\OneToMany(mappedBy: 'order_state_uuid', targetEntity: OrderRank::class)]
+    #[ORM\OneToMany(mappedBy: 'orderState', targetEntity: OrderRank::class)]
     private Collection $orderRanks;
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->orders = new ArrayCollection();
         $this->orderRanks = new ArrayCollection();
     }
 
-    public function getUuid(): ?Uuid
+    public function getId(): ?int
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getName(): ?string
@@ -68,7 +67,7 @@ class OrderState
     {
         if (!$this->orderRanks->contains($orderRank)) {
             $this->orderRanks->add($orderRank);
-            $orderRank->setOrderStateUuid($this);
+            $orderRank->setOrderState($this);
         }
 
         return $this;
@@ -78,8 +77,8 @@ class OrderState
     {
         if ($this->orderRanks->removeElement($orderRank)) {
             // set the owning side to null (unless already changed)
-            if ($orderRank->getOrderStateUuid() === $this) {
-                $orderRank->setOrderStateUuid(null);
+            if ($orderRank->getOrderState() === $this) {
+                $orderRank->setOrderState(null);
             }
         }
 

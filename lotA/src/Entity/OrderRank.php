@@ -11,37 +11,37 @@ class OrderRank
 {
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'orderRanks')]
-    #[ORM\JoinColumn(name: 'order_state_uuid', referencedColumnName: 'uuid', nullable: false)]
-    private ?OrderState $order_state_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?OrderState $orderState = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'orderRanks')]
-    #[ORM\JoinColumn(name: 'order_uuid', referencedColumnName: 'uuid', nullable: false)]
-    private ?Order $order_uuid = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Order $order = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
 
-    public function getOrderStateUuid(): ?OrderState
+    public function getOrderState(): ?OrderState
     {
-        return $this->order_state_uuid;
+        return $this->orderState;
     }
 
-    public function setOrderStateUuid(?OrderState $order_state_uuid): static
+    public function setOrderState(?OrderState $orderState): static
     {
-        $this->order_state_uuid = $order_state_uuid;
+        $this->orderState = $orderState;
 
         return $this;
     }
 
-    public function getOrderUuid(): ?Order
+    public function getOrder(): ?Order
     {
-        return $this->order_uuid;
+        return $this->order;
     }
 
-    public function setOrderUuid(?Order $order_uuid): static
+    public function setOrder(?Order $order): static
     {
-        $this->order_uuid = $order_uuid;
+        $this->order = $order;
 
         return $this;
     }

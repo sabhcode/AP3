@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['credential'], message: 'Adresse e-mail déjà utilisée')]
@@ -17,8 +16,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
-    private ?string $uuid = null;
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $id = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -53,13 +53,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->uuid = Uuid::v4();
         $this->orders = new ArrayCollection();
     }
 
-    public function getUuid(): ?string
+    public function getId(): ?int
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     /**
