@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ product.getName }}{% endblock %}
+{% block title %}{{ product.getName() }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
@@ -15,7 +15,7 @@
         <div class="product">
             <div class="product-image">
                 {% for image in product.getProductImgs() %}
-                    <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ image.getName() }}" alt="Image du produit">
+                    <img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
                 {% endfor %}
             </div>
             <div class="product-details">

@@ -18,7 +18,7 @@
                 {% for product in bestSells %}
                     <div class="card">
                         {% for image in product.getProductImgs() %}
-                            <img class="product_card-image" src="/media/images/product/{{ product_id }}/{{ image.getName() }}" alt="Image du produit">
+                            <img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
                         {% endfor %}
                         <div class="card-content">
                             <div class="left">
