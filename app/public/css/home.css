@@ -90,10 +90,12 @@ h2 {
 }
 
 .slider-nav button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     background: var(--primaryColor);
     color: var(--whiteColor);
-    font-size: 1.5em;
-    padding: 2px 10px;
+    padding: 10px;
     border-radius: var(--radiusBorder);
     transition: .2s ease;
     transition-property: background-color, color;

@@ -30,6 +30,9 @@ btnsUpdateProductInCart.forEach(btn => {
             const productId = this.getAttribute("data-productid");
             const action = this.getAttribute("data-action");
             const form = new FormData();
+            const product = document.getElementById(productId);
+
+            product.classList.add("loading");
 
             form.append("productId", productId);
             form.append("action", action);
@@ -39,10 +42,9 @@ btnsUpdateProductInCart.forEach(btn => {
             .then(res => {
 
                 requestCartAllowed = true;
+                product.classList.remove("loading");
 
                 if(res.ok) {
-
-                    const product = document.getElementById(productId);
 
                     if(res.productQuantity === 0 && action !== "add") {
 
