@@ -17,9 +17,15 @@
             <div class="card-slider">
                 {% for product in bestSells %}
                     <div class="card">
-                        {% for image in product.getProductImgs() %}
-                            <img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
-                        {% endfor %}
+                        {% set images = product.getProductImgs() %}
+                        <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
+                        <div class="product_card-images_list">
+                            {% for image in images %}
+                                <div class="product_card-image{{ loop.first ? ' selected' }}">
+                                    <img src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
+                                </div>
+                            {% endfor %}
+                        </div>
                         <div class="card-content">
                             <div class="left">
                                 <p class="product_card-name">{{ product.getName() }}</p>

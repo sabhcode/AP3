@@ -4,11 +4,13 @@ namespace App\Controller\Client;
 
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Validator\Constraints\Collection;
 
 #[Route('/c', name: 'app_client_', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'])]
 class CategoryController extends AbstractController
@@ -18,11 +20,20 @@ class CategoryController extends AbstractController
     {
         // Récupérez les catégories depuis la base de données
         $categories = $categoryRepository->findAll();
-
         $searchResult = null;
 
-        if($request->query->get("p") && $request->query->get("c")) {
-            $searchResult = $productRepository->findProductsByCategoryAndName($request->query->get("c"), $request->query->get("p"));
+        if(!(is_null($request->query->get("p")) && is_null($request->query->get("c")))) {
+
+            $_searchResult = $productRepository->findProductsByCategoryAndName($request->query->get("c"), $request->query->get("p"));
+
+            $searchResult = [];
+
+            foreach($_searchResult as $product) {
+                $categoryKey = $product->getCategory()->getId() . " " . $product->getCategory()->getName() . " " . $product->getCategory()->getSlug();
+                $searchResult[$categoryKey][] = $product;
+            }
+            ksort($searchResult);
+
         }
 
         // Rendre le template en passant la catégorie

@@ -27,13 +27,19 @@
 		</form>
 		<div class="categories">
 			{% if searchResult is not null %}
-				<div class="product_cards">
-					{% for product in searchResult %}
-						{% include 'client/product_card.html.twig' with {'product': product} %}
-					{% else %}
-						<p>Aucun produit trouvé</p>
-					{% endfor %}
-				</div>
+				{% for category, products in searchResult %}
+					<div class="category">
+						{% set categoryNameAndSlug = category|split(" ") %}
+						<a class="category-name" href="{{ path('app_client_category', {'slug': categoryNameAndSlug[2]}) }}" title="{{ categoryNameAndSlug[1] }}">{{ categoryNameAndSlug[1]|upper }} 🔗</a>
+						<div class="product_cards">
+							{% for product in products %}
+								{% include 'client/product_card.html.twig' with {'product': product} %}
+							{% endfor %}
+						</div>
+					</div>
+				{% else %}
+					<p>Aucun produit trouvé</p>
+				{% endfor %}
 			{% else %}
 				{% for category in categories %}
 					<div class="category">
