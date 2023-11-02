@@ -7,6 +7,8 @@
     --primaryColor: #000;
     --secondColor: #f7882d;
     --whiteColor: #fff;
+    --greenColor: #3FBF4F;
+    --redColor: #E84F4F;
     --boxShadowColor: #ddd;
     --radiusBorder: 4px;
     --widthProductCard: 240px;
@@ -189,6 +191,9 @@ h1 {
 
 .product_card-buttons button,
 .product_card-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--primaryColor);
     font-weight: bold;
     padding: 10px;

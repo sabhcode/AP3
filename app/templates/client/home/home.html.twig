@@ -42,8 +42,12 @@
                                     </p>
                                 </div>
                                 <div class="right-of-right product_card-buttons">
-                                    <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}">👀</a>
-                                    <button class="update-product-cart" data-productid="{{ product.getId() }}" data-action="add">🛒</button>
+                                    <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
+                                    </a>
+                                    <button class="update-product-cart" data-productid="{{ product.getId() }}" data-action="add">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
