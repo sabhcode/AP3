@@ -30,7 +30,7 @@
     transition: transform 0.2s ease;
 }
 .header-app__nav li:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 
 .header-app__nav a {
