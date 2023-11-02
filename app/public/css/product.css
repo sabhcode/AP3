@@ -13,8 +13,8 @@
     width: 50%;
 }
 
-.product-image img {
-    width: 100%;
+.product_card-price {
+    max-width: max-content;
 }
 
 .product-details {
@@ -28,10 +28,7 @@
 }
 
 .product h2 {
-    color: var(--whiteColor);
-    background-color: var(--primaryColor);
-    padding: 10px;
-    border-radius: var(--radiusBorder);
+    color: var(--primaryColor);
 }
 
 .product button {
@@ -40,15 +37,13 @@
     color: var(--primaryColor);
     background-color: var(--secondColor);
     width: 100%;
+    margin-top: 40px;
     padding: 10px;
     border-radius: var(--radiusBorder);
-    transition: .2s ease;
-    transition-property: background-color, color;
+    transition: background-color .2s ease;
 }
-
 .product button:hover {
-    background-color: rgb(0, 0, 0);
-    color: var(--whiteColor);
+    background-color: var(--primaryColor);
 }
 
 /* ------------------ Section stock du produit ---------------------- */
