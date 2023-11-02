@@ -71,3 +71,17 @@ btnsUpdateProductInCart.forEach(btn => {
     });
 
 });
+
+const productImagesList = document.querySelectorAll(".product_card-images_list .product_card-image");
+
+productImagesList.forEach(image => {
+
+    image.addEventListener("click", () => {
+
+        const imageSelected = image.parentElement.parentElement.querySelector(".product_card-image--selected");
+
+        imageSelected.setAttribute("src", image.getAttribute("src"));
+
+    });
+
+});

@@ -13,10 +13,14 @@
 {% block body %}
     <section class="app_container app_padding">
         <div class="product">
-            <div class="product-image">
-                {% for image in product.getProductImgs() %}
-                    <img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
-                {% endfor %}
+            <div class="product_card-images">
+                {% set images = product.getProductImgs() %}
+                <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
+                <div class="product_card-images_list">
+                    {% for image in images %}
+                        <img class="product_card-image" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ image.getName()) }}" alt="Image du produit">
+                    {% endfor %}
+                </div>
             </div>
             <div class="product-details">
                 <h2>{{ product.getName() }}</h2>
