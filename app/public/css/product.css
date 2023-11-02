@@ -13,7 +13,7 @@
     width: 50%;
 }
 
-.product_card-price {
+.product .product_card-price {
     max-width: max-content;
 }
 
