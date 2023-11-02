@@ -2,7 +2,6 @@
 
 namespace App\Controller\Client;
 
-use App\Repository\ProductRepository;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,23 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route(name: 'cart')]
-    public function viewCart(Request $request, ProductRepository $productRepository): Response
+    public function viewCart(CartService $cartService): Response
     {
-        $session = $request->getSession();
-
-        $cart = (object) $session->get("cart", []);
-        
-        $products = [];
-
-        foreach($cart as $productId => $quantity) {
-
-            $product = [$productRepository->find($productId), $quantity];
-
-            if($product[0]) {
-                $products[] = $product;
-            }
-
-        }
+        $products = $cartService->getProductsAndQuantity();
 
         return $this->render('client/cart/cart.html.twig', [
             'products' => $products

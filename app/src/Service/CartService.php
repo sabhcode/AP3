@@ -18,8 +18,7 @@ class CartService {
 
         if($product) {
 
-            $session = $this->requestStack->getSession();
-            $cart = (object) $session->get("cart", []);
+            $cart = $this->getCart();
 
             if($action === "add" && !$product->getStocks()->isEmpty()) {
 
@@ -39,32 +38,53 @@ class CartService {
                 unset($cart->$productId);
             }
 
-            $session->set("cart", $cart);
+            $this->setCart($cart);
 
             $responseJSON["ok"] = true;
             $responseJSON["orderPrice"] = $this->formatPrice($this->getOrderPriceHT());
             $responseJSON["nbProducts"] = $this->getNbProducts();
-            $responseJSON["productQty"] = ($cart->$productId ?? 0);
-            $responseJSON["productPrice"] = $this->formatPrice($responseJSON["productQty"] * $product->getUnitPrice());
+            $responseJSON["productQuantity"] = ($cart->$productId ?? 0);
+            $responseJSON["productPrice"] = $this->formatPrice($responseJSON["productQuantity"] * $product->getUnitPrice());
 
         }
         return $responseJSON;
 
     }
 
+    public function getProductsAndQuantity(): array {
+
+        $cart = $this->getCart();
+
+        $products = [];
+
+        foreach($cart as $productId => $quantity) {
+
+            $item = (object) [
+                "product" => $this->productRepository->find($productId),
+                "quantity" => $quantity
+            ];
+
+            if(!is_null($item->product)) {
+                array_push($products, $item);
+            }
+
+        }
+        return $products;
+
+    }
+
     public function getNbProducts(): int {
 
-        $session = $this->requestStack->getSession();
-        $cart = (object) $session->get("cart", []);
+        $cart = $this->getCart();
         $nbProducts = 0;
 
-        foreach($cart as $productId => $qty) {
+        foreach($cart as $productId => $quantity) {
 
             $product = $this->productRepository->find($productId);
 
             if($product) {
 
-                $nbProducts += $qty;
+                $nbProducts += $quantity;
 
             }
 
@@ -75,22 +95,37 @@ class CartService {
 
     public function getOrderPriceHT(): float {
 
-        $session = $this->requestStack->getSession();
-        $cart = (object) $session->get("cart", []);
+        $cart = $this->getCart();
         $priceHT = 0;
 
-        foreach($cart as $productId => $qty) {
+        foreach($cart as $productId => $quantity) {
 
             $product = $this->productRepository->find($productId);
 
             if($product) {
 
-                $priceHT += $product->getUnitPrice() * $qty;
+                $priceHT += $product->getUnitPrice() * $quantity;
 
             }
 
         }
         return $priceHT;
+
+    }
+
+    private function getCart(): object {
+
+        $session = $this->requestStack->getSession();
+
+        return (object) $session->get("cart", []);
+
+    }
+
+    private function setCart(object $cart): void {
+
+        $session = $this->requestStack->getSession();
+
+        $session->set("cart", $cart);
 
     }
 

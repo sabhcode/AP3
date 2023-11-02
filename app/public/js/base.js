@@ -44,16 +44,16 @@ btnsUpdateProductInCart.forEach(btn => {
 
                     const product = document.getElementById(productId);
 
-                    if(res.productQty === 0 && action !== "add") {
+                    if(res.productQuantity === 0 && action !== "add") {
 
                         product.remove();
 
                     } else if(product) {
 
-                        const productQty = product.querySelector(".product_card-quantity_value");
+                        const productQuantity = product.querySelector(".product_card-quantity_value");
                         const productPrice = product.querySelector(".product_card-price");
 
-                        productQty.innerText = res.productQty;
+                        productQuantity.innerText = res.productQuantity;
                         productPrice.innerText = res.productPrice;
 
                     }

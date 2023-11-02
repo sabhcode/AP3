@@ -17,8 +17,8 @@
             {% set priceOrderHT = 0 %}
             <div class="product_cards">
                 {% for item in products %}
-                    {% set product = item[0] %}
-                    {% set quantity = item[1] %}
+                    {% set product = item.product %}
+                    {% set quantity = item.quantity %}
                     {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
                     {% include 'client/product_card.html.twig' with {'product': product, 'quantity': quantity} %}
                 {% endfor %}
@@ -34,7 +34,9 @@
                         <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span>
                     </p>
                 </div>
-                <button class="confirm-order">Passer la commande 💳</button>
+                <form method="POST">
+                    <button class="confirm-order" name="place-order">Passer la commande 💳</button>
+                </form>
             </div>
         {% else %}
             <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_client_categories') }}">ici</a></p>
