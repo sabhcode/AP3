@@ -33,19 +33,18 @@
 }
 
 .confirm-order {
-    display: block;
-    font: inherit;
-    max-width: max-content;
-    margin: 20px auto;
-    padding: 6px 10px;
-    border-radius: var(--radiusBorder);
-    transition: .2s ease;
-    transition-property: background-color, color;
-    background-color: var(--primaryColor);
-    color: var(--whiteColor);
+    margin: 20px 0;
 }
 
-.confirm-order:hover {
+.confirm-order button {
+    background-color: var(--primaryColor);
+    color: var(--whiteColor);
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: var(--radiusBorder);
+    transition: background-color .2s ease;
+}
+.confirm-order button:hover {
     background-color: #f7882d;
 }
 

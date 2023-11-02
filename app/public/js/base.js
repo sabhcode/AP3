@@ -27,7 +27,7 @@ btnsUpdateProductInCart.forEach(btn => {
 
             requestCartAllowed = false;
 
-            const productId = this.getAttribute("data-product-id");
+            const productId = this.getAttribute("data-productid");
             const action = this.getAttribute("data-action");
             const form = new FormData();
 

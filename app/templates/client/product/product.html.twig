@@ -28,7 +28,7 @@
                 <h2>{{ product.getName() }}</h2>
                 <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                 <p class="product_card-description">{{ product.getDescription() }}</p>
-                <button class="update-product-cart" data-product-id="{{ product.getid() }}" data-action="add">🛒</button>
+                <button class="update-product-cart" data-productid="{{ product.getid() }}" data-action="add">🛒</button>
                 {% set stock = (product.getStocks() is not empty ? "check" : "not-check") %}
                 <p class="product_card-stock">
                     Stock
