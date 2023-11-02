@@ -29,45 +29,33 @@
 /* Styles pour la barre de recherche */
 .search-bar {
     display: flex;
+    gap: 10px;
     justify-content: space-between;
-    align-items: center;
     background-color: var(--whiteColor);
-    padding: 10px;
-    border-radius: var(--radiusBorder);
-    border: 1px solid #ddd;
 }
 
-#search-input {
+.search-bar input {
     width: 100%;
     padding: 10px;
     border-radius: var(--radiusBorder);
-    margin-right: 10px;
     border: 1px solid #ddd;
 }
 
-#search-input:focus {
-    background-color: #f4f4f4;
-    color: var(--whiteColor);
-}
-
-#category-filter {
+.search-bar select {
     padding: 5px;
-    border: none;
     border-radius: var(--radiusBorder);
     background-color: var(--whiteColor);
-    color: #000000;
-    margin-right: 10px;
+    border: 1px solid #ddd;
 }
 
-#search-button {
+.search-bar button {
     background-color: #ff8800;
-    color: var(--whiteColor);
     border: none;
     padding: 10px 20px;
     border-radius: var(--radiusBorder);
     transition: background-color .2s ease;
 }
 
-#search-button:hover {
-    background-color: #000000;
+.search-bar button:hover {
+    background-color: var(--primaryColor);
 }

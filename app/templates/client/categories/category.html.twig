@@ -13,14 +13,22 @@
 {% block body %}
 	<h1>{{ category.getName() }}</h1>
 	<div class="app_container app_padding">
-		<div class="search-bar">
-			<input type="text" id="search-input" placeholder="Rechercher un produit" style="color:var(--primaryColor);">
-			<button id="search-button">🔍</button>
-		</div>
+		<form method="GET" class="search-bar">
+			<input type="text" name="p" value="{{ app.request.query.get('p') }}" placeholder="Rechercher un produit">
+			<button>🔍</button>
+		</form>
 		<div class="product_cards">
-			{% for product in category.getProducts() %}
-				{% include 'client/product_card.html.twig' with {'product': product} %}
-			{% endfor %}
+			{% if searchResult is not null %}
+				{% for product in searchResult %}
+					{% include 'client/product_card.html.twig' with {'product': product} %}
+				{% else %}
+					<p>Aucun produit trouvé</p>
+				{% endfor %}
+			{% else %}
+				{% for product in category.getProducts() %}
+					{% include 'client/product_card.html.twig' with {'product': product} %}
+				{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

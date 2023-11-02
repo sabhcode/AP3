@@ -3,7 +3,9 @@
 namespace App\Controller\Client;
 
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
@@ -24,7 +26,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'category', requirements: ['slug' => Requirement::ASCII_SLUG])]
-    public function viewCategory($slug, CategoryRepository $categoryRepository): Response
+    public function viewCategory($slug, CategoryRepository $categoryRepository, Request $request, ProductRepository $productRepository): Response
     {
         // Rechercher la catégorie en fonction du slug saisi
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
@@ -34,9 +36,16 @@ class CategoryController extends AbstractController
             throw $this->createNotFoundException('Catégorie non trouvée');
         }
 
+        $searchResult = null;
+
+        if($request->query->get("p")) {
+            $searchResult = $productRepository->findProductsByCategoryAndName($category->getId(), $request->query->get("p"));
+        }
+
         // Rendre le template en passant la catégorie
         return $this->render('client/categories/category.html.twig', [
-            'category' => $category
+            'category' => $category,
+            'searchResult' => $searchResult
         ]);
     }
 }

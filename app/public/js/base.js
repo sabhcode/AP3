@@ -72,15 +72,17 @@ btnsUpdateProductInCart.forEach(btn => {
 
 });
 
-const productImagesList = document.querySelectorAll(".product_card-images_list .product_card-image");
+const productImagesList = document.querySelectorAll(".product_card-images_list .product_card-image img");
 
 productImagesList.forEach(image => {
 
     image.addEventListener("click", () => {
 
-        const imageSelected = image.parentElement.parentElement.querySelector(".product_card-image--selected");
+        const imageSelected = image.parentElement.parentElement.parentElement.querySelector(".product_card-image--selected");
 
         imageSelected.setAttribute("src", image.getAttribute("src"));
+        image.parentElement.parentElement.querySelector(".product_card-image.selected").classList.remove("selected");
+        image.parentElement.classList.add("selected");
 
     });
 

@@ -14,22 +14,22 @@
 	<h1>Catalogue</h1>
 	<div class="app_container app_padding">
 		<!-- Barre de recherche -->
-		<div class="search-bar">
-			<input type="text" id="search-input" placeholder="Rechercher un produit">
-			<select id="category-filter">
-				<option class="select-category" value="">Toutes catégories</option>
-				<!-- Boucle pour afficher les options de catégorie -->
+		<form method="GET" class="search-bar">
+			<input type="text" name="p" value="{{ app.request.query.get('p') }}" placeholder="Rechercher un produit">
+			<select name="c">
+				<option class="select-category" value="0">Toutes catégories</option>
+				<!-- Boucle pour afficher toutes les catégories disponibles -->
 				{% for category in categories %}
-					<option value="{{ category.getName() }}">{{ category.getName() }}</option>
+					<option value="{{ category.getId() }}">{{ category.getName() }}</option>
 				{% endfor %}
 			</select>
-			<button id="search-button">🔍</button>
-		</div>
+			<button>🔍</button>
+		</form>
 		<div class="categories">
 			<!-- Boucle pour afficher les catégories -->
 			{% for category in categories %}
 				<div class="category">
-					<a class="category-name" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}">{{ category.getName()|upper }} 🔗</a>
+					<a class="category-name" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="{{ category.getName() }}">{{ category.getName()|upper }} 🔗</a>
 					<div class="product_cards">
 						<!-- Boucle pour afficher les produits de chaque catégorie -->
 						{% for product in category.getProducts() %}
