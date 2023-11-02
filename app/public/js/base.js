@@ -32,7 +32,7 @@ btnsUpdateProductInCart.forEach(btn => {
             const form = new FormData();
             const product = document.getElementById(productId);
 
-            product.classList.add("loading");
+            product?.classList.add("loading");
 
             form.append("productId", productId);
             form.append("action", action);
@@ -42,27 +42,35 @@ btnsUpdateProductInCart.forEach(btn => {
             .then(res => {
 
                 requestCartAllowed = true;
-                product.classList.remove("loading");
+                product?.classList.remove("loading");
 
                 if(res.ok) {
 
-                    if(res.productQuantity === 0 && action !== "add") {
-
-                        product.remove();
-
-                    } else if(product) {
-
-                        const productQuantity = product.querySelector(".product_card-quantity_value");
-                        const productPrice = product.querySelector(".product_card-price");
-
-                        productQuantity.innerText = res.productQuantity;
-                        productPrice.innerText = res.productPrice;
-
-                    }
-                    if(nbProducts) {
-                        nbProducts.innerHTML = res.nbProducts;
-                    }
                     orderPrice.forEach(el => el.innerHTML = res.orderPrice);
+
+                    if(location.pathname.startsWith("/mon-panier")) {
+
+                        nbProducts.innerHTML = res.nbProducts;
+
+                        if(res.productQuantity === 0) {
+
+                            product.remove();
+
+                        } else {
+
+                            const productQuantity = product.querySelector(".product_card-quantity_value");
+                            const productPrice = product.querySelector(".product_card-price");
+
+                            if(productQuantity) {
+                                productQuantity.innerText = res.productQuantity;
+                            }
+                            if(productPrice) {
+                                productPrice.innerText = res.productPrice;
+                            }
+
+                        }
+
+                    }
 
                 }
 

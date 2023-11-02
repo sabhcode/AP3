@@ -27,20 +27,22 @@ class CartService {
                 } else {
                     $cart->$productId = 1;
                 }
+                $responseJSON["ok"] = true;
 
             }
             
             if($action === "remove") {
                 $cart->$productId--;
+                $responseJSON["ok"] = true;
             }
             
             if($action === "delete" || (property_exists($cart, $productId) && $cart->$productId <= 0)) {
                 unset($cart->$productId);
+                $responseJSON["ok"] = true;
             }
 
             $this->setCart($cart);
 
-            $responseJSON["ok"] = true;
             $responseJSON["orderPrice"] = $this->formatPrice($this->getOrderPriceHT());
             $responseJSON["nbProducts"] = $this->getNbProducts();
             $responseJSON["productQuantity"] = ($cart->$productId ?? 0);
