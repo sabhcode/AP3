@@ -91,7 +91,7 @@ h2 {
 }
 
 .slider-nav button {
-    background: #000000;
+    background: var(--primaryColor);
     color: var(--whiteColor);
     font-size: 1.5em;
     padding: 2px 10px;
@@ -114,12 +114,12 @@ h2 {
 
 /* Style du titre de la catégorie */
 h4 {
-    color: #000000;
+    color: var(--primaryColor);
     margin-bottom: 20px;
     color: var(--whiteColor);
     background-color: var(--primaryColor);
     padding: 10px;
-    width: max-content;
+    max-width: max-content;
     border-radius: var(--radiusBorder);
 }
 

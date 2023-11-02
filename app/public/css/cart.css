@@ -6,17 +6,21 @@
 }
 
 .priceAndConfirmOrder {
-    width: 25%;
+    align-self: flex-start;
+    flex-grow: 1;
+    position: sticky;
+    top: 80px;
+    background-color: var(--whiteColor);
 }
 
 .priceAndConfirmOrder .order_price {
-    background-color: #f7882d20;
+    background-color: #f7882d10;
     margin: 0 auto 20px;
     padding: 4px 10px;
     border-left: 3px solid #f7882d;
 }
 .priceAndConfirmOrder .order_price p {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 .priceAndConfirmOrder .order_price span {
     font-weight: bold;
@@ -24,7 +28,8 @@
 }
 
 .product_cards {
-    width: 75%;
+    width: 100%;
+    max-width: calc(240px * 3 + 5px * 2);
 }
 
 .confirm-order {

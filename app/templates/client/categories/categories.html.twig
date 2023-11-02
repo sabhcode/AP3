@@ -17,27 +17,36 @@
 		<form method="GET" class="search-bar">
 			<input type="text" name="p" value="{{ app.request.query.get('p') }}" placeholder="Rechercher un produit">
 			<select name="c">
-				<option class="select-category" value="0">Toutes catégories</option>
+				<option class="select-category" value="-1">Toutes catégories</option>
 				<!-- Boucle pour afficher toutes les catégories disponibles -->
 				{% for category in categories %}
-					<option value="{{ category.getId() }}">{{ category.getName() }}</option>
+					<option value="{{ category.getId() }}"{{ category.getId() == app.request.query.get('c') ? ' selected="selected"' }}>{{ category.getName() }}</option>
 				{% endfor %}
 			</select>
 			<button>🔍</button>
 		</form>
 		<div class="categories">
-			<!-- Boucle pour afficher les catégories -->
-			{% for category in categories %}
-				<div class="category">
-					<a class="category-name" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="{{ category.getName() }}">{{ category.getName()|upper }} 🔗</a>
-					<div class="product_cards">
-						<!-- Boucle pour afficher les produits de chaque catégorie -->
-						{% for product in category.getProducts() %}
-							{% include 'client/product_card.html.twig' with {'product': product} %}
-						{% endfor %}
-					</div>
+			{% if searchResult is not null %}
+				<div class="product_cards">
+					{% for product in searchResult %}
+						{% include 'client/product_card.html.twig' with {'product': product} %}
+					{% else %}
+						<p>Aucun produit trouvé</p>
+					{% endfor %}
 				</div>
-			{% endfor %}
+			{% else %}
+				{% for category in categories %}
+					<div class="category">
+						<a class="category-name" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="{{ category.getName() }}">{{ category.getName()|upper }} 🔗</a>
+						<div class="product_cards">
+							<!-- Boucle pour afficher les produits de chaque catégorie -->
+							{% for product in category.getProducts() %}
+								{% include 'client/product_card.html.twig' with {'product': product} %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

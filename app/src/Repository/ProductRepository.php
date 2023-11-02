@@ -26,15 +26,23 @@ class ProductRepository extends ServiceEntityRepository
     */
     public function findProductsByCategoryAndName($category, $name): array
     {
-        return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->where('p.name LIKE :name')
             ->setParameter('name', "%$name%")
-            ->join('p.category', 'c')
-            ->andWhere('c.id = :id')
-            ->setParameter('id', $category)
-            ->getQuery()
+        ;
+
+        if($category !== "-1") {
+            $query = $query->join('p.category', 'c')
+                ->andWhere('c.id = :id')
+                ->setParameter('id', $category)
+            ;
+        }
+
+        $query = $query->getQuery()
             ->getResult()
         ;
+
+        return $query;
     }
 
 //    public function findOneBySomeField($value): ?Product

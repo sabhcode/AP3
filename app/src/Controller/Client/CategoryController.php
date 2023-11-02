@@ -14,19 +14,26 @@ use Symfony\Component\Routing\Requirement\Requirement;
 class CategoryController extends AbstractController
 {
     #[Route(name: 'categories')]
-    public function viewAllCategories(CategoryRepository $category): Response
+    public function viewAllCategories(CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
     {
         // Récupérez les catégories depuis la base de données
-        $categories = $category->findAll();
+        $categories = $categoryRepository->findAll();
+
+        $searchResult = null;
+
+        if($request->query->get("p") && $request->query->get("c")) {
+            $searchResult = $productRepository->findProductsByCategoryAndName($request->query->get("c"), $request->query->get("p"));
+        }
 
         // Rendre le template en passant la catégorie
         return $this->render('client/categories/categories.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'searchResult' => $searchResult
         ]);
     }
 
     #[Route('/{slug}', name: 'category', requirements: ['slug' => Requirement::ASCII_SLUG])]
-    public function viewCategory($slug, CategoryRepository $categoryRepository, Request $request, ProductRepository $productRepository): Response
+    public function viewCategory($slug, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
     {
         // Rechercher la catégorie en fonction du slug saisi
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
