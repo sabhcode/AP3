@@ -13,13 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route(name: 'cart')]
-    public function viewCart(CartService $cartService): Response
+    public function viewCart(Request $request, CartService $cartService): Response
     {
-        $products = $cartService->getProductsAndQuantity();
+        if(is_null($request->get("place-order"))) {
+            
+            $products = $cartService->getProductsAndQuantity();
 
-        return $this->render('client/cart/cart.html.twig', [
-            'products' => $products
-        ]);
+            return $this->render('client/cart/cart.html.twig', [
+                'products' => $products
+            ]);
+
+        } else {
+
+            return $this->render('client/cart/place_order.html.twig');
+
+        }
     }
 
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]

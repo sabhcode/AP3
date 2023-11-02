@@ -110,7 +110,8 @@ h1 {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: var(--primaryColor);
+    background-color: #0004;
+    backdrop-filter: blur(1px);
     visibility: hidden;
     opacity: 0;
     width: 100%;
@@ -120,7 +121,7 @@ h1 {
 }
 .product_card.loading::after {
     visibility: visible;
-    opacity: .2;
+    opacity: 1;
 }
 
 /* Style de l'image du produit */

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmer votre commande{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+{% endblock %}
+
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <h1>Confirmer votre commande</h1>
+    <div class="app_container app_padding">
+        <div class="priceAndConfirmOrder">
+            <div class="order_price">
+                <p>
+                    Nombre d'articles<br>
+                    <span class="nb_products_value">{{ cart.getNbProducts() }}</span>
+                </p>
+                <p>
+                    Total de la commande<br>
+                    <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
+                </p>
+            </div>
+            <form class="confirm-order" method="POST">
+                <button name="place-order">Passer la commande</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
