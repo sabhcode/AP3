@@ -23,7 +23,6 @@ h2 {
 /* Styles pour les cartes du slider */
 .card-slider {
     display: flex;
-    /* overflow: hidden; */
 }
 
 .card {
