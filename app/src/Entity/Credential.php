@@ -13,7 +13,7 @@ class Credential
     #[ORM\Column]
     private ?string $email = null;
 
-    #[ORM\Column(options: ["fixed" => true], length: 60)]
+    #[ORM\Column(length: 60, options: ["fixed" => true])]
     private ?string $password = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]

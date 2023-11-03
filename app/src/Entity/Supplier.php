@@ -9,12 +9,33 @@ use Doctrine\ORM\Mapping as ORM;
 class Supplier
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(length: 3, options: ["fixed" => true])]
+    private ?string $code = null;
 
-    public function getId(): ?int
+    #[ORM\Column(length: 100)]
+    private ?string $name = null;
+
+    public function getCode(): ?string
     {
-        return $this->id;
+        return $this->code;
+    }
+
+    public function setCode(string $code): static
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }
