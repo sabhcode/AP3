@@ -45,6 +45,10 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImg::class, orphanRemoval: true)]
     private Collection $productImgs;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(name: 'supplier_code', referencedColumnName: 'code', nullable: false)]
+    private ?Supplier $supplier = null;
+
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
@@ -200,6 +204,18 @@ class Product
                 $productimg->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSupplier(): ?Supplier
+    {
+        return $this->supplier;
+    }
+
+    public function setSupplier(?Supplier $supplier): static
+    {
+        $this->supplier = $supplier;
 
         return $this;
     }
