@@ -16,7 +16,13 @@ class Store
     #[ORM\GeneratedValue]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100)]
+    private ?string $street = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $zip_code = null;
+
+    #[ORM\Column(length: 100)]
     private ?string $city = null;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Stock::class)]
@@ -30,6 +36,30 @@ class Store
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(string $street): static
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getZipCode(): ?string
+    {
+        return $this->zip_code;
+    }
+
+    public function setZipCode(string $zip_code): static
+    {
+        $this->zip_code = $zip_code;
+
+        return $this;
     }
 
     public function getCity(): ?string

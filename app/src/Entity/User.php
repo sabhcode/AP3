@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['credential'], message: 'Adresse e-mail déjà utilisée')]
+#[UniqueEntity(fields: ['credential'], message: 'Adresse email déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
@@ -23,23 +26,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100)]
     private ?string $firstname = null;  
 
-    #[ORM\Column]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $zip_code = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $city = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $birthday = null;
+
+    #[ORM\Column(columnDefinition: 'TINYINT')]
+    private ?int $nb_children = null;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
@@ -218,6 +227,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): static
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?Date
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(DateTimeInterface $birthday): static
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getNbChildren(): ?int
+    {
+        return $this->nb_children;
+    }
+
+    public function setNbChildren(int $nb_children): static
+    {
+        $this->nb_children = $nb_children;
 
         return $this;
     }

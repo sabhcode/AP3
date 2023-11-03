@@ -25,6 +25,15 @@ class Order
     #[ORM\Column]
     private ?float $tax = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $street = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $zip_code = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $city = null;
+
     #[ORM\ManyToOne(inversedBy: "orders")]
     #[ORM\JoinColumn(nullable: false)]
     private ?OrderState $orderState = null;
@@ -82,6 +91,42 @@ class Order
     public function setTax(int $tax): static
     {
         $this->tax = $tax;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(string $street): static
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getZipCode(): ?string
+    {
+        return $this->zip_code;
+    }
+
+    public function setZipCode(string $zip_code): static
+    {
+        $this->zip_code = $zip_code;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
 
         return $this;
     }
