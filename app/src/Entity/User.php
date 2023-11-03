@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -17,8 +16,10 @@ use Symfony\Component\Validator\Constraints\Date;
 #[UniqueEntity(fields: ['credential'], message: 'Adresse email déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    private const NUMBER_REFERENCE_CLIENT = 8;
+
     #[ORM\Id]
-    #[ORM\Column]
+    #[ORM\Column(options: ['unsigned' => true])]
     #[ORM\GeneratedValue]
     private ?int $id = null;
 
@@ -44,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $city = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?DateTimeInterface $birthday = null;
+    private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(columnDefinition: 'TINYINT')]
     private ?int $nb_children = null;
@@ -64,9 +65,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->orders = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
-        return $this->id;
+        return str_pad($this->id, self::NUMBER_REFERENCE_CLIENT, "0", STR_PAD_LEFT);
     }
 
     /**
@@ -235,7 +236,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->birthday;
     }
 
-    public function setBirthday(DateTimeInterface $birthday): static
+    public function setBirthday(\DateTimeInterface $birthday): static
     {
         $this->birthday = $birthday;
 

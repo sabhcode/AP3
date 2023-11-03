@@ -11,32 +11,32 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Mon panier</h1>
     <div class="app_container app_padding">
+        <h1>Mon panier</h1>
         {% if products is not empty %}
-            {% set priceOrderHT = 0 %}
-            <div class="product_cards">
-                {% for item in products %}
-                    {% set product = item.product %}
-                    {% set quantity = item.quantity %}
-                    {% set priceOrderHT = priceOrderHT + product.getUnitPrice() * quantity %}
-                    {% include 'client/product_card.html.twig' with {'product': product, 'quantity': quantity} %}
-                {% endfor %}
-            </div>
-            <div class="priceAndConfirmOrder">
-                <div class="order_price">
-                    <p>
-                        Nombre d'articles<br>
-                        <span class="nb_products_value">{{ cart.getNbProducts() }}</span>
-                    </p>
-                    <p>
-                        Total de la commande<br>
-                        <span class="order_price_value">{{ cart.formatPrice(priceOrderHT) }}</span>
-                    </p>
+            <div class="flex">
+                <div class="product_cards">
+                    {% for item in products %}
+                        {% set product = item.product %}
+                        {% set quantity = item.quantity %}
+                        {% include 'client/product_card.html.twig' with {'product': product, 'quantity': quantity} %}
+                    {% endfor %}
                 </div>
-                <form class="confirm-order" method="POST">
-                    <button name="place-order">Passer la commande</button>
-                </form>
+                <div class="priceAndConfirmOrder">
+                    <div class="order_price">
+                        <p>
+                            Nombre d'articles<br>
+                            <span class="nb_products_value">{{ cart.getNbProducts() }}</span>
+                        </p>
+                        <p>
+                            Total de la commande<br>
+                            <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
+                        </p>
+                    </div>
+                    <form class="confirm-order" method="POST">
+                        <button name="place-order">Passer la commande</button>
+                    </form>
+                </div>
             </div>
         {% else %}
             <p class="noProductInCart">Votre panier ne contient pas de produit, ajoutez-en <a href="{{ path('app_client_categories') }}">ici</a></p>

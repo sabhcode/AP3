@@ -1,8 +1,6 @@
-.app_container {
+.flex {
     display: flex;
     gap: 10px;
-    padding-top: unset;
-    padding-bottom: 40px;
 }
 
 .priceAndConfirmOrder {
@@ -27,9 +25,11 @@
     font-size: 1.2em;
 }
 
-.product_cards {
+.product_cards,
+.order_details {
     width: 100%;
     max-width: calc(240px * 3 + 5px * 2);
+    padding-bottom: 20px;
 }
 
 .confirm-order {
@@ -75,4 +75,22 @@
 
 .noProductInCart a:hover {
     background-color: rgb(29, 29, 29);
+}
+
+/* place_older */
+.modify_cart {
+    margin-bottom: 40px;
+}
+
+.modify_cart a {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--primaryColor);
+}
+.modify_cart a svg {
+    transition: transform .2s ease;
+}
+.modify_cart a:hover svg {
+    transform: translateX(-4px);
 }

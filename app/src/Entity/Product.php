@@ -14,7 +14,7 @@ class Product
     private const NUMBER_REFERENCE_PRODUCT = 12;
 
     #[ORM\Id]
-    #[ORM\Column(columnDefinition: "BIGINT(" . self::NUMBER_REFERENCE_PRODUCT . ") UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT")]
+    #[ORM\Column(type: Types::BIGINT, options: ['unsigned' => true])]
     private ?int $id = null;
 
     #[ORM\Column]
