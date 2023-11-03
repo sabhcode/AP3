@@ -108,6 +108,31 @@ h1 {
 .product_card::after {
     content: "";
     position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: center/cover no-repeat url("http://localhost:8000/media/images/header/logo.png");
+    visibility: hidden;
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    transition: .2s ease;
+    transition-property: visibility, opacity;
+    animation: rotateLogoLoading 1s linear infinite;
+}
+@keyframes rotateLogoLoading {
+    from {
+        transform: translate(-50%, -50%) rotateY(0);
+    }
+    to {
+        transform: translate(-50%, -50%) rotateY(360deg);
+    }
+}
+.product_card::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
     left: 0;
     top: 0;
     background-color: #0004;
@@ -119,6 +144,7 @@ h1 {
     transition: .2s ease;
     transition-property: visibility, opacity;
 }
+.product_card.loading::before,
 .product_card.loading::after {
     visibility: visible;
     opacity: 1;
