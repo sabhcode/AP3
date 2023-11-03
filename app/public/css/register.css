@@ -10,6 +10,15 @@
     text-align: center;
 }
 
+.flex {
+    display: flex;
+    gap: 20px;
+}
+
+.flex > div {
+    width: 100%;
+}
+
 /* Style for the registration form */
 form {
     max-width: 600px;
@@ -26,10 +35,9 @@ input[type="password"] {
     display: block;
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 12px 0;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
-    font-size: 14px;
 }
 input[type="checkbox"] {
     margin: 0 10px;
@@ -85,7 +93,7 @@ ul.errors {
 }
 
 .GoToSignIn {
-    margin: 40px;
+    margin: 20px 0 40px;
     text-align: center;
 }
 

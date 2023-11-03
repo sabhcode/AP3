@@ -12,7 +12,6 @@
 form {
     max-width: 600px;
     margin: 0 auto;
-    position: relative;
 }
 
 label {
@@ -25,10 +24,9 @@ input {
     display: block;
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 12px 0;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
-    font-size: 14px;
 }
 
 input[type="text"],
@@ -82,7 +80,7 @@ button:hover {
 /* Style for the "Vous n'êtes pas encore inscrit ?" link */
 .GoToSignUp {
     text-align: center;
-    margin-top: 40px
+    margin: 20px 0 40px;
 }
 
 .GoToSignUp a {

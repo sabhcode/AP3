@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
 {
-
     #[ORM\Id]
     #[ORM\Column]
     #[ORM\GeneratedValue]

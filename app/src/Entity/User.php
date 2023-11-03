@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Constraints\Date;
 #[UniqueEntity(fields: ['credential'], message: 'Adresse email déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
     #[ORM\Id]
     #[ORM\Column]
     #[ORM\GeneratedValue]

@@ -11,47 +11,53 @@
 {% endblock %}
 
 {% block body %}
-	{% for flash_error in app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %}
-	{% if app.user %}
-        <div class="ConnexionStatus">
-            Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
-        </div>
-    {% else %}
-        <h1>Inscription</h1>
-
-        {{ form_errors(registrationForm) }}
-
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.name, {
-                    label: 'Nom'
-                }) }}
-            {{ form_row(registrationForm.firstname, {
-                    label: 'Prénom'
-                }) }}
-            {{ form_row(registrationForm.phone, {
-                    label: 'Téléphone'
-                }) }}
-            {{ form_row(registrationForm.street, {
-                    label: 'Rue'
-                }) }}
-            {{ form_row(registrationForm.zip_code, {
-                    label: 'Code Postal '
-                }) }}
-            {{ form_row(registrationForm.city, {
-                    label: 'Ville'
-                }) }}
-            {{ form_row(registrationForm.plainPassword, {
-                    label: 'Mot de passe'
-                }) }}
-            {{ form_row(registrationForm.agreeTerms, {
-                    label: 'Accepter les conditions'
-                }) }}
-            <button type="submit" class="btn">S'inscrire</button>
-        {{ form_end(registrationForm) }}
-
-        <p class="GoToSignIn">Déjà inscrit ? <a href="{{ path('app_login') }}">Connexion</a></p>
-	{% endif %}
+	<div class="app_container app_padding">
+	    {% for flash_error in app.flashes('verify_email_error') %}
+    		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    	{% endfor %}
+    	{% if app.user %}
+            <div class="ConnexionStatus">
+                Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% else %}
+            <h1>Inscription</h1>
+    
+            {{ form_errors(registrationForm) }}
+    
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email) }}
+                <div class="flex">
+                    {{ form_row(registrationForm.name, {
+                            label: 'Nom'
+                        }) }}
+                    {{ form_row(registrationForm.firstname, {
+                            label: 'Prénom'
+                        }) }}
+                </div>
+                {{ form_row(registrationForm.phone, {
+                        label: 'Téléphone'
+                    }) }}
+                <div class="flex">
+                    {{ form_row(registrationForm.street, {
+                            label: 'Rue'
+                        }) }}
+                    {{ form_row(registrationForm.zip_code, {
+                            label: 'Code Postal '
+                        }) }}
+                </div>
+                {{ form_row(registrationForm.city, {
+                        label: 'Ville'
+                    }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                        label: 'Mot de passe'
+                    }) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                        label: 'Accepter les conditions'
+                    }) }}
+                <button type="submit" class="btn">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+    
+            <p class="GoToSignIn">Déjà inscrit ? <a href="{{ path('app_login') }}">Connexion</a></p>
+    	{% endif %}
+	</div>
 {% endblock %}

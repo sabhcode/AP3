@@ -15,24 +15,26 @@
 {% endblock %}
 
 {% block body %}
-    <form method="POST">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-        {% if app.user %}
-            <div class="ConnexionStatus">
-                Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
-            </div>
-        {% else %}
-            <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-            <label for="inputEmail">Email</label>
-            <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="username" required autofocus>
-            <label for="inputPassword">Mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-            <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}">
-            <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
-            <p class="GoToSignUp">Pas encore inscrit ? <a href="{{ path('app_register') }}">Inscription</a></p>
-        {% endif %}
-    </form>
+    <div class="app_container app_padding">
+        <form method="POST">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            {% if app.user %}
+                <div class="ConnexionStatus">
+                    Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% else %}
+                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+                <label for="inputEmail">Email</label>
+                <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="username" required autofocus>
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}">
+                <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
+                <p class="GoToSignUp">Pas encore inscrit ? <a href="{{ path('app_register') }}">Inscription</a></p>
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}
