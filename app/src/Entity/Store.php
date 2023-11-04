@@ -16,13 +16,10 @@ class Store
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $street = null;
-
-    #[ORM\Column(length: 10)]
-    private ?string $zip_code = null;
+    private ?string $city = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $city = null;
+    private ?string $country = null;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Stock::class)]
     private Collection $stocks;
@@ -41,30 +38,6 @@ class Store
         return $this->id;
     }
 
-    public function getStreet(): ?string
-    {
-        return $this->street;
-    }
-
-    public function setStreet(string $street): static
-    {
-        $this->street = $street;
-
-        return $this;
-    }
-
-    public function getZipCode(): ?string
-    {
-        return $this->zip_code;
-    }
-
-    public function setZipCode(string $zip_code): static
-    {
-        $this->zip_code = $zip_code;
-
-        return $this;
-    }
-
     public function getCity(): ?string
     {
         return $this->city;
@@ -73,6 +46,18 @@ class Store
     public function setCity(string $city): static
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }

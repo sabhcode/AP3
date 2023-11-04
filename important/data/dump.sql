@@ -36,16 +36,6 @@ INSERT INTO `credential` VALUES ('user1@gmail.com','$2y$15$S85HOVmwUxBM0OD4S.N6a
 UNLOCK TABLES;
 
 --
--- Dumping data for table `supplier`
---
-
-LOCK TABLES `supplier` WRITE;
-/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES ('OPE','Opecial'),('MUT','Mutal');
-/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `order`
 --
 
@@ -88,7 +78,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,3,'OPE','Pantalon de gardien de but enfant F 100 noir','Description Pantalon de gardien de but enfant F 100 noir',22.00,0,'pantalon-de-gardien-de-but-enfant-f-100-noir'),(2,5,'MUT','BALLE DE TENNIS TB160*60 JAUNE','Description BALLE DE TENNIS TB160*60 JAUNE',65.00,0,'balle-de-tennis-tb16060-jaune'),(3,3,'OPE','But de football SG 500 taille M Bleu orange','Ceci est la description du But de football SG 500 taille M Bleu orange',75.00,0,'but-de-football-sg-500-taille-m-bleu-orange'),(4,5,'OPE','SAC A DOS TENNIS - ARTENGO XL Pro 38L Noir Blanc Rouge','Description SAC A DOS TENNIS - ARTENGO XL Pro 38L Noir Blanc Rouge',80.00,0,'sac-a-dos-tennis-artengo-xl-pro-38l-noir-blanc-rouge'),(5,5,'OPE','Raquette de tennis bleu jaune','Description de Raquette de tennis bleu jaune',49.90,0,'raquette-de-tennis-bleu-jaune'),(6,3,'OPE','Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA','Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',220.00,0,'chaussures-de-football-future-ultimate-energy-fg-ag-puma'),(7,3,'MUT','Ballon de Football Molten UEFA Europa League Match Officiel 2023/2024','Description Ballon de Football Molten UEFA Europa League Match Officiel 2023/2024',140.00,0,'ballon-de-football-molten-uefa-europa-league-match-officiel-2023-2024'),(8,3,'MUT','Ballon Coupe Du Monde 2018','Ceci est la description du Ballon Coupe Du Monde 2018',49.99,0,'ballon-coupe-du-monde-2018'),(9,3,'MUT','MAILLOT DE FOOTBALL MANCHES COURTES VIRALTO SOLO BLANC & NOIR','Description MAILLOT DE FOOTBALL MANCHES COURTES VIRALTO SOLO BLANC & NOIR',12.00,0,'maillot-de-football-manches-courtes-viralto-solo-blanc-and-noir'),(10,3,'MUT','Veste de football imperméable T100 adulte Bleu','Description Veste de football imperméable T100 adulte Bleu',20.00,0,'veste-de-football-impermeable-t100-adulte-bleu'),(11,4,'MUT','Vélo VTT électrique semi-rigide 27,5 pouces - E-ST 500 NOIR','Ceci est la description du Vélo VTT électrique semi-rigide 27,5 pouces - E-ST 500 NOIR',1499.00,0,'velo-vtt-electrique-semi-rigide-27-5-pouces-e-st-500-noir'),(12,5,'MUT','BANDEAU DE SPORT ADIDAS NOIR','Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',13.00,0,'bandeau-de-sport-adidas-noir'),(13,1,'OPE','Ballon de Rugby Gilbert Officiel Match Sirius Equipe de France','Description Ballon de Rugby Gilbert Officiel Match Sirius Equipe de France',173.00,0,'ballon-de-rugby-gilbert-officiel-match-sirius-equipe-de-france'),(14,2,'OPE','Gants de boxe MMA AVEC POUCE NOIR','Description de Gants de boxe MMA AVEC POUCE NOIR',41.50,0,'gants-de-box-mma-avec-pouce-noir'),(15,3,'MUT','Filet Basic goal Taille S','Description Filet Basic goal Taille S',5.00,0,'filet-basic-goal-taille-s'),(16,4,'MUT','VÉLO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES','Ceci est la description du VÉLO VTT RANDONNEE ST 120 NOIR BLEU 27,5 pouces',339.00,0,'velo-vtt-randonnee-st-120-noir-bleu-27-5-pouces'),(17,4,'OPE','Kit de brosse pour entretien vélo x3','Description Kit de brosse pour entretien vélo x3',26.90,0,'kit-de-brosse-pour-entretien-velo-x3'),(18,3,'MUT','Hyperflex HN Gants De Gardien','Ceci est la description des Hyperflex HN Gants De Gardien',99.99,0,'hyperflex-hn-gants-de-gardien'),(19,4,'OPE','POMPE A PIED 500','Description POMPE A PIED 500',20.00,0,'pompe-a-pied-500'),(20,2,'MUT','Sac de frappe pied/poing 32 kg adulte','Ceci est la description du Sac de frappe pied/poing 32 kg adulte',119.99,0,'sac-de-frappe-pied-point-32-kg-adulte'),(21,1,'MUT','Maillot d\'entrainement de Rugby France -Tee-Shirt Training FFR Adulte Rouge','Description Maillot d\'entrainement de Rugby France -Tee-Shirt Training FFR Adulte Rouge',55.00,0,'maillot-d-entrainement-de-rugby-france-tee-shirt-training-ffr-adulte-rouge');
+INSERT INTO `product` VALUES (1,3,'OPE','Pantalon de gardien de but enfant F 100 noir','Description Pantalon de gardien de but enfant F 100 noir',22.00,0,'pantalon-de-gardien-de-but-enfant-f-100-noir'),(2,5,'MUT','BALLE DE TENNIS TB160*60 JAUNE','Description BALLE DE TENNIS TB160*60 JAUNE',65.00,0,'balle-de-tennis-tb16060-jaune'),(3,3,'OPE','But de football SG 500 taille M Bleu orange','Ceci est la description du But de football SG 500 taille M Bleu orange',75.00,0,'but-de-football-sg-500-taille-m-bleu-orange'),(4,5,'OPE','SAC A DOS TENNIS - ARTENGO XL Pro 38L Noir Blanc Rouge','Description SAC A DOS TENNIS - ARTENGO XL Pro 38L Noir Blanc Rouge',80.00,0,'sac-a-dos-tennis-artengo-xl-pro-38l-noir-blanc-rouge'),(5,5,'OPE','Raquette de tennis bleu jaune','Description de Raquette de tennis bleu jaune',49.90,0,'raquette-de-tennis-bleu-jaune'),(6,3,'OPE','Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA','Ceci est la description des Chaussures de football FUTURE ULTIMATE ENERGY FG/AG PUMA',220.00,0,'chaussures-de-football-future-ultimate-energy-fg-ag-puma'),(7,3,'MUT','Ballon de Football Molten UEFA Europa League Match Officiel 2023/2024','Description Ballon de Football Molten UEFA Europa League Match Officiel 2023/2024',140.00,0,'ballon-de-football-molten-uefa-europa-league-match-officiel-2023-2024'),(8,3,'MUT','Ballon Coupe Du Monde 2018','Ceci est la description du Ballon Coupe Du Monde 2018',49.99,0,'ballon-coupe-du-monde-2018'),(9,3,'MUT','MAILLOT DE FOOTBALL MANCHES COURTES VIRALTO SOLO BLANC/NOIR','Description MAILLOT DE FOOTBALL MANCHES COURTES VIRALTO SOLO BLANC/NOIR',12.00,0,'maillot-de-football-manches-courtes-viralto-solo-blanc-noir'),(10,3,'MUT','Veste de football imperméable T100 adulte Bleu','Description Veste de football imperméable T100 adulte Bleu',20.00,0,'veste-de-football-impermeable-t100-adulte-bleu'),(11,4,'MUT','Vélo VTT électrique semi-rigide 27,5 pouces - E-ST 500 NOIR','Ceci est la description du Vélo VTT électrique semi-rigide 27,5 pouces - E-ST 500 NOIR',1499.00,0,'velo-vtt-electrique-semi-rigide-27-5-pouces-e-st-500-noir'),(12,5,'MUT','BANDEAU DE SPORT ADIDAS NOIR','Ceci est la description du BANDEAU DE SPORT ADIDAS NOIR',13.00,0,'bandeau-de-sport-adidas-noir'),(13,1,'OPE','Ballon de Rugby Gilbert Officiel Match Sirius Equipe de France','Description Ballon de Rugby Gilbert Officiel Match Sirius Equipe de France',173.00,0,'ballon-de-rugby-gilbert-officiel-match-sirius-equipe-de-france'),(14,2,'OPE','Gants de boxe MMA AVEC POUCE NOIR','Description de Gants de boxe MMA AVEC POUCE NOIR',41.50,0,'gants-de-box-mma-avec-pouce-noir'),(15,3,'MUT','Filet Basic goal Taille S','Description Filet Basic goal Taille S',5.00,0,'filet-basic-goal-taille-s'),(16,4,'MUT','VÉLO VTT RANDONNEE ST 120 NOIR BLEU 27,5 POUCES','Ceci est la description du VÉLO VTT RANDONNEE ST 120 NOIR BLEU 27,5 pouces',339.00,0,'velo-vtt-randonnee-st-120-noir-bleu-27-5-pouces'),(17,4,'OPE','Kit de brosse pour entretien vélo x3','Description Kit de brosse pour entretien vélo x3',26.90,0,'kit-de-brosse-pour-entretien-velo-x3'),(18,3,'MUT','Hyperflex HN Gants De Gardien','Ceci est la description des Hyperflex HN Gants De Gardien',99.99,0,'hyperflex-hn-gants-de-gardien'),(19,4,'OPE','POMPE A PIED 500','Description POMPE A PIED 500',20.00,0,'pompe-a-pied-500'),(20,2,'MUT','Sac de frappe pied/poing 32 kg adulte','Ceci est la description du Sac de frappe pied/poing 32 kg adulte',119.99,0,'sac-de-frappe-pied-point-32-kg-adulte'),(21,1,'MUT','Maillot d\'entrainement de Rugby France -Tee-Shirt Training FFR Adulte Rouge','Description Maillot d\'entrainement de Rugby France -Tee-Shirt Training FFR Adulte Rouge',55.00,0,'maillot-d-entrainement-de-rugby-france-tee-shirt-training-ffr-adulte-rouge');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,23 +103,23 @@ INSERT INTO `stock` VALUES (1,2,41),(1,3,6),(1,5,5),(1,6,44),(1,7,50),(1,8,124),
 UNLOCK TABLES;
 
 --
--- Dumping data for table `warehouse`
---
-
-LOCK TABLES `warehouse` WRITE;
-/*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
-INSERT INTO `warehouse` VALUES (1,'Havre'),(2,'Marseille'),(3,'Lyon');
-/*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `store`
 --
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,'2 Alee Des Usines','59300','Valenciennes'),(2,'17 Vge Montana','59000','Lille'),(3,'33 Alee De La Moisson','57000','Metz'),(4,'26 Rue De Neudorf','62218','Lens'),(5,'34 Cami Sant Miquel De Forques','62000','Arras'),(6,'22 Rue Leon Blum','59140','Dunkerque');
+INSERT INTO `store` VALUES (1,2,'Toulouse','France'),(2,1,'Lille','France'),(3,3,'Metz','France'),(4,1,'Paris','France'),(5,1,'Arras','France'),(6,1,'Rennes','France'),(7,1,'Reims','France'),(8,1,'Amiens','France'),(9,1,'Tours','France'),(10,3,'Lyon','France'),(11,3,'Bordeaux','France'),(12,2,'Monte-Carlo','Monaco');
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `supplier`
+--
+
+LOCK TABLES `supplier` WRITE;
+/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` VALUES ('MUT','Mutal'),('OPE','Opecial');
+/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -141,6 +131,16 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` VALUES (1,'user1@gmail.com','[]','NomUser1','PrenomUser1','561-962-2040','2414 Pleasant Hill Road','33432','Boca Raton','1993-05-26',2,1),(2,'user2@gmail.com','[]','NomUser2','PrenomUser2',NULL,NULL,NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping data for table `warehouse`
+--
+
+LOCK TABLES `warehouse` WRITE;
+/*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
+INSERT INTO `warehouse` VALUES (1,'Le Havre'),(2,'Marseille'),(3,'Lyon');
+/*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -151,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-03 18:23:00
+-- Dump completed on 2023-11-04  7:41:01
