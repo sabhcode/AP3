@@ -113,6 +113,16 @@ INSERT INTO `stock` VALUES (1,2,41),(1,3,6),(1,5,5),(1,6,44),(1,7,50),(1,8,124),
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `warehouse`
+--
+
+LOCK TABLES `warehouse` WRITE;
+/*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
+INSERT INTO `warehouse` VALUES (1,'Havre'),(2,'Marseille'),(3,'Lyon');
+/*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping data for table `store`
 --
 

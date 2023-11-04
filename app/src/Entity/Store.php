@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Store
 {
     #[ORM\Id]
-    #[ORM\Column]
     #[ORM\GeneratedValue]
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
@@ -26,6 +26,10 @@ class Store
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Stock::class)]
     private Collection $stocks;
+
+    #[ORM\ManyToOne(inversedBy: 'stores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Warehouse $warehouse = null;
 
     public function __construct()
     {
@@ -99,6 +103,18 @@ class Store
                 $stock->setStore(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWarehouse(): ?Warehouse
+    {
+        return $this->warehouse;
+    }
+
+    public function setWarehouse(?Warehouse $warehouse): static
+    {
+        $this->warehouse = $warehouse;
 
         return $this;
     }

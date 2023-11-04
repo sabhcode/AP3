@@ -263,12 +263,16 @@ h1 {
     padding: 10px;
     width: 100%;
     border-radius: var(--radiusBorder);
-    transition: background-color .2s ease;
+    transition: .2s ease;
+    transition-property: transform, background-color;
 }
-
 .product_card-buttons button:hover,
 .product_card-buttons a:hover {
-    background-color: rgb(29, 29, 29);
+    background-color: #1d1d1d;
+}
+.product_card-buttons button:active,
+.product_card-buttons a:active {
+    transform: scale(.95);
 }
 
 @media (max-width: calc(240px * 3 + 2 * 20px + 5px * 2)) {
