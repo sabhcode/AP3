@@ -1,39 +1,34 @@
-CREDENTIAL: email [VARCHAR], password [CHAR(60)], last_connection [DATETIME]
 :
 :
-:
-:
+STORE: id [INTEGER], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)]
+SHIPS, 11 STORE, 0n WAREHOUSE
 :
 :
 
+SUPPLIER: id [INTEGER], code [CHAR(3)], name [VARCHAR]
+SELLS, 11 PRODUCT, 0n SUPPLIER
+STOCK_STORE, 1n PRODUCT, 1n STORE: quantity [INTEGER]
+WAREHOUSE: id [INTEGER], name [VARCHAR]
+CREDENTIAL: email [VARCHAR], password [CHAR(60)], last_connection [DATETIME]
 IDENTIFY_BY, 11 USER, 01 CREDENTIAL
+
+CATEGORY: id [INTEGER], name [VARCHAR], slug [VARCHAR(255)]
+BELONGS, 11 PRODUCT, 0n CATEGORY
+PRODUCT: id [INTEGER], name [VARCHAR], description [TEXT], unit_price [DECIMAL(10,2)], images [VARCHAR(255)], nb_sales [INTEGER], slug [VARCHAR(255)]
+STOCK_WEB, 1n PRODUCT, 1n WAREHOUSE: quantity [INTEGER]
+PLACE, 0n USER, 11 ORDER
+USER: id [INTEGER], name [VARCHAR(100)], firstname [VARCHAR(100)], phone [VARCHAR(20)], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)], birthday [DATE], nb_children [INTEGER]
+
+:
+:
+HAS, 0n PRODUCT, _11 PRODUCT_IMG
+ORDER_DETAIL, 1n PRODUCT, 1n ORDER: quantity [INTEGER], unit_price [DECIMAL(10,2)]
+ORDER: id [INTEGER], date_time [DATETIME], total_price_ht [DECIMAL(10,2)], tax [INTEGER], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)]
+:
+
+:
+:
+PRODUCT_IMG: name [VARCHAR]
 ORDER_STATE: id [INTEGER], name [VARCHAR]
 ORDER_RANK, 1n ORDER, 1n ORDER_STATE : date_time [DATETIME]
-PRODUCT_IMG: name [VARCHAR]
-HAS, 0n PRODUCT, _11 PRODUCT_IMG
-WAREHOUSE: id [INTEGER], name [VARCHAR]
-SHIPS, 11 STORE, 0n WAREHOUSE
-
-USER: id [INTEGER], name [VARCHAR(100)], firstname [VARCHAR(100)], phone [VARCHAR(20)], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)], birthday [DATE], nb_children [INTEGER]
-PLACE, 0n USER, 11 ORDER
-ORDER: id [INTEGER], date_time [DATETIME], total_price_ht [DECIMAL(10,2)], tax [INTEGER], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)]
-ORDER_DETAIL, 1n PRODUCT, 1n ORDER: quantity [INTEGER], unit_price [DECIMAL(10,2)]
-PRODUCT: id [INTEGER], name [VARCHAR], description [TEXT], unit_price [DECIMAL(10,2)], images [VARCHAR(255)], nb_sales [INTEGER], slug [VARCHAR(255)]
-STOCK, 1n PRODUCT, 1n STORE: quantity [INTEGER]
-STORE: id [INTEGER], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)]
-
-:
-:
-:
-BELONGS, 11 PRODUCT, 0n CATEGORY
-SELLS, 11 PRODUCT, 0n SUPPLIER
-:
-:
-
-:
-:
-:
-CATEGORY: id [INTEGER], name [VARCHAR], slug [VARCHAR(255)]
-SUPPLIER: id [INTEGER], code [CHAR(3)], name [VARCHAR]
-:
 :
