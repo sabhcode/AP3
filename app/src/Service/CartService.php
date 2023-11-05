@@ -115,7 +115,7 @@ class CartService {
 
     }
 
-    private function getCart(): object {
+    public function getCart(): object {
 
         $session = $this->requestStack->getSession();
 

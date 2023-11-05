@@ -121,6 +121,11 @@ input:checked + label {
     border-radius: var(--radiusBorder);
 }
 
+.delivery_choice-box > input,
+.delivery_choice-box > label {
+    cursor: pointer;
+}
+
 .delivery_choice-box {
     max-width: max-content;
     margin: 20px 0;

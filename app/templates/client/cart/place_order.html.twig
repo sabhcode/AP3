@@ -28,6 +28,7 @@
                         <label for="delivery-choice-store">En magasin</label>
                         <div class="form">
                             <select name="store">
+                                <option value="">Choisissez un magasin</option>
                                 {% for store in stores %}
                                     <option value="{{ store.getId() }}">{{ store.getCity() }}</option>
                                 {% endfor %}

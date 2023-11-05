@@ -52,6 +52,7 @@ class Order
     {
         $this->orderDetails = new ArrayCollection();
         $this->orderRanks = new ArrayCollection();
+        $this->date_time = new \DateTime();
     }
 
     public function getId(): ?int
