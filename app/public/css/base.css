@@ -246,11 +246,24 @@ h1 {
 }
 
 .product_card-stock {
+    margin-top: 10px;
+}
+
+.product_card-stock > p {
+    margin-bottom: 5px;
+}
+
+.product_card-stock .flex {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.product_card-stock .flex p {
+    display: flex;
+    gap: 5px;
     align-items: center;
-    margin-top: 10px;
+    font-size: .9em;
 }
 
 .product_card-buttons button,

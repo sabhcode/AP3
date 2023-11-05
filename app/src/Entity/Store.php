@@ -66,7 +66,7 @@ class Store
     /**
      * @return Collection<int, StockStore>
      */
-    public function getStocksStore(): Collection
+    public function getStockStores(): Collection
     {
         return $this->stockStores;
     }

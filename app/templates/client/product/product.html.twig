@@ -31,20 +31,34 @@
                 <button class="update-product-cart" data-productid="{{ product.getid() }}" data-action="add" title="Ajouter au panier">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
                 </button>
-                {% include 'client/product_card-stock.html.twig' with {'stock': product.getStocksStore()} %}
+                {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}
             </div>
+        </div>
+        <div class="stock-info">
+            <h3>Stock internet</h3>
+            <ul>
+                {% set quantityStockWebs = 0 %}
+                {% for stock in product.getStockWebs() %}
+                    {% set quantityStockWebs = quantityStockWebs + stock.getQuantity() %}
+                {% endfor %}
+                {% if quantityStockWebs > 0 %}
+                    <li>{{ quantityStockWebs }} unités restantes</li>
+                {% else %}
+                    <p>Stock internet épuisé pour ce produit</p>
+                {% endif %}
+            </ul>
         </div>
         <div class="stock-info">
             <h3>Nos magasins avec ce produit en stock</h3>
             <ul>
-                {% for stock in product.getStocksStore() %}
+                {% for stock in product.getStockStores() %}
                     {% if stock.getQuantity() > 10 %}
                         <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : En stock</li>
                     {% else %}
                         <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : {{ stock.getQuantity() }} unit.</li>
                     {% endif %}
                 {% else %}
-                    <p>Produit en rupture de stock</p>
+                    <p>Produit en rupture de stock dans nos magasins</p>
                 {% endfor %}
             </ul>
         </div>

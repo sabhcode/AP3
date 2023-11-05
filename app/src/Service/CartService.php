@@ -20,7 +20,7 @@ class CartService {
 
             $cart = $this->getCart();
 
-            if($action === "add" && !$product->getStocks()->isEmpty()) {
+            if($action === "add" && !$product->getStockWebs()->isEmpty()) {
 
                 if(property_exists($cart, $productId)) {
                     $cart->$productId++;
