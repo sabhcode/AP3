@@ -19,11 +19,42 @@
                 Modifier mon panier
             </a>
         </div>
-        <div class="flex">
+        <form class="flex" method="POST" action="{{ path('app_client_place_order') }}">
             <div class="order_details">
-                <form>
-                    <input type="text">
-                </form>
+                <div class="delivery_choice">
+                    <p class="delivery_choice-title">Choix de livraison</p>
+                    <div class="delivery_choice-box">
+                        <input type="radio" id="delivery-choice-store" name="delivery-choice">
+                        <label for="delivery-choice-store">En magasin</label>
+                        <div class="form">
+                            <select name="store">
+                                {% for store in stores %}
+                                    <option value="{{ store.getId() }}">{{ store.getCity() }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="delivery_choice-box">
+                        <input type="radio" id="delivery-choice-home" name="delivery-choice">
+                        <label for="delivery-choice-home">À domicile (+10 €)</label>
+                        <div class="form">
+                            <div class="flex">
+                                <div class="box-input">
+                                    <label for="street">Rue</label>
+                                    <input type="text" id="street" name="street">
+                                </div>
+                                <div class="box-input">
+                                    <label for="zip-code">Code postal</label>
+                                    <input type="text" id="zip-code" name="zip-code">
+                                </div>
+                            </div>
+                            <div class="box-input">
+                                <label for="city">Ville</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="priceAndConfirmOrder">
                 <div class="order_price">
@@ -35,11 +66,19 @@
                         Total de la commande<br>
                         <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
                     </p>
+                    <p>
+                        TVA<br>
+                        <span class="order_price_value">{{ TVA }} %</span>
+                    </p>
+                    <p>
+                        Total de la commande TTC<br>
+                        <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100)) }}</span>
+                    </p>
                 </div>
-                <form class="confirm-order" method="POST">
-                    <button name="place-order">Passer la commande</button>
-                </form>
+                <div class="confirm-order">
+                    <button name="confirm-order">Passer la commande</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 {% endblock %}

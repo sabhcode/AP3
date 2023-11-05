@@ -94,3 +94,43 @@
 .modify_cart a:hover svg {
     transform: translateX(-4px);
 }
+
+input:checked + label + .form {
+    display: block;
+}
+
+.delivery_choice-title {
+    margin-bottom: 10px;
+}
+
+.form {
+    display: none;
+}
+
+label {
+    display: inline-block;
+    font-weight: bold;
+}
+input:checked + label {
+    margin-bottom: 20px;
+}
+.box-input input {
+    margin: 12px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radiusBorder);
+}
+
+.delivery_choice-box {
+    max-width: max-content;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: var(--radiusBorder);
+}
+
+.box-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}

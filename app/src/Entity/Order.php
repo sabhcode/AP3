@@ -25,10 +25,10 @@ class Order
     #[ORM\Column]
     private ?float $tax = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $zip_code = null;
 
     #[ORM\Column(length: 100)]

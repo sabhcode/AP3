@@ -2,6 +2,7 @@
 
 namespace App\Controller\Client;
 
+use App\Repository\StoreRepository;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,21 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route(name: 'cart')]
-    public function viewCart(Request $request, CartService $cartService): Response
+    public function viewCart(Request $request, CartService $cartService, StoreRepository $storeRepository): Response
     {
-        if(is_null($request->get("place-order"))) {
-            
-            $products = $cartService->getProductsAndQuantity();
+        $placeOrder = $request->get("place-order");
 
-            return $this->render('client/cart/cart.html.twig', [
-                'products' => $products
+        if(isset($placeOrder)) {
+            
+            $stores = $storeRepository->findAll();
+
+            return $this->render('client/cart/place_order.html.twig', [
+                'stores' => $stores,
+                'TVA' => $this->getParameter('TVA')
             ]);
 
-        } else {
-
-            return $this->render('client/cart/place_order.html.twig');
-
         }
+
+        $products = $cartService->getProductsAndQuantity();
+
+        return $this->render('client/cart/cart.html.twig', [
+            'products' => $products
+        ]);
     }
 
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]
@@ -41,6 +47,12 @@ class CartController extends AbstractController
             return new JsonResponse($cartService->add($productId, $action));
 
         }
+        return $this->redirectToRoute("app_client_home");
+    }
+
+    #[Route('/passer-commande', name: 'place_order')]
+    public function placeOrder(Request $request, CartService $cartService): Response
+    {
         return $this->redirectToRoute("app_client_home");
     }
 }
