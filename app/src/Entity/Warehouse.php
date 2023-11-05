@@ -21,9 +21,13 @@ class Warehouse
     #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: Store::class)]
     private Collection $stores;
 
+    #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: StockWeb::class)]
+    private Collection $stockWebs;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
+        $this->stockWebs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Warehouse
             // set the owning side to null (unless already changed)
             if ($store->getWarehouse() === $this) {
                 $store->setWarehouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockWeb>
+     */
+    public function getStockWebs(): Collection
+    {
+        return $this->stockWebs;
+    }
+
+    public function addStockWeb(StockWeb $stockWeb): static
+    {
+        if (!$this->stockWebs->contains($stockWeb)) {
+            $this->stockWebs->add($stockWeb);
+            $stockWeb->setWarehouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockWeb(StockWeb $stockWeb): static
+    {
+        if ($this->stockWebs->removeElement($stockWeb)) {
+            // set the owning side to null (unless already changed)
+            if ($stockWeb->getWarehouse() === $this) {
+                $stockWeb->setWarehouse(null);
             }
         }
 

@@ -32,8 +32,8 @@ class Product
     #[ORM\Column(unique: true)]
     private ?string $slug = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Stock::class)]
-    private Collection $stocks;
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockStore::class)]
+    private Collection $stockStores;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
@@ -49,11 +49,15 @@ class Product
     #[ORM\JoinColumn(name: 'supplier_code', referencedColumnName: 'code', nullable: false)]
     private ?Supplier $supplier = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockWeb::class)]
+    private Collection $stockWebs;
+
     public function __construct()
     {
-        $this->stocks = new ArrayCollection();
+        $this->stockStores = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
         $this->productImgs = new ArrayCollection();
+        $this->stockWebs = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -98,29 +102,29 @@ class Product
     }
 
     /**
-     * @return Collection<int, Stock>
+     * @return Collection<int, StockStore>
      */
-    public function getStocks(): Collection
+    public function getStocksStore(): Collection
     {
-        return $this->stocks;
+        return $this->stockStores;
     }
 
-    public function addStock(Stock $stock): static
+    public function addStockStore(StockStore $stock_store): static
     {
-        if (!$this->stocks->contains($stock)) {
-            $this->stocks->add($stock);
-            $stock->setProduct($this);
+        if (!$this->stockStores->contains($stock_store)) {
+            $this->stockStores->add($stock_store);
+            $stock_store->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeStock(Stock $stock): static
+    public function removeStockStore(StockStore $stock_store): static
     {
-        if ($this->stocks->removeElement($stock)) {
+        if ($this->stockStores->removeElement($stock_store)) {
             // set the owning side to null (unless already changed)
-            if ($stock->getProduct() === $this) {
-                $stock->setProduct(null);
+            if ($stock_store->getProduct() === $this) {
+                $stock_store->setProduct(null);
             }
         }
 
@@ -216,6 +220,36 @@ class Product
     public function setSupplier(?Supplier $supplier): static
     {
         $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockWeb>
+     */
+    public function getStockWebs(): Collection
+    {
+        return $this->stockWebs;
+    }
+
+    public function addStockWeb(StockWeb $stockWeb): static
+    {
+        if (!$this->stockWebs->contains($stockWeb)) {
+            $this->stockWebs->add($stockWeb);
+            $stockWeb->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockWeb(StockWeb $stockWeb): static
+    {
+        if ($this->stockWebs->removeElement($stockWeb)) {
+            // set the owning side to null (unless already changed)
+            if ($stockWeb->getProduct() === $this) {
+                $stockWeb->setProduct(null);
+            }
+        }
 
         return $this;
     }

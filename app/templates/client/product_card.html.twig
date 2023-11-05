@@ -43,6 +43,6 @@
                 </button>
             {% endif %}
         </div>
-        {% include 'client/product_card-stock.html.twig' with {'stock': product.getStocks()} %}
+        {% include 'client/product_card-stock.html.twig' with {'stock': product.getStocksStore()} %}
     </div>
 {% endif %}

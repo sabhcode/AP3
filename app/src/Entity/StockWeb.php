@@ -2,33 +2,33 @@
 
 namespace App\Entity;
 
-use App\Repository\StockRepository;
+use App\Repository\StockWebRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: StockRepository::class)]
-class Stock
+#[ORM\Entity(repositoryClass: StockWebRepository::class)]
+class StockWeb
 {
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stocks')]
+    #[ORM\ManyToOne(inversedBy: 'stockWebs')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Store $store = null;
+    private ?Warehouse $warehouse = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stocks')]
+    #[ORM\ManyToOne(inversedBy: 'stockWebs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
-    public function getStore(): ?Store
+    public function getWarehouse(): ?Warehouse
     {
-        return $this->store;
+        return $this->warehouse;
     }
 
-    public function setStore(?Store $store): static
+    public function setWarehouse(?Warehouse $warehouse): static
     {
-        $this->store = $store;
+        $this->warehouse = $warehouse;
 
         return $this;
     }
@@ -50,7 +50,7 @@ class Stock
         return $this->quantity;
     }
 
-    public function setQuantity(?int $quantity): static
+    public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\StockStore;
 use App\Repository\StoreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,8 +22,8 @@ class Store
     #[ORM\Column(length: 100)]
     private ?string $country = null;
 
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Stock::class)]
-    private Collection $stocks;
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: StockStore::class)]
+    private Collection $stockStores;
 
     #[ORM\ManyToOne(inversedBy: 'stores')]
     #[ORM\JoinColumn(nullable: false)]
@@ -30,7 +31,7 @@ class Store
 
     public function __construct()
     {
-        $this->stocks = new ArrayCollection();
+        $this->stockStores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,26 +64,26 @@ class Store
     }
 
     /**
-     * @return Collection<int, Stock>
+     * @return Collection<int, StockStore>
      */
-    public function getStocks(): Collection
+    public function getStocksStore(): Collection
     {
-        return $this->stocks;
+        return $this->stockStores;
     }
 
-    public function addStock(Stock $stock): static
+    public function addStockStore(StockStore $stock): static
     {
-        if (!$this->stocks->contains($stock)) {
-            $this->stocks->add($stock);
+        if (!$this->stockStores->contains($stock)) {
+            $this->stockStores->add($stock);
             $stock->setStore($this);
         }
 
         return $this;
     }
 
-    public function removeStock(Stock $stock): static
+    public function removeStockStore(StockStore $stock): static
     {
-        if ($this->stocks->removeElement($stock)) {
+        if ($this->stockStores->removeElement($stock)) {
             // set the owning side to null (unless already changed)
             if ($stock->getStore() === $this) {
                 $stock->setStore(null);

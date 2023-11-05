@@ -35,7 +35,7 @@
                                 <div class="left-of-right">
                                     <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
                                     <p>{{ product.getNbSales() }} ventes</p>
-                                    {% include 'client/product_card-stock.html.twig' with {'stock': product.getStocks()} %}
+                                    {% include 'client/product_card-stock.html.twig' with {'stock': product.getStocksStore()} %}
                                 </div>
                                 <div class="right-of-right product_card-buttons">
                                     <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">

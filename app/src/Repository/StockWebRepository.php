@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Stock;
+use App\Entity\StockWeb;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Stock>
+ * @extends ServiceEntityRepository<StockWeb>
  *
- * @method Stock|null find($id, $lockMode = null, $lockVersion = null)
- * @method Stock|null findOneBy(array $criteria, array $orderBy = null)
- * @method Stock[]    findAll()
- * @method Stock[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method StockWeb|null find($id, $lockMode = null, $lockVersion = null)
+ * @method StockWeb|null findOneBy(array $criteria, array $orderBy = null)
+ * @method StockWeb[]    findAll()
+ * @method StockWeb[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StockRepository extends ServiceEntityRepository
+class StockWebRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Stock::class);
+        parent::__construct($registry, StockWeb::class);
     }
 
 //    /**
-//     * @return Stock[] Returns an array of Stock objects
+//     * @return StockWeb[] Returns an array of StockWeb objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class StockRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Stock
+//    public function findOneBySomeField($value): ?StockWeb
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')
