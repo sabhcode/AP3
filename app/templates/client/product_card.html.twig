@@ -1,5 +1,7 @@
 {% set hasProduct = product is defined %}
 {% set hasQuantity = quantity is defined %}
+{% set hasOrderDetail = orderDetail is defined %}
+{% set hasUnitPrice = unitPrice is defined %}
 
 {% if hasProduct %}
     {% set product_id = product.getId() %}
@@ -20,9 +22,13 @@
         {% if hasQuantity %}
             <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
         {% endif %}
-        <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * (quantity ?? 1)) }}</p>
+        {% if hasUnitPrice %}
+            <p class="product_card-price">{{ cart.formatPrice(unitPrice * (quantity ?? 1)) }}</p>
+        {% else %}
+            <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * (quantity ?? 1)) }}</p>
+        {% endif %}
         <div class="product_card-buttons">
-            {% if hasQuantity %}
+            {% if hasQuantity and not hasOrderDetail %}
                 <button class="update-product-cart product_card-button_add" href="{{ path('app_client_cart') }}" data-productid="{{ product_id }}" data-action="add" title="Ajouter">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--greenColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </button>
@@ -33,14 +39,16 @@
             <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
             </a>
-            {% if hasQuantity %}
-                <button class="update-product-cart product_card-button_delete" data-productid="{{ product_id }}" data-action="delete" title="Supprimer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-            {% else %}
-                <button class="update-product-cart product_card-button_basic" data-productid="{{ product_id }}" data-action="add" title="Ajouter au panier">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
-                </button>
+            {% if not hasOrderDetail %}
+                {% if hasQuantity %}
+                    <button class="update-product-cart product_card-button_delete" data-productid="{{ product_id }}" data-action="delete" title="Supprimer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                {% else %}
+                    <button class="update-product-cart product_card-button_basic" data-productid="{{ product_id }}" data-action="add" title="Ajouter au panier">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
+                    </button>
+                {% endif %}
             {% endif %}
         </div>
         {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}

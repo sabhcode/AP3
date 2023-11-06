@@ -3,6 +3,7 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 {% endblock %}
 
@@ -18,8 +19,15 @@
         <p>Prix HT {{ cart.formatPrice(order.getTotalPriceHT()) }}</p>
         <p>Prix Taxe {{ order.getTax() }} %</p>
         <p>Prix TTC {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
-        {% for product in order.getOrderDetail() %}
-            {% include 'client/product_card.html.twig' with {'product': product} %}
-        {% endfor %}
+        <div class="product_cards">
+            {% for detail in order.getOrderDetail() %}
+                {% include 'client/product_card.html.twig' with {
+                                                            'product': detail.getProduct(),
+                                                            'unitPrice': detail.getUnitPrice(),
+                                                            'quantity': detail.getQuantity(),
+                                                            'orderDetail': true
+                } %}
+            {% endfor %}
+        </div>
 	</div>
 {% endblock %}
