@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: all4sport
+-- Host: 127.0.0.1    Database: all4sport
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,15 +36,6 @@ INSERT INTO `credential` VALUES ('user1@gmail.com','$2y$15$S85HOVmwUxBM0OD4S.N6a
 UNLOCK TABLES;
 
 --
--- Dumping data for table `order`
---
-
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `order_detail`
 --
 
@@ -70,6 +61,15 @@ LOCK TABLES `order_state` WRITE;
 /*!40000 ALTER TABLE `order_state` DISABLE KEYS */;
 INSERT INTO `order_state` VALUES (1,'transmise'),(2,'validée'),(3,'en préparation'),(4,'expédiée'),(5,'livrée'),(6,'retirée');
 /*!40000 ALTER TABLE `order_state` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `order_user`
+--
+
+LOCK TABLES `order_user` WRITE;
+/*!40000 ALTER TABLE `order_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -108,7 +108,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `stock_web` WRITE;
 /*!40000 ALTER TABLE `stock_web` DISABLE KEYS */;
-INSERT INTO `stock_web` VALUES (1,1,88),(1,2,41),(1,3,6),(1,4,13),(1,5,5),(1,6,44),(1,7,50),(1,9,32),(1,10,2),(1,11,4),(1,13,3),(1,15,23),(1,17,32),(1,18,65),(1,19,12),(1,20,12),(2,1,142),(2,2,32),(2,3,7),(2,4,22),(2,6,41),(2,7,6),(2,9,26),(2,11,1),(2,12,121),(2,13,19),(2,14,16),(2,17,77),(2,18,42),(2,19,22),(2,20,9),(3,1,112),(3,2,56),(3,4,54),(3,5,56),(3,6,34),(3,7,77),(3,9,1),(3,11,3),(3,12,15),(3,17,9),(3,18,88),(3,20,5);
+INSERT INTO `stock_web` VALUES (1,1,88),(1,2,41),(1,3,6),(1,4,13),(1,5,5),(1,6,44),(1,7,50),(1,9,32),(1,10,2),(1,11,4),(1,13,1),(1,15,23),(1,17,32),(1,18,65),(1,19,12),(1,20,12),(2,1,142),(2,2,32),(2,3,7),(2,4,22),(2,6,41),(2,7,6),(2,9,26),(2,11,1),(2,12,121),(2,13,17),(2,14,16),(2,17,77),(2,18,42),(2,19,22),(2,20,9),(3,1,112),(3,2,56),(3,4,54),(3,5,56),(3,6,34),(3,7,77),(3,9,1),(3,11,3),(3,12,15),(3,17,9),(3,18,88),(3,20,5);
 /*!40000 ALTER TABLE `stock_web` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-05 14:52:03
+-- Dump completed on 2023-11-06 20:31:42
