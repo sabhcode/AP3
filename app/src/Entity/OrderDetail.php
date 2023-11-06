@@ -12,7 +12,7 @@ class OrderDetail
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: "orderDetails")]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Order $order = null;
+    private ?OrderUser $order = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: "orderDetails")]
@@ -25,7 +25,7 @@ class OrderDetail
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     private ?float $unit_price = null;
 
-    public function getOrder(): ?Order
+    public function getOrder(): ?OrderUser
     {
         return $this->order;
     }

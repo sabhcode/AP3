@@ -18,7 +18,7 @@ class OrderState
     #[ORM\Column]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: "orderState", targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: "orderState", targetEntity: OrderUser::class)]
     private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'orderState', targetEntity: OrderRank::class)]

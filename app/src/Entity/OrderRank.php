@@ -17,7 +17,7 @@ class OrderRank
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'orderRanks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Order $order = null;
+    private ?OrderUser $order = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
@@ -34,12 +34,12 @@ class OrderRank
         return $this;
     }
 
-    public function getOrder(): ?Order
+    public function getOrder(): ?OrderUser
     {
         return $this->order;
     }
 
-    public function setOrder(?Order $order): static
+    public function setOrder(?OrderUser $order): static
     {
         $this->order = $order;
 

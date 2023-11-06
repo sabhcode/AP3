@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Repository\OrderUserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderRepository::class)]
-class Order
+#[ORM\Entity(repositoryClass: OrderUserRepository::class)]
+class OrderUser
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

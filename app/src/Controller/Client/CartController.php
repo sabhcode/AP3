@@ -3,6 +3,7 @@
 namespace App\Controller\Client;
 
 use App\Entity\OrderDetail;
+use App\Entity\OrderUser;
 use DateTime;
 use App\Entity\Order;
 use App\Service\CartService;
@@ -74,7 +75,7 @@ class CartController extends AbstractController
 
         if(isset($store, $street, $zipCode, $city)) {
 
-            $order = new Order();
+            $order = new OrderUser();
             $orderState = $orderStateRepository->find(1);
 
             $order->setOrderState($orderState);
