@@ -4,8 +4,10 @@ namespace App\Controller\Client;
 
 use App\Entity\OrderDetail;
 use App\Entity\OrderUser;
+use App\Entity\StockWeb;
 use App\Repository\OrderStateRepository;
 use App\Repository\ProductRepository;
+use App\Repository\StockWebRepository;
 use App\Repository\StoreRepository;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -64,7 +66,7 @@ class CartController extends AbstractController
 
     #[Route('/passer-commande', name: 'place_order')]
     #[IsGranted("ROLE_USER")]
-    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user): Response
+    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockWebRepository $stockWebRepository): Response
     {
         $store = trim($request->get('store'));
         $street = trim($request->get('street'));
@@ -113,15 +115,43 @@ class CartController extends AbstractController
 
                         $product = $productRepository->find($productId);
 
-                        if(!is_null($product) && !$product->getStockWebs()->isEmpty()) {
+                        if(!is_null($product)) {
 
-                            $orderDetail = new OrderDetail();
-                            $orderDetail->setOrder($order);
-                            $orderDetail->setProduct($product);
-                            $orderDetail->setQuantity($quantity);
-                            $orderDetail->setUnitPrice($product->getUnitPrice());
+                            $stockWebs = $stockWebRepository->findBy(["product" => $productId]);
+                            $quantityAvailable = 0;
 
-                            $entityManager->persist($orderDetail);
+                            foreach($stockWebs as $stockWeb) {
+                                $quantityAvailable += $stockWeb->getQuantity();
+                            }
+
+                            if($quantityAvailable > $quantity) {
+
+                                $orderDetail = new OrderDetail();
+                                $orderDetail->setOrder($order);
+                                $orderDetail->setProduct($product);
+                                $orderDetail->setQuantity($quantity);
+                                $orderDetail->setUnitPrice($product->getUnitPrice());
+
+                                $entityManager->persist($orderDetail);
+
+                                while($quantity > 0) {
+
+                                    foreach($stockWebs as $stockWeb) {
+
+                                        if($stockWeb->getQuantity() > 0) {
+
+                                            $stockWeb->setQuantity($stockWeb->getQuantity() - 1);
+                                            $quantity--;
+
+                                            $entityManager->persist($stockWeb);
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
 
                         }
 
