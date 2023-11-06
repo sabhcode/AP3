@@ -1,1 +1,31 @@
+.box_container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0;
+}
 
+.box_title {
+    margin-bottom: 10px;
+}
+
+.flex {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.order_card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--primaryColor);
+    max-width: var(--widthProductCard);
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: var(--radiusBorder);
+    transition: border-color .2s ease;
+}
+.order_card:hover {
+    border-color: #a3a3a3;
+}

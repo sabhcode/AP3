@@ -5,20 +5,20 @@
     <p>Stock</p>
     <div class="flex">
         <p>
-            Internet
             {% if stock_web is not empty %}
                 {{ svgCheck|raw }}
             {% else %}
                 {{ svgNotCheck|raw }}
             {% endif %}
+            Internet
         </p>
         <p>
-            Magasin
             {% if stock_store is not empty %}
                 {{ svgCheck|raw }}
             {% else %}
                 {{ svgNotCheck|raw }}
             {% endif %}
+            Magasin
         </p>
     </div>
 </div>

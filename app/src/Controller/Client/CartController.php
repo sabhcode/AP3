@@ -25,10 +25,10 @@ class CartController extends AbstractController
     {
         $placeOrder = $request->get("place-order");
 
-        if(isset($placeOrder)) {
+        if(isset($placeOrder) && $cartService->getNbProducts() > 0) {
 
             if($this->getUser()) {
-            
+
                 $stores = $storeRepository->findAll();
 
                 return $this->render('client/cart/place_order.html.twig', [
@@ -59,7 +59,7 @@ class CartController extends AbstractController
             return new JsonResponse($cartService->add($productId, $action));
 
         }
-        return $this->redirectToRoute("app_client_home");
+        return $this->redirectToRoute("app_client_cart");
     }
 
     #[Route('/passer-commande', name: 'place_order')]
@@ -71,58 +71,74 @@ class CartController extends AbstractController
         $zipCode = trim($request->get('zip-code'));
         $city = trim($request->get('city'));
 
-        if(isset($store, $street, $zipCode, $city)) {
+        if($cartService->getNbProducts() > 0) {
 
-            $order = new OrderUser();
-            $orderState = $orderStateRepository->find(1);
+            if(isset($store, $street, $zipCode, $city)) {
 
-            $order->setOrderState($orderState);
-            $order->setUser($user);
-            $order->setTotalPriceHT($cartService->getOrderPriceHT());
-            $order->setTax($this->getParameter('TVA'));
+                $order = new OrderUser();
+                $orderState = $orderStateRepository->find(1);
 
-            if($store && (!$street && !$zipCode && !$city)) {
+                $order->setOrderState($orderState);
+                $order->setUser($user);
+                $order->setTotalPriceHT($cartService->getOrderPriceHT());
+                $order->setTax($this->getParameter('TVA'));
+                $order->setProductQuantity($cartService->getNbProducts());
 
-                $_store = $storeRepository->find($store);
+                if($store && (!$street && !$zipCode && !$city)) {
 
-                $order->setCity($_store->getCity());
+                    $_store = $storeRepository->find($store);
 
-            }
-
-            if(!$store && ($street && $zipCode && $city)) {
-
-                $order->setStreet($street);
-                $order->setZipCode($zipCode);
-                $order->setCity($city);
-
-            }
-
-            $entityManager->persist($order);
-
-            $cart = $cartService->getCart();
-
-            foreach ($cart as $productId => $quantity) {
-
-                $product = $productRepository->find($productId);
-
-                if(!is_null($product) && !$product->getStockWebs()->isEmpty()) {
-
-                    $orderDetail = new OrderDetail();
-                    $orderDetail->setOrder($order);
-                    $orderDetail->setProduct($product);
-                    $orderDetail->setQuantity($quantity);
-                    $orderDetail->setUnitPrice($product->getUnitPrice());
-
-                    $entityManager->persist($orderDetail);
+                    $order->setCity($_store->getCity());
 
                 }
 
+                if(!$store && ($street && $zipCode && $city)) {
+
+                    $order->setTotalPriceHT($order->getTotalPriceHT() + 10);
+                    $order->setStreet($street);
+                    $order->setZipCode($zipCode);
+                    $order->setCity($city);
+
+                }
+
+                $entityManager->persist($order);
+
+                try {
+                    
+                    $entityManager->persist($order);
+
+                    $cart = $cartService->getCart();
+
+                    foreach ($cart as $productId => $quantity) {
+
+                        $product = $productRepository->find($productId);
+
+                        if(!is_null($product) && !$product->getStockWebs()->isEmpty()) {
+
+                            $orderDetail = new OrderDetail();
+                            $orderDetail->setOrder($order);
+                            $orderDetail->setProduct($product);
+                            $orderDetail->setQuantity($quantity);
+                            $orderDetail->setUnitPrice($product->getUnitPrice());
+
+                            $entityManager->persist($orderDetail);
+
+                        }
+
+                    }
+
+                    $entityManager->flush();
+                    $cartService->setCart((object) []);
+
+                    return $this->render("client/cart/confirm_order.html.twig", [
+                        'order' => $order
+                    ]);
+
+                } catch (\Exception $e) {}
+
             }
 
-            $entityManager->flush();
-            $cartService->setCart((object) []);
-
         }
-        return $this->redirectToRoute("app_client_home");
+        return $this->redirectToRoute("app_client_cart");
     }
 }

@@ -136,11 +136,21 @@ class CartService {
         $price = strval($price);
 
         if(!str_contains($price, ".")) {
-            $price .= ",00";
+            $price .= ".00";
         }
 
         if(preg_match("/[.][0-9]$/", $price)) {
             $price .= "0";
+        }
+
+        $arrayPrice = explode(".", $price);
+
+        if(strlen($arrayPrice[1]) > 2) {
+
+            $arrayPrice[1] = substr($arrayPrice[1], 0, 2);
+
+            $price = join(".", $arrayPrice);
+
         }
 
         return str_replace(".", ",", $price) . " €";

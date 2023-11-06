@@ -25,6 +25,9 @@ class OrderUser
     #[ORM\Column]
     private ?float $tax = null;
 
+    #[ORM\Column]
+    private ?int $product_quantity = null;
+
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;
 
@@ -52,7 +55,10 @@ class OrderUser
     {
         $this->orderDetails = new ArrayCollection();
         $this->orderRanks = new ArrayCollection();
-        $this->date_time = new \DateTime();
+        
+        $datetime = new \DateTime();
+        $timezone = new \DateTimeZone('Europe/Paris');
+        $this->date_time = $datetime->setTimezone($timezone);
     }
 
     public function getId(): ?int
@@ -190,6 +196,18 @@ class OrderUser
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProductQuantity(): ?int
+    {
+        return $this->product_quantity;
+    }
+
+    public function setProductQuantity(int $product_quantity): static
+    {
+        $this->product_quantity = $product_quantity;
 
         return $this;
     }

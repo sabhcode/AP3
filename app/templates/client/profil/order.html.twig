@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+{% endblock %}
+
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
+{% block body %}
+	<div class="app_container app_padding">
+		<h1>Commande num. {{ order.getId() }}</h1>
+        <p>Passée le {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
+        <p>{{ order.getProductQuantity() }} articles</p>
+        <p>Prix HT {{ cart.formatPrice(order.getTotalPriceHT()) }}</p>
+        <p>Prix Taxe {{ order.getTax() }} %</p>
+        <p>Prix TTC {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
+        {% for product in order.getOrderDetail() %}
+            {% include 'client/product_card.html.twig' with {'product': product} %}
+        {% endfor %}
+	</div>
+{% endblock %}

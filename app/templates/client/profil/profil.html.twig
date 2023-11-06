@@ -11,17 +11,33 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mon profil</h1>
-	<div class="app_container">
+	<div class="app_container app_padding">
+		<h1>Mon profil</h1>
 		<a href="{{ path('app_logout') }}">Déconnexion</a>
-		<h3>Bonjour, {{ app.user.firstname}} {{ app.user.getName() }}</h3>
-		<p>Votre email : {{ app.user.email}}</p>
-		<p>Votre numéro de téléphone : {{ app.user.phone}}</p>
-		<p>Votre adresse : {{ app.user.street}}, {{app.user.zipcode}} {{app.user.city}}</p>
-		{% if app.user.getOrders() is not empty %}
-			<h3>Vos commandes</h3>
-		{% else %}
-			<h3>Vous n'avez pas encore passé de commande sur notre site</h3>
-		{% endif %}
+		<div class="box_container">
+			<div>
+				<h3 class="box_title">Bonjour, {{ app.user.getFirstName() }} {{ app.user.getName() }}</h3>
+				<p>Email : {{ app.user.getEmail() }}</p>
+				<p>Téléphone : {{ app.user.getPhone() }}</p>
+				<p>Adresse : {{ app.user.getStreet() }}, {{app.user.getZipCode() }} {{app.user.getCity() }}</p>
+			</div>
+			<div>
+				<h3 class="box_title">Vos commandes</h3>
+				{% if app.user.getOrders() is not empty %}
+					<div class="flex">
+						{% for order in app.user.getOrders() %}
+							<a class="order_card" href="{{ path('app_client_my_order', {'id': order.getId() }) }}">
+								<p>Commande num. {{ order.getId() }}</p>
+								<p>Passée le {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
+								<p>{{ order.getProductQuantity() }} articles</p>
+								<p>Prix TTC {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
+							</a>
+						{% endfor %}
+					</div>
+				{% else %}
+					<p>Vous n'avez pas encore passé de commande sur notre site</p>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 {% endblock %}
