@@ -4,20 +4,18 @@ namespace App\Controller\Client;
 
 use App\Entity\OrderDetail;
 use App\Entity\OrderUser;
-use DateTime;
-use App\Entity\Order;
-use App\Service\CartService;
-use App\Repository\StoreRepository;
 use App\Repository\OrderStateRepository;
 use App\Repository\ProductRepository;
+use App\Repository\StoreRepository;
+use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/mon-panier', name: 'app_client_', host: '{host}', defaults: ['host' => '%app.host.client%'], requirements: ['host' => '%app.host.client%'])]
 class CartController extends AbstractController
@@ -101,27 +99,28 @@ class CartController extends AbstractController
 
             $entityManager->persist($order);
 
-            // $cart = $cartService->getCart();
+            $cart = $cartService->getCart();
 
-            // foreach ($cart as $productId => $quantity) {
+            foreach ($cart as $productId => $quantity) {
 
-            //     $product = $productRepository->find($productId);
+                $product = $productRepository->find($productId);
 
-            //     if(!is_null($product) && !$product->getStockWebs()->isEmpty()) {
+                if(!is_null($product) && !$product->getStockWebs()->isEmpty()) {
 
-            //         $orderDetail = new OrderDetail();
-            //         $orderDetail->setOrder($order);
-            //         $orderDetail->setProduct($product);
-            //         $orderDetail->setQuantity($quantity);
-            //         $orderDetail->setUnitPrice($product->getUnitPrice());
+                    $orderDetail = new OrderDetail();
+                    $orderDetail->setOrder($order);
+                    $orderDetail->setProduct($product);
+                    $orderDetail->setQuantity($quantity);
+                    $orderDetail->setUnitPrice($product->getUnitPrice());
 
-            //         $entityManager->persist($orderDetail);
+                    $entityManager->persist($orderDetail);
 
-            //     }
+                }
 
-            // }
+            }
 
             $entityManager->flush();
+            $cartService->setCart((object) []);
 
         }
         return $this->redirectToRoute("app_client_home");

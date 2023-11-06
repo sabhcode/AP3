@@ -30,7 +30,7 @@ class OrderDetail
         return $this->order;
     }
 
-    public function setOrder(Order $order): static
+    public function setOrder(OrderUser $order): static
     {
         $this->order = $order;
 

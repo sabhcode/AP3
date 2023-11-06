@@ -123,7 +123,7 @@ class CartService {
 
     }
 
-    private function setCart(object $cart): void {
+    public function setCart(object $cart): void {
 
         $session = $this->requestStack->getSession();
 
