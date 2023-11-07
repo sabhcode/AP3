@@ -48,6 +48,10 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        if(in_array("ROLE_LOGISTICS", $token->getUser()->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_logistics_dashboard'));
+        }
+
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_client_home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
