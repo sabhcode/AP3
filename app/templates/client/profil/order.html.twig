@@ -22,7 +22,7 @@
                 <p><span>Livraison à domicile</span> {{ 10|format_currency('EUR') }}</p>
             {% endif %}
             <p><span>Prix HT</span> {{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
-            <p><span>Prix Taxe</span> {{ order.getTax() }} %</p>
+            <p><span>Taxe</span> {{ order.getTax() }} %</p>
             <p><span>Prix TTC</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
             <p><span>Adresse de livraison</span> {{ order.getStreet() is not empty ? order.getStreet() ~ "," }} {{ order.getZipCode() }} {{ order.getCity() }}</p>
             <p><span>État de votre commande</span></p>
