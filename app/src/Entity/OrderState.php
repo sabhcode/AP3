@@ -18,15 +18,11 @@ class OrderState
     #[ORM\Column]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: "orderState", targetEntity: OrderUser::class)]
-    private Collection $orders;
-
     #[ORM\OneToMany(mappedBy: 'orderState', targetEntity: OrderRank::class)]
     private Collection $orderRanks;
 
     public function __construct()
     {
-        $this->orders = new ArrayCollection();
         $this->orderRanks = new ArrayCollection();
     }
 
@@ -45,14 +41,6 @@ class OrderState
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
     }
 
     /**
