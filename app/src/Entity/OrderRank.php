@@ -22,6 +22,13 @@ class OrderRank
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
 
+    public function __construct()
+    {
+        $datetime = new \DateTime();
+        $timezone = new \DateTimeZone('Europe/Paris');
+        $this->date_time = $datetime->setTimezone($timezone);
+    }
+
     public function getOrderState(): ?OrderState
     {
         return $this->orderState;

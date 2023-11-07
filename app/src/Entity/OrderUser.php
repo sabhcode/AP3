@@ -37,10 +37,6 @@ class OrderUser
     #[ORM\Column(length: 100)]
     private ?string $city = null;
 
-    #[ORM\ManyToOne(inversedBy: "orders")]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?OrderState $orderState = null;
-
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -144,18 +140,6 @@ class OrderUser
     public function getOrderDetail(): Collection
     {
         return $this->orderDetails;
-    }
-
-    public function getOrderState(): ?OrderState
-    {
-        return $this->orderState;
-    }
-
-    public function setOrderState(?OrderState $orderState): static
-    {
-        $this->orderState = $orderState;
-
-        return $this;
     }
 
     /**

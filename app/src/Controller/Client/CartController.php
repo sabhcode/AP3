@@ -3,6 +3,7 @@
 namespace App\Controller\Client;
 
 use App\Entity\OrderDetail;
+use App\Entity\OrderRank;
 use App\Entity\OrderUser;
 use App\Entity\StockWeb;
 use App\Repository\OrderStateRepository;
@@ -79,8 +80,10 @@ class CartController extends AbstractController
 
                 $order = new OrderUser();
                 $orderState = $orderStateRepository->find(1);
+                $orderRank = new OrderRank();
+                $orderRank->setOrder($order);
+                $orderRank->setOrderState($orderState);
 
-                $order->setOrderState($orderState);
                 $order->setUser($user);
                 $order->setTotalPriceHT($cartService->getOrderPriceHT());
                 $order->setTax($this->getParameter('TVA'));
@@ -103,11 +106,10 @@ class CartController extends AbstractController
 
                 }
 
-                $entityManager->persist($order);
-
                 try {
                     
                     $entityManager->persist($order);
+                    $entityManager->persist($orderRank);
 
                     $cart = $cartService->getCart();
 
