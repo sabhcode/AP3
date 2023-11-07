@@ -13,13 +13,12 @@
 {% block body %}
 	<div class="app_container app_padding">
 		<h1>Mon profil</h1>
-		<a href="{{ path('app_logout') }}">Déconnexion</a>
 		<div class="box_container">
-			<div>
-				<h3 class="box_title">Bonjour, {{ app.user.getFirstName() }} {{ app.user.getName() }}</h3>
-				<p>Email : {{ app.user.getEmail() }}</p>
-				<p>Téléphone : {{ app.user.getPhone() }}</p>
-				<p>Adresse : {{ app.user.getStreet() }}, {{app.user.getZipCode() }} {{app.user.getCity() }}</p>
+			<div class="user-info">
+				<h3 class="box_title"><span>Bonjour,</span> {{ app.user.getFirstName() }} {{ app.user.getName() }}</h3>
+				<p><span>Email :</span> {{ app.user.getEmail() }}</p>
+				<p><span>Téléphone :</span> {{ app.user.getPhone() }}</p>
+				<p><span>Adresse :</span> {{ app.user.getStreet() }}, {{app.user.getZipCode() }} {{app.user.getCity() }}</p>
 			</div>
 			<div>
 				<h3 class="box_title">Vos commandes</h3>
@@ -28,9 +27,9 @@
 						{% for order in app.user.getOrders() %}
 							<a class="order_card" href="{{ path('app_client_my_order', {'id': order.getId() }) }}">
 								<p>Commande num. {{ order.getId() }}</p>
-								<p>Passée le {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
-								<p>{{ order.getProductQuantity() }} articles</p>
-								<p>Prix TTC {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
+								<p><span>Passée le :</span> {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
+								<p><span>{{ order.getProductQuantity() }}</span> articles</p>
+								<p><span>Prix TTC :</span> {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
 							</a>
 						{% endfor %}
 					</div>
@@ -39,5 +38,8 @@
 				{% endif %}
 			</div>
 		</div>
+		<a class="logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
 	</div>
+
+	
 {% endblock %}

@@ -1,3 +1,9 @@
+.app_container {
+
+    margin-bottom: 50px;
+
+}
+
 .box_container {
     display: flex;
     flex-direction: column;
@@ -7,6 +13,18 @@
 
 .box_title {
     margin-bottom: 10px;
+    font-size: 2em;
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+    background-color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+    width: max-content;
+}
+
+.box_title span {
+    color: #ff8800;
 }
 
 .flex {
@@ -26,6 +44,69 @@
     border-radius: var(--radiusBorder);
     transition: border-color .2s ease;
 }
+
 .order_card:hover {
     border-color: #a3a3a3;
+}
+
+.order_card p:nth-child(1) {
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+    background-color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+}
+
+.order_card p:nth-child(4) {
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+    background-color: #ff8800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+}
+
+.order_card p span {
+    padding: 3px;
+    border-radius: var(--radiusBorder);
+    border: 1px solid #ddd;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.logout-button {
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+    background-color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+
+}
+
+.logout-button:hover {
+    background-color: #ff8800;
+    transition-duration: 0.2s;
+}
+
+.user-info p {
+    margin-bottom: 25px;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 1px #ddd solid;
+    width: max-content;
+    padding: 5px;
+    border-radius: var(--radiusBorder);
+}
+
+.user-info p span {
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+    background-color: #ff8800;
+    box-shadow: 0 2px 4px rgba(201, 167, 167, 0.1);
+    color: white;
+    font-weight: bold;
+
 }

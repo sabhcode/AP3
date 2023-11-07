@@ -1,0 +1,29 @@
+h1 {
+    background-color: black;
+    width: 100%;
+    padding: 15px;
+    color: white;
+
+}
+
+.order-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: var(--radiusBorder);
+}
+
+.order-info p {
+    border: 1px solid #ddd;
+    border-radius: var(--radiusBorder);
+    padding: 5px;
+    margin-bottom: 5px;
+
+}
+
+.order-info p span {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: var(--radiusBorder);
+    font-weight: bold;
+}
