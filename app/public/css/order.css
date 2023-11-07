@@ -1,13 +1,12 @@
 h1 {
-    background-color: black;
-    width: 100%;
-    padding: 15px;
+    background-color: var(--primaryColor);
+    padding: 10px;
     color: white;
-
 }
 
 .order-info {
     border: 1px solid #ddd;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: var(--radiusBorder);
 }
@@ -21,9 +20,14 @@ h1 {
 }
 
 .order-info p span {
-    background-color: black;
+    background-color: var(--primaryColor);
     color: white;
+    margin-right: 5px;
     padding: 5px;
     border-radius: var(--radiusBorder);
     font-weight: bold;
+}
+
+.order_states {
+    margin-left: 20px;
 }

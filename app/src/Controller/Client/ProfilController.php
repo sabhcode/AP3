@@ -2,8 +2,10 @@
 
 namespace App\Controller\Client;
 
+use App\Entity\OrderState;
 use App\Entity\OrderUser;
 use App\Entity\User;
+use App\Repository\OrderStateRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,13 +23,16 @@ class ProfilController extends AbstractController
         return $this->render('client/profil/profil.html.twig');
     }
     
-    #[Route("/order/{id}", name: 'my_order')]
-    public function getOrder(OrderUser $order, #[CurrentUser] $user): Response
+    #[Route("/commande/{id}", name: 'my_order')]
+    public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository, #[CurrentUser] $user): Response
     {
         if($order->getUser()->getId() === $user->getId()) {
 
+            $orderStates = $orderStateRepository->findAll();
+
             return $this->render('client/profil/order.html.twig', [
-                'order' => $order
+                'order' => $order,
+                'orderStates' => $orderStates
             ]);
 
         }

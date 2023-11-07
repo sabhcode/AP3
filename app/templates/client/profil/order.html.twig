@@ -16,15 +16,25 @@
     <h1>Commande num. {{ order.getId() }}</h1>
 
 	<div class="app_container app_padding">
-        <div class="order-info">		
-            <p><span>Passée le : </span>{{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
+        <div class="order-info">
             <p><span>{{ order.getProductQuantity() }}</span> articles</p>
-            <p><span>Prix HT : </span>{{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
-            <p><span>Prix Taxe : </span>{{ order.getTax() }} %</p>
-            <p><span>Prix TTC : </span>{{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
-            {% for rank in order.getOrderRanks() %}
-                <p><span>{{ rank.getOrderState().getName()|title }} le : </span>{{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
-            {% endfor %}
+            {% if order.getStreet() is not empty and order.getZipCode() is not empty %}
+                <p><span>Livraison à domicile</span> {{ 10|format_currency('EUR') }}</p>
+            {% endif %}
+            <p><span>Prix HT</span> {{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
+            <p><span>Prix Taxe</span> {{ order.getTax() }} %</p>
+            <p><span>Prix TTC</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
+            <p><span>Adresse de livraison</span> {{ order.getStreet() is not empty ? order.getStreet() ~ "," }} {{ order.getZipCode() }} {{ order.getCity() }}</p>
+            <p><span>État de votre commande</span></p>
+            <div class="order_states">
+                {% for orderState in orderStates %}
+                    {% if order.getOrderRanks()[loop.index0].getOrderState().getId() is defined %}
+                        <p><span>- {{ orderState.getName() }}</span> le {{ order.getOrderRanks()[loop.index0].getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
+                    {% else %}
+                        <p><span>- {{ orderState.getName() }}</span> en attente...</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div class="product_cards">
             {% for detail in order.getOrderDetail() %}

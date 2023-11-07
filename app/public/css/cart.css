@@ -139,3 +139,9 @@ input:checked + label {
     flex-direction: column;
     margin-bottom: 10px;
 }
+
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radiusBorder);
+}

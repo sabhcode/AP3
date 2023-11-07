@@ -59,7 +59,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `order_state` WRITE;
 /*!40000 ALTER TABLE `order_state` DISABLE KEYS */;
-INSERT INTO `order_state` VALUES (1,'transmise'),(2,'validée'),(3,'en préparation'),(4,'expédiée'),(5,'livrée'),(6,'retirée');
+INSERT INTO `order_state` VALUES (1,'Transmise'),(2,'Validée'),(3,'En préparation'),(4,'Expédiée'),(5,'Livrée'),(6,'Retirée');
 /*!40000 ALTER TABLE `order_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
