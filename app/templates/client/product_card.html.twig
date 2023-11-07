@@ -9,7 +9,9 @@
     <div id="{{ product_id }}"  class="product_card">
         <div class="product_card-images">
             {% set images = product.getProductImgs() %}
-            <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product_id ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
+            <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
+                <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product_id ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
+            </a>
             <div class="product_card-images_list">
                 {% for image in images %}
                     <div class="product_card-image{{ loop.first ? ' selected' }}">
@@ -18,7 +20,7 @@
                 {% endfor %}
             </div>
         </div>
-        <p class="product_card-name">{{ product.getName() }}</p>
+        <a class="product_card-name" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">{{ product.getName() }}</a>
         {% if hasQuantity %}
             <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
         {% endif %}
