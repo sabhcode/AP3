@@ -106,8 +106,12 @@ h1 {
     overflow: hidden;
     transition: border-color .2s ease;
 }
-.product_card:hover {
+.product_card:hover,
+.product_card.loading {
     border-color: var(--secondColor);
+}
+.product_card.loading {
+    border-style: dashed;
 }
 .product_card::after {
     content: "";

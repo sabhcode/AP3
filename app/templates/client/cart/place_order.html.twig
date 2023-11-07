@@ -63,17 +63,21 @@
                         Nombre d'articles<br>
                         <span class="nb_products_value">{{ cart.getNbProducts() }}</span>
                     </p>
+                    <p id="delivery-choice-home-value" hidden>
+                        Livraison à domicile<br>
+                        <span>{{ 10|format_currency('EUR') }}</span>
+                    </p>
                     <p>
                         Total de la commande<br>
-                        <span class="order_price_value">{{ cart.getOrderPriceHT()|format_currency('EUR') }}</span>
+                        <span id="order-price-ht-value">{{ cart.getOrderPriceHT()|format_currency('EUR') }}</span>
                     </p>
                     <p>
                         TVA<br>
-                        <span class="order_price_value">{{ TVA }} %</span>
+                        <span>{{ TVA }} %</span>
                     </p>
                     <p>
                         Total de la commande TTC<br>
-                        <span class="order_price_value">{{ (cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100))|format_currency('EUR') }}</span>
+                        <span id="order-price-ttc-value">{{ (cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100))|format_currency('EUR') }}</span>
                     </p>
                 </div>
                 <div class="confirm-order">
@@ -82,4 +86,12 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block javascripts_body %}
+    <script>
+        const orderPriceHT = {{ cart.getOrderPriceHT() }};
+        const tax = {{ TVA }};
+    </script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 {% endblock %}
