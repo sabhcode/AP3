@@ -25,9 +25,9 @@
             <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
         {% endif %}
         {% if hasUnitPrice %}
-            <p class="product_card-price">{{ cart.formatPrice(unitPrice * (quantity ?? 1)) }}</p>
+            <p class="product_card-price">{{ (unitPrice * (quantity ?? 1))|format_currency('EUR') }}</p>
         {% else %}
-            <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice() * (quantity ?? 1)) }}</p>
+            <p class="product_card-price">{{ (product.getUnitPrice() * (quantity ?? 1))|format_currency('EUR') }}</p>
         {% endif %}
         <div class="product_card-buttons">
             {% if hasQuantity and not hasOrderDetail %}

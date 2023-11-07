@@ -1,0 +1,4 @@
+{% set response = response|merge({ "orderPrice": response.orderPrice|format_currency('EUR') }) %}
+{% set response = response|merge({ "productPrice": response.productPrice|format_currency('EUR') }) %}
+
+{{ response|json_encode }}

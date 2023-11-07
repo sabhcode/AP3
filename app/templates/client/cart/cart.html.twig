@@ -30,7 +30,7 @@
                         </p>
                         <p>
                             Total de la commande<br>
-                            <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
+                            <span class="order_price_value">{{ cart.getOrderPriceHT()|format_currency('EUR') }}</span>
                         </p>
                     </div>
                     <form class="confirm-order" method="POST">

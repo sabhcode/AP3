@@ -37,7 +37,7 @@
                     </div>
                     <div class="delivery_choice-box">
                         <input type="radio" id="delivery-choice-home" name="delivery-choice">
-                        <label for="delivery-choice-home">À domicile (+10 €)</label>
+                        <label for="delivery-choice-home">À domicile (+ {{ 10|format_currency('EUR') }})</label>
                         <div class="form">
                             <div class="flex">
                                 <div class="box-input">
@@ -65,7 +65,7 @@
                     </p>
                     <p>
                         Total de la commande<br>
-                        <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT()) }}</span>
+                        <span class="order_price_value">{{ cart.getOrderPriceHT()|format_currency('EUR') }}</span>
                     </p>
                     <p>
                         TVA<br>
@@ -73,7 +73,7 @@
                     </p>
                     <p>
                         Total de la commande TTC<br>
-                        <span class="order_price_value">{{ cart.formatPrice(cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100)) }}</span>
+                        <span class="order_price_value">{{ (cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100))|format_currency('EUR') }}</span>
                     </p>
                 </div>
                 <div class="confirm-order">

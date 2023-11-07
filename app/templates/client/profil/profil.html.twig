@@ -29,7 +29,7 @@
 								<p>Commande num. {{ order.getId() }}</p>
 								<p><span>Passée le :</span> {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
 								<p><span>{{ order.getProductQuantity() }}</span> articles</p>
-								<p><span>Prix TTC :</span> {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
+								<p><span>Prix TTC :</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
 							</a>
 						{% endfor %}
 					</div>

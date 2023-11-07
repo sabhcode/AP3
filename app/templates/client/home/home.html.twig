@@ -33,7 +33,7 @@
                             </div>
                             <div class="right">
                                 <div class="left-of-right">
-                                    <p class="product_card-price">{{ cart.formatPrice(product.getUnitPrice()) }}</p>
+                                    <p class="product_card-price">{{ product.getUnitPrice()|format_currency('EUR') }}</p>
                                     <p>{{ product.getNbSales() }} ventes</p>
                                     {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}
                                 </div>

@@ -19,9 +19,9 @@
         <div class="order-info">		
             <p><span>Passée le : </span>{{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
             <p><span>{{ order.getProductQuantity() }}</span> articles</p>
-            <p><span>Prix HT : </span>{{ cart.formatPrice(order.getTotalPriceHT()) }}</p>
+            <p><span>Prix HT : </span>{{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
             <p><span>Prix Taxe : </span>{{ order.getTax() }} %</p>
-            <p><span>Prix TTC : </span>{{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
+            <p><span>Prix TTC : </span>{{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
             {% for rank in order.getOrderRanks() %}
                 <p><span>{{ rank.getOrderState().getName()|title }} le : </span>{{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
             {% endfor %}

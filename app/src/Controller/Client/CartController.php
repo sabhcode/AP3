@@ -59,7 +59,11 @@ class CartController extends AbstractController
 
         if(isset($productId, $action)) {
 
-            return new JsonResponse($cartService->add($productId, $action));
+            $formatPrice = $this->renderView("client/cart/update_cart.html.twig", [
+                'response' => $cartService->add($productId, $action)
+            ]);
+
+            return new JsonResponse(json_decode(htmlspecialchars_decode($formatPrice)));
 
         }
         return $this->redirectToRoute("app_client_cart");

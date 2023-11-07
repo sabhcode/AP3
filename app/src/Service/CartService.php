@@ -43,10 +43,10 @@ class CartService {
 
             $this->setCart($cart);
 
-            $responseJSON["orderPrice"] = $this->formatPrice($this->getOrderPriceHT());
+            $responseJSON["orderPrice"] = $this->getOrderPriceHT();
             $responseJSON["nbProducts"] = $this->getNbProducts();
             $responseJSON["productQuantity"] = ($cart->$productId ?? 0);
-            $responseJSON["productPrice"] = $this->formatPrice($responseJSON["productQuantity"] * $product->getUnitPrice());
+            $responseJSON["productPrice"] = ($responseJSON["productQuantity"] * $product->getUnitPrice());
 
         }
         return $responseJSON;
@@ -130,31 +130,4 @@ class CartService {
         $session->set("cart", $cart);
 
     }
-
-    public function formatPrice(float $price): string {
-
-        $price = strval($price);
-
-        if(!str_contains($price, ".")) {
-            $price .= ".00";
-        }
-
-        if(preg_match("/[.][0-9]$/", $price)) {
-            $price .= "0";
-        }
-
-        $arrayPrice = explode(".", $price);
-
-        if(strlen($arrayPrice[1]) > 2) {
-
-            $arrayPrice[1] = substr($arrayPrice[1], 0, 2);
-
-            $price = join(".", $arrayPrice);
-
-        }
-
-        return str_replace(".", ",", $price) . " €";
-
-    }
-
 }

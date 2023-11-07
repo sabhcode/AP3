@@ -175,13 +175,6 @@ class Product
         return $this;
     }
 
-    public function formatPrice(?string $slug): static
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Productimg>
      */
