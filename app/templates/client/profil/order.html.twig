@@ -20,7 +20,7 @@
         <p>Prix Taxe {{ order.getTax() }} %</p>
         <p>Prix TTC {{ cart.formatPrice(order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100)) }}</p>
         {% for rank in order.getOrderRanks() %}
-            {{ dump(rank) }}
+            - {{ rank.getOrderState().getName()|title }} le {{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
         {% endfor %}
         <div class="product_cards">
             {% for detail in order.getOrderDetail() %}
