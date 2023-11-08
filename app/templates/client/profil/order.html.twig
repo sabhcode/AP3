@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profil{% endblock %}
+{% block title %}Commande num. {{ order.getId() }}{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
@@ -14,7 +14,6 @@
 
 {% block body %}
     <h1>Commande num. {{ order.getId() }}</h1>
-
 	<div class="app_container app_padding">
         <div class="order-info">
             <p><span>{{ order.getProductQuantity() }}</span> articles</p>
@@ -28,11 +27,13 @@
             <p><span>État de votre commande</span></p>
             <div class="order_states">
                 {% for orderState in orderStates %}
-                    {% if order.getOrderRanks()[loop.index0].getOrderState().getId() is defined %}
-                        <p><span>- {{ orderState.getName() }}</span> le {{ order.getOrderRanks()[loop.index0].getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
-                    {% else %}
-                        <p><span>- {{ orderState.getName() }}</span> en attente...</p>
-                    {% endif %}
+                    <p><span>- {{ orderState.getName() }}</span>
+                        {%- if order.getOrderRanks()[loop.index0].getOrderState().getId() is defined -%}
+                            Le {{ order.getOrderRanks()[loop.index0].getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
+                        {%- else -%}
+                            Prochainement...
+                        {%- endif -%}
+                    </p>
                 {% endfor %}
             </div>
         </div>

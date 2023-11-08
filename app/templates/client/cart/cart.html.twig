@@ -33,7 +33,7 @@
                             <span class="order_price_value">{{ cart.getOrderPriceHT()|format_currency('EUR') }}</span>
                         </p>
                     </div>
-                    <form class="confirm-order" method="POST">
+                    <form class="confirm-order" method="POST" action="{{ path('app_client_delivery_choice') }}">
                         <button name="place-order">Passer la commande</button>
                     </form>
                 </div>

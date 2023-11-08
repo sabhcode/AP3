@@ -1,4 +1,4 @@
-// header
+bodyLoading = document.getElementById("body_loading");
 const app = document.getElementById("app");
 const mainApp = document.getElementById("main-app");
 const headerApp = document.getElementById("header-app");
@@ -8,6 +8,11 @@ addEventListener("load", () => {
     mainApp.style.setProperty("margin-top", headerApp.offsetHeight + "px");
     
     app.classList.remove("hidden");
+
+    setTimeout(() => {
+        bodyLoading.remove();
+        delete bodyLoading;
+    }, 3000);
 
 });
 

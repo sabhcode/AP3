@@ -12,7 +12,7 @@
 
 {% block body %}
     <div class="app_container app_padding">
-        <h1>Confirmer votre commande</h1>
+        <h1>Livraison</h1>
         <div class="modify_cart">
             <a href="{{ path('app_client_cart') }}" title="Modifier mon panier">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primaryColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 5l-7 7 7 7"/></svg>
@@ -23,6 +23,9 @@
             <div class="order_details">
                 <div class="delivery_choice">
                     <p class="delivery_choice-title">Choix de livraison</p>
+                    {% for flash in app.flashes('error') %}
+                        <p class="error">{{ flash }}</p>
+                    {% endfor %}
                     <div class="delivery_choice-box">
                         <input type="radio" id="delivery-choice-store" name="delivery-choice">
                         <label for="delivery-choice-store">En magasin</label>

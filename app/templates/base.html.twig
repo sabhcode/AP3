@@ -12,6 +12,11 @@
         {% block javascripts_head %}{% endblock %}
     </head>
     <body>
+        <div id="body_loading" class="body_loading">
+            <div>
+                <img src="{{ asset('media/images/header/logo.png') }}" alt="Logo All4Sport" width="40px">
+            </div>
+        </div>
         <div id="app" class="app hidden">
             {% block header %}{% endblock %}
             <main id="main-app" class="main-app">

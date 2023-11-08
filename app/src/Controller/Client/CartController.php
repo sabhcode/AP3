@@ -5,7 +5,6 @@ namespace App\Controller\Client;
 use App\Entity\OrderDetail;
 use App\Entity\OrderRank;
 use App\Entity\OrderUser;
-use App\Entity\StockWeb;
 use App\Repository\OrderStateRepository;
 use App\Repository\ProductRepository;
 use App\Repository\StockWebRepository;
@@ -24,27 +23,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class CartController extends AbstractController
 {
     #[Route(name: 'cart')]
-    public function viewCart(Request $request, CartService $cartService, StoreRepository $storeRepository): Response
+    public function viewCart(CartService $cartService): Response
     {
-        $placeOrder = $request->get("place-order");
-
-        if(isset($placeOrder) && $cartService->getNbProducts() > 0) {
-
-            if($this->getUser()) {
-
-                $stores = $storeRepository->findAll();
-
-                return $this->render('client/cart/place_order.html.twig', [
-                    'stores' => $stores,
-                    'tva' => $this->getParameter('app.tva'),
-                    'shipping_cost' => $this->getParameter('app.shippingcost')
-                ]);
-
-            }
-            return $this->redirectToRoute('app_login');
-
-        }
-
         $products = $cartService->getProductsAndQuantity();
 
         return $this->render('client/cart/cart.html.twig', [
@@ -55,8 +35,8 @@ class CartController extends AbstractController
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
-        $productId = $request->get("productId");
-        $action = $request->get("action");
+        $productId = $request->request->get("productId");
+        $action = $request->request->get("action");
 
         if(isset($productId, $action)) {
 
@@ -70,14 +50,32 @@ class CartController extends AbstractController
         return $this->redirectToRoute("app_client_cart");
     }
 
+    #[Route('/passer-commande/livraison', name: 'delivery_choice')]
+    #[IsGranted("ROLE_USER")]
+    public function deliveryChoice(CartService $cartService, StoreRepository $storeRepository): Response
+    {
+        if($cartService->getNbProducts() > 0) {
+
+            $stores = $storeRepository->findAll();
+
+            return $this->render('client/cart/place_order.html.twig', [
+                'stores' => $stores,
+                'tva' => $this->getParameter('app.tva'),
+                'shipping_cost' => $this->getParameter('app.shippingcost')
+            ]);
+
+        }
+        return $this->redirectToRoute('app_client_cart');
+    }
+
     #[Route('/passer-commande', name: 'place_order')]
     #[IsGranted("ROLE_USER")]
     public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockWebRepository $stockWebRepository): Response
     {
-        $store = trim($request->get('store'));
-        $street = trim($request->get('street'));
-        $zipCode = trim($request->get('zip-code'));
-        $city = trim($request->get('city'));
+        $store = trim($request->request->get('store'));
+        $street = trim($request->request->get('street'));
+        $zipCode = trim($request->request->get('zip-code'));
+        $city = trim($request->request->get('city'));
 
         if($cartService->getNbProducts() > 0) {
 
@@ -172,8 +170,12 @@ class CartController extends AbstractController
                         'order' => $order
                     ]);
 
-                } catch (\Exception $e) {
-                    return $this->redirectToRoute("app_client_cart", ["place-order" => ""]);
+                } catch (\Exception $_) {
+
+                    $this->addFlash('error', 'Merci de bien vouloir sélectionner/remplir une adresse de livraison');
+
+                    return $this->redirectToRoute("app_client_delivery_choice");
+
                 }
 
             }
