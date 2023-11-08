@@ -50,9 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(columnDefinition: 'TINYINT')]
     private ?int $nb_children = null;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'credential_email', referencedColumnName: 'email', nullable: false)]
     private ?Credential $credential = null;
@@ -169,18 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): static
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
     }
 
     public function getCredential(): ?Credential

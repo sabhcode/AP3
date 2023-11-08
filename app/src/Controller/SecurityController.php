@@ -29,8 +29,6 @@ class SecurityController extends AbstractController
 
     #[Route(path: '/deconnexion', name: 'app_logout')]
     public function logout()
-    {
-
-    }
+    {}
 
 }
