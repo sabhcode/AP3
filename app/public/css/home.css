@@ -1,30 +1,12 @@
 /* Styles pour le conteneur du slider */
-h2 {
-    text-align: center;
-    color: var(--whiteColor);
-    background-color: var(--primaryColor);
-    padding: 10px;
-}
-
 .slider-container {
-    width: 100%;
     max-width: 600px;
-    /* Largeur maximale du slider */
-    margin: 40px auto 0;
+    margin: 20px auto 0;
     overflow: hidden;
     position: relative;
 }
 
-.slider-container h3 {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
 /* Styles pour les cartes du slider */
-.card-slider {
-    display: flex;
-}
-
 .card {
     display: none;
     width: 100%;
@@ -106,22 +88,8 @@ h2 {
     background-color: var(--secondColor);
 }
 
-/* ----------------------------------------------------------------------------------*/
-
-/* Style de la section de la catégorie */
-.app_container {
-    padding: 40px 20px;
-}
-
-/* Style du titre de la catégorie */
-h4 {
-    color: var(--primaryColor);
-    margin-bottom: 20px;
-    color: var(--whiteColor);
-    background-color: var(--primaryColor);
-    padding: 10px;
-    max-width: max-content;
-    border-radius: var(--radiusBorder);
+.product_cards {
+    padding: 20px 0;
 }
 
 .bottom-product-category {
