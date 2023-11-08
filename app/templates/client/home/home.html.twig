@@ -13,8 +13,8 @@
 {% block body %}
     <div class="app_container app_padding">
         <section class="top-content">
-            <h2>
-                <span>Nos meilleures ventes</span>
+            <h2 class="section_title">
+                <span>Nos meilleures ventes {{ "now"|date("Y") }}</span>
             </h2>
             <div class="slider-container">
                 <div class="slider-cards">
@@ -36,12 +36,12 @@
                             <div class="card-content">
                                 <div class="left">
                                     <a class="product_card-name" href="{{ path('app_client_product', {'slug': product.getSlug()}) }}" title="Voir le produit">{{ product.getName() }}</a>
-                                    <p class="product_card-description">{{ product.getDescription()|u.wordwrap(5) }}</p>
+                                    <p class="product_card-description">{{ product.getDescription()|u.truncate(20, '...', false) }}</p>
                                 </div>
                                 <div class="right">
                                     <div class="left-of-right">
                                         <p class="product_card-price">{{ product.getUnitPrice()|format_currency('EUR') }}</p>
-                                        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}
+                                        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
                                     </div>
                                     <div class="right-of-right product_card-buttons">
                                         <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug': product.getSlug()}) }}" title="Voir le produit">
@@ -61,10 +61,9 @@
                 </div>
             </div>
         </section>
-        {# ----------------------- section basse ---------------------------------- #}
         <section class="bottom-content">
-            <h2 class="selection_of_moment">
-                <span>La sélection du moment</span>
+            <h2 class="section_title">
+                <span>Notre sélection du moment</span>
             </h2>
             <div class="product_cards">
                 {% for product in bestProductByCategory %}

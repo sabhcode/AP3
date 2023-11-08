@@ -1,15 +1,20 @@
-h2 {
+.section_title {
     position: relative;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 2em;
+    margin-bottom: 40px;
 }
 
-h2 span {
-    background: linear-gradient(90deg, var(--secondColor) 10%, var(--whiteColor) 50%);
-    width: 50%;
-    padding: 2px;
-    border-radius: var(--radiusBorder);
+.section_title span {
+    background: -o-linear-gradient(to right, var(--secondColor), var(--whiteColor) 75%);
+    background: -moz-linear-gradient(to right, var(--secondColor), var(--whiteColor) 75%);
+    background: -webkit-linear-gradient(to right, var(--secondColor), var(--whiteColor) 75%);
+    background: linear-gradient(to right, var(--secondColor), var(--whiteColor) 75%);
+    padding: 2px 4px;
+}
+section:nth-child(n+2) {
+    padding: 80px 0 20px;
 }
 
 /* Styles pour le conteneur du slider */
@@ -17,7 +22,6 @@ h2 span {
     position: relative;
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px 0 60px;
 }
 
 .flex {
@@ -63,9 +67,7 @@ h2 span {
 
 .right {
     display: flex;
-    flex-direction: row;
     gap: 5px;
-    min-width: max-content;
 }
 
 .slider-container .product_card-stock p {
@@ -114,8 +116,4 @@ h2 span {
 }
 .slider_btn--right {
     right: 0;
-}
-
-.product_cards {
-    padding: 20px 0;
 }
