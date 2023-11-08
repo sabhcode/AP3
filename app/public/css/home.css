@@ -2,18 +2,20 @@ h2 {
     position: relative;
     text-transform: uppercase;
     font-weight: 800;
+    font-size: 2em;
 }
 
 h2 span {
     background: linear-gradient(90deg, var(--secondColor) 10%, var(--whiteColor) 50%);
     width: 50%;
     padding: 2px;
+    border-radius: var(--radiusBorder);
 }
 
 /* Styles pour le conteneur du slider */
 .slider-container {
     position: relative;
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px 0 60px;
 }
@@ -91,7 +93,7 @@ h2 span {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #0005;
