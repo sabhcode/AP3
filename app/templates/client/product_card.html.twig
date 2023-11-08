@@ -1,15 +1,16 @@
 {% set hasProduct = product is defined %}
 {% set hasQuantity = quantity is defined %}
 {% set hasOrderDetail = orderDetail is defined %}
-{% set hasUnitPrice = unitPrice is defined %}
+{% set hasOrderPrice = orderPrice is defined %}
 
 {% if hasProduct %}
     {% set product_id = product.getId() %}
+    {% set product_uri = path('app_client_product', {'slug': product.getSlug()}) %}
 
-    <div id="{{ product_id }}"  class="product_card">
+    <div id="{{ product_id }}" class="product_card">
         <div class="product_card-images">
             {% set images = product.getProductImgs() %}
-            <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
+            <a href="{{ product_uri }}" title="Voir le produit">
                 <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product_id ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
             </a>
             <div class="product_card-images_list">
@@ -20,15 +21,15 @@
                 {% endfor %}
             </div>
         </div>
-        <a class="product_card-name" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">{{ product.getName() }}</a>
+        <a class="product_card-name" href="{{ product_uri }}" title="Voir le produit">{{ product.getName() }}</a>
         {% if hasQuantity %}
             <p class="product_card-quantity">x<span class="product_card-quantity_value">{{ quantity }}</span></p>
         {% endif %}
-        {% if hasUnitPrice %}
-            <p class="product_card-price">{{ (unitPrice)|format_currency('EUR', {multiplier: (quantity ?? 1)}) }}</p>
-        {% else %}
-            <p class="product_card-price">{{ (product.getUnitPrice())|format_currency('EUR', {multiplier: (quantity ?? 1)}) }}</p>
-        {% endif %}
+        <p class="product_card-price">
+            {% set product_card_price = (hasOrderPrice ? orderPrice : product.getUnitPrice()) %}
+
+            {{ product_card_price|format_currency('EUR', {multiplier: quantity|default(1)}) }}
+        </p>
         <div class="product_card-buttons">
             {% if hasQuantity and not hasOrderDetail %}
                 <button class="update-product-cart product_card-button_add" href="{{ path('app_client_cart') }}" data-productid="{{ product_id }}" data-action="add" title="Ajouter">
@@ -38,7 +39,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--redColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </button>
             {% endif %}
-            <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
+            <a class="product_card-button_basic" href="{{ product_uri }}" title="Voir le produit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
             </a>
             {% if not hasOrderDetail %}
@@ -53,6 +54,6 @@
                 {% endif %}
             {% endif %}
         </div>
-        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}
+        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
     </div>
 {% endif %}

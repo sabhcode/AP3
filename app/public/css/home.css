@@ -87,24 +87,31 @@ h2 span {
 }
 
 /* Style pour les boutons de navigation */
-.slider-nav {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.slider-nav button {
+.slider_btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: var(--primaryColor);
+    background-color: #0005;
     color: var(--whiteColor);
     padding: 10px;
-    border-radius: var(--radiusBorder);
+    border-radius: 50%;
     transition: background-color .2s ease;
 }
-
-.slider-nav button:hover {
+.slider-cards:hover .slider_btn {
+    background-color: var(--primaryColor);
+}
+.slider-cards:hover .slider_btn:hover {
     background-color: var(--secondColor);
+}
+
+.slider_btn--left {
+    left: 0;
+}
+.slider_btn--right {
+    right: 0;
 }
 
 .product_cards {

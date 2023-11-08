@@ -17,14 +17,14 @@
                 <span>Nos meilleures ventes</span>
             </h2>
             <div class="slider-container">
-                <div class="card-slider">
+                <div class="slider-cards">
                     {% for product in bestSells %}
                         <div class="card">
                             <div class="flex">
                                 {% set images = product.getProductImgs() %}
-                                <div>
+                                <a href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
                                     <img class="product_card-image--selected" src="{{ asset('media/images/product/' ~ product.getId() ~ '/' ~ images[0].getName()) }}" alt="Image du produit">
-                                </div>
+                                </a>
                                 <div class="product_card-images_list">
                                     {% for image in images %}
                                         <div class="product_card-image{{ loop.first ? ' selected' }}">
@@ -35,8 +35,8 @@
                             </div>
                             <div class="card-content">
                                 <div class="left">
-                                    <p class="product_card-name">{{ product.getName() }}</p>
-                                    <p class="product_card-description">{{ product.getDescription() }}</p>
+                                    <a class="product_card-name" href="{{ path('app_client_product', {'slug': product.getSlug()}) }}" title="Voir le produit">{{ product.getName() }}</a>
+                                    <p class="product_card-description">{{ product.getDescription()|u.wordwrap(5) }}</p>
                                 </div>
                                 <div class="right">
                                     <div class="left-of-right">
@@ -44,7 +44,7 @@
                                         {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs} %}
                                     </div>
                                     <div class="right-of-right product_card-buttons">
-                                        <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug' : product.getSlug()}) }}" title="Voir le produit">
+                                        <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug': product.getSlug()}) }}" title="Voir le produit">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
                                         </a>
                                     </div>
@@ -52,12 +52,10 @@
                             </div>
                         </div>
                     {% endfor %}
-                </div>
-                <div class="slider-nav">
-                    <button id="prevButton">
+                    <button id="prevButton" class="slider_btn slider_btn--left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 5l-7 7 7 7"/></svg>
                     </button>
-                    <button id="nextButton">
+                    <button id="nextButton" class="slider_btn slider_btn--right">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--whiteColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
                     </button>
                 </div>

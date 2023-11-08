@@ -40,9 +40,9 @@
             {% for detail in order.getOrderDetail() %}
                 {% include 'client/product_card.html.twig' with {
                                                             'product': detail.getProduct(),
-                                                            'unitPrice': detail.getUnitPrice(),
                                                             'quantity': detail.getQuantity(),
-                                                            'orderDetail': true
+                                                            'orderDetail': true,
+                                                            'orderPrice': detail.getUnitPrice()
                 } %}
             {% endfor %}
         </div>
