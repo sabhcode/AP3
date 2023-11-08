@@ -14,7 +14,7 @@ IDENTIFY_BY, 11 USER, 01 CREDENTIAL
 
 CATEGORY: id [INTEGER], name [VARCHAR], slug [VARCHAR(255)]
 BELONGS, 11 PRODUCT, 0n CATEGORY
-PRODUCT: id [INTEGER], name [VARCHAR], description [TEXT], unit_price [DECIMAL(10,2)], images [VARCHAR(255)], nb_sales [INTEGER], slug [VARCHAR(255)]
+PRODUCT: id [INTEGER], name [VARCHAR], description [TEXT], unit_price [DECIMAL(10,2)], images [VARCHAR(255)], slug [VARCHAR(255)]
 STOCK_WEB, 1n PRODUCT, 1n WAREHOUSE: quantity [INTEGER]
 PLACE, 0n USER, 11 ORDER
 USER: id [INTEGER], name [VARCHAR(100)], firstname [VARCHAR(100)], phone [VARCHAR(20)], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)], birthday [DATE], nb_children [INTEGER]

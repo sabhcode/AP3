@@ -19,10 +19,10 @@ class HomeController extends AbstractController
         $categories = $categoryRepository->findAll();
 
         foreach ($categories as $category) {
-            $bestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getId()], ['nb_sales' => 'DESC']);
+            $bestProductByCategory[] = $productRepository->findOneBy(['category' => $category->getId()], []);
         }
 
-        $bestSells = $productRepository->findBy([], ['nb_sales' => 'DESC'], 5);
+        $bestSells = $productRepository->findBy([], [], 5);
 
         return $this->render('client/home/home.html.twig', [
             'categories' => $categories,

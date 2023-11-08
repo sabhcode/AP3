@@ -1,9 +1,25 @@
+h2 {
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+h2 span {
+    background: linear-gradient(90deg, var(--secondColor) 10%, var(--whiteColor) 50%);
+    width: 50%;
+    padding: 2px;
+}
+
 /* Styles pour le conteneur du slider */
 .slider-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    overflow: hidden;
     position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.flex {
+    display: flex;
 }
 
 /* Styles pour les cartes du slider */
@@ -11,15 +27,22 @@
     display: none;
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
     background-color: var(--whiteColor);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card img {
+.slider-container img,
+.slider-container .product_card-image {
     width: 100%;
     border-radius: var(--radiusBorder);
+}
+
+.slider-container .product_card-images_list {
+    display: flex;
+    flex-direction: column;
+    max-width: 20%;
+    margin: 0;
+    margin-left: 10px;
 }
 
 .card-content {
@@ -30,7 +53,7 @@
     gap: 20px;
 }
 
-.left .product_card-name {
+.slider-container .product_card-name {
     font-size: 1.2em;
     padding: 10px 0;
 }
@@ -47,6 +70,11 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
+}
+
+.slider-container .product_card-stock p {
+    padding: 0;
+    border: none;
 }
 
 .left-of-right {
@@ -68,7 +96,6 @@
 .slider-nav {
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 40px;
 }
 
 .slider-nav button {
@@ -79,30 +106,13 @@
     color: var(--whiteColor);
     padding: 10px;
     border-radius: var(--radiusBorder);
-    transition: .2s ease;
-    transition-property: background-color, color;
+    transition: background-color .2s ease;
 }
 
 .slider-nav button:hover {
-    color: var(--primaryColor);
     background-color: var(--secondColor);
 }
 
 .product_cards {
     padding: 20px 0;
-}
-
-.bottom-product-category {
-    font-size: 10px;
-    color: var(--primaryColor);
-    font-weight: bold;
-    padding: 10px;
-    width: 100%;
-    border-radius: var(--radiusBorder);
-    border: 1px solid #ddd;
-    transition: background-color .2s ease;
-}
-
-.bottom-product-category:hover {
-    background-color: #ddd;
 }

@@ -26,9 +26,6 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     private ?float $unit_price = null;
 
-    #[ORM\Column]
-    private ?int $nb_sales = null;
-
     #[ORM\Column(unique: true)]
     private ?string $slug = null;
 
@@ -147,18 +144,6 @@ class Product
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getNbSales(): ?int
-    {
-        return $this->nb_sales;
-    }
-
-    public function setNbSales(int $nb_sales): static
-    {
-        $this->nb_sales = $nb_sales;
 
         return $this;
     }
