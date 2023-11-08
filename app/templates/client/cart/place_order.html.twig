@@ -37,7 +37,7 @@
                     </div>
                     <div class="delivery_choice-box">
                         <input type="radio" id="delivery-choice-home" name="delivery-choice">
-                        <label for="delivery-choice-home">À domicile (+ {{ 10|format_currency('EUR') }})</label>
+                        <label for="delivery-choice-home">À domicile (+ {{ shipping_cost|format_currency('EUR') }})</label>
                         <div class="form">
                             <div class="flex">
                                 <div class="box-input">
@@ -65,7 +65,7 @@
                     </p>
                     <p id="delivery-choice-home-value" hidden>
                         Livraison à domicile<br>
-                        <span>{{ 10|format_currency('EUR') }}</span>
+                        <span>{{ shipping_cost|format_currency('EUR') }}</span>
                     </p>
                     <p>
                         Total de la commande<br>
@@ -73,11 +73,11 @@
                     </p>
                     <p>
                         TVA<br>
-                        <span>{{ TVA }} %</span>
+                        <span>{{ tva }} %</span>
                     </p>
                     <p>
                         Total de la commande TTC<br>
-                        <span id="order-price-ttc-value">{{ (cart.getOrderPriceHT() + (cart.getOrderPriceHT() * TVA / 100))|format_currency('EUR') }}</span>
+                        <span id="order-price-ttc-value">{{ (cart.getOrderPriceHT() + (cart.getOrderPriceHT() * tva / 100))|format_currency('EUR') }}</span>
                     </p>
                 </div>
                 <div class="confirm-order">
@@ -91,7 +91,8 @@
 {% block javascripts_body %}
     <script>
         const orderPriceHT = {{ cart.getOrderPriceHT() }};
-        const tax = {{ TVA }};
+        const tax = {{ tva }};
+        const shippingCost = {{ shipping_cost }};
     </script>
     <script src="{{ asset('js/cart.js') }}"></script>
 {% endblock %}

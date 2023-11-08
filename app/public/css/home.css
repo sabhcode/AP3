@@ -55,6 +55,7 @@ h2 span {
 
 .slider-container .product_card-name {
     font-size: 1.2em;
+    margin-top: unset;
     padding: 10px 0;
 }
 
@@ -63,13 +64,6 @@ h2 span {
     flex-direction: row;
     gap: 5px;
     min-width: max-content;
-}
-
-.right p {
-    color: var(--primaryColor);
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: var(--radiusBorder);
 }
 
 .slider-container .product_card-stock p {

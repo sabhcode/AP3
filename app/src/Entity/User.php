@@ -19,8 +19,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private const NUMBER_REFERENCE_CLIENT = 8;
 
     #[ORM\Id]
-    #[ORM\Column(options: ['unsigned' => true])]
     #[ORM\GeneratedValue]
+    #[ORM\Column(options: ['unsigned' => true])]
     private ?int $id = null;
 
     #[ORM\Column]

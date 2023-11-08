@@ -13,7 +13,7 @@ class OrderUser
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(options: ['unsigned' => true])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -27,6 +27,9 @@ class OrderUser
 
     #[ORM\Column]
     private ?int $product_quantity = null;
+
+    #[ORM\Column(type: Types::DECIMAL, scale: 2, nullable: true)]
+    private ?int $shipping_cost = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;
@@ -192,6 +195,18 @@ class OrderUser
     public function setProductQuantity(int $product_quantity): static
     {
         $this->product_quantity = $product_quantity;
+
+        return $this;
+    }
+
+    public function getShippingCost(): ?float
+    {
+        return $this->shipping_cost;
+    }
+
+    public function setShippingCost(float $shipping_cost): static
+    {
+        $this->shipping_cost = $shipping_cost;
 
         return $this;
     }

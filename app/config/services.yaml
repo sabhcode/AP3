@@ -6,7 +6,8 @@
 parameters:
     app.host.client: "localhost"
     app.host.logistics: "logistics.localhost"
-    TVA: 20
+    app.tva: 20
+    app.shippingcost: 10
 
 services:
     # default configuration for services in *this* file

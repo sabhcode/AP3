@@ -17,7 +17,7 @@ radioInputs.forEach(radio => {
 
         if(this.id === "delivery-choice-home") {
 
-            const newOrderPriceHT = orderPriceHT + 10;
+            const newOrderPriceHT = orderPriceHT + shippingCost;
 
             orderPriceHTValue.innerHTML = formatPrice(newOrderPriceHT);
             orderPriceTTCValue.innerHTML = formatPrice((newOrderPriceHT) + (newOrderPriceHT * tax / 100));

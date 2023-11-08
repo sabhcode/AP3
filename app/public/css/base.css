@@ -127,7 +127,6 @@ h1 {
     height: 40px;
     transition: .2s ease;
     transition-property: visibility, opacity;
-    animation: rotateLogoLoading 1s linear infinite;
 }
 @keyframes rotateLogoLoading {
     from {
@@ -156,6 +155,9 @@ h1 {
 .product_card.loading::after {
     visibility: visible;
     opacity: 1;
+}
+.product_card.loading::after {
+    animation: rotateLogoLoading 1s cubic-bezier(0, 0.67, 0, 0.98) infinite;
 }
 
 /* Style de l'image du produit */

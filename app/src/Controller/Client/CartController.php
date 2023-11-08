@@ -36,7 +36,8 @@ class CartController extends AbstractController
 
                 return $this->render('client/cart/place_order.html.twig', [
                     'stores' => $stores,
-                    'TVA' => $this->getParameter('TVA')
+                    'tva' => $this->getParameter('app.tva'),
+                    'shipping_cost' => $this->getParameter('app.shippingcost')
                 ]);
 
             }
@@ -90,7 +91,7 @@ class CartController extends AbstractController
 
                 $order->setUser($user);
                 $order->setTotalPriceHT($cartService->getOrderPriceHT());
-                $order->setTax($this->getParameter('TVA'));
+                $order->setTax($this->getParameter('app.tva'));
                 $order->setProductQuantity($cartService->getNbProducts());
 
                 if($store && (!$street && !$zipCode && !$city)) {
@@ -103,7 +104,8 @@ class CartController extends AbstractController
 
                 if(!$store && ($street && $zipCode && $city)) {
 
-                    $order->setTotalPriceHT($order->getTotalPriceHT() + 10);
+                    $order->setShippingCost($this->getParameter('app.shippingcost'));
+                    $order->setTotalPriceHT($order->getTotalPriceHT() + $order->getShippingCost());
                     $order->setStreet($street);
                     $order->setZipCode($zipCode);
                     $order->setCity($city);
@@ -111,7 +113,7 @@ class CartController extends AbstractController
                 }
 
                 try {
-                    
+
                     $entityManager->persist($order);
                     $entityManager->persist($orderRank);
 
@@ -170,7 +172,9 @@ class CartController extends AbstractController
                         'order' => $order
                     ]);
 
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                    return $this->redirectToRoute("app_client_cart", ["place-order" => ""]);
+                }
 
             }
 
