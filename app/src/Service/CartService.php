@@ -2,10 +2,11 @@
 
 namespace App\Service;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class CartService {
+readonly class CartService {
 
     public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack) {}
 
@@ -14,9 +15,8 @@ class CartService {
         $responseJSON = [
             "ok" => false
         ];
-        $product = $this->productRepository->find($productId);
 
-        if($product) {
+        if($product = $this->getProduct($productId)) {
 
             $cart = $this->getCart();
 
@@ -30,12 +30,12 @@ class CartService {
                 $responseJSON["ok"] = true;
 
             }
-            
+
             if($action === "remove") {
                 $cart->$productId--;
                 $responseJSON["ok"] = true;
             }
-            
+
             if($action === "delete" || (property_exists($cart, $productId) && $cart->$productId <= 0)) {
                 unset($cart->$productId);
                 $responseJSON["ok"] = true;
@@ -61,17 +61,20 @@ class CartService {
 
         foreach($cart as $productId => $quantity) {
 
-            $item = (object) [
-                "product" => $this->productRepository->find($productId),
-                "quantity" => $quantity
-            ];
+            if($product = $this->getProduct($productId)) {
 
-            if(!is_null($item->product)) {
-                array_push($products, $item);
+                $products[] = compact("product", "quantity");
+
             }
 
         }
         return $products;
+
+    }
+
+    private function getProduct(int $productId): Product|null {
+
+        return $this->productRepository->find($productId);
 
     }
 
@@ -82,12 +85,8 @@ class CartService {
 
         foreach($cart as $productId => $quantity) {
 
-            $product = $this->productRepository->find($productId);
-
-            if($product) {
-
+            if($this->getProduct($productId)) {
                 $nbProducts += $quantity;
-
             }
 
         }
@@ -102,12 +101,8 @@ class CartService {
 
         foreach($cart as $productId => $quantity) {
 
-            $product = $this->productRepository->find($productId);
-
-            if($product) {
-
+            if($product = $this->getProduct($productId)) {
                 $priceHT += $product->getUnitPrice() * $quantity;
-
             }
 
         }
@@ -117,17 +112,13 @@ class CartService {
 
     public function getCart(): object {
 
-        $session = $this->requestStack->getSession();
-
-        return (object) $session->get("cart", []);
+        return (object) $this->requestStack->getSession()->get("cart", []);
 
     }
 
     public function setCart(object $cart): void {
 
-        $session = $this->requestStack->getSession();
-
-        $session->set("cart", $cart);
+        $this->requestStack->getSession()->set("cart", $cart);
 
     }
 }

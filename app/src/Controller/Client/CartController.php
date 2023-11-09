@@ -172,7 +172,7 @@ class CartController extends AbstractController
 
                 } catch (\Exception $_) {
 
-                    $this->addFlash('error', 'Merci de bien vouloir sélectionner/remplir une adresse de livraison');
+                    $this->addFlash('error', 'Une erreur est survenue lors de la commande, merci de bien vérifier les coordonnées saisies');
 
                     return $this->redirectToRoute("app_client_delivery_choice");
 
