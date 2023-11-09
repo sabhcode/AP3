@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(host: '{host}', name: 'app_logistics_', defaults: ['host' => '%app.host.logistics%'], requirements: ['host' => '%app.host.logistics%'])]
+#[Route('/', name: 'app_logistics_', requirements: ['host' => '%app.host.logistics%'], defaults: ['host' => '%app.host.logistics%'], host: '{host}')]
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route(name: 'home')]
     public function home(): Response
     {
         if($this->getUser() && in_array("ROLE_LOGISTICS", $this->getUser()->getRoles())) {
