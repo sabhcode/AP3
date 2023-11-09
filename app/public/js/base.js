@@ -43,45 +43,45 @@ btnsUpdateProductInCart.forEach(btn => {
             form.append("action", action);
 
             fetch("/mon-panier/ajout-produit-panier", {method: "POST", body: form})
-            .then(res => res.json())
-            .then(res => {
+                .then(res => res.json())
+                .then(res => {
 
-                requestCartAllowed = true;
-                product?.classList.remove("loading");
+                    requestCartAllowed = true;
+                    product?.classList.remove("loading");
 
-                if(res.ok) {
+                    if (!res.ok) {
+                        return;
+                    }
 
                     orderPrice.forEach(el => el.innerHTML = res.orderPrice);
 
-                    if(location.pathname.startsWith("/mon-panier")) {
+                    if (!location.pathname.startsWith("/mon-panier")) {
+                        return;
+                    }
 
-                        nbProducts.innerHTML = res.nbProducts;
+                    nbProducts.innerHTML = res.nbProducts;
 
-                        if(res.productQuantity === 0) {
+                    if(res.productQuantity <= 0) {
 
-                            product.remove();
+                        product.remove();
 
-                        } else {
+                    } else {
 
-                            const productQuantity = product.querySelector(".product_card-quantity_value");
-                            const productPrice = product.querySelector(".product_card-price");
+                        const productQuantity = product.querySelector(".product_card-quantity_value");
+                        const productPrice = product.querySelector(".product_card-price");
 
-                            if(productQuantity) {
-                                productQuantity.innerText = res.productQuantity;
-                            }
-                            if(productPrice) {
-                                productPrice.innerText = res.productPrice;
-                            }
-
+                        if(productQuantity) {
+                            productQuantity.innerText = res.productQuantity;
+                        }
+                        if(productPrice) {
+                            productPrice.innerText = res.productPrice;
                         }
 
                     }
 
-                }
+                });
 
-            });
-
-        }
+            }
 
     });
 

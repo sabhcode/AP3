@@ -4,17 +4,24 @@ namespace App\Service;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use DateInterval;
+use DateTimeImmutable;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 readonly class CartService {
 
-    public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack) {}
+    public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack, private ParameterBagInterface $params) {}
 
-    public function add(string $productId, string $action): array {
+    public function add(string $productId, string $action): JsonResponse {
 
         $responseJSON = [
             "ok" => false
         ];
+        $response = new JsonResponse();
 
         if($product = $this->getProduct($productId)) {
 
@@ -36,21 +43,24 @@ readonly class CartService {
                 $responseJSON["ok"] = true;
             }
 
-            if($action === "delete" || (property_exists($cart, $productId) && $cart->$productId <= 0)) {
+            if($action === "delete" || $cart->$productId <= 0) {
                 unset($cart->$productId);
                 $responseJSON["ok"] = true;
             }
 
-            $this->setCart($cart);
+            if($responseJSON["ok"]) {
 
-            $responseJSON["orderPrice"] = $this->getOrderPriceHT();
-            $responseJSON["nbProducts"] = $this->getNbProducts();
-            $responseJSON["productQuantity"] = ($cart->$productId ?? 0);
-            $responseJSON["productPrice"] = ($responseJSON["productQuantity"] * $product->getUnitPrice());
+                $response = $this->setCart($response, $cart);
+
+                $responseJSON["orderPrice"] = $this->getOrderPriceHT($cart);
+                $responseJSON["nbProducts"] = $this->getNbProducts($cart);
+                $responseJSON["productQuantity"] = ($cart->$productId ?? 0);
+                $responseJSON["productPrice"] = ($responseJSON["productQuantity"] * $product->getUnitPrice());
+
+            }
 
         }
-        return $responseJSON;
-
+        return $response->setData($responseJSON);
     }
 
     public function getProductsAndQuantity(): array {
@@ -72,15 +82,15 @@ readonly class CartService {
 
     }
 
-    private function getProduct(int $productId): Product|null {
+    public function getProduct(int $productId): Product|null {
 
         return $this->productRepository->find($productId);
 
     }
 
-    public function getNbProducts(): int {
+    public function getNbProducts(object $cart = null): int {
 
-        $cart = $this->getCart();
+        $cart = $cart ?? $this->getCart();
         $nbProducts = 0;
 
         foreach($cart as $productId => $quantity) {
@@ -94,9 +104,9 @@ readonly class CartService {
 
     }
 
-    public function getOrderPriceHT(): float {
+    public function getOrderPriceHT(object $cart = null): float {
 
-        $cart = $this->getCart();
+        $cart = $cart ?? $this->getCart();
         $priceHT = 0;
 
         foreach($cart as $productId => $quantity) {
@@ -112,13 +122,21 @@ readonly class CartService {
 
     public function getCart(): object {
 
-        return (object) $this->requestStack->getSession()->get("cart", []);
+        return (object) json_decode($this->requestStack->getCurrentRequest()->cookies->get("cart"));
 
     }
 
-    public function setCart(object $cart): void {
+    public function setCart(Response $response, object $value): Response {
 
-        $this->requestStack->getSession()->set("cart", $cart);
+        $response->headers->setCookie(new Cookie(
+            "cart",
+            json_encode($value),
+            (new DateTimeImmutable())->add(new DateInterval("P1Y")),
+            "/",
+            $this->params->get("app.host.client")
+        ));
+
+        return $response;
 
     }
 }

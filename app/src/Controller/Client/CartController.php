@@ -11,8 +11,8 @@ use App\Repository\StockWebRepository;
 use App\Repository\StoreRepository;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +22,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/mon-panier', name: 'app_client_', requirements: ['host' => '%app.host.client%'], defaults: ['host' => '%app.host.client%'], host: '{host}')]
 class CartController extends AbstractController
 {
+    /**
+     * @param CartService $cartService
+     * @return Response
+     */
     #[Route(name: 'cart')]
     public function viewCart(CartService $cartService): Response
     {
@@ -32,24 +36,36 @@ class CartController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws \JsonException
+     */
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
-        $productId = $request->request->get("productId");
-        $action = $request->request->get("action");
+        $productId = trim($request->request->get("productId"));
+        $action = trim($request->request->get("action"));
 
         if(isset($productId, $action)) {
 
-            $formatPrice = $this->renderView("client/cart/update_cart.html.twig", [
-                'response' => $cartService->add($productId, $action)
+            $response = $cartService->add($productId, $action);
+
+            $formattedData = $this->renderView("client/cart/update_cart.html.twig", [
+                'response' => json_decode($response->getContent(), true)
             ]);
 
-            return new JsonResponse(json_decode(htmlspecialchars_decode($formatPrice)));
+            $response->setData(json_decode(htmlspecialchars_decode($formattedData)));
+
+            return $response;
 
         }
         return $this->redirectToRoute("app_client_cart");
     }
 
+    /**
+     * @param CartService $cartService
+     * @param StoreRepository $storeRepository
+     * @return Response
+     */
     #[Route('/passer-commande/livraison', name: 'delivery_choice')]
     #[IsGranted("ROLE_USER")]
     public function deliveryChoice(CartService $cartService, StoreRepository $storeRepository): Response
@@ -68,6 +84,17 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_client_cart');
     }
 
+    /**
+     * @param Request $request
+     * @param CartService $cartService
+     * @param StoreRepository $storeRepository
+     * @param OrderStateRepository $orderStateRepository
+     * @param ProductRepository $productRepository
+     * @param EntityManagerInterface $entityManager
+     * @param $user
+     * @param StockWebRepository $stockWebRepository
+     * @return Response
+     */
     #[Route('/passer-commande', name: 'place_order')]
     #[IsGranted("ROLE_USER")]
     public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockWebRepository $stockWebRepository): Response
@@ -77,81 +104,79 @@ class CartController extends AbstractController
         $zipCode = trim($request->request->get('zip-code'));
         $city = trim($request->request->get('city'));
 
-        if($cartService->getNbProducts() > 0) {
+        if(($cartService->getNbProducts() > 0) && isset($store, $street, $zipCode, $city)) {
 
-            if(isset($store, $street, $zipCode, $city)) {
+            $order = new OrderUser();
+            $orderState = $orderStateRepository->find(1);
+            $orderRank = new OrderRank();
+            $orderRank->setOrder($order);
+            $orderRank->setOrderState($orderState);
 
-                $order = new OrderUser();
-                $orderState = $orderStateRepository->find(1);
-                $orderRank = new OrderRank();
-                $orderRank->setOrder($order);
-                $orderRank->setOrderState($orderState);
+            $order->setUser($user);
+            $order->setTotalPriceHT($cartService->getOrderPriceHT());
+            $order->setTax($this->getParameter('app.tva'));
+            $order->setProductQuantity(0);
 
-                $order->setUser($user);
-                $order->setTotalPriceHT($cartService->getOrderPriceHT());
-                $order->setTax($this->getParameter('app.tva'));
-                $order->setProductQuantity($cartService->getNbProducts());
+            if($store && (!$street && !$zipCode && !$city)) {
 
-                if($store && (!$street && !$zipCode && !$city)) {
+                $_store = $storeRepository->find($store);
 
-                    $_store = $storeRepository->find($store);
-
+                if($_store) {
                     $order->setCity($_store->getCity());
-
                 }
 
-                if(!$store && ($street && $zipCode && $city)) {
+            }
 
-                    $order->setShippingCost($this->getParameter('app.shippingcost'));
-                    $order->setTotalPriceHT($order->getTotalPriceHT() + $order->getShippingCost());
-                    $order->setStreet($street);
-                    $order->setZipCode($zipCode);
-                    $order->setCity($city);
+            if(!$store && ($street && $zipCode && $city)) {
 
-                }
+                $order->setShippingCost($this->getParameter('app.shippingcost'));
+                $order->setTotalPriceHT($order->getTotalPriceHT() + $order->getShippingCost());
+                $order->setStreet($street);
+                $order->setZipCode($zipCode);
+                $order->setCity($city);
 
-                try {
+            }
 
-                    $entityManager->persist($order);
-                    $entityManager->persist($orderRank);
+            try {
 
-                    $cart = $cartService->getCart();
+                $entityManager->persist($order);
+                $entityManager->persist($orderRank);
 
-                    foreach ($cart as $productId => $quantity) {
+                $cart = $cartService->getCart();
 
-                        $product = $productRepository->find($productId);
+                foreach ($cart as $productId => $quantity) {
 
-                        if(!is_null($product)) {
+                    if($product = $cartService->getProduct($productId)) {
 
-                            $stockWebs = $stockWebRepository->findBy(["product" => $productId]);
-                            $quantityAvailable = 0;
+                        $stockWebs = $stockWebRepository->findBy(["product" => $productId]);
+                        $quantityAvailable = 0;
 
-                            foreach($stockWebs as $stockWeb) {
-                                $quantityAvailable += $stockWeb->getQuantity();
-                            }
+                        foreach($stockWebs as $stockWeb) {
+                            $quantityAvailable += $stockWeb->getQuantity();
+                        }
 
-                            if($quantityAvailable > $quantity) {
+                        if($quantityAvailable > $quantity) {
 
-                                $orderDetail = new OrderDetail();
-                                $orderDetail->setOrder($order);
-                                $orderDetail->setProduct($product);
-                                $orderDetail->setQuantity($quantity);
-                                $orderDetail->setUnitPrice($product->getUnitPrice());
+                            $orderDetail = new OrderDetail();
+                            $orderDetail->setOrder($order);
+                            $orderDetail->setProduct($product);
+                            $orderDetail->setQuantity($quantity);
+                            $orderDetail->setUnitPrice($product->getUnitPrice());
 
-                                $entityManager->persist($orderDetail);
+                            $order->setProductQuantity($order->getProductQuantity() + $quantity);
 
-                                while($quantity > 0) {
+                            $entityManager->persist($orderDetail);
 
-                                    foreach($stockWebs as $stockWeb) {
+                            while($quantity > 0) {
 
-                                        if($stockWeb->getQuantity() > 0) {
+                                foreach($stockWebs as $stockWeb) {
 
-                                            $stockWeb->setQuantity($stockWeb->getQuantity() - 1);
-                                            $quantity--;
+                                    if($stockWeb->getQuantity() > 0) {
 
-                                            $entityManager->persist($stockWeb);
+                                        $stockWeb->setQuantity($stockWeb->getQuantity() - 1);
+                                        $quantity--;
 
-                                        }
+                                        $entityManager->persist($stockWeb);
 
                                     }
 
@@ -163,20 +188,24 @@ class CartController extends AbstractController
 
                     }
 
-                    $entityManager->flush();
-                    $cartService->setCart((object) []);
-
-                    return $this->render("client/cart/confirm_order.html.twig", [
-                        'order' => $order
-                    ]);
-
-                } catch (\Exception $_) {
-
-                    $this->addFlash('error', 'Une erreur est survenue lors de la commande, merci de bien vérifier les coordonnées saisies');
-
-                    return $this->redirectToRoute("app_client_delivery_choice");
-
                 }
+
+                $entityManager->flush();
+
+                $response = new Response();
+
+                $response = $cartService->setCart($response, (object) []);
+                $response->setContent($this->renderView("client/cart/confirm_order.html.twig", [
+                    'order' => $order
+                ]));
+
+                return $response;
+
+            } catch (Exception $_) {
+
+                $this->addFlash('error', 'Une erreur est survenue lors de la commande, merci de bien vérifier les coordonnées saisies');
+
+                return $this->redirectToRoute("app_client_delivery_choice");
 
             }
 

@@ -15,7 +15,13 @@
         <h1>Votre commande (num {{ order.getId() }}) d'un montant de {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}, a bien été enregistré</h1>
         <p>Vous allez être redirigé vers votre profil dans <span id="sec">10</span>s</p>
     </div>
+{% endblock %}
+
+{% block javascripts_body %}
+    <script src="{{ asset('js/cart.js') }}"></script>
     <script>
+        orderPrice.forEach(el => el.innerHTML = formatPrice(0));
+
         const sec = document.getElementById("sec");
         let i = 10;
 
