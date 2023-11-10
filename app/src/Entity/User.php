@@ -74,7 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return $this->getCredential()->getEmail();
+        return $this->getCredential()?->getEmail();
     }
 
     /**
@@ -137,24 +137,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPassword(): ?string
     {
-        return $this->getCredential()->getPassword();
+        return $this->getCredential()?->getPassword();
     }
 
     public function setPassword(string $password): Credential
     {
-        $this->getCredential()->setPassword($password);
+        $this->getCredential()?->setPassword($password);
 
         return $this->getCredential();
     }
 
     public function getEmail(): ?string
     {
-        return $this->getCredential()->getEmail();
+        return $this->getCredential()?->getEmail();
     }
 
     public function setEmail(string $email): Credential
     {
-        $this->getCredential()->setEmail($email);
+        $this->getCredential()?->setEmail($email);
 
         return $this->getCredential();
     }
@@ -216,7 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBirthday(): ?Date
+    public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
@@ -248,7 +248,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->orders;
     }
 
-    public function addOrders(OrderUser $order): static
+    public function addOrder(OrderUser $order): static
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);
@@ -258,7 +258,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeOrders(OrderUser $order): static
+    public function removeOrder(OrderUser $order): static
     {
         if ($this->orders->removeElement($order)) {
             // set the owning side to null (unless already changed)
@@ -268,5 +268,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getAddress(): ?string {
+
+        if($this->street && $this->zip_code && $this->city) {
+            return "$this->street, $this->zip_code $this->city";
+        }
+        return null;
+
     }
 }

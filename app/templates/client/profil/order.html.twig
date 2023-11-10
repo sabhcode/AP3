@@ -16,24 +16,33 @@
     <h1>Commande num. {{ order.getId() }}</h1>
 	<div class="app_container app_padding">
         <div class="order-info">
-            <p><span>{{ order.getProductQuantity() }}</span> articles</p>
+            <p><span>{{ order.getProductQuantity() }}</span> article{{ (order.getProductQuantity() > 1 ? "s") }}</p>
             {% if order.getShippingCost() is not empty %}
                 <p><span>Frais de livraison</span> {{ order.getShippingCost()|format_currency('EUR') }}</p>
             {% endif %}
             <p><span>Prix HT</span> {{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
             <p><span>Taxe</span> {{ order.getTax() }} %</p>
             <p><span>Prix TTC</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
-            <p><span>Adresse de livraison</span> {{ order.getStreet() is not empty ? order.getStreet() ~ "," }} {{ order.getZipCode() }} {{ order.getCity() }}</p>
-            <p><span>État de votre commande</span></p>
+            <p><span>Adresse de livraison</span> {{ order.getAddress }}</p>
+            <p><span>Suivre l'avancée de votre commande</span></p>
             <div class="order_states">
-                {% for orderState in orderStates %}
-                    <p><span>- {{ orderState.getName() }}</span>
-                        {%- if order.getOrderRanks()[loop.index0].getOrderState().getId() is defined -%}
-                            Le {{ order.getOrderRanks()[loop.index0].getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
-                        {%- else -%}
-                            Prochainement...
-                        {%- endif -%}
-                    </p>
+                {% for rank in order.getOrderRanks() %}
+                    <div>
+                        {% if not loop.first %}
+                            <hr>
+                        {% endif %}
+                        <p>
+                            <span>{{ rank.getOrderState().getName() }}</span>
+                            Le {{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
+                        </p>
+                        {% if loop.last and loop.index < orderStates|length %}
+                            <hr>
+                            <p class="future">
+                                <span>{{ orderStates[loop.index].getName() }}</span>
+                                À venir...
+                            </p>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>

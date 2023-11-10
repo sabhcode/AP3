@@ -16,9 +16,15 @@
 		<div class="box_container">
 			<div class="user-info">
 				<h3 class="box_title"><span>Bonjour,</span> {{ app.user.getFirstName() }} {{ app.user.getName() }}</h3>
-				<p><span>Email :</span> {{ app.user.getEmail() }}</p>
-				<p><span>Téléphone :</span> {{ app.user.getPhone() }}</p>
-				<p><span>Adresse :</span> {{ app.user.getStreet() }}, {{app.user.getZipCode() }} {{app.user.getCity() }}</p>
+				<p>
+					<span>Email :</span> {{ app.user.getEmail() }}
+				</p>
+				<p>
+					<span>Téléphone :</span> {{ app.user.getPhone() ?? "À compléter" }}
+				</p>
+				<p>
+					<span>Adresse :</span> {{ app.user.getAddress() ?? "À compléter" }}
+				</p>
 			</div>
 			<div>
 				<h3 class="box_title">Vos commandes</h3>
@@ -37,8 +43,10 @@
 					<p>Vous n'avez pas encore passé de commande sur notre site</p>
 				{% endif %}
 			</div>
+			<div>
+				<a class="logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
+			</div>
 		</div>
-		<a class="logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
 	</div>
 
 	

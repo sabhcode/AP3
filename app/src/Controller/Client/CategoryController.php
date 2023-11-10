@@ -12,7 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Validator\Constraints\Collection;
 
-#[Route('/c', name: 'app_client_', requirements: ['host' => '%app.host.client%'], defaults: ['host' => '%app.host.client%'], host: '{host}')]
+#[Route(
+    '/c',
+    name: 'app_client_',
+    requirements: ['host' => '%app.host.client%'],
+    defaults: ['host' => '%app.host.client%'],
+    host: '{host}')
+]
 class CategoryController extends AbstractController
 {
     #[Route(name: 'categories')]
@@ -29,7 +35,7 @@ class CategoryController extends AbstractController
             $searchResult = [];
 
             foreach($_searchResult as $product) {
-                $categoryKey = $product->getCategory()->getId() . " " . $product->getCategory()->getName() . " " . $product->getCategory()->getSlug();
+                $categoryKey = $product->getCategory()?->getId() . " " . $product->getCategory()?->getName() . " " . $product->getCategory()?->getSlug();
                 $searchResult[$categoryKey][] = $product;
             }
             ksort($searchResult);

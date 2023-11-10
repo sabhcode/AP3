@@ -8,7 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 
-#[Route('/', name: 'app_client_', requirements: ['host' => '%app.host.client%'], defaults: ['host' => '%app.host.client%'], host: '{host}')]
+#[Route(
+    '/',
+    name: 'app_client_',
+    requirements: ['host' => '%app.host.client%'],
+    defaults: ['host' => '%app.host.client%'],
+    host: '{host}')
+]
 class HomeController extends AbstractController
 {
     #[Route(name: 'home')]

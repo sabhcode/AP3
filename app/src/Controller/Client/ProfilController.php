@@ -7,13 +7,20 @@ use App\Entity\OrderUser;
 use App\Entity\User;
 use App\Repository\OrderStateRepository;
 use App\Repository\UserRepository;
+use ContainerE6FjlZC\getOrderStateRepositoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/mon-profil', name: 'app_client_', requirements: ['host' => '%app.host.client%'], defaults: ['host' => '%app.host.client%'], host: '{host}')]
+#[Route(
+    '/mon-profil',
+    name: 'app_client_',
+    requirements: ['host' => '%app.host.client%'],
+    defaults: ['host' => '%app.host.client%'],
+    host: '{host}')
+]
 #[IsGranted("ROLE_USER")]
 class ProfilController extends AbstractController
 {
@@ -26,7 +33,7 @@ class ProfilController extends AbstractController
     #[Route("/commande/{id}", name: 'my_order')]
     public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository, #[CurrentUser] $user): Response
     {
-        if($order->getUser()->getId() === $user->getId()) {
+        if($order->getUser()?->getId() === $user->getId()) {
 
             $orderStates = $orderStateRepository->findAll();
 

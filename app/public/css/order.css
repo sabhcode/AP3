@@ -1,17 +1,9 @@
-h1 {
-    background-color: var(--primaryColor);
-    padding: 10px;
-    color: white;
-}
-
 .order-info {
-    border: 1px solid #ddd;
     margin-bottom: 20px;
-    padding: 20px;
     border-radius: var(--radiusBorder);
 }
 
-.order-info p {
+.order-info > p {
     border: 1px solid #ddd;
     border-radius: var(--radiusBorder);
     padding: 5px;
@@ -19,9 +11,9 @@ h1 {
 
 }
 
-.order-info p span {
+.order-info > p span {
     background-color: var(--primaryColor);
-    color: white;
+    color: var(--whiteColor);
     margin-right: 5px;
     padding: 5px;
     border-radius: var(--radiusBorder);
@@ -29,5 +21,29 @@ h1 {
 }
 
 .order_states {
+    max-width: fit-content;
     margin-left: 20px;
+    padding: 10px 0;
+}
+
+.order_states div hr {
+    display: block;
+    width: 0;
+    height: 50px;
+    margin: 0 auto;
+    border: 1px dashed #ccc;
+}
+
+.order_states div p {
+    padding: 5px 10px;
+    border: 1px solid var(--primaryColor);
+    border-radius: var(--radiusBorder);
+}
+.order_states .future {
+    border-style: dashed;
+    border-color: #ccc;
+}
+
+.order_states span {
+    font-weight: bold;
 }

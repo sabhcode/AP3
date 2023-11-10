@@ -210,4 +210,15 @@ class OrderUser
 
         return $this;
     }
+
+    public function getAddress(): string {
+
+        $address = "";
+
+        if($this->street && $this->zip_code && $this->city) {
+            $address .= "$this->street, $this->zip_code";
+        }
+        return $address .= " $this->city";
+
+    }
 }

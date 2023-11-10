@@ -33,7 +33,7 @@
                 <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}">
                 <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
-                <p class="GoToSignUp">Pas encore inscrit ? <a href="{{ path('app_register') }}">Inscription</a></p>
+                <p class="GoToSignUp">Pas encore inscrit ? <a href="{{ path('app_client_register') }}">Inscription</a></p>
             {% endif %}
         </form>
     </div>

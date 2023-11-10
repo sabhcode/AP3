@@ -8,7 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/p', name: 'app_client_', requirements: ['host' => '%app.host.client%'], defaults: ['host' => '%app.host.client%'], host: '{host}')]
+#[Route(
+    '/p',
+    name: 'app_client_',
+    requirements: ['host' => '%app.host.client%'],
+    defaults: ['host' => '%app.host.client%'],
+    host: '{host}')
+]
 class ProductController extends AbstractController
 {
     #[Route('/{slug}', name: 'product', requirements: ['slug' => Requirement::ASCII_SLUG])]
