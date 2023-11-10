@@ -13,8 +13,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Commande num. {{ order.getId() }}</h1>
 	<div class="app_container app_padding">
+        <div class="back_links">
+            <a href="{{ path('app_client_profil') }}">Mon profil</a>
+            <a href="{{ path('app_client_my_order', {'id': order.getId()}) }}">Commande num. {{ order.getId() }}</a>
+        </div>
+        <h1>Commande num. {{ order.getId() }}</h1>
         <div class="order-info">
             <p><span>{{ order.getProductQuantity() }}</span> article{{ (order.getProductQuantity() > 1 ? "s") }}</p>
             {% if order.getShippingCost() is not empty %}
@@ -23,8 +27,8 @@
             <p><span>Prix HT</span> {{ order.getTotalPriceHT()|format_currency('EUR') }}</p>
             <p><span>Taxe</span> {{ order.getTax() }} %</p>
             <p><span>Prix TTC</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
-            <p><span>Adresse de livraison</span> {{ order.getAddress }}</p>
-            <p><span>Suivre l'avancée de votre commande</span></p>
+            <p><span>Adresse de livraison</span> {{ order.getAddress() }}</p>
+            <p>Suivre l'avancée de votre commande</p>
             <div class="order_states">
                 {% for rank in order.getOrderRanks() %}
                     <div>
@@ -33,7 +37,7 @@
                         {% endif %}
                         <p>
                             <span>{{ rank.getOrderState().getName() }}</span>
-                            Le {{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
+                            le {{ rank.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
                         </p>
                         {% if loop.last and loop.index < orderStates|length %}
                             <hr>

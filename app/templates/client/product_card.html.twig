@@ -52,6 +52,8 @@
                 {% endif %}
             {% endif %}
         </div>
-        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
+        {% if not hasOrderDetail %}
+            {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
+        {% endif %}
     </div>
 {% endif %}

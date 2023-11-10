@@ -12,10 +12,16 @@
 
 {% block body %}
 	<div class="app_container app_padding">
+		<div class="back_links">
+			<a href="{{ path('app_client_profil') }}">Mon profil</a>
+		</div>
 		<h1>Mon profil</h1>
 		<div class="box_container">
 			<div class="user-info">
-				<h3 class="box_title"><span>Bonjour,</span> {{ app.user.getFirstName() }} {{ app.user.getName() }}</h3>
+				<h2 class="box_title">
+					<span>Bonjour,</span>
+					{{ app.user.getFirstName() }} {{ app.user.getName() }}
+				</h2>
 				<p>
 					<span>Email :</span> {{ app.user.getEmail() }}
 				</p>
@@ -27,17 +33,15 @@
 				</p>
 			</div>
 			<div>
-				<h3 class="box_title">Vos commandes</h3>
+				<h2 class="box_title">Mes dernières commandes</h2>
 				{% if app.user.getOrders() is not empty %}
 					<div class="flex">
-						{% for order in app.user.getOrders() %}
-							<a class="order_card" href="{{ path('app_client_my_order', {'id': order.getId() }) }}">
-								<p>Commande num. {{ order.getId() }}</p>
-								<p><span>Passée le :</span> {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}</p>
-								<p><span>{{ order.getProductQuantity() }}</span> articles</p>
-								<p><span>Prix TTC :</span> {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</p>
-							</a>
+						{% for order in app.user.getOrders()|sort((a, b) => a.getDateTime() < b.getDateTime())|slice(0, 4) %}
+							{% include 'client/order_card.html.twig' with {'order': order} %}
 						{% endfor %}
+					</div>
+					<div class="see_all_orders">
+						<a href="{{ path('app_client_my_orders') }}">Mes commandes</a>
 					</div>
 				{% else %}
 					<p>Vous n'avez pas encore passé de commande sur notre site</p>
@@ -48,6 +52,4 @@
 			</div>
 		</div>
 	</div>
-
-	
 {% endblock %}

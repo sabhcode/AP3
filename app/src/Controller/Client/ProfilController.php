@@ -29,7 +29,13 @@ class ProfilController extends AbstractController
     {
         return $this->render('client/profil/profil.html.twig');
     }
-    
+
+    #[Route("/mes-commandes", name: 'my_orders')]
+    public function getOrders(): Response
+    {
+        return $this->render('client/profil/orders.html.twig');
+    }
+
     #[Route("/commande/{id}", name: 'my_order')]
     public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository, #[CurrentUser] $user): Response
     {

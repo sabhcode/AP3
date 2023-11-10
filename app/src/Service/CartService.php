@@ -26,10 +26,11 @@ readonly class CartService {
         if($product = $this->getProduct($productId)) {
 
             $cart = $this->getCart();
+            $productAlreadyInCart = property_exists($cart, $productId);
 
             if($action === "add" && !$product->getStockWebs()->isEmpty()) {
 
-                if(property_exists($cart, $productId)) {
+                if($productAlreadyInCart) {
                     $cart->$productId++;
                 } else {
                     $cart->$productId = 1;
@@ -43,7 +44,7 @@ readonly class CartService {
                 $responseJSON["ok"] = true;
             }
 
-            if($action === "delete" || $cart->$productId <= 0) {
+            if($action === "delete" || ($productAlreadyInCart && $cart->$productId <= 0)) {
                 unset($cart->$productId);
                 $responseJSON["ok"] = true;
             }

@@ -340,3 +340,19 @@ h1 {
         max-width: 100%;
     }
 }
+
+.back_links {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.back_links a {
+    color: var(--primaryColor);
+}
+.back_links a:last-child {
+    color: var(--secondColor);
+}
+.back_links a:not(:last-child)::after {
+    content: "/";
+    margin: 0 8px;
+}

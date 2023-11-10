@@ -4,11 +4,7 @@
 }
 
 .order-info > p {
-    border: 1px solid #ddd;
-    border-radius: var(--radiusBorder);
-    padding: 5px;
     margin-bottom: 5px;
-
 }
 
 .order-info > p span {
