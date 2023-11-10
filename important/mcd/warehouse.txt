@@ -1,0 +1,9 @@
+B1M2D3.5
+
+B1-M2-D-3-.5
+
+B1 = Bâtiment = 1
+M2 = Module   = 2
+D  = Rangée   = D
+3  = Section  = 3
+.5 = Étagère  = 5
