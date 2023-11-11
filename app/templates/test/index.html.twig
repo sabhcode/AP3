@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="app_container app_padding">
+        <h1>Test</h1>
+        {{ dump(pdf) }}
+    </div>
+{% endblock %}
