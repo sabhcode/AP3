@@ -44,6 +44,15 @@ class TestController extends AbstractController
                         .text_center {
                             text-align: center;
                         }
+                        
+                        .text_important {
+                            font-weight: bold;
+                            text-transform: uppercase;
+                        }
+                        
+                        .void {
+                            border: 0;
+                        }
                     
                         .user_name {
                             font-size: 1.2em;
@@ -58,29 +67,29 @@ class TestController extends AbstractController
                             position: absolute;
                         }
                         
-                        .user_infos {
+                        .company_infos {
+                            margin-bottom: 25px;
+                        }
+                        
+                        .flex {
                             margin-bottom: 50px;
                         }
                         
                         table {
                             width: 100%;
-                            border: 1px solid #000;
                             border-collapse: collapse;
                         }
                         
                         th,
                         td {
                             padding: 8px 10px;
+                            border: 1px solid #000;
                         }
                         
                         th {
                             background-color: #000;
                             color: #fff;
                             text-transform: uppercase;
-                        }
-
-                        td {
-                            border: 1px solid #000;
                         }
                         
                         .product_quantity {
@@ -92,11 +101,27 @@ class TestController extends AbstractController
                         }
                         
                         .product_price {
+                            text-align: right;
                             width: 20%;
                         }
                         
                         .product_total_price {
+                            text-align: right;
                             width: 20%;
+                        }
+                        
+                        .flex:after {
+                            content: "";
+                            display: block;
+                            clear: both;
+                        }
+                        
+                        .flex div:nth-child(1) {
+                            float: left;
+                        }
+                        .flex div:nth-child(2) {
+                            float: right;
+                            text-align: right;
                         }
                     </style>
                 </head>
@@ -107,12 +132,25 @@ class TestController extends AbstractController
                         </a>
                         <h1 class="text_center">Confirmation de commande</h1>
                     </div>
-                    <div class="user_infos">
-                        <p>Facturé et envoyé à</p>
-                        <p class="user_name">Corentin HANNOYE</p>
-                        <p>user1@gmail.com</p>
-                        <p>12 rue des XXXXXXXX</p>
-                        <p>XXXXX Valenciennes</p>
+                    <div class="company_infos">
+                        <a href="http://localhost:8000">All4Sport.fr</a>
+                        <p>03.XX.XX.XX.XX</p>
+                        <p>contact@all4sport.fr</p>
+                        <p>XX rue des XXXXXXXX</p>
+                    </div>
+                    <div class="flex">
+                        <div class="user_infos">
+                            <p>Envoyé à</p>
+                            <p class="user_name">Corentin HANNOYE</p>
+                            <p>user1@gmail.com</p>
+                            <p>XX rue des XXXXXXXX</p>
+                            <p>59300 Valenciennes</p>
+                        </div>
+                        <div class="order_infos">
+                            <p>Numéro de commande : 13</p>
+                            <p>Date de commande : 12/11/2023 à 13:00</p>
+                            <p>Quantité de produits : 14</p>
+                        </div>
                     </div>
                     <div>
                         <table>
@@ -140,6 +178,30 @@ class TestController extends AbstractController
                                     <td class="product_name">Mon super produit3</td>
                                     <td class="text_center product_price">10,01 €</td>
                                     <td class="text_center product_total_price">100,10 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="void"></td>
+                                    <td class="void"></td>
+                                    <td class="text_center text_important">Total HT</td>
+                                    <td class="text_center product_total_price">236,00 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="void"></td>
+                                    <td class="void"></td>
+                                    <td class="text_center text_important">Livraison</td>
+                                    <td class="text_center product_total_price">+10,00 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="void"></td>
+                                    <td class="void"></td>
+                                    <td class="text_center text_important">TVA</td>
+                                    <td class="text_center product_total_price">20 %</td>
+                                </tr>
+                                <tr>
+                                    <td class="void"></td>
+                                    <td class="void"></td>
+                                    <td class="text_center text_important">Total TTC</td>
+                                    <td class="text_center product_total_price">295,20 €</td>
                                 </tr>
                             </tbody>
                         </table>
