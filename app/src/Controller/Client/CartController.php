@@ -145,10 +145,9 @@ class CartController extends AbstractController
 
             try {
 
-                $entityManager->persist($order);
-                $entityManager->persist($orderRank);
-
                 $cart = $cartService->getCart();
+
+                $productQuantity = 0;
 
                 foreach ($cart as $productId => $quantity) {
 
@@ -169,7 +168,7 @@ class CartController extends AbstractController
                             $orderDetail->setQuantity($quantity);
                             $orderDetail->setUnitPrice($product->getUnitPrice());
 
-                            $order->setProductQuantity($order->getProductQuantity() + $quantity);
+                            $productQuantity += $quantity;
 
                             $entityManager->persist($orderDetail);
 
@@ -195,7 +194,10 @@ class CartController extends AbstractController
                     }
 
                 }
+                $order->setProductQuantity($productQuantity);
 
+                $entityManager->persist($orderRank);
+                $entityManager->persist($order);
                 $entityManager->flush();
 
                 $response = new Response();

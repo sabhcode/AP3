@@ -1,0 +1,178 @@
+{% set user = order.getUser() %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{{ title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            line-height: 1;
+            padding: 40px 20px;
+        }
+
+        .text_center {
+            text-align: center;
+        }
+
+        .text_important {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .void {
+            border: 0;
+        }
+
+        .user_name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .header a {
+            position: absolute;
+        }
+
+        .company_infos {
+            margin-bottom: 20px;
+        }
+
+        .flex {
+            margin-bottom: 40px;
+        }
+        .flex:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .user_infos {
+            float: left;
+        }
+
+        .order_infos {
+            float: right;
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px 10px;
+            border: 1px solid #000;
+        }
+
+        th {
+            background-color: #000;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .product_quantity {
+            width: 8%;
+        }
+
+        .product_name {
+            width: 52%;
+        }
+
+        .product_price {
+            text-align: right;
+            width: 20%;
+        }
+
+        .product_total_price {
+            text-align: right;
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="http://localhost:8000">
+        <img src="data:image/png;base64,{{ logo }}" alt="Logo All4Sport" width="40">
+    </a>
+    <h1 class="text_center">{{ title }}</h1>
+</div>
+<div class="company_infos">
+    <a href="http://localhost:8000">All4Sport.fr</a>
+    <p>03.XX.XX.XX.XX</p>
+    <p>contact@all4sport.fr</p>
+    <p>XX rue des XXXXXXXX</p>
+</div>
+<div class="flex">
+    <div class="user_infos">
+        <p>Envoyé à</p>
+        <p class="user_name">{{ user.getFirstName() }} {{ user.getName()|upper }}</p>
+        <p>{{ user.getCredential().getEmail() }}</p>
+        <p>{{ (not order.getShippingCost() ? "All4Sport") }} {{ order.getAddress() }}</p>
+    </div>
+    <div class="order_infos">
+        <p>Commande n° {{ order.getId() }}</p>
+        <p>Client n° {{ user.getId() }}</p>
+        <p>Date de commande : {{ order.getDateTime()|format_date(locale="fr", pattern="dd/MM/y 'à' HH'h'mm") }}</p>
+        <p>Quantité de produit(s) : {{ order.getProductQuantity() }}</p>
+    </div>
+</div>
+<div>
+    <table>
+        <tbody>
+        <tr>
+            <th class="first">Qté</th>
+            <th class="second">Désignation</th>
+            <th class="third">Prix unit</th>
+            <th class="four">Montant</th>
+        </tr>
+        {% for detail in order.getOrderDetail() %}
+            <tr>
+                <td class="text_center product_quantity">{{ detail.getQuantity() }}</td>
+                <td class="product_name">{{ detail.getProduct().getName() }}</td>
+                <td class="text_center product_price">{{ detail.getUnitPrice()|format_currency('EUR') }}</td>
+                <td class="text_center product_total_price">{{ (detail.getUnitPrice() * detail.getQuantity())|format_currency('EUR') }}</td>
+            </tr>
+        {% endfor %}
+        {% if order.getShippingCost() %}
+            <tr>
+                <td class="void"></td>
+                <td class="void"></td>
+                <td class="text_center text_important">Livraison</td>
+                <td class="text_center product_total_price">+ {{ order.getShippingCost()|format_currency('EUR') }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td class="void"></td>
+            <td class="void"></td>
+            <td class="text_center text_important">Total HT</td>
+            <td class="text_center product_total_price">{{ order.getTotalPriceHT()|format_currency('EUR') }}</td>
+        </tr>
+        <tr>
+            <td class="void"></td>
+            <td class="void"></td>
+            <td class="text_center text_important">TVA</td>
+            <td class="text_center product_total_price">{{ order.getTax() }} %</td>
+        </tr>
+        <tr>
+            <td class="void"></td>
+            <td class="void"></td>
+            <td class="text_center text_important">Total TTC</td>
+            <td class="text_center product_total_price">{{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

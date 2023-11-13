@@ -3,6 +3,23 @@
     border-radius: var(--radiusBorder);
 }
 
+.confirm_order {
+    margin-bottom: 20px;
+}
+
+.confirm_order a {
+    background-color: var(--secondColor);
+    color: var(--primaryColor);
+    padding: 6px 20px;
+    border-radius: var(--radiusBorder);
+    transition: .2s ease;
+    transition-property: background-color, color;
+}
+.confirm_order a:hover {
+    background-color: var(--primaryColor);
+    color: var(--whiteColor);
+}
+
 .order-info > p {
     margin-bottom: 5px;
 }

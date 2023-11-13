@@ -12,7 +12,7 @@
 
 {% block body %}
     <div class="app_container app_padding">
-        <h1>Votre commande (num {{ order.getId() }}) d'un montant de {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}, a bien été enregistré</h1>
+        <h1>Votre commande (nº {{ order.getId() }}) d'un montant de {{ (order.getTotalPriceHT() + (order.getTotalPriceHT() * order.getTax() / 100))|format_currency('EUR') }}, a bien été enregistré</h1>
         <p>Vous allez être redirigé vers votre profil dans <span id="sec">10</span>s</p>
     </div>
 {% endblock %}

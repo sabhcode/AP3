@@ -2,12 +2,9 @@
 
 namespace App\Controller\Client;
 
-use App\Entity\OrderState;
 use App\Entity\OrderUser;
-use App\Entity\User;
 use App\Repository\OrderStateRepository;
-use App\Repository\UserRepository;
-use ContainerE6FjlZC\getOrderStateRepositoryService;
+use App\Service\PDFService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,6 +44,26 @@ class ProfilController extends AbstractController
                 'order' => $order,
                 'orderStates' => $orderStates
             ]);
+
+        }
+        return $this->redirectToRoute("app_client_profil");
+    }
+
+    #[Route("/commande/{id}/pdf", name: 'my_confirm_order')]
+    public function getConfirmOrder(OrderUser $order, PDFService $PDFService, #[CurrentUser] $user): Response
+    {
+        if($order->getUser()?->getId() === $user->getId()) {
+
+            $title = "Confirmation de commande";
+            $filename = "confirmation-de-commande-num-" . $order->getId();
+
+            $html = $this->renderView("client/profil/confirm_order.html.twig", [
+                "title" => $title,
+                "order" => $order,
+                "logo" => $PDFService::logoBase64
+            ]);
+
+            $PDFService->create($filename, $html);
 
         }
         return $this->redirectToRoute("app_client_profil");

@@ -1,12 +1,12 @@
 {% set hasOrder = order is defined %}
 
 {% if hasOrder %}
-    <a class="order_card" href="{{ path('app_client_my_order', {'id': order.getId() }) }}" title="Voir commande num. {{ order.getId() }}">
-        <p class="order_num">Commande num. {{ order.getId() }}</p>
+    <a class="order_card" href="{{ path('app_client_my_order', {'id': order.getId() }) }}" title="Voir commande nº {{ order.getId() }}">
+        <p class="order_num">Commande nº {{ order.getId() }}</p>
         <div class="order_card-body">
             <p>
                 <span>{{ order.getOrderRanks()[0].getOrderState().getName() }}</span>
-                le {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH:mm") }}
+                le {{ order.getDateTime()|format_date(locale="fr", pattern="EEEE d MMMM y 'à' HH'h'mm") }}
             </p>
             <p>
                 <span>{{ order.getProductQuantity() }}</span>
