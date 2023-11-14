@@ -24,24 +24,26 @@ class StockShelf
     private ?Shelf $shelf = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelvesSections')]
-    #[ORM\JoinColumn(name:"shelf_section_code", referencedColumnName:"section_code",nullable: false)]
-    private ?Shelf $shelf_section_code = null;
+    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
+    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
+    private ?Building $building = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelvesRowShelf')]
-    #[ORM\JoinColumn(name:"shelf_row_shelf_code", referencedColumnName:"row_shelf_code",nullable: false)]
-    private ?Shelf $shelf_row_shelf_code = null;
-    
+    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
+    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code",nullable: false)]
+    private ?Module $module = null;
+
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelvesModules')]
-    #[ORM\JoinColumn(name:"shelf_module_code", referencedColumnName:"module_code",nullable: false)]
-    private ?Shelf $shelf_module_code = null;
-    
+    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
+    #[ORM\JoinColumn(name:"row_code", referencedColumnName:"code",nullable: false)]
+    private ?Row $row_ = null;
+
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelvesBuildings')]
-    #[ORM\JoinColumn(name:"shelf_building_code", referencedColumnName:"building_code",nullable: false)]
-    private ?Shelf $shelf_building_code = null;
+    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
+    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code",nullable: false)]
+    private ?Section $section = null;
+
+
 
     public function getQuantity(): ?int
     {
@@ -79,51 +81,52 @@ class StockShelf
         return $this;
     }
 
-    public function getShelfSectionCode(): ?Shelf
+    public function getBuilding(): ?Building
     {
-        return $this->shelf_section_code;
+        return $this->building;
     }
 
-    public function setShelfSectionCode(?Shelf $shelf_section_code): static
+    public function setBuilding(?Building $building): static
     {
-        $this->shelf_section_code = $shelf_section_code;
+        $this->building = $building;
 
         return $this;
     }
 
-    public function getShelfRowShelfCode(): ?Shelf
+    public function getModule(): ?Module
     {
-        return $this->shelf_row_shelf_code;
+        return $this->module;
     }
 
-    public function setShelfRowShelfCode(?Shelf $shelf_row_shelf_code): static
+    public function setModule(?Module $module): static
     {
-        $this->shelf_row_shelf_code = $shelf_row_shelf_code;
+        $this->module = $module;
 
         return $this;
     }
 
-    public function getShelfModeleCode(): ?Shelf
+    public function getRow(): ?Row
     {
-        return $this->shelf_module_code;
+        return $this->row_;
     }
 
-    public function setShelfModeleCode(?Shelf $shelf_module_code): static
+    public function setRow(?Row $row_): static
     {
-        $this->shelf_module_code = $shelf_module_code;
+        $this->row_ = $row_;
 
         return $this;
     }
 
-    public function getShelfBuildingCode(): ?Shelf
+    public function getSection(): ?Section
     {
-        return $this->shelf_building_code;
+        return $this->section;
     }
 
-    public function setShelfBuildingCode(?Shelf $shelf_building_code): static
+    public function setSection(?Section $section): static
     {
-        $this->shelf_building_code = $shelf_building_code;
+        $this->section = $section;
 
         return $this;
     }
+
 }

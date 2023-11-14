@@ -31,11 +31,15 @@ class Row
     #[ORM\OneToMany(mappedBy: 'row_shelf', targetEntity: Shelf::class)]
     private Collection $shelves;
 
+    #[ORM\OneToMany(mappedBy: 'Row_', targetEntity: StockShelf::class)]
+    private Collection $stockShelves;
+
 
     public function __construct()
     {
         $this->sections = new ArrayCollection();
         $this->shelves = new ArrayCollection();
+        $this->stockShelves = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -128,6 +132,36 @@ class Row
             // set the owning side to null (unless already changed)
             if ($shelf->getRowShelf() === $this) {
                 $shelf->setRowShelf(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockShelf>
+     */
+    public function getStockShelves(): Collection
+    {
+        return $this->stockShelves;
+    }
+
+    public function addStockShelf(StockShelf $stockShelf): static
+    {
+        if (!$this->stockShelves->contains($stockShelf)) {
+            $this->stockShelves->add($stockShelf);
+            $stockShelf->setRow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockShelf(StockShelf $stockShelf): static
+    {
+        if ($this->stockShelves->removeElement($stockShelf)) {
+            // set the owning side to null (unless already changed)
+            if ($stockShelf->getRow() === $this) {
+                $stockShelf->setRow(null);
             }
         }
 

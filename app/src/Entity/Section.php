@@ -33,9 +33,13 @@ class Section
     #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
     private ?Building $building = null;
 
+    #[ORM\OneToMany(mappedBy: 'section', targetEntity: StockShelf::class)]
+    private Collection $stockShelves;
+
     public function __construct()
     {
         $this->shelves = new ArrayCollection();
+        $this->stockShelves = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -112,6 +116,36 @@ class Section
     public function setBuilding(?Building $building): static
     {
         $this->building = $building;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockShelf>
+     */
+    public function getStockShelves(): Collection
+    {
+        return $this->stockShelves;
+    }
+
+    public function addStockShelf(StockShelf $stockShelf): static
+    {
+        if (!$this->stockShelves->contains($stockShelf)) {
+            $this->stockShelves->add($stockShelf);
+            $stockShelf->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockShelf(StockShelf $stockShelf): static
+    {
+        if ($this->stockShelves->removeElement($stockShelf)) {
+            // set the owning side to null (unless already changed)
+            if ($stockShelf->getSection() === $this) {
+                $stockShelf->setSection(null);
+            }
+        }
 
         return $this;
     }

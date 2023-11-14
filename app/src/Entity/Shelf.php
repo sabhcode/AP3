@@ -156,27 +156,7 @@ class Shelf
         return $this->stockShelvesSections;
     }
 
-    public function addStockShelvesSection(StockShelf $stockShelvesSection): static
-    {
-        if (!$this->stockShelvesSections->contains($stockShelvesSection)) {
-            $this->stockShelvesSections->add($stockShelvesSection);
-            $stockShelvesSection->setShelfSectionCode($this);
-        }
 
-        return $this;
-    }
-
-    public function removeStockShelvesSection(StockShelf $stockShelvesSection): static
-    {
-        if ($this->stockShelvesSections->removeElement($stockShelvesSection)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelvesSection->getShelfSectionCode() === $this) {
-                $stockShelvesSection->setShelfSectionCode(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, StockShelf>
@@ -186,27 +166,6 @@ class Shelf
         return $this->stockShelvesRowShelf;
     }
 
-    public function addStockShelvesRowShelf(StockShelf $stockShelvesRowShelf): static
-    {
-        if (!$this->stockShelvesRowShelf->contains($stockShelvesRowShelf)) {
-            $this->stockShelvesRowShelf->add($stockShelvesRowShelf);
-            $stockShelvesRowShelf->setShelfRowShelfCode($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockShelvesRowShelf(StockShelf $stockShelvesRowShelf): static
-    {
-        if ($this->stockShelvesRowShelf->removeElement($stockShelvesRowShelf)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelvesRowShelf->getShelfRowShelfCode() === $this) {
-                $stockShelvesRowShelf->setShelfRowShelfCode(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, StockShelf>
@@ -216,27 +175,7 @@ class Shelf
         return $this->stockShelvesModules;
     }
 
-    public function addStockShelvesModule(StockShelf $stockShelvesModule): static
-    {
-        if (!$this->stockShelvesModules->contains($stockShelvesModule)) {
-            $this->stockShelvesModules->add($stockShelvesModule);
-            $stockShelvesModule->setShelfModeleCode($this);
-        }
 
-        return $this;
-    }
-
-    public function removeStockShelvesModule(StockShelf $stockShelvesModule): static
-    {
-        if ($this->stockShelvesModules->removeElement($stockShelvesModule)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelvesModule->getShelfModeleCode() === $this) {
-                $stockShelvesModule->setShelfModeleCode(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, StockShelf>
@@ -246,25 +185,4 @@ class Shelf
         return $this->stockShelvesBuildings;
     }
 
-    public function addStockShelvesBuilding(StockShelf $stockShelvesBuilding): static
-    {
-        if (!$this->stockShelvesBuildings->contains($stockShelvesBuilding)) {
-            $this->stockShelvesBuildings->add($stockShelvesBuilding);
-            $stockShelvesBuilding->setShelfBuildingCode($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockShelvesBuilding(StockShelf $stockShelvesBuilding): static
-    {
-        if ($this->stockShelvesBuildings->removeElement($stockShelvesBuilding)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelvesBuilding->getShelfBuildingCode() === $this) {
-                $stockShelvesBuilding->setShelfBuildingCode(null);
-            }
-        }
-
-        return $this;
-    }
 }
