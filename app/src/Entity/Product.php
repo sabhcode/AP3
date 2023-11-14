@@ -49,12 +49,19 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockWeb::class)]
     private Collection $stockWebs;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockShelf::class)]
+    private Collection $stockShelves;
+
+    #[ORM\Column]
+    private ?int $weight = null;
+
     public function __construct()
     {
         $this->stockStores = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
         $this->productImgs = new ArrayCollection();
         $this->stockWebs = new ArrayCollection();
+        $this->stockShelves = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -228,6 +235,48 @@ class Product
                 $stockWeb->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockShelf>
+     */
+    public function getStockShelves(): Collection
+    {
+        return $this->stockShelves;
+    }
+
+    public function addStockShelf(StockShelf $stockShelf): static
+    {
+        if (!$this->stockShelves->contains($stockShelf)) {
+            $this->stockShelves->add($stockShelf);
+            $stockShelf->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockShelf(StockShelf $stockShelf): static
+    {
+        if ($this->stockShelves->removeElement($stockShelf)) {
+            // set the owning side to null (unless already changed)
+            if ($stockShelf->getProduct() === $this) {
+                $stockShelf->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(int $weight): static
+    {
+        $this->weight = $weight;
 
         return $this;
     }
