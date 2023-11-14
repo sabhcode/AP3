@@ -31,7 +31,7 @@ class Row
     #[ORM\OneToMany(mappedBy: 'row_shelf', targetEntity: Shelf::class)]
     private Collection $shelves;
 
-    #[ORM\OneToMany(mappedBy: 'Row_', targetEntity: StockShelf::class)]
+    #[ORM\OneToMany(mappedBy: 'row_', targetEntity: StockShelf::class)]
     private Collection $stockShelves;
 
 
