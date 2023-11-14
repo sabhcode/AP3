@@ -8,11 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StockShelfRepository::class)]
 class StockShelf
 {
-
-
-    #[ORM\Column]
-    private ?int $quantity = null;
-
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
     #[ORM\JoinColumn(nullable: false)]
@@ -25,25 +20,26 @@ class StockShelf
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
     private ?Building $building = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code", nullable: false)]
     private ?Module $module = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"row_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name:"row_code", referencedColumnName:"code", nullable: false)]
     private ?Row $row_ = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code", nullable: false)]
     private ?Section $section = null;
 
-
+    #[ORM\Column]
+    private ?int $quantity = null;
 
     public function getQuantity(): ?int
     {
