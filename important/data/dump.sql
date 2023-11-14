@@ -138,7 +138,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1@gmail.com','[]','NomUser1','PrenomUser1','561-962-2040','2414 Pleasant Hill Road','33432','Boca Raton','1993-05-26',2,1),(2,'user2@gmail.com','[]','NomUser2','PrenomUser2',NULL,NULL,NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (1,'user1@gmail.com','[]','NomUser1','PrenomUser1','561-962-2040','2414 Pleasant Hill Road','33432','Boca Raton','1993-05-26',2),(2,'user2@gmail.com','[]','NomUser2','PrenomUser2',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
