@@ -16,30 +16,30 @@ class Section
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"row_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name: "row_code", referencedColumnName: "code", nullable: false)]
     private ?Row $row_section = null;
+
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    #[ORM\JoinColumn(name: "module_code", referencedColumnName: "code", nullable: false)]
+    private ?Module $module = null;
+
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    #[ORM\JoinColumn(name: "building_code", referencedColumnName: "code", nullable: false)]
+    private ?Building $building = null;
+
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Warehouse $warehouse = null;
 
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: Shelf::class)]
     private Collection $shelves;
 
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code",nullable: false)]
-    private ?Module $module = null;
-    
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
-    private ?Building $building = null;
-
-    #[ORM\OneToMany(mappedBy: 'section', targetEntity: StockShelf::class)]
-    private Collection $stockShelves;
-
     public function __construct()
     {
         $this->shelves = new ArrayCollection();
-        $this->stockShelves = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -120,32 +120,14 @@ class Section
         return $this;
     }
 
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelves(): Collection
+    public function getWarehouse(): ?Warehouse
     {
-        return $this->stockShelves;
+        return $this->warehouse;
     }
 
-    public function addStockShelf(StockShelf $stockShelf): static
+    public function setWarehouse(?Warehouse $warehouse): static
     {
-        if (!$this->stockShelves->contains($stockShelf)) {
-            $this->stockShelves->add($stockShelf);
-            $stockShelf->setSection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockShelf(StockShelf $stockShelf): static
-    {
-        if ($this->stockShelves->removeElement($stockShelf)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelf->getSection() === $this) {
-                $stockShelf->setSection(null);
-            }
-        }
+        $this->warehouse = $warehouse;
 
         return $this;
     }

@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RowRepository::class)]
-#[ORM\Table(name: '`row`')]
 class Row
 {
     #[ORM\Id]
@@ -19,27 +18,27 @@ class Row
     #[ORM\ManyToOne(inversedBy: 'fk_rows')]
     #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code",nullable: false)]
     private ?Module $module = null;
-
-    #[ORM\OneToMany(mappedBy: 'row_section', targetEntity: Section::class)]
-    private Collection $sections;
     
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'rows_building')]
     #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
     private ?Building $building = null;
 
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'rowss')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Warehouse $warehouse = null;
+
+    #[ORM\OneToMany(mappedBy: 'row_section', targetEntity: Section::class)]
+    private Collection $sections;
+
     #[ORM\OneToMany(mappedBy: 'row_shelf', targetEntity: Shelf::class)]
     private Collection $shelves;
-
-    #[ORM\OneToMany(mappedBy: 'row_', targetEntity: StockShelf::class)]
-    private Collection $stockShelves;
-
 
     public function __construct()
     {
         $this->sections = new ArrayCollection();
         $this->shelves = new ArrayCollection();
-        $this->stockShelves = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -138,32 +137,14 @@ class Row
         return $this;
     }
 
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelves(): Collection
+    public function getWarehouse(): ?Warehouse
     {
-        return $this->stockShelves;
+        return $this->warehouse;
     }
 
-    public function addStockShelf(StockShelf $stockShelf): static
+    public function setWarehouse(?Warehouse $warehouse): static
     {
-        if (!$this->stockShelves->contains($stockShelf)) {
-            $this->stockShelves->add($stockShelf);
-            $stockShelf->setRow($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockShelf(StockShelf $stockShelf): static
-    {
-        if ($this->stockShelves->removeElement($stockShelf)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelf->getRow() === $this) {
-                $stockShelf->setRow(null);
-            }
-        }
+        $this->warehouse = $warehouse;
 
         return $this;
     }

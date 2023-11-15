@@ -26,6 +26,9 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     private ?float $unit_price = null;
 
+    #[ORM\Column]
+    private ?int $weight = null;
+
     #[ORM\Column(unique: true)]
     private ?string $slug = null;
 
@@ -51,9 +54,6 @@ class Product
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockShelf::class)]
     private Collection $stockShelves;
-
-    #[ORM\Column]
-    private ?int $weight = null;
 
     public function __construct()
     {

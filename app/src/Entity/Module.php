@@ -16,6 +16,11 @@ class Module
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Warehouse $warehouse = null;
+
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'modules')]
     #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
     private ?building $building = null;
 
@@ -28,15 +33,11 @@ class Module
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Shelf::class)]
     private Collection $shelves;
 
-    #[ORM\OneToMany(mappedBy: 'module', targetEntity: StockShelf::class)]
-    private Collection $stockShelves;
-
     public function __construct()
     {
         $this->fk_rows = new ArrayCollection();
         $this->sections = new ArrayCollection();
         $this->shelves = new ArrayCollection();
-        $this->stockShelves = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -153,32 +154,14 @@ class Module
         return $this;
     }
 
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelves(): Collection
+    public function getWarehouse(): ?Warehouse
     {
-        return $this->stockShelves;
+        return $this->warehouse;
     }
 
-    public function addStockShelf(StockShelf $stockShelf): static
+    public function setWarehouse(?Warehouse $warehouse): static
     {
-        if (!$this->stockShelves->contains($stockShelf)) {
-            $this->stockShelves->add($stockShelf);
-            $stockShelf->setModule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockShelf(StockShelf $stockShelf): static
-    {
-        if ($this->stockShelves->removeElement($stockShelf)) {
-            // set the owning side to null (unless already changed)
-            if ($stockShelf->getModule() === $this) {
-                $stockShelf->setModule(null);
-            }
-        }
+        $this->warehouse = $warehouse;
 
         return $this;
     }

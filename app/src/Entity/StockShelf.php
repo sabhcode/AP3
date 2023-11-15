@@ -18,26 +18,6 @@ class StockShelf
     #[ORM\JoinColumn(name:"shelf_code", referencedColumnName:"code", nullable: false)]
     private ?Shelf $shelf = null;
 
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
-    private ?Building $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code", nullable: false)]
-    private ?Module $module = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"row_code", referencedColumnName:"code", nullable: false)]
-    private ?Row $row_ = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code", nullable: false)]
-    private ?Section $section = null;
-
     #[ORM\Column]
     private ?int $quantity = null;
 
@@ -76,53 +56,4 @@ class StockShelf
 
         return $this;
     }
-
-    public function getBuilding(): ?Building
-    {
-        return $this->building;
-    }
-
-    public function setBuilding(?Building $building): static
-    {
-        $this->building = $building;
-
-        return $this;
-    }
-
-    public function getModule(): ?Module
-    {
-        return $this->module;
-    }
-
-    public function setModule(?Module $module): static
-    {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    public function getRow(): ?Row
-    {
-        return $this->row_;
-    }
-
-    public function setRow(?Row $row_): static
-    {
-        $this->row_ = $row_;
-
-        return $this;
-    }
-
-    public function getSection(): ?Section
-    {
-        return $this->section;
-    }
-
-    public function setSection(?Section $section): static
-    {
-        $this->section = $section;
-
-        return $this;
-    }
-
 }

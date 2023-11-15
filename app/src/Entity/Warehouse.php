@@ -27,11 +27,27 @@ class Warehouse
     #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: Building::class)]
     private Collection $buildings;
 
+    #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: Module::class)]
+    private Collection $modules;
+
+    #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: row::class)]
+    private Collection $rowss;
+
+    #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: Section::class)]
+    private Collection $sections;
+
+    #[ORM\OneToMany(mappedBy: 'warehouse', targetEntity: Shelf::class)]
+    private Collection $shelves;
+
     public function __construct()
     {
         $this->stores = new ArrayCollection();
         $this->stockWebs = new ArrayCollection();
         $this->buildings = new ArrayCollection();
+        $this->modules = new ArrayCollection();
+        $this->rowss = new ArrayCollection();
+        $this->sections = new ArrayCollection();
+        $this->shelves = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,6 +151,126 @@ class Warehouse
             // set the owning side to null (unless already changed)
             if ($building->getWarehouse() === $this) {
                 $building->setWarehouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Module>
+     */
+    public function getModules(): Collection
+    {
+        return $this->modules;
+    }
+
+    public function addModules(Module $module): static
+    {
+        if (!$this->modules->contains($module)) {
+            $this->modules->add($module);
+            $module->setWarehouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModules(Module $module): static
+    {
+        if ($this->modules->removeElement($module)) {
+            // set the owning side to null (unless already changed)
+            if ($module->getWarehouse() === $this) {
+                $module->setWarehouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, row>
+     */
+    public function getRowss(): Collection
+    {
+        return $this->rowss;
+    }
+
+    public function addRowss(row $rowss): static
+    {
+        if (!$this->rowss->contains($rowss)) {
+            $this->rowss->add($rowss);
+            $rowss->setWarehouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRowss(row $rowss): static
+    {
+        if ($this->rowss->removeElement($rowss)) {
+            // set the owning side to null (unless already changed)
+            if ($rowss->getWarehouse() === $this) {
+                $rowss->setWarehouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Section>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $sectionss): static
+    {
+        if (!$this->sections->contains($sectionss)) {
+            $this->sections->add($sectionss);
+            $sectionss->setWarehouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $sectionss): static
+    {
+        if ($this->sections->removeElement($sectionss)) {
+            // set the owning side to null (unless already changed)
+            if ($sectionss->getWarehouse() === $this) {
+                $sectionss->setWarehouse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Shelf>
+     */
+    public function getShelf(): Collection
+    {
+        return $this->shelves;
+    }
+
+    public function addShelf(Shelf $shelves): static
+    {
+        if (!$this->shelves->contains($shelves)) {
+            $this->shelves->add($shelves);
+            $shelves->setWarehouse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShelf(Shelf $shelves): static
+    {
+        if ($this->shelves->removeElement($shelves)) {
+            // set the owning side to null (unless already changed)
+            if ($shelves->getWarehouse() === $this) {
+                $shelves->setWarehouse(null);
             }
         }
 

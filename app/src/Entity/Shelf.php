@@ -19,9 +19,6 @@ class Shelf
     #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code",nullable: false)]
     private ?Section $section = null;
 
-    #[ORM\OneToMany(mappedBy: 'shelf', targetEntity: StockShelf::class)]
-    private Collection $stockShelves;
-
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
     #[ORM\JoinColumn(name:"row_shelf_code", referencedColumnName:"code",nullable: false)]
@@ -37,25 +34,17 @@ class Shelf
     #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
     private ?Building $building = null;
 
-    #[ORM\OneToMany(mappedBy: 'shelf_section_code', targetEntity: StockShelf::class)]
-    private Collection $stockShelvesSections;
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'shelves')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Warehouse $warehouse = null;
 
-    #[ORM\OneToMany(mappedBy: 'shelf_row_shelf_code', targetEntity: StockShelf::class)]
-    private Collection $stockShelvesRowShelf;
-
-    #[ORM\OneToMany(mappedBy: 'shelf_modele_code', targetEntity: StockShelf::class)]
-    private Collection $stockShelvesModules;
-
-    #[ORM\OneToMany(mappedBy: 'shelf_building_code', targetEntity: StockShelf::class)]
-    private Collection $stockShelvesBuildings;
+    #[ORM\OneToMany(mappedBy: 'shelf', targetEntity: StockShelf::class)]
+    private Collection $stockShelves;
 
     public function __construct()
     {
         $this->stockShelves = new ArrayCollection();
-        $this->stockShelvesSections = new ArrayCollection();
-        $this->stockShelvesRowShelf = new ArrayCollection();
-        $this->stockShelvesModules = new ArrayCollection();
-        $this->stockShelvesBuildings = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -148,41 +137,16 @@ class Shelf
         return $this;
     }
 
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelvesSections(): Collection
+    public function getWarehouse(): ?Warehouse
     {
-        return $this->stockShelvesSections;
+        return $this->warehouse;
     }
 
-
-
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelvesRowShelf(): Collection
+    public function setWarehouse(?Warehouse $warehouse): static
     {
-        return $this->stockShelvesRowShelf;
-    }
+        $this->warehouse = $warehouse;
 
-
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelvesModules(): Collection
-    {
-        return $this->stockShelvesModules;
-    }
-
-
-
-    /**
-     * @return Collection<int, StockShelf>
-     */
-    public function getStockShelvesBuildings(): Collection
-    {
-        return $this->stockShelvesBuildings;
+        return $this;
     }
 
 }
