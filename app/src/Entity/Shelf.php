@@ -11,33 +11,33 @@ use Doctrine\ORM\Mapping as ORM;
 class Shelf
 {
     #[ORM\Id]
-    #[ORM\Column(length: 1)]
+    #[ORM\Column(length: 1, options: ["fixed" => true])]
     private ?string $code = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code",nullable: false)]
+    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code", nullable: false)]
     private ?Section $section = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"row_shelf_code", referencedColumnName:"code",nullable: false)]
-    private ?Row $row_shelf = null;
+    #[ORM\JoinColumn(name:"way_code", referencedColumnName:"way_code", nullable: false)]
+    private ?Section $way = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code",nullable: false)]
-    private ?Module $module = null;
+    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"module_code", nullable: false)]
+    private ?Section $module = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code",nullable: false)]
-    private ?Building $building = null;
+    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"building_code", nullable: false)]
+    private ?Section $building = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Warehouse $warehouse = null;
+    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
+    private ?Section $warehouse = null;
 
     #[ORM\OneToMany(mappedBy: 'shelf', targetEntity: StockShelf::class)]
     private Collection $stockShelves;
@@ -45,18 +45,6 @@ class Shelf
     public function __construct()
     {
         $this->stockShelves = new ArrayCollection();
-    }
-
-    public function getCode(): ?string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): static
-    {
-        $this->code = $code;
-
-        return $this;
     }
 
     public function getSection(): ?Section
@@ -67,6 +55,54 @@ class Shelf
     public function setSection(?Section $section): static
     {
         $this->section = $section;
+
+        return $this;
+    }
+
+    public function getWay(): ?Section
+    {
+        return $this->way;
+    }
+
+    public function setWay(?Section $way): static
+    {
+        $this->way = $way;
+
+        return $this;
+    }
+
+    public function getModule(): ?Section
+    {
+        return $this->module;
+    }
+
+    public function setModule(?Section $module): static
+    {
+        $this->module = $module;
+
+        return $this;
+    }
+
+    public function getBuilding(): ?Section
+    {
+        return $this->building;
+    }
+
+    public function setBuilding(?Section $building): static
+    {
+        $this->building = $building;
+
+        return $this;
+    }
+
+    public function getWarehouse(): ?Section
+    {
+        return $this->warehouse;
+    }
+
+    public function setWarehouse(?Section $warehouse): static
+    {
+        $this->warehouse = $warehouse;
 
         return $this;
     }
@@ -100,53 +136,4 @@ class Shelf
 
         return $this;
     }
-
-    public function getRowShelf(): ?Row
-    {
-        return $this->row_shelf;
-    }
-
-    public function setRowShelf(?Row $row_shelf): static
-    {
-        $this->row_shelf = $row_shelf;
-
-        return $this;
-    }
-
-    public function getModule(): ?Module
-    {
-        return $this->module;
-    }
-
-    public function setModule(?Module $module): static
-    {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    public function getBuilding(): ?Building
-    {
-        return $this->building;
-    }
-
-    public function setBuilding(?Building $building): static
-    {
-        $this->building = $building;
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Warehouse
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Warehouse $warehouse): static
-    {
-        $this->warehouse = $warehouse;
-
-        return $this;
-    }
-
 }

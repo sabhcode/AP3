@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block header %}
+    {% include 'client/headerLinks.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="app_container">
+        {% for stockShelf in stocksShelf %}
+            {{ dump(stockShelf) }}
+        {% else %}
+            <p>Aucun stock</p>
+        {% endfor %}
+    </div>
+{% endblock %}

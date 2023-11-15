@@ -11,33 +11,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Module
 {
     #[ORM\Id]
-    #[ORM\Column(length: 2)]
+    #[ORM\Column(length: 2, options: ["fixed" => true])]
     private ?string $code = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'modules')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Warehouse $warehouse = null;
+    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
+    private ?Building $building = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'modules')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
-    private ?building $building = null;
+    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
+    private ?Building $warehouse = null;
 
-    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Row::class)]
-    private Collection $fk_rows;
-
-    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Section::class)]
-    private Collection $sections;
-
-    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Shelf::class)]
-    private Collection $shelves;
+    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Way::class)]
+    private Collection $ways;
 
     public function __construct()
     {
-        $this->fk_rows = new ArrayCollection();
-        $this->sections = new ArrayCollection();
-        $this->shelves = new ArrayCollection();
+        $this->ways = new ArrayCollection();
     }
 
     public function getCode(): ?string
@@ -52,12 +44,24 @@ class Module
         return $this;
     }
 
-    public function getBuilding(): ?building
+    public function getWarehouse(): ?Building
+    {
+        return $this->warehouse;
+    }
+
+    public function setWarehouse(?Building $warehouse): static
+    {
+        $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    public function getBuilding(): ?Building
     {
         return $this->building;
     }
 
-    public function setBuilding(?building $building): static
+    public function setBuilding(?Building $building): static
     {
         $this->building = $building;
 
@@ -65,103 +69,31 @@ class Module
     }
 
     /**
-     * @return Collection<int, Row>
+     * @return Collection<int, Way>
      */
-    public function getFkRows(): Collection
+    public function getWays(): Collection
     {
-        return $this->fk_rows;
+        return $this->ways;
     }
 
-    public function addFkRow(Row $fkRow): static
+    public function addWay(Way $way): static
     {
-        if (!$this->fk_rows->contains($fkRow)) {
-            $this->fk_rows->add($fkRow);
-            $fkRow->setModule($this);
+        if (!$this->ways->contains($way)) {
+            $this->ways->add($way);
+            $way->setModule($this);
         }
 
         return $this;
     }
 
-    public function removeFkRow(Row $fkRow): static
+    public function removeWay(Way $way): static
     {
-        if ($this->fk_rows->removeElement($fkRow)) {
+        if ($this->ways->removeElement($way)) {
             // set the owning side to null (unless already changed)
-            if ($fkRow->getModule() === $this) {
-                $fkRow->setModule(null);
+            if ($way->getModule() === $this) {
+                $way->setModule(null);
             }
         }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Section>
-     */
-    public function getSections(): Collection
-    {
-        return $this->sections;
-    }
-
-    public function addSection(Section $section): static
-    {
-        if (!$this->sections->contains($section)) {
-            $this->sections->add($section);
-            $section->setModule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSection(Section $section): static
-    {
-        if ($this->sections->removeElement($section)) {
-            // set the owning side to null (unless already changed)
-            if ($section->getModule() === $this) {
-                $section->setModule(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Shelf>
-     */
-    public function getShelves(): Collection
-    {
-        return $this->shelves;
-    }
-
-    public function addShelf(Shelf $shelf): static
-    {
-        if (!$this->shelves->contains($shelf)) {
-            $this->shelves->add($shelf);
-            $shelf->setModule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeShelf(Shelf $shelf): static
-    {
-        if ($this->shelves->removeElement($shelf)) {
-            // set the owning side to null (unless already changed)
-            if ($shelf->getModule() === $this) {
-                $shelf->setModule(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Warehouse
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Warehouse $warehouse): static
-    {
-        $this->warehouse = $warehouse;
 
         return $this;
     }

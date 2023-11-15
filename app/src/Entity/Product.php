@@ -239,6 +239,18 @@ class Product
         return $this;
     }
 
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(int $weight): static
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, StockShelf>
      */
@@ -265,18 +277,6 @@ class Product
                 $stockShelf->setProduct(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(int $weight): static
-    {
-        $this->weight = $weight;
 
         return $this;
     }
