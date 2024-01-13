@@ -110,7 +110,7 @@ class CartController extends AbstractController
         $zipCode = trim($request->request->get('zip-code'));
         $city = trim($request->request->get('city'));
 
-        if(($cartService->getNbProducts() > 0) && isset($store, $street, $zipCode, $city)) {
+        if(isset($store, $street, $zipCode, $city) && ($cartService->getNbProducts() > 0)) {
 
             $order = new OrderUser();
             $orderState = $orderStateRepository->find(1);
