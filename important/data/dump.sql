@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: all4sport
+-- Host: localhost    Database: all4sport
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
@@ -14,6 +14,16 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `building`
+--
+
+LOCK TABLES `building` WRITE;
+/*!40000 ALTER TABLE `building` DISABLE KEYS */;
+INSERT INTO `building` VALUES ('B1',1),('B2',1),('B3',1),('B1',2),('B1',3);
+/*!40000 ALTER TABLE `building` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping data for table `category`
@@ -31,8 +41,18 @@ UNLOCK TABLES;
 
 LOCK TABLES `credential` WRITE;
 /*!40000 ALTER TABLE `credential` DISABLE KEYS */;
-INSERT INTO `credential` VALUES ('user1@gmail.com','$2y$15$S85HOVmwUxBM0OD4S.N6aOVmVlgkGyWSZR5Af0TVvJnkmSzdhM4kO',NULL),('user2@gmail.com','$2a$15$msiz4F1QrhtkB8yKCMj7o.Gzoqb8gPZHtdYbPGrHiun1Ya1IEP7bq',NULL);
+INSERT INTO `credential` VALUES ('user1@gmail.com','$2y$15$S85HOVmwUxBM0OD4S.N6aOVmVlgkGyWSZR5Af0TVvJnkmSzdhM4kO',NULL),('user2@gmail.com','$2y$15$voeX7xk9LPrWSyS/Dz1oOeiNNyPMtDShbTgJ4oyBFCwJgUbEn3Bx.',NULL);
 /*!40000 ALTER TABLE `credential` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `module`
+--
+
+LOCK TABLES `module` WRITE;
+/*!40000 ALTER TABLE `module` DISABLE KEYS */;
+INSERT INTO `module` VALUES ('M1','B1',1),('M2','B1',1),('M3','B1',1);
+/*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,6 +113,36 @@ INSERT INTO `product_img` VALUES ('pantalon-de-gardien-de-but-enfant-f-100-noir-
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `section`
+--
+
+LOCK TABLES `section` WRITE;
+/*!40000 ALTER TABLE `section` DISABLE KEYS */;
+INSERT INTO `section` VALUES ('1','A','M1','B1',1),('2','A','M1','B1',1),('3','A','M1','B1',1);
+/*!40000 ALTER TABLE `section` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `shelf`
+--
+
+LOCK TABLES `shelf` WRITE;
+/*!40000 ALTER TABLE `shelf` DISABLE KEYS */;
+INSERT INTO `shelf` VALUES ('1','1','A','M1','B1',1),('2','1','A','M1','B1',1);
+/*!40000 ALTER TABLE `shelf` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `stock_shelf`
+--
+
+LOCK TABLES `stock_shelf` WRITE;
+/*!40000 ALTER TABLE `stock_shelf` DISABLE KEYS */;
+INSERT INTO `stock_shelf` VALUES (1,'1','1','A','M1','B1',1,10);
+/*!40000 ALTER TABLE `stock_shelf` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping data for table `stock_store`
 --
 
@@ -138,7 +188,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1@gmail.com','[]','NomUser1','PrenomUser1','561-962-2040','2414 Pleasant Hill Road','33432','Boca Raton','1993-05-26',2),(2,'user2@gmail.com','[]','NomUser2','PrenomUser2',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `user` VALUES (1,'user1@gmail.com','[]','NomUser1','PrenomUser1','561-962-2040','2414 Pleasant Hill Road','33432','Boca Raton','1993-05-26',2),(2,'user2@gmail.com','[\"ROLE_LOGISTICS\"]','NomUser2','PrenomUser2',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,6 +201,16 @@ LOCK TABLES `warehouse` WRITE;
 INSERT INTO `warehouse` VALUES (1,'Le Havre'),(2,'Marseille'),(3,'Lyon');
 /*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping data for table `way`
+--
+
+LOCK TABLES `way` WRITE;
+/*!40000 ALTER TABLE `way` DISABLE KEYS */;
+INSERT INTO `way` VALUES ('A','M1','B1',1),('B','M1','B1',1),('C','M1','B1',1);
+/*!40000 ALTER TABLE `way` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -161,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-06 20:31:42
+-- Dump completed on 2024-01-13 17:11:38
