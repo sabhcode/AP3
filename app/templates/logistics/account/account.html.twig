@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+{% endblock %}
+
+{% block header %}
+    {% include 'logistics/headerLinks.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <h1>Connecté en tant que {{ app.user.getCredential().getEmail() }}</h1>
+    <div class="app_container app_padding">
+        <a class="logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+{% endblock %}

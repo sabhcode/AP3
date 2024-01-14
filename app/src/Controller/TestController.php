@@ -14,7 +14,7 @@ class TestController extends AbstractController
     {
         $stocksShelf = $stockShelfRepository->findAll();
 
-        return $this->render('test/index.html.twig', [
+        return $this->render('test/account.html.twig', [
             'stocksShelf' => $stocksShelf,
         ]);
     }

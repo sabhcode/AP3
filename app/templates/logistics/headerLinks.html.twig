@@ -3,6 +3,9 @@
 {% block headerLinks %}
     {% set path = app.request.getPathInfo() %}
     <li>
-        <a href="{{ path('app_logistics_home') }}" class="{{ path == path('app_logistics_home') ? 'on' : '' }}" title="Accueil">Accueil</a>
+        <a href="{{ path('app_logistics_dashboard') }}" class="{{ path == path('app_logistics_dashboard') ? 'on' : '' }}" title="Tableau de bord">Tableau de bord</a>
+    </li>
+    <li>
+        <a href="{{ path('app_logistics_account') }}" class="{{ path == path('app_logistics_account') ? 'on' : '' }}" title="Compte">Profil</a>
     </li>
 {% endblock %}
