@@ -11,28 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Section
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
     #[ORM\Column(length: 1, options: ["fixed" => true])]
     private ?string $code = null;
 
-    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"way_code", referencedColumnName:"code", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Way $way = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"module_code", nullable: false)]
-    private ?Way $module = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"building_code", nullable: false)]
-    private ?Way $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
-    private ?Way $warehouse = null;
 
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: Shelf::class)]
     private Collection $shelves;
@@ -40,6 +28,18 @@ class Section
     public function __construct()
     {
         $this->shelves = new ArrayCollection();
+    }
+
+    public function getCode(): ?String
+    {
+        return $this->code;
+    }
+
+    public function setCode(?String $code): static
+    {
+        $this->code = $code;
+
+        return $this;
     }
 
     public function getWay(): ?Way
@@ -50,42 +50,6 @@ class Section
     public function setWay(?Way $way): static
     {
         $this->way = $way;
-
-        return $this;
-    }
-
-    public function getModule(): ?Way
-    {
-        return $this->module;
-    }
-
-    public function setModule(?Way $module): static
-    {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    public function getBuilding(): ?Way
-    {
-        return $this->building;
-    }
-
-    public function setBuilding(?Way $building): static
-    {
-        $this->building = $building;
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Way
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Way $warehouse): static
-    {
-        $this->warehouse = $warehouse;
 
         return $this;
     }

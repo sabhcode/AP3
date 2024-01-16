@@ -11,23 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Way
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
     #[ORM\Column(length: 1, options: ["fixed" => true])]
     private ?string $code = null;
 
-    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'ways')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"code", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Module $module = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'ways')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"building_code", nullable: false)]
-    private ?Module $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'ways')]
-    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
-    private ?Module $warehouse = null;
 
     #[ORM\OneToMany(mappedBy: 'way', targetEntity: Section::class)]
     private Collection $sections;

@@ -21,7 +21,7 @@
 
 LOCK TABLES `building` WRITE;
 /*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES ('B1',1),('B2',1),('B3',1),('B1',2),('B1',3);
+INSERT INTO `building` VALUES (null,1,'B1'),(null,1,'B2'),(null,1,'B3'),(null,2,'B1'),(null,3,'B1');
 /*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `module` WRITE;
 /*!40000 ALTER TABLE `module` DISABLE KEYS */;
-INSERT INTO `module` VALUES ('M1','B1',1),('M2','B1',1),('M3','B1',1);
+INSERT INTO `module` VALUES (null,1,1),(null,1,2),(null,1,3);
 /*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES ('1','A','M1','B1',1),('2','A','M1','B1',1),('3','A','M1','B1',1);
+INSERT INTO `section` VALUES (null,1,'1'),(null,1,'2'),(null,1,'3');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `shelf` WRITE;
 /*!40000 ALTER TABLE `shelf` DISABLE KEYS */;
-INSERT INTO `shelf` VALUES ('1','1','A','M1','B1',1),('2','1','A','M1','B1',1);
+INSERT INTO `shelf` VALUES (null,1,'1'),(null,1,'2');
 /*!40000 ALTER TABLE `shelf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `stock_shelf` WRITE;
 /*!40000 ALTER TABLE `stock_shelf` DISABLE KEYS */;
-INSERT INTO `stock_shelf` VALUES (1,'1','1','A','M1','B1',1,10);
+INSERT INTO `stock_shelf` VALUES (1,1,10);
 /*!40000 ALTER TABLE `stock_shelf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +208,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `way` WRITE;
 /*!40000 ALTER TABLE `way` DISABLE KEYS */;
-INSERT INTO `way` VALUES ('A','M1','B1',1),('B','M1','B1',1),('C','M1','B1',1);
+INSERT INTO `way` VALUES (null,1,'A'),(null,1,'B'),(null,1,'C');
 /*!40000 ALTER TABLE `way` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

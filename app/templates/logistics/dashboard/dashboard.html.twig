@@ -2,10 +2,25 @@
 
 {% block title %}Tableau de bord{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        .item {
+            display: block;
+            padding: 10px;
+            border: 1px solid lightgrey;
+        }
+    </style>
+{% endblock %}
+
 {% block header %}
     {% include 'logistics/headerLinks.html.twig' %}
 {% endblock %}
 
 {% block body %}
-    <h1>Tableau de bord, logistique</h1>
+    <h1>Tableau de bord</h1>
+    <div class="app_container app_padding">
+        {% for product in products %}
+            <a class="item" href="{{ path('app_logistics_product', {'id': product.getProduct().getId()|format_number}) }}">{{ product.getProduct().getName() }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

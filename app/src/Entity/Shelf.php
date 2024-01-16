@@ -11,33 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Shelf
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
     #[ORM\Column(length: 1, options: ["fixed" => true])]
     private ?string $code = null;
 
-    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"code", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Section $section = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"way_code", referencedColumnName:"way_code", nullable: false)]
-    private ?Section $way = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"module_code", nullable: false)]
-    private ?Section $module = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"building_code", nullable: false)]
-    private ?Section $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'shelves')]
-    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
-    private ?Section $warehouse = null;
 
     #[ORM\OneToMany(mappedBy: 'shelf', targetEntity: StockShelf::class)]
     private Collection $stockShelves;
@@ -45,6 +28,18 @@ class Shelf
     public function __construct()
     {
         $this->stockShelves = new ArrayCollection();
+    }
+
+    public function getCode(): ?String
+    {
+        return $this->code;
+    }
+
+    public function setCode(?String $code): static
+    {
+        $this->code = $code;
+
+        return $this;
     }
 
     public function getSection(): ?Section
@@ -55,54 +50,6 @@ class Shelf
     public function setSection(?Section $section): static
     {
         $this->section = $section;
-
-        return $this;
-    }
-
-    public function getWay(): ?Section
-    {
-        return $this->way;
-    }
-
-    public function setWay(?Section $way): static
-    {
-        $this->way = $way;
-
-        return $this;
-    }
-
-    public function getModule(): ?Section
-    {
-        return $this->module;
-    }
-
-    public function setModule(?Section $module): static
-    {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    public function getBuilding(): ?Section
-    {
-        return $this->building;
-    }
-
-    public function setBuilding(?Section $building): static
-    {
-        $this->building = $building;
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Section
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Section $warehouse): static
-    {
-        $this->warehouse = $warehouse;
 
         return $this;
     }

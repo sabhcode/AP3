@@ -2,7 +2,6 @@
 
 namespace App\Controller\Logistics;
 
-use App\Entity\StockShelf;
 use App\Repository\StockShelfRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +15,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
     host: '{host}')
 ]
 #[IsGranted('ROLE_LOGISTICS')]
-class DashboardController extends AbstractController
+class ProductController extends AbstractController
 {
-    #[Route(name: 'dashboard')]
-    public function index(StockShelfRepository $stockShelfRepository): Response
+    #[Route('/view/{id}', name: 'product')]
+    public function index(int $id, StockShelfRepository $stockShelfRepository): Response
     {
-        $products = $stockShelfRepository->findAll();
+        $product = $stockShelfRepository->find($id);
 
-        return $this->render('logistics/dashboard/dashboard.html.twig', [
-            'products' => $products
+        return $this->render('logistics/product/index.html.twig', [
+            'product' => $product,
         ]);
     }
 }

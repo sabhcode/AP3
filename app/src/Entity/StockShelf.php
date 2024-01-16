@@ -13,35 +13,9 @@ class StockShelf
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"shelf_code", referencedColumnName:"code", nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Shelf $shelf = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"section_code", referencedColumnName:"section_code", nullable: false)]
-    private ?Shelf $section = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"way_code", referencedColumnName:"way_code", nullable: false)]
-    private ?Shelf $way = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"module_code", referencedColumnName:"module_code", nullable: false)]
-    private ?Shelf $module = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"building_code", nullable: false)]
-    private ?Shelf $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockShelves')]
-    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
-    private ?Shelf $warehouse = null;
 
     #[ORM\Column]
     private ?int $quantity = null;

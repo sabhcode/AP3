@@ -11,21 +11,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Module
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
     #[ORM\Column(length: 2, options: ["fixed" => true])]
     private ?string $code = null;
 
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'modules')]
-    #[ORM\JoinColumn(name:"building_code", referencedColumnName:"code", nullable: false)]
-    private ?Building $building = null;
-
-    #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'modules')]
-    #[ORM\JoinColumn(name:"warehouse_id", referencedColumnName:"warehouse_id", nullable: false)]
-    private ?Building $warehouse = null;
-
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Way::class)]
     private Collection $ways;
+
+    #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Building $building = null;
 
     public function __construct()
     {
@@ -40,18 +38,6 @@ class Module
     public function setCode(string $code): static
     {
         $this->code = $code;
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Building
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Building $warehouse): static
-    {
-        $this->warehouse = $warehouse;
 
         return $this;
     }
