@@ -10,8 +10,8 @@
 > [!WARNING]
 > | Outil  | Version |
 > | ------------- | ------------- |
-[> | Visual Studio Code | 1.82.0 |
-> | Google Chrome | 116.0.5845.]()180 |
+> | Visual Studio Code | 1.82.0 |
+> | Google Chrome | 116.0.5845.180 |
 > | Git | 2.42.0 |
 > | PHP | 8.2.10 |
 > | Symfony | 6.3.4 |
