@@ -1,7 +1,7 @@
 # <div align="center">AP3</div>
 
 > [!IMPORTANT]
-> [Lire la documentation](../main/important/doc/utilisation.pdf "Lire la documentation")
+> [Lire la documentation](../main/important/doc/utilisation.pdf "Lire la documentation")<br>
 > [Qui A Fait Quoi ?](../main/important/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")
 
 > [!NOTE]
