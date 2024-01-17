@@ -1,7 +1,7 @@
 # <div align="center">AP3</div>
 
 > [!IMPORTANT]
-> [Lire la documentation ](../blob/main/important/doc/utilisation/utilisation.pdf)
+> [Lire la documentation ](../main/important/doc/utilisation/utilisation.pdf)
 
 > [!NOTE]
 > [app](tree/main/app) - contient l'architecture de l'application ALL4SPORT<br>
