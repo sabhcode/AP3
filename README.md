@@ -4,14 +4,14 @@
 > [Lire la documentation ](../main/important/doc/utilisation.pdf)
 
 > [!NOTE]
-> [app](tree/main/app) - contient l'architecture de l'application ALL4SPORT<br>
-> [important](tree/main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
+> [app](../main/app) - contient l'architecture de l'application ALL4SPORT<br>
+> [important](../main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
 
 > [!WARNING]
 > | Outil  | Version |
 > | ------------- | ------------- |
-> | Visual Studio Code | 1.82.0 |
-> | Google Chrome | 116.0.5845.180 |
+[> | Visual Studio Code | 1.82.0 |
+> | Google Chrome | 116.0.5845.]()180 |
 > | Git | 2.42.0 |
 > | PHP | 8.2.10 |
 > | Symfony | 6.3.4 |
