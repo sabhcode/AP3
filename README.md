@@ -2,7 +2,8 @@
 
 > [!IMPORTANT]
 > [Lire la documentation](../main/important/doc/utilisation.pdf "Lire la documentation")<br>
-> [Qui A Fait Quoi ?](../main/important/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")
+> [Qui A Fait Quoi ?](../main/important/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")<br>
+> [Photos du site](../main/important/photos "Photos du site")
 
 > [!NOTE]
 > [app](../main/app "app") - contient l'architecture de l'application ALL4SPORT<br>
