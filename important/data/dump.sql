@@ -21,7 +21,7 @@
 
 LOCK TABLES `building` WRITE;
 /*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES (null,1,'B1'),(null,1,'B2'),(null,1,'B3'),(null,2,'B1'),(null,3,'B1');
+INSERT INTO `building` VALUES (1,1,'B1'),(2,1,'B2'),(3,1,'B3'),(4,2,'B1'),(5,3,'B1');
 /*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `module` WRITE;
 /*!40000 ALTER TABLE `module` DISABLE KEYS */;
-INSERT INTO `module` VALUES (null,1,1),(null,1,2),(null,1,3);
+INSERT INTO `module` VALUES (1,1,'M1'),(2,1,'M2'),(3,1,'M3');
 /*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES (null,1,'1'),(null,1,'2'),(null,1,'3');
+INSERT INTO `section` VALUES (1,1,'1'),(2,1,'2'),(3,1,'3');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `shelf` WRITE;
 /*!40000 ALTER TABLE `shelf` DISABLE KEYS */;
-INSERT INTO `shelf` VALUES (null,1,'1'),(null,1,'2');
+INSERT INTO `shelf` VALUES (1,1,'1'),(2,1,'2');
 /*!40000 ALTER TABLE `shelf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +208,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `way` WRITE;
 /*!40000 ALTER TABLE `way` DISABLE KEYS */;
-INSERT INTO `way` VALUES (null,1,'A'),(null,1,'B'),(null,1,'C');
+INSERT INTO `way` VALUES (1,1,'A'),(2,1,'B'),(3,1,'C');
 /*!40000 ALTER TABLE `way` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -221,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-13 17:11:38
+-- Dump completed on 2024-01-17 14:41:28

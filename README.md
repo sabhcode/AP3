@@ -1,11 +1,11 @@
 # <div align="center">AP3</div>
 
-> [!NOTE]
-> [app](ap3/tree/main/app) - contient l'architecture de l'application ALL4SPORT<br>
-> [important](ap3/tree/main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
-
 > [!IMPORTANT]
-> Nombre de séances : XX
+> [Lire la documentation ](tree/main/important/doc/utilisation/utilisation.pdf)
+
+> [!NOTE]
+> [app](tree/main/app) - contient l'architecture de l'application ALL4SPORT<br>
+> [important](tree/main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
 
 > [!WARNING]
 > | Outil  | Version |
