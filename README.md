@@ -1,4 +1,4 @@
-# <div align="center">AP3</div>
+# <div align="center">AP3 ALL4SPORT</div>
 
 > [!IMPORTANT]
 > [Lire la documentation d'utilisation](../main/important/doc/utilisation.pdf "Lire la documentation d'utilisation")<br>
