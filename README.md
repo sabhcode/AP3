@@ -1,11 +1,12 @@
 # <div align="center">AP3</div>
 
 > [!IMPORTANT]
-> [Lire la documentation ](../main/important/doc/utilisation.pdf "Utilisation")
+> [Lire la documentation](../main/important/doc/utilisation.pdf "Lire la documentation")
+> [Qui A Fait Quoi ?](../main/important/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")
 
 > [!NOTE]
-> [app](../main/app) - contient l'architecture de l'application ALL4SPORT<br>
-> [important](../main/important) - contient les fichiers de création de l'application (mcd, maquette, ...)
+> [app](../main/app "app") - contient l'architecture de l'application ALL4SPORT<br>
+> [important](../main/important "important") - contient les fichiers de création de l'application (mcd, maquette, ...)
 
 > [!WARNING]
 > | Outil  | Version |
