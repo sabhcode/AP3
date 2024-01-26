@@ -13,6 +13,7 @@ class StockShelf
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'stockShelves')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Shelf $shelf = null;
