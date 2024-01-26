@@ -20,10 +20,10 @@ class ProductController extends AbstractController
     #[Route('/view/{id}', name: 'product')]
     public function index(int $id, StockShelfRepository $stockShelfRepository): Response
     {
-        $product = $stockShelfRepository->find($id);
+        $products = $stockShelfRepository->findBy(['product' => $id]);
 
         return $this->render('logistics/product/index.html.twig', [
-            'product' => $product,
+            'products' => $products,
         ]);
     }
 }

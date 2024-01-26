@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit {{ product.getProduct().getId() }}{% endblock %}
+{% block title %}Emplacement produit {{ products[0].getProduct().getId() }}{% endblock %}
 
 {% block header %}
     {% include 'logistics/headerLinks.html.twig' %}
@@ -8,20 +8,24 @@
 
 {% block body %}
     <div class="app_container app_padding">
-        {% set warehouseId = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getId() %}
-        {% set warehouseCity = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getCity() %}
-        {% set building = product.getShelf().getSection().getWay().getModule().getBuilding().getCode() %}
-        {% set module = product.getShelf().getSection().getWay().getModule().getCode() %}
-        {% set way = product.getShelf().getSection().getWay().getCode() %}
-        {% set section = product.getShelf().getSection().getCode() %}
-        {% set shelf = product.getShelf().getCode() %}
-        <p>Entrepôt : {{ warehouseCity }}</p>
-        <p>Bâtiment : {{ building }}</p>
-        <p>Module : {{ module }}</p>
-        <p>Rangée : {{ way }}</p>
-        <p>Section : {{ section }}</p>
-        <p>Étagère : {{ shelf }}</p>
-        <br>
-        <p>Emplacement : {{ warehouseId }}{{ building }}{{ module }}{{ way }}{{ section }}.{{ shelf }}</p>
+        {% for product in products %}
+            <div style="padding: 10px 0;">
+                {% set warehouseId = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getId() %}
+                {% set warehouseCity = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getCity() %}
+                {% set building = product.getShelf().getSection().getWay().getModule().getBuilding().getCode() %}
+                {% set module = product.getShelf().getSection().getWay().getModule().getCode() %}
+                {% set way = product.getShelf().getSection().getWay().getCode() %}
+                {% set section = product.getShelf().getSection().getCode() %}
+                {% set shelf = product.getShelf().getCode() %}
+                <p>Entrepôt : {{ warehouseCity }}</p>
+                <p>Bâtiment : {{ building }}</p>
+                <p>Module : {{ module }}</p>
+                <p>Rangée : {{ way }}</p>
+                <p>Section : {{ section }}</p>
+                <p>Étagère : {{ shelf }}</p>
+                <br>
+                <p>Emplacement : {{ warehouseId }}{{ building }}{{ module }}{{ way }}{{ section }}.{{ shelf }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

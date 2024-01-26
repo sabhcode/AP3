@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: all4sport
+-- Host: 127.0.0.1    Database: all4sport
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
@@ -138,7 +138,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `stock_shelf` WRITE;
 /*!40000 ALTER TABLE `stock_shelf` DISABLE KEYS */;
-INSERT INTO `stock_shelf` VALUES (1,1,10);
+INSERT INTO `stock_shelf` VALUES (1,1,10),(1,2,5);
 /*!40000 ALTER TABLE `stock_shelf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-17 14:41:28
+-- Dump completed on 2024-01-26 10:34:04
