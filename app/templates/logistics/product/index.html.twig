@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Emplacement produit {{ products[0].getProduct().getId() }}{% endblock %}
+{% block title %}Emplacement produit {{ products[0].getProduct().getId()|format_number }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .item {
+            display: block;
+            padding: 10px;
+            border: 1px solid lightgrey;
+        }
+    </style>
+{% endblock %}
 
 {% block header %}
     {% include 'logistics/headerLinks.html.twig' %}
@@ -10,6 +20,7 @@
     <div class="app_container app_padding">
         {% for product in products %}
             <div style="padding: 10px 0;">
+                <hr>
                 {% set warehouseId = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getId() %}
                 {% set warehouseCity = product.getShelf().getSection().getWay().getModule().getBuilding().getWarehouse().getCity() %}
                 {% set building = product.getShelf().getSection().getWay().getModule().getBuilding().getCode() %}
@@ -24,7 +35,9 @@
                 <p>Section : {{ section }}</p>
                 <p>Étagère : {{ shelf }}</p>
                 <br>
+                <p>Quantité : {{ product.getQuantity() }}</p>
                 <p>Emplacement : {{ warehouseId }}{{ building }}{{ module }}{{ way }}{{ section }}.{{ shelf }}</p>
+                <hr>
             </div>
         {% endfor %}
     </div>

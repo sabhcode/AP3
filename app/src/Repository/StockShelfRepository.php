@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method StockShelf|null find($id, $lockMode = null, $lockVersion = null)
  * @method StockShelf|null findOneBy(array $criteria, array $orderBy = null)
- * @method StockShelf[]    findAll()
+// * @method StockShelf[]    findAll()
  * @method StockShelf[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class StockShelfRepository extends ServiceEntityRepository
@@ -19,6 +19,29 @@ class StockShelfRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, StockShelf::class);
+    }
+
+    public function findAll(): array {
+
+        $req = $this->createQueryBuilder('s')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        $filter = [[], []];
+
+        foreach($req as $item) {
+
+            $productId = $item->getProduct()->getId();
+
+            if(!in_array($productId, $filter[0], true)) {
+                $filter[1][] = $item;
+            }
+            $filter[0][] = $productId;
+
+        }
+        return $filter[1];
+
     }
 
 //    /**
