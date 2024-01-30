@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Module;
 use App\Entity\Section;
+use App\Entity\Shelf;
 use App\Entity\Way;
 use App\Repository\BuildingRepository;
 use App\Repository\ModuleRepository;
@@ -18,8 +19,7 @@ class LogisticService {
                                 private BuildingRepository $buildingRepository,
                                 private ModuleRepository $moduleRepository,
                                 private WayRepository $wayRepository,
-                                private SectionRepository $sectionRepository,
-                                private ShelfRepository $shelfRepository)
+                                private SectionRepository $sectionRepository)
     {
         $this->entityManager = $entityManager;
     }
@@ -44,7 +44,7 @@ class LogisticService {
 
         $codeWay = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
 
-        for($i = 2; $i <= 90; $i++) {
+        for($i = 1; $i <= 90; $i++) {
             foreach($codeWay as $jValue) {
                 $way = new Way();
                 $way->setModule($this->moduleRepository->find($i));
@@ -60,12 +60,28 @@ class LogisticService {
 
     public function addSections(): static {
 
-        for($i = 2; $i <= 1080; $i++) {
+        for($i = 1; $i <= 1080; $i++) {
             for($j = 1; $j <= 12; $j++) {
                 $section = new Section();
                 $section->setWay($this->wayRepository->find($i));
                 $section->setCode($j);
                 $this->entityManager->persist($section);
+            }
+        }
+        $this->entityManager->flush();
+
+        return $this;
+
+    }
+
+    public function addShelves(): static {
+
+        for($i = 2; $i <= 12960; $i++) {
+            for($j = 1; $j <= 8; $j++) {
+                $shelf = new Shelf();
+                $shelf->setSection($this->sectionRepository->find($i));
+                $shelf->setCode($j);
+                $this->entityManager->persist($shelf);
             }
         }
         $this->entityManager->flush();

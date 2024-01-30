@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
-readonly class CartService {
+class CartService {
 
     public function __construct(private ProductRepository $productRepository, private RequestStack $requestStack, private ParameterBagInterface $params) {}
 
