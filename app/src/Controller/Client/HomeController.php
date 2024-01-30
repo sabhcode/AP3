@@ -2,11 +2,12 @@
 
 namespace App\Controller\Client;
 
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
+use App\Service\LogisticService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ProductRepository;
-use App\Repository\CategoryRepository;
 
 #[Route(
     '/',
@@ -18,7 +19,7 @@ use App\Repository\CategoryRepository;
 class HomeController extends AbstractController
 {
     #[Route(name: 'home')]
-    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository, LogisticService $logisticService): Response
     {
         $bestProductByCategory = [];
 

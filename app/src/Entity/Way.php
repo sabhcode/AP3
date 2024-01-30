@@ -54,30 +54,6 @@ class Way
         return $this;
     }
 
-    public function getBuilding(): ?Module
-    {
-        return $this->building;
-    }
-
-    public function setBuilding(?Module $building): static
-    {
-        $this->building = $building;
-
-        return $this;
-    }
-
-    public function getWarehouse(): ?Module
-    {
-        return $this->warehouse;
-    }
-
-    public function setWarehouse(?Module $warehouse): static
-    {
-        $this->warehouse = $warehouse;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Section>
      */
