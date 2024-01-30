@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'product:item']),
+        new GetCollection(normalizationContext: ['groups' => 'product:list'])
+    ]
+)]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -15,22 +25,38 @@ class Product
 
     #[ORM\Id]
     #[ORM\Column(type: Types::BIGINT, options: ['unsigned' => true])]
+    #[Groups(['product:list', 'product:item'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['product:list', 'product:item'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['product:list', 'product:item'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
+    #[Groups(['product:list', 'product:item'])]
     private ?float $unit_price = null;
 
     #[ORM\Column]
+    #[Groups(['product:list', 'product:item'])]
     private ?int $weight = null;
 
     #[ORM\Column(unique: true)]
+    #[Groups(['product:list', 'product:item'])]
     private ?string $slug = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['product:list', 'product:item'])]
+    private ?Category $category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(name: 'supplier_code', referencedColumnName: 'code', nullable: false)]
+    #[Groups(['product:list', 'product:item'])]
+    private ?Supplier $supplier = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockStore::class)]
     private Collection $stockStores;
@@ -38,16 +64,8 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
     private Collection $orderDetails;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImg::class, orphanRemoval: true)]
     private Collection $productImgs;
-
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(name: 'supplier_code', referencedColumnName: 'code', nullable: false)]
-    private ?Supplier $supplier = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockWeb::class)]
     private Collection $stockWebs;
