@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route(name: 'home')]
-    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository, LogisticService $logisticService): Response
+    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
         $bestProductByCategory = [];
 
