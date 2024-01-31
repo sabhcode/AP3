@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 class StockWeb
 {
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'stockWebs')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Warehouse $warehouse = null;
 

@@ -25,7 +25,7 @@ class Store
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: StockStore::class)]
     private Collection $stockStores;
 
-    #[ORM\ManyToOne(inversedBy: 'stores')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Warehouse $warehouse = null;
 
