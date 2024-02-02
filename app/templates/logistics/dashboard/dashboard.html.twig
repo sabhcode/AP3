@@ -6,8 +6,18 @@
     <style>
         .item {
             display: block;
-            padding: 10px;
-            border: 1px solid lightgrey;
+            background-color: #F1F1F1;
+            color: var(--primaryColor);
+            margin: 10px 0;
+            padding: 20px;
+            border: 1px solid transparent;
+            border-radius: var(--radiusBorder);
+            transition: .2s ease;
+            transition-property: background-color, border-color;
+        }
+        .item:hover {
+            background-color: #E1E1E1;
+            border-color: #aaa;
         }
     </style>
 {% endblock %}
