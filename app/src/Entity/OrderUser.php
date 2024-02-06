@@ -31,7 +31,7 @@ class OrderUser
     private ?\DateTimeInterface $date_time = null;
 
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
-    private ?float $total_price_ht = null;
+    private ?string $total_price_ht = null;
 
     #[ORM\Column]
     private ?float $tax = null;
@@ -40,7 +40,7 @@ class OrderUser
     private ?int $product_quantity = null;
 
     #[ORM\Column(type: Types::DECIMAL, scale: 2, nullable: true)]
-    private ?int $shipping_cost = null;
+    private ?string $shipping_cost = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;

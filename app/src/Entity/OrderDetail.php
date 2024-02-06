@@ -34,7 +34,7 @@ class OrderDetail
     private ?int $quantity = null;
 
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
-    private ?float $unit_price = null;
+    private ?string $unit_price = null;
 
     public function getOrder(): ?OrderUser
     {

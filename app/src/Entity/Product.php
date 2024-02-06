@@ -28,7 +28,7 @@ class Product
     #[ORM\Id]
     #[ORM\Column(type: Types::BIGINT, options: ['unsigned' => true])]
     #[Groups(['product:list', 'product:item'])]
-    private ?int $id = null;
+    private ?string $id = null;
 
     #[ORM\Column]
     #[Groups(['product:list', 'product:item'])]
@@ -40,7 +40,7 @@ class Product
 
     #[ORM\Column(type: Types::DECIMAL, scale: 2)]
     #[Groups(['product:list', 'product:item'])]
-    private ?float $unit_price = null;
+    private ?string $unit_price = null;
 
     #[ORM\Column]
     #[Groups(['product:list', 'product:item'])]
