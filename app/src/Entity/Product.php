@@ -6,7 +6,6 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
 
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,8 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(normalizationContext: ['groups' => 'product:item']),
-        new GetCollection(normalizationContext: ['groups' => 'product:list']),
-        new Post(normalizationContext: ['groups' => 'product:item']),
+        new GetCollection(normalizationContext: ['groups' => 'product:list'])
     ]
 )]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]

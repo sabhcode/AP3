@@ -2,10 +2,21 @@
 
 namespace App\Entity;
 
+// API imports
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OrderDetailRepository;
 
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'orderdetail:item']),
+        new Post(normalizationContext: ['groups' => 'orderdetail:item'])
+    ]
+)]
 #[ORM\Entity(repositoryClass: OrderDetailRepository::class)]
 class OrderDetail
 {

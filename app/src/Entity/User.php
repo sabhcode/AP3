@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+// API imports
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +16,11 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Date;
 
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'user:item']),
+    ]
+)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['credential'], message: 'Adresse email déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
