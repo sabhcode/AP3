@@ -31,34 +31,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column(options: ['unsigned' => true])]
     #[Groups(['user:item'])]
-
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['user:item'])]
     private array $roles = [];
 
     #[ORM\Column(length: 100)]
+    #[Groups(['user:item'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['user:item'])]
     private ?string $firstname = null;  
 
     #[ORM\Column(length: 20, nullable: true)]
+    #[Groups(['user:item'])]
     private ?string $phone = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['user:item'])]
     private ?string $street = null;
 
     #[ORM\Column(length: 10, nullable: true)]
+    #[Groups(['user:item'])]
     private ?string $zip_code = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['user:item'])]
     private ?string $city = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(['user:item'])]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(columnDefinition: 'TINYINT')]
+    #[Groups(['user:item'])]
     private ?int $nb_children = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
