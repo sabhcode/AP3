@@ -2,19 +2,11 @@
 
 namespace App\Entity;
 
-// API imports
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-
 use App\Repository\CredentialRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
-    operations: [
-        new Get(normalizationContext: ['groups' => 'credential:item']),
-    ]
-)]
 #[ORM\Entity(repositoryClass: CredentialRepository::class)]
 class Credential
 {
