@@ -21,7 +21,6 @@
 > | Composer | 2.6.2 |
 > | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
->
 
 Bonnes pratiques :
 
