@@ -22,7 +22,7 @@
 > | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
 >
-> [!NOTE]
+
 Bonnes pratiques :
 
 - Nommage des branches : Veuillez nommer vos branches de la sorte (nom-pageQueTuTraites-ceQueTuFaisDessus).
