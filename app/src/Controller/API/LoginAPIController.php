@@ -16,10 +16,12 @@ class LoginAPIController extends AbstractController
     #[Route('/api/login', name: 'api_login', methods: 'POST')]
     public function login(Request $request, CredentialRepository $credentialRepository, UserRepository $userRepository, SerializerInterface $serializer): Response
     {
-
         $email = $request->request->get('email');
         $password = $request->request->get('password');
-        $response = false;
+        $response = [
+            'success' => false,
+            'user'
+        ];
 
         if(!$email || !$password) {
             return new JsonResponse($response);
@@ -37,9 +39,9 @@ class LoginAPIController extends AbstractController
             return new JsonResponse($response);
         }
 
-        $response = $userRepository->findOneBy(['credential' => $credential]);
+        $response['user'] = $userRepository->findOneBy(['credential' => $credential]);
+        $response['success'] = true;
 
         return new JsonResponse($serializer->serialize($response, 'json'), json: true);
-
     }
 }
