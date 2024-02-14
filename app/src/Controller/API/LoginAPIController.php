@@ -2,6 +2,7 @@
 
 namespace App\Controller\API;
 
+use App\Entity\Credential;
 use App\Repository\CredentialRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +31,8 @@ class LoginAPIController extends AbstractController
         $credential = $credentialRepository->find($email);
 
         if(!$credential) {
-            return new JsonResponse($response);
+            // J'ai fait ceci pour que le temps de chargement soit identique même si le mail n'existe pas, pour éviter un chargement trop court lors d'un envoi d'un mail
+            $credential = (new Credential())->setPassword('$2a$15$9VgRe5bNdAuGd7ClbjWWjOX0.mmR1c9Asx6utQzOpJEwQJ2D/D0lC');
         }
 
         $verifyPassword = password_verify($password, $credential->getPassword());
