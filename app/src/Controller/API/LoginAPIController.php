@@ -31,13 +31,13 @@ class LoginAPIController extends AbstractController
         $credential = $credentialRepository->find($email);
 
         if(!$credential) {
-            // J'ai fait ceci pour que le temps de chargement soit identique même si le mail n'existe pas, pour éviter un chargement trop court lors d'un envoi d'un mail
-            $credential = (new Credential())->setPassword('$2a$15$9VgRe5bNdAuGd7ClbjWWjOX0.mmR1c9Asx6utQzOpJEwQJ2D/D0lC');
+            // J'ai fait ceci pour que le temps de chargement soit identique même si le mail n'existe pas, pour éviter un chargement trop court lors d'un envoi d'un mail non trouvé
+            $credential = (new Credential())->setPassword('$2a$15$cAM9iMr8Bngutu9oW5aw3OTJnB7shObk4RGGHpbA12PYZGVvPDnFe'); // mdp : (loading)
         }
 
         $verifyPassword = password_verify($password, $credential->getPassword());
 
-        if(!$verifyPassword) {
+        if(!$verifyPassword || !$credential->getEmail()) {
             return new JsonResponse($response);
         }
 
