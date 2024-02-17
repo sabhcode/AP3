@@ -29,13 +29,18 @@
 			{% if searchResult is not null %}
 				{% for category, products in searchResult %}
 					<div class="category">
-						{% set categoryNameAndSlug = category|split(" ") %}
+						{% set categoryNameAndSlug = category|split(' ') %}
 						<a class="category-name" href="{{ path('app_client_category', {'slug': categoryNameAndSlug[2]}) }}" title="{{ categoryNameAndSlug[1] }}">{{ categoryNameAndSlug[1]|upper }} 🔗</a>
 						<div class="product_cards">
-							{% for product in products %}
+							{% for product in products|slice(0, 8) %}
 								{% include 'client/product_card.html.twig' with {'product': product} %}
 							{% endfor %}
 						</div>
+						{% if products|length > 8 %}
+							<div style="text-align: center;margin: 10px 0">
+								<a class="link_see_more" href="{{ path('app_client_category', {'slug': categoryNameAndSlug[2]}) }}" title="Voir plus">Voir plus</a>
+							</div>
+						{% endif %}
 					</div>
 				{% else %}
 					<p>Aucun produit trouvé</p>
@@ -46,10 +51,15 @@
 						<a class="category-name" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="{{ category.getName() }}">{{ category.getName()|upper }} 🔗</a>
 						<div class="product_cards">
 							<!-- Boucle pour afficher les produits de chaque catégorie -->
-							{% for product in category.getProducts() %}
+							{% for product in category.getProducts()|slice(0, 8) %}
 								{% include 'client/product_card.html.twig' with {'product': product} %}
 							{% endfor %}
 						</div>
+						{% if category.getProducts()|length > 8 %}
+							<div style="text-align: center;margin: 10px 0">
+								<a class="link_see_more" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="Voir plus">Voir plus</a>
+							</div>
+						{% endif %}
 					</div>
 				{% endfor %}
 			{% endif %}

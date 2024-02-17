@@ -31,18 +31,15 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('name', "%$name%")
         ;
 
-        if($category !== "-1") {
+        if($category !== '-1') {
             $query = $query->join('p.category', 'c')
                 ->andWhere('c.id = :id')
                 ->setParameter('id', $category)
             ;
         }
 
-        $query = $query->getQuery()
-            ->getResult()
-        ;
-
-        return $query;
+        return $query->getQuery()
+            ->getResult();
     }
 
 //    public function findOneBySomeField($value): ?Product

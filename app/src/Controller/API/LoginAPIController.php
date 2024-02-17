@@ -14,19 +14,24 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class LoginAPIController extends AbstractController
 {
-    #[Route('/api/login', name: 'api_login', methods: 'POST')]
+    #[Route(
+        '/api/login',
+        'api_login',
+        methods: 'POST'
+    )]
     public function login(Request $request, CredentialRepository $credentialRepository, UserRepository $userRepository, SerializerInterface $serializer): Response
     {
-        $email = $request->request->get('email');
-        $password = $request->request->get('password');
+        $email = htmlentities(trim($request->request->get('email')));
+        $password = htmlentities(trim($request->request->get('password')));
+
+        if(!$email || !$password) {
+            return new Response(status: 400);
+        }
+
         $response = [
             'success' => false,
             'user'
         ];
-
-        if(!$email || !$password) {
-            return new JsonResponse($response);
-        }
 
         $credential = $credentialRepository->find($email);
 

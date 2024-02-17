@@ -14,8 +14,8 @@ use Symfony\Component\Validator\Constraints\Collection;
 
 #[Route(
     '/c',
-    name: 'app_client_',
-    requirements: ['host' => '%app.host.client%'],
+    'app_client_',
+    ['host' => '%app.host.client%'],
     defaults: ['host' => '%app.host.client%'],
     host: '{host}')
 ]
@@ -28,6 +28,7 @@ class CategoryController extends AbstractController
         $categories = $categoryRepository->findAll();
         $searchResult = null;
 
+        // Si les paramètres GET 'p' et 'c' ont été saisi alors
         if(!(is_null($request->query->get("p")) && is_null($request->query->get("c")))) {
 
             $_searchResult = $productRepository->findProductsByCategoryAndName($request->query->get("c"), $request->query->get("p"));
@@ -42,7 +43,7 @@ class CategoryController extends AbstractController
 
         }
 
-        // Rendre le template en passant la catégorie
+        // Rendue de la template en passant les paramètres
         return $this->render('client/categories/categories.html.twig', [
             'categories' => $categories,
             'searchResult' => $searchResult
