@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: all4sport
+-- Host: localhost    Database: all4sport
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
@@ -153,16 +153,6 @@ INSERT INTO `stock_store` VALUES (1,2,41),(1,3,6),(1,5,5),(1,6,44),(1,7,50),(1,8
 UNLOCK TABLES;
 
 --
--- Dumping data for table `stock_web`
---
-
-LOCK TABLES `stock_web` WRITE;
-/*!40000 ALTER TABLE `stock_web` DISABLE KEYS */;
-INSERT INTO `stock_web` VALUES (1,1,88),(1,2,41),(1,3,6),(1,4,13),(1,5,5),(1,6,44),(1,7,50),(1,9,32),(1,10,2),(1,11,4),(1,13,1),(1,15,23),(1,17,32),(1,18,65),(1,19,12),(1,20,12),(2,1,142),(2,2,32),(2,3,7),(2,4,22),(2,6,41),(2,7,6),(2,9,26),(2,11,1),(2,12,121),(2,13,17),(2,14,16),(2,17,77),(2,18,42),(2,19,22),(2,20,9),(3,1,112),(3,2,56),(3,4,54),(3,5,56),(3,6,34),(3,7,77),(3,9,1),(3,11,3),(3,12,15),(3,17,9),(3,18,88),(3,20,5);
-/*!40000 ALTER TABLE `stock_web` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `store`
 --
 
@@ -221,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-30 13:22:50
+-- Dump completed on 2024-02-18 14:28:51
