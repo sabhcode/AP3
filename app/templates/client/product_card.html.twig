@@ -16,7 +16,7 @@
             <div class="product_card-images_list">
                 {% for image in images %}
                     <div class="product_card-image{{ loop.first ? ' selected' }}">
-                        <img src="{{ asset('media/images/product/' ~ product_id ~ '/' ~ image.getName()) }}" alt="Image du produit">
+                        <img src="{{ asset('media/images/product/' ~ product_id ~ '/' ~ image.getName()) }}" alt="{{ 'Image ' ~ loop.index ~ ' du produit nº' ~ product_id}}">
                     </div>
                 {% endfor %}
             </div>

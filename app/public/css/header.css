@@ -9,7 +9,8 @@
 .header-app__content {
     display: flex;
     justify-content: space-between;
-    padding: 0 2%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .header-app__logo {
@@ -70,6 +71,12 @@
     border-left: 1px solid;
     border-right: 1px solid;
     border-color: inherit;
+}
+
+@media (max-width: 1400px) {
+    .header-app__content {
+        padding: 0 4%;
+    }
 }
 
 @media (max-width: 800px) {
