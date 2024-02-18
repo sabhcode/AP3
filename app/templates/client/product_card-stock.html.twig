@@ -4,19 +4,11 @@
 <div class="product_card-stock">
     <div class="flex">
         <p>
-            {% if stock_web is not empty %}
-                {{ svgCheck|raw }}
-            {% else %}
-                {{ svgNotCheck|raw }}
-            {% endif %}
+            {{ (stock_web is empty ? svgNotCheck : svgCheck)|raw }}
             Internet
         </p>
         <p>
-            {% if stock_store is not empty %}
-                {{ svgCheck|raw }}
-            {% else %}
-                {{ svgNotCheck|raw }}
-            {% endif %}
+            {{ (stock_store is empty ? svgNotCheck : svgCheck)|raw }}
             Magasin
         </p>
     </div>

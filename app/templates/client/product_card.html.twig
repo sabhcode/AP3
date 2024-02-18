@@ -53,7 +53,7 @@
             {% endif %}
         </div>
         {% if not hasOrderDetail %}
-            {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
+            {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockShelves()} %}
         {% endif %}
     </div>
 {% endif %}

@@ -69,9 +69,6 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImg::class, orphanRemoval: true)]
     private Collection $productImgs;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockWeb::class)]
-    private Collection $stockWebs;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockShelf::class)]
     private Collection $stockShelves;
 
@@ -80,7 +77,6 @@ class Product
         $this->stockStores = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
         $this->productImgs = new ArrayCollection();
-        $this->stockWebs = new ArrayCollection();
         $this->stockShelves = new ArrayCollection();
     }
 
@@ -225,36 +221,6 @@ class Product
     public function setSupplier(?Supplier $supplier): static
     {
         $this->supplier = $supplier;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, StockWeb>
-     */
-    public function getStockWebs(): Collection
-    {
-        return $this->stockWebs;
-    }
-
-    public function addStockWeb(StockWeb $stockWeb): static
-    {
-        if (!$this->stockWebs->contains($stockWeb)) {
-            $this->stockWebs->add($stockWeb);
-            $stockWeb->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStockWeb(StockWeb $stockWeb): static
-    {
-        if ($this->stockWebs->removeElement($stockWeb)) {
-            // set the owning side to null (unless already changed)
-            if ($stockWeb->getProduct() === $this) {
-                $stockWeb->setProduct(null);
-            }
-        }
 
         return $this;
     }

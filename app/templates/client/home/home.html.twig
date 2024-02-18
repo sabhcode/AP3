@@ -14,7 +14,7 @@
     <div class="app_container app_padding">
         <section class="top-content">
             <h2 class="section_title">
-                <span>Nos meilleures ventes {{ "now"|date("Y") }}</span>
+                <span>Nos meilleures ventes {{ 'now'|date('Y') }}</span>
             </h2>
             <div class="slider-container">
                 <div class="slider-cards">
@@ -41,7 +41,7 @@
                                 <div class="right">
                                     <div class="left-of-right">
                                         <p class="product_card-price">{{ product.getUnitPrice()|format_currency('EUR') }}</p>
-                                        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockWebs()} %}
+                                        {% include 'client/product_card-stock.html.twig' with {'stock_store': product.getStockStores(), 'stock_web': product.getStockShelves()} %}
                                     </div>
                                     <div class="right-of-right product_card-buttons">
                                         <a class="product_card-button_basic" href="{{ path('app_client_product', {'slug': product.getSlug()}) }}" title="Voir le produit">
