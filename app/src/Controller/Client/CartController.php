@@ -6,8 +6,7 @@ use App\Entity\OrderDetail;
 use App\Entity\OrderRank;
 use App\Entity\OrderUser;
 use App\Repository\OrderStateRepository;
-use App\Repository\ProductRepository;
-use App\Repository\StockWebRepository;
+use App\Repository\StockShelfRepository;
 use App\Repository\StoreRepository;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -95,15 +94,14 @@ class CartController extends AbstractController
      * @param CartService $cartService
      * @param StoreRepository $storeRepository
      * @param OrderStateRepository $orderStateRepository
-     * @param ProductRepository $productRepository
      * @param EntityManagerInterface $entityManager
      * @param $user
-     * @param StockWebRepository $stockWebRepository
+     * @param StockShelfRepository $stockShelfRepository
      * @return Response
      */
     #[Route('/passer-commande', name: 'place_order')]
     #[IsGranted("ROLE_USER")]
-    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockWebRepository $stockWebRepository): Response
+    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockShelfRepository $stockShelfRepository): Response
     {
         $store = trim($request->request->get('store'));
         $street = trim($request->request->get('street'));
@@ -153,7 +151,7 @@ class CartController extends AbstractController
 
                     if($product = $cartService->getProduct($productId)) {
 
-                        $stockWebs = $stockWebRepository->findBy(["product" => $productId]);
+                        $stockWebs = $stockShelfRepository->findBy(["product" => $productId]);
                         $quantityAvailable = 0;
 
                         foreach($stockWebs as $stockWeb) {
