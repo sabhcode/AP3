@@ -52,9 +52,10 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        if($targetPath = $request->get('_target_path')) {
+            return new RedirectResponse($targetPath);
+        }
         return new RedirectResponse($this->urlGenerator->generate('app_client_home'));
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

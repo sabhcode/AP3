@@ -8,11 +8,10 @@ use App\Service\PDFService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(
-    '/mon-profil',
+    '/profil',
     name: 'app_client_',
     requirements: ['host' => '%app.host.client%'],
     defaults: ['host' => '%app.host.client%'],
@@ -34,9 +33,9 @@ class ProfilController extends AbstractController
     }
 
     #[Route("/commande/{id}", name: 'my_order')]
-    public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository, #[CurrentUser] $user): Response
+    public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository): Response
     {
-        if($order->getUser()?->getId() === $user->getId()) {
+        if($order->getUser()?->getId() === $this->getUser()?->getId()) {
 
             $orderStates = $orderStateRepository->findAll();
 
@@ -50,9 +49,9 @@ class ProfilController extends AbstractController
     }
 
     #[Route("/commande/{id}/pdf", name: 'my_confirm_order')]
-    public function getConfirmOrder(OrderUser $order, PDFService $PDFService, #[CurrentUser] $user): Response
+    public function getConfirmOrder(OrderUser $order, PDFService $PDFService): Response
     {
-        if($order->getUser()?->getId() === $user->getId()) {
+        if($order->getUser()?->getId() === $this->getUser()?->getId()) {
 
             $title = "Confirmation de commande";
             $filename = "confirmation-de-commande-num-" . $order->getId();

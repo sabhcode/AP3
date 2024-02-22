@@ -1,6 +1,6 @@
 {% extends 'header.html.twig' %}
 
-{% block headerLinks %}
+{% block header_links %}
     {% set path = app.request.getPathInfo() %}
     <li>
         <a href="{{ path('app_logistics_dashboard') }}" class="{{ path == path('app_logistics_dashboard') ? 'on' : '' }}" title="Tableau de bord">Tableau de bord</a>

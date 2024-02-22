@@ -1,8 +1,4 @@
 /* ------------------ Section affiche du produit ---------------------- */
-.app_padding {
-    padding-bottom: 40px;
-}
-
 .product {
     display: flex;
     gap: 20px;

@@ -3,12 +3,20 @@
 
 <div class="product_card-stock">
     <div class="flex">
+        {% set quantityStockWebs = 0 %}
+        {% for stock in stock_web %}
+            {% set quantityStockWebs = quantityStockWebs + stock.getQuantity() %}
+        {% endfor %}
         <p>
-            {{ (stock_web is empty ? svgNotCheck : svgCheck)|raw }}
+            {{ (quantityStockWebs <= 0 ? svgNotCheck : svgCheck)|raw }}
             Internet
         </p>
+        {% set quantityStore = 0 %}
+        {% for stock in stock_store %}
+            {% set quantityStore = quantityStore + stock.getQuantity() %}
+        {% endfor %}
         <p>
-            {{ (stock_store is empty ? svgNotCheck : svgCheck)|raw }}
+            {{ (quantityStore <= 0 ? svgNotCheck : svgCheck)|raw }}
             Magasin
         </p>
     </div>

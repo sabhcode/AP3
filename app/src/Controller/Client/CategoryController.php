@@ -4,13 +4,11 @@ namespace App\Controller\Client;
 
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use Symfony\Component\Validator\Constraints\Collection;
 
 #[Route(
     '/c',

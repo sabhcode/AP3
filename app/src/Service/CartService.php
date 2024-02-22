@@ -35,7 +35,16 @@ class CartService {
         $cart = $this->getCart();
         $productAlreadyInCart = property_exists($cart, $productId);
 
-        if($action === 'add' && !$product->getStockShelves()->isEmpty()) {
+        $inStock = false;
+
+        foreach($product->getStockShelves() as $stock) {
+            if($stock->getQuantity() > 0) {
+                $inStock = true;
+                break;
+            }
+        }
+
+        if($action === 'add' && $inStock) {
 
             if($productAlreadyInCart) {
                 $cart->$productId++;

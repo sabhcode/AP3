@@ -8,9 +8,9 @@
 
 {% block header %}
     {% if app.request.getHost() starts with 'logistics.' %}
-        {% include 'logistics/headerLinks.html.twig' %}
+        {% include 'logistics/header_links.html.twig' %}
     {% else %}
-        {% include 'client/headerLinks.html.twig' %}
+        {% include 'client/header_links.html.twig' %}
     {% endif %}
 {% endblock %}
 

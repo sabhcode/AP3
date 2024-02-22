@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-    {% include 'client/headerLinks.html.twig' %}
+    {% include 'client/header_links.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -54,8 +54,10 @@
                 {% for stock in product.getStockStores() %}
                     {% if stock.getQuantity() > 10 %}
                         <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : En stock</li>
-                    {% else %}
+                    {% elseif stock.getQuantity() > 0 %}
                         <li><span class="stock-location">{{ stock.getStore().getCity() }}</span> : {{ stock.getQuantity() }} unit.</li>
+                    {% else %}
+                        <p>Produit en rupture de stock dans nos magasins</p>
                     {% endif %}
                 {% else %}
                     <p>Produit en rupture de stock dans nos magasins</p>

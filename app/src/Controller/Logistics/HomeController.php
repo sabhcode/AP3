@@ -14,14 +14,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
     defaults: ['host' => '%app.host.logistics%'],
     host: '{host}')
 ]
+#[IsGranted('ROLE_LOGISTICS')]
 class HomeController extends AbstractController
 {
     #[Route(name: 'home')]
     public function home(): Response
     {
-        if($this->getUser() && in_array("ROLE_LOGISTICS", $this->getUser()->getRoles())) {
-            return $this->redirectToRoute("app_logistics_dashboard");
-        }
-        return $this->redirectToRoute("app_login");
+        return $this->redirectToRoute("app_logistics_dashboard");
     }
 }

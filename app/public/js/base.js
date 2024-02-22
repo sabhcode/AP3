@@ -49,13 +49,13 @@ btnsUpdateProductInCart.forEach(btn => {
                     requestCartAllowed = true;
                     product?.classList.remove("loading");
 
-                    if (!res.ok) {
+                    if(!res.ok) {
                         return;
                     }
 
                     orderPrice.forEach(el => el.innerHTML = res.orderPrice);
 
-                    if (!location.pathname.startsWith("/mon-panier")) {
+                    if(!location.pathname.startsWith("/mon-panier")) {
                         return;
                     }
 

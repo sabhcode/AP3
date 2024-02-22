@@ -13,8 +13,8 @@
     background: linear-gradient(to right, var(--secondColor), var(--whiteColor) 75%);
     padding: 2px 4px;
 }
-section:nth-child(n+2) {
-    padding: 80px 0 20px;
+.bottom-content {
+    padding-top: 80px;
 }
 
 /* Styles pour le conteneur du slider */

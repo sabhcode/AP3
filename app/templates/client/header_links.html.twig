@@ -1,6 +1,6 @@
 {% extends 'header.html.twig' %}
 
-{% block headerLinks %}
+{% block header_links %}
     {% set path = app.request.getPathInfo() %}
     <li>
         <a href="{{ path('app_client_home') }}" class="{{ path == path('app_client_home') ? 'on' : '' }}" title="Accueil">Accueil</a>
@@ -13,13 +13,10 @@
         <li>
             <a href="{{ path('app_client_profil') }}" class="{{ path == path('app_client_profil') ? 'on' : '' }}" title="Mon profil">Mon profil</a>
         </li>
-    {# Sinon ça #}
+    {# Sinon ceci #}
     {% else %}
         <li>
             <a href="{{ path('app_login') }}" class="{{ path == path('app_login') ? 'on' : '' }}" title="Connexion">Connexion</a>
-        </li>
-        <li>
-            <a href="{{ path('app_client_register') }}" class="{{ path == path('app_client_register') ? 'on' : '' }}" title="Inscription">Inscription</a>
         </li>
     {% endif %}
     <li>

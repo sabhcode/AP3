@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-    {% include 'client/headerLinks.html.twig' %}
+    {% include 'client/header_links.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -36,7 +36,7 @@
             if(i < 0) {
 
                 clearInterval(countdown);
-                location.replace("/mon-profil");
+                location.replace("/profil");
             }
 
         }, 1000);

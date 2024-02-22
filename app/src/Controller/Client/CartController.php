@@ -2,6 +2,7 @@
 
 namespace App\Controller\Client;
 
+use ApiPlatform\Api\UrlGeneratorInterface;
 use App\Entity\OrderDetail;
 use App\Entity\OrderRank;
 use App\Entity\OrderUser;
@@ -15,8 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\CurrentUser;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(
     '/mon-panier',
@@ -27,6 +26,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 ]
 class CartController extends AbstractController
 {
+    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    {
+    }
+
     /**
      * @param CartService $cartService
      * @return Response
@@ -41,9 +44,6 @@ class CartController extends AbstractController
         ]);
     }
 
-    /**
-     * @throws \JsonException
-     */
     #[Route('/ajout-produit-panier', name: 'add_product_cart')]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
@@ -72,9 +72,12 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/passer-commande/livraison', name: 'delivery_choice')]
-    #[IsGranted("ROLE_USER")]
     public function deliveryChoice(CartService $cartService, StoreRepository $storeRepository): Response
     {
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login', ['_target_path' => $this->urlGenerator->generate('app_client_delivery_choice')]);
+        }
+
         if($cartService->getNbProducts() > 0) {
 
             $stores = $storeRepository->findAll();
@@ -95,14 +98,18 @@ class CartController extends AbstractController
      * @param StoreRepository $storeRepository
      * @param OrderStateRepository $orderStateRepository
      * @param EntityManagerInterface $entityManager
-     * @param $user
      * @param StockShelfRepository $stockShelfRepository
      * @return Response
      */
     #[Route('/passer-commande', name: 'place_order')]
-    #[IsGranted("ROLE_USER")]
-    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, EntityManagerInterface $entityManager, #[CurrentUser] $user, StockShelfRepository $stockShelfRepository): Response
+    public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, EntityManagerInterface $entityManager, StockShelfRepository $stockShelfRepository): Response
     {
+        $user = $this->getUser();
+
+        if(!$user) {
+            return $this->redirectToRoute('app_login', ['_target_path' => $this->urlGenerator->generate('app_client_delivery_choice')]);
+        }
+
         $store = trim($request->request->get('store'));
         $street = trim($request->request->get('street'));
         $zipCode = trim($request->request->get('zip-code'));
@@ -147,7 +154,7 @@ class CartController extends AbstractController
 
                 $productQuantity = 0;
 
-                foreach ($cart as $productId => $quantity) {
+                foreach($cart as $productId => $quantity) {
 
                     if($product = $cartService->getProduct($productId)) {
 
@@ -158,30 +165,32 @@ class CartController extends AbstractController
                             $quantityAvailable += $stockWeb->getQuantity();
                         }
 
-                        if($quantityAvailable > $quantity) {
+                        if($quantityAvailable < $quantity) {
+                            return $this->redirectToRoute("app_client_cart");
+                        }
 
-                            $orderDetail = new OrderDetail();
-                            $orderDetail->setOrder($order);
-                            $orderDetail->setProduct($product);
-                            $orderDetail->setQuantity($quantity);
-                            $orderDetail->setUnitPrice($product->getUnitPrice());
+                        $orderDetail = new OrderDetail();
+                        $orderDetail->setOrder($order);
+                        $orderDetail->setProduct($product);
+                        $orderDetail->setQuantity($quantity);
+                        $orderDetail->setUnitPrice($product->getUnitPrice());
 
-                            $productQuantity += $quantity;
+                        $productQuantity += $quantity;
 
-                            $entityManager->persist($orderDetail);
+                        $entityManager->persist($orderDetail);
 
-                            while($quantity > 0) {
+                        while($quantity > 0) {
 
-                                foreach($stockWebs as $stockWeb) {
+                            foreach($stockWebs as $stockWeb) {
 
-                                    if($stockWeb->getQuantity() > 0) {
+                                if($stockWeb->getQuantity() > 0) {
 
-                                        $stockWeb->setQuantity($stockWeb->getQuantity() - 1);
-                                        $quantity--;
+                                    $stockWeb->setQuantity($stockWeb->getQuantity() - 1);
+                                    $quantity--;
 
-                                        $entityManager->persist($stockWeb);
+                                    $entityManager->persist($stockWeb);
 
-                                    }
+                                    break;
 
                                 }
 
