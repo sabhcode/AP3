@@ -3,7 +3,7 @@
 {% block title %}Inscription{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
 {% block header %}
@@ -15,49 +15,92 @@
 	    {% for flash_error in app.flashes('verify_email_error') %}
     		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     	{% endfor %}
-    	{% if app.user %}
-            <div class="ConnexionStatus">
-                Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong> - <a href="{{ path('app_logout') }}">Déconnexion</a>
+        <h1>Inscription</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            <div>
+                <label>
+                    {{ field_label(registrationForm.email) }}
+                    <input type="email" name="{{ field_name(registrationForm.email) }}" value="{{ field_value(registrationForm.email) }}" required>
+                </label>
             </div>
-        {% else %}
-            <h1>Inscription</h1>
-    
-            {{ form_errors(registrationForm) }}
-    
-            {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.email) }}
-                <div class="flex">
-                    {{ form_row(registrationForm.name, {
-                            label: 'Nom'
-                        }) }}
-                    {{ form_row(registrationForm.firstname, {
-                            label: 'Prénom'
-                        }) }}
+            {% for error in registrationForm.email.vars.errors %}
+                <p>{{ error.message }}</p>
+            {% endfor %}
+            <div class="flex">
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.name) }}
+                        <input type="text" name="{{ field_name(registrationForm.name) }}" value="{{ field_value(registrationForm.name) }}" required>
+                    </label>
                 </div>
-                {{ form_row(registrationForm.phone, {
-                        label: 'Téléphone'
-                    }) }}
-                <div class="flex">
-                    {{ form_row(registrationForm.street, {
-                            label: 'Rue'
-                        }) }}
-                    {{ form_row(registrationForm.zip_code, {
-                            label: 'Code Postal '
-                        }) }}
+                {% for error in registrationForm.name.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.firstname) }}
+                        <input type="text" name="{{ field_name(registrationForm.firstname) }}" value="{{ field_value(registrationForm.firstname) }}" required>
+                    </label>
                 </div>
-                {{ form_row(registrationForm.city, {
-                        label: 'Ville'
-                    }) }}
-                {{ form_row(registrationForm.plainPassword, {
-                        label: 'Mot de passe'
-                    }) }}
-                {{ form_row(registrationForm.agreeTerms, {
-                        label: 'Accepter les conditions'
-                    }) }}
-                <button type="submit" class="btn">S'inscrire</button>
-            {{ form_end(registrationForm) }}
-    
-            <p class="GoToSignIn">Déjà membre ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
-    	{% endif %}
+                {% for error in registrationForm.firstname.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+            <div class="flex">
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.street) }}
+                        <input type="text" name="{{ field_name(registrationForm.street) }}">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.zip_code) }}
+                        <input type="text" name="{{ field_name(registrationForm.zip_code) }}">
+                    </label>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.city) }}
+                        <input type="text" name="{{ field_name(registrationForm.city) }}">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        {{ field_label(registrationForm.phone) }}
+                        <input type="text" name="{{ field_name(registrationForm.phone) }}">
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label>
+                    {{ field_label(registrationForm.plainPassword.first) }}
+                    <input type="password" name="{{ field_name(registrationForm.plainPassword.first) }}" autocomplete="new-password" required>
+                </label>
+                <label>
+                    {{ field_label(registrationForm.plainPassword.second) }}
+                    <input type="password" name="{{ field_name(registrationForm.plainPassword.second) }}" autocomplete="new-password" required>
+                </label>
+                {% for error in registrationForm.plainPassword.first.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" required>
+                    {{ field_label(registrationForm.agreeTerms) }}
+                </label>
+                {% for error in registrationForm.agreeTerms.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+            <button class="btn">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+        <p class="GoToSign">Déjà membre ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
 	</div>
 {% endblock %}

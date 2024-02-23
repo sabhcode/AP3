@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -25,6 +24,10 @@ class RegistrationController extends AbstractController
     #[Route(name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_client_profil');
+        }
+
         $credential = new Credential();
         $user = new User();
         $user->setCredential($credential);
@@ -32,27 +35,19 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
 
-            if(!filter_var($form->get("email")->getData(), FILTER_VALIDATE_EMAIL)) {
+            $credential->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
 
-                $form->get("email")->addError(new FormError("Veuillez saisir une adresse e-mail valide"));
+            $entityManager->persist($user);
+            $entityManager->flush();
 
-            } else if($form->isValid()) {
-
-                $credential->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $form->get('plainPassword')->getData()
-                    )
-                );
-
-                $entityManager->persist($user);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('app_login');
-
-            }
+            return $this->redirectToRoute('app_login');
 
         }
 

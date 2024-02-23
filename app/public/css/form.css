@@ -1,0 +1,82 @@
+.flex {
+    display: flex;
+    gap: 20px;
+}
+
+.flex > div {
+    width: 100%;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: var(--whiteColor);
+    text-align: center;
+    padding: 10px;
+    border-radius: var(--radiusBorder);
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: inline-block;
+    color: var(--primaryColor);
+    width: 100%;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+input:not([type="checkbox"]),
+textarea {
+    display: block;
+    background-color: #fbfbfb;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radiusBorder);
+    transition: background-color .2s ease;
+}
+input:not([type="checkbox"]):hover,
+textarea:hover,
+input:not([type="checkbox"]):focus,
+textarea:focus {
+    background-color: var(--whiteColor);
+}
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #000;
+    color: var(--whiteColor);
+    border: none;
+    padding: 12px;
+    border-radius: var(--radiusBorder);
+    font-weight: bold;
+    width: 100%;
+    margin-top: 40px;
+    transition: background-color .2s ease;
+}
+button:hover {
+    background-color: var(--secondColor);
+}
+
+.GoToSign {
+    margin: 20px 0 40px;
+    text-align: center;
+}
+
+.GoToSign a {
+    background-color: var(--primaryColor);
+    color: var(--whiteColor);
+    font-weight: bold;
+    padding: 5px;
+    border-radius: var(--radiusBorder);
+    transition: background-color .2s ease;
+}
+.GoToSign a:hover {
+    background-color: var(--secondColor);
+}

@@ -27,7 +27,7 @@
     color: var(--greenColor)
 }
 
-ul {
+ul, li {
     list-style: none;
 }
 
@@ -37,6 +37,7 @@ a {
 
 input {
     font: inherit;
+    font-weight: normal;
 }
 
 button {
@@ -64,11 +65,22 @@ body {
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 11;
+    background-color: var(--whiteColor);
+    overflow: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transition: opacity .5s, width 0s .5s, height 0s .5s;
+    transition-timing-function: ease;
+}
+body.loading .body_loading {
+    transition: unset;
+    opacity: 1;
     width: 100%;
     height: 100%;
 }
-
-.body_loading div {
+body.loading .body_loading div {
     animation: rotateBodyLogoLoading 1s cubic-bezier(0, 0.67, 0, 0.98) infinite;
 }
 @keyframes rotateBodyLogoLoading {
@@ -86,12 +98,6 @@ body {
     position: relative;
     background-color: var(--whiteColor);
     min-height: 100vh;
-    pointer-events: initial;
-    transition: opacity .2s ease;
-}
-.app.hidden {
-    opacity: 0;
-    pointer-events: none;
 }
 
 .app .main-app {

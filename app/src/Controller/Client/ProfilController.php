@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
     defaults: ['host' => '%app.host.client%'],
     host: '{host}')
 ]
-#[IsGranted("ROLE_USER")]
+#[IsGranted('ROLE_USER')]
 class ProfilController extends AbstractController
 {
     #[Route(name: 'profil')]
@@ -26,13 +26,13 @@ class ProfilController extends AbstractController
         return $this->render('client/profil/profil.html.twig');
     }
 
-    #[Route("/mes-commandes", name: 'my_orders')]
+    #[Route('/mes-commandes', name: 'my_orders')]
     public function getOrders(): Response
     {
         return $this->render('client/profil/orders.html.twig');
     }
 
-    #[Route("/commande/{id}", name: 'my_order')]
+    #[Route('/commande/{id}', name: 'my_order')]
     public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository): Response
     {
         if($order->getUser()?->getId() === $this->getUser()?->getId()) {
@@ -45,27 +45,28 @@ class ProfilController extends AbstractController
             ]);
 
         }
-        return $this->redirectToRoute("app_client_profil");
+        return $this->redirectToRoute('app_client_profil');
     }
 
-    #[Route("/commande/{id}/pdf", name: 'my_confirm_order')]
+    #[Route('/commande/{id}/pdf', name: 'my_confirm_order')]
     public function getConfirmOrder(OrderUser $order, PDFService $PDFService): Response
     {
         if($order->getUser()?->getId() === $this->getUser()?->getId()) {
 
-            $title = "Confirmation de commande";
-            $filename = "confirmation-de-commande-num-" . $order->getId();
+            $title = 'Confirmation de commande';
+            $filename = 'confirmation-de-commande-num-' . $order->getId();
 
-            $html = $this->renderView("client/profil/confirm_order.html.twig", [
-                "title" => $title,
-                "order" => $order,
-                "logo" => $PDFService::logoBase64
+            $html = $this->renderView('client/profil/confirm_order.html.twig', [
+                'host' => $this->getParameter('app.host.client'),
+                'title' => $title,
+                'order' => $order,
+                'logo' => $PDFService::logoBase64
             ]);
 
             $PDFService->create($filename, $html);
 
         }
-        return $this->redirectToRoute("app_client_profil");
+        return $this->redirectToRoute('app_client_profil');
     }
 }
     

@@ -13,7 +13,7 @@
 
         body {
             font-family: "Montserrat", sans-serif;
-            line-height: 1;
+            line-height: 1.2;
             padding: 40px 20px;
         }
 
@@ -109,7 +109,9 @@
     <h1 class="text_center">{{ title }}</h1>
 </div>
 <div class="company_infos">
-    <a href="http://localhost:8000">All4Sport.fr</a>
+    <div>
+        <a href="http://{{ host }}{{ (host starts with 'www.localhost' ? ':8000' : null) }}">All4Sport.fr</a>
+    </div>
     <p>03.XX.XX.XX.XX</p>
     <p>contact@all4sport.fr</p>
     <p>XX rue des XXXXXXXX</p>

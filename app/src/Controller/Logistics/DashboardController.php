@@ -2,7 +2,6 @@
 
 namespace App\Controller\Logistics;
 
-use App\Entity\StockShelf;
 use App\Repository\StockShelfRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
