@@ -2,6 +2,26 @@
 
 {% block title %}Page non trouvée{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        h1 {
+            text-align: left;
+            font-size: 3rem;
+        }
+        p {
+            margin: 10px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    {% include 'client/header_links.html.twig' %}
+{% endblock %}
+
 {% block body %}
-    <p>La page que vous avez demandé n'a pas été trouvé, retournez sur la page <a href="{{ path('app_client_home') }}">d'accueil</a></p>
+    <div class="app_container app_padding">
+        <h1>Page non trouvée ! (404)</h1>
+        <p>La page que vous avez demandé n'a pas été trouvée, retournez sur la <a class="link" href="{{ path('app_client_home') }}" title="page d'accueil">page d'accueil</a></p>
+        <p>Url saisie : ({{ app.request.uri }})</p>
+    </div>
 {% endblock %}

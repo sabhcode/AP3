@@ -44,7 +44,9 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/ajout-produit-panier', name: 'add_product_cart')]
+    #[Route('/ajout-produit-panier',
+            'add_product_cart'
+    )]
     public function addProductCart(Request $request, CartService $cartService): Response
     {
         $productId = trim($request->request->get("productId"));
@@ -71,7 +73,9 @@ class CartController extends AbstractController
      * @param StoreRepository $storeRepository
      * @return Response
      */
-    #[Route('/passer-commande/livraison', name: 'delivery_choice')]
+    #[Route('/passer-commande/livraison',
+            'delivery_choice'
+    )]
     public function deliveryChoice(CartService $cartService, StoreRepository $storeRepository): Response
     {
         if(!$this->getUser()) {
@@ -101,7 +105,9 @@ class CartController extends AbstractController
      * @param StockShelfRepository $stockShelfRepository
      * @return Response
      */
-    #[Route('/passer-commande', name: 'place_order')]
+    #[Route('/passer-commande',
+            'place_order'
+    )]
     public function placeOrder(Request $request, CartService $cartService, StoreRepository $storeRepository, OrderStateRepository $orderStateRepository, EntityManagerInterface $entityManager, StockShelfRepository $stockShelfRepository): Response
     {
         $user = $this->getUser();

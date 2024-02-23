@@ -38,7 +38,7 @@
 						</div>
 						{% if products|length > 8 %}
 							<div style="text-align: center;margin: 10px 0">
-								<a class="link_see_more" href="{{ path('app_client_category', {'slug': categoryNameAndSlug[2]}) }}" title="Voir plus">Voir plus</a>
+								<a class="link" href="{{ path('app_client_category', {'slug': categoryNameAndSlug[2]}) }}" title="Voir plus">Voir plus</a>
 							</div>
 						{% endif %}
 					</div>
@@ -57,7 +57,7 @@
 						</div>
 						{% if category.getProducts()|length > 8 %}
 							<div style="text-align: center;margin: 10px 0">
-								<a class="link_see_more" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="Voir plus">Voir plus</a>
+								<a class="link" href="{{ path('app_client_category', {'slug': category.getSlug()}) }}" title="Voir plus">Voir plus</a>
 							</div>
 						{% endif %}
 					</div>

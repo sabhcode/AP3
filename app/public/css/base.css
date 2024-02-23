@@ -362,10 +362,11 @@ h1 {
     margin: 0 8px;
 }
 
-.link_see_more {
+.link {
     color: #3b82f6;
     text-decoration: underline;
+    transition: color .2s ease;
 }
-.link_see_more:hover {
+.link:hover {
     color: var(--secondColor);
 }
