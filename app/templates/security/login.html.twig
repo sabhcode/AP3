@@ -26,10 +26,16 @@
                 </div>
             {% else %}
                 <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                <label for="inputEmail">Email</label>
-                <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="username" required autofocus>
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <label>Email
+                    <input type="text" value="{{ last_username }}" name="email" class="form-control" autocomplete="username" required autofocus>
+                </label>
+                <label>Mot de passe
+                    <input type="password" name="password" class="form-control" autocomplete="current-password" required>
+                </label>
+                <label>
+                    <input type="checkbox" name="_remember_me" checked>
+                    Rester connecté
+                </label>
                 <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}">
                 <button class="btn btn-lg btn-primary" type="submit">Connexion</button>

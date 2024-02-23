@@ -15,12 +15,14 @@ form {
 }
 
 label {
+    display: block;
     color: var(--primaryColor);
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-input {
+input[type="text"],
+input[type="password"] {
     display: block;
     width: 100%;
     padding: 10px;
