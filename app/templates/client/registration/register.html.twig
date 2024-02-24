@@ -6,101 +6,111 @@
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
+{% block javascript_head %}
+    <script></script>
+{% endblock %}
+
 {% block header %}
     {% include 'client/header_links.html.twig' %}
 {% endblock %}
 
 {% block body %}
 	<div class="app_container app_padding">
-	    {% for flash_error in app.flashes('verify_email_error') %}
-    		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    	{% endfor %}
         <h1>Inscription</h1>
-
-        {{ form_errors(registrationForm) }}
-
-        {{ form_start(registrationForm) }}
-            <div>
-                <label>
-                    {{ field_label(registrationForm.email) }}
-                    <input type="email" name="{{ field_name(registrationForm.email) }}" value="{{ field_value(registrationForm.email) }}" required>
-                </label>
-            </div>
-            {% for error in registrationForm.email.vars.errors %}
-                <p>{{ error.message }}</p>
-            {% endfor %}
-            <div class="flex">
+        <div class="form">
+            {{ form_start(registrationForm) }}
+                {{ form_errors(registrationForm) }}
                 <div>
                     <label>
-                        {{ field_label(registrationForm.name) }}
-                        <input type="text" name="{{ field_name(registrationForm.name) }}" value="{{ field_value(registrationForm.name) }}" required>
+                        {{ field_label(registrationForm.email) }}
+                        <input type="email" name="{{ field_name(registrationForm.email) }}" value="{{ field_value(registrationForm.email) }}" required>
                     </label>
                 </div>
-                {% for error in registrationForm.name.vars.errors %}
+                {% for error in registrationForm.email.vars.errors %}
                     <p>{{ error.message }}</p>
                 {% endfor %}
+                <div class="flex">
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.name) }}
+                            <input type="text" name="{{ field_name(registrationForm.name) }}" value="{{ field_value(registrationForm.name) }}" required>
+                        </label>
+                    </div>
+                    {% for error in registrationForm.name.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.firstname) }}
+                            <input type="text" name="{{ field_name(registrationForm.firstname) }}" value="{{ field_value(registrationForm.firstname) }}" required>
+                        </label>
+                    </div>
+                    {% for error in registrationForm.firstname.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="flex">
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.street) }}
+                            <input type="text" name="{{ field_name(registrationForm.street) }}">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.zip_code) }}
+                            <input type="text" name="{{ field_name(registrationForm.zip_code) }}">
+                        </label>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.city) }}
+                            <input type="text" name="{{ field_name(registrationForm.city) }}">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {{ field_label(registrationForm.phone) }}
+                            <input type="tel" name="{{ field_name(registrationForm.phone) }}">
+                        </label>
+                    </div>
+                </div>
                 <div>
                     <label>
-                        {{ field_label(registrationForm.firstname) }}
-                        <input type="text" name="{{ field_name(registrationForm.firstname) }}" value="{{ field_value(registrationForm.firstname) }}" required>
+                        {{ field_label(registrationForm.plainPassword.first) }}
+                        <div class="toggle-password-button">
+                            <div id="toggle-password-button_icon" class="toggle-password-button_icon">
+                                <img src="{{ asset('media/images/form/eye-password-show.svg') }}" alt="Icon pour afficher/cacher le mot de passe">
+                            </div>
+                            <input type="password" name="{{ field_name(registrationForm.plainPassword.first) }}" autocomplete="new-password" required>
+                        </div>
                     </label>
-                </div>
-                {% for error in registrationForm.firstname.vars.errors %}
-                    <p>{{ error.message }}</p>
-                {% endfor %}
-            </div>
-            <div class="flex">
-                <div>
                     <label>
-                        {{ field_label(registrationForm.street) }}
-                        <input type="text" name="{{ field_name(registrationForm.street) }}">
+                        {{ field_label(registrationForm.plainPassword.second) }}
+                        <input type="password" name="{{ field_name(registrationForm.plainPassword.second) }}" autocomplete="new-password" required>
                     </label>
-                </div>
-                <div>
-                    <label>
-                        {{ field_label(registrationForm.zip_code) }}
-                        <input type="text" name="{{ field_name(registrationForm.zip_code) }}">
-                    </label>
-                </div>
-            </div>
-            <div class="flex">
-                <div>
-                    <label>
-                        {{ field_label(registrationForm.city) }}
-                        <input type="text" name="{{ field_name(registrationForm.city) }}">
-                    </label>
+                    {% for error in registrationForm.plainPassword.first.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
                 </div>
                 <div>
                     <label>
-                        {{ field_label(registrationForm.phone) }}
-                        <input type="text" name="{{ field_name(registrationForm.phone) }}">
+                        <input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" required>
+                        {{ field_label(registrationForm.agreeTerms) }}
                     </label>
+                    {% for error in registrationForm.agreeTerms.vars.errors %}
+                        <p>{{ error.message }}</p>
+                    {% endfor %}
                 </div>
-            </div>
-            <div>
-                <label>
-                    {{ field_label(registrationForm.plainPassword.first) }}
-                    <input type="password" name="{{ field_name(registrationForm.plainPassword.first) }}" autocomplete="new-password" required>
-                </label>
-                <label>
-                    {{ field_label(registrationForm.plainPassword.second) }}
-                    <input type="password" name="{{ field_name(registrationForm.plainPassword.second) }}" autocomplete="new-password" required>
-                </label>
-                {% for error in registrationForm.plainPassword.first.vars.errors %}
-                    <p>{{ error.message }}</p>
-                {% endfor %}
-            </div>
-            <div>
-                <label>
-                    <input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" required>
-                    {{ field_label(registrationForm.agreeTerms) }}
-                </label>
-                {% for error in registrationForm.agreeTerms.vars.errors %}
-                    <p>{{ error.message }}</p>
-                {% endfor %}
-            </div>
-            <button class="btn">S'inscrire</button>
-        {{ form_end(registrationForm) }}
+                <button class="btn">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+        </div>
         <p class="GoToSign">Déjà membre ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
 	</div>
+{% endblock %}
+
+{% block javascripts_body %}
+    <script src="{{ asset('js/form.js') }}"></script>
 {% endblock %}

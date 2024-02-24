@@ -25,12 +25,12 @@
         const sec = document.getElementById("sec");
         let i = 10;
 
-        sec.innerText = i;
+        sec.innerText = i.toString();
         i--;
 
         const countdown = setInterval(() => {
 
-            sec.innerText = i;
+            sec.innerText = i.toString();
             i--;
 
             if(i < 0) {

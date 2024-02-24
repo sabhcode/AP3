@@ -15,9 +15,9 @@
 	<div class="app_container app_padding">
 		<!-- Barre de recherche -->
 		<form method="GET" class="search-bar">
-			<input type="text" name="p" value="{{ app.request.query.get('p') }}" placeholder="Rechercher un produit...">
+			<input type="search" name="p" value="{{ app.request.query.get('p') }}" placeholder="Rechercher un produit..." required>
 			<select name="c">
-				<option class="select-category" value="-1">Toutes catégories</option>
+				<option class="select-category" value="">Toutes catégories</option>
 				<!-- Boucle pour afficher toutes les catégories disponibles -->
 				{% for category in categories %}
 					<option value="{{ category.getId() }}"{{ category.getId() == app.request.query.get('c') ? ' selected="selected"' }}>{{ category.getName() }}</option>

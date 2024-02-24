@@ -20,21 +20,24 @@ use Symfony\Component\Routing\Requirement\Requirement;
 class CategoryController extends AbstractController
 {
     #[Route(name: 'categories')]
-    public function viewAllCategories(CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
+    public function viewAllCategories(Request $request, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
-        // Récupérez les catégories depuis la base de données
+        // Récupérez les catégories depuis la bdd
         $categories = $categoryRepository->findAll();
         $searchResult = null;
 
         // Si les paramètres GET 'p' et 'c' ont été saisi alors
-        if(!(is_null($request->query->get("p")) && is_null($request->query->get("c")))) {
+        if(!(is_null($request->query->get('p')))) {
 
-            $_searchResult = $productRepository->findProductsByCategoryAndName($request->query->get("c"), $request->query->get("p"));
+            $productRequest = $request->query->get('p');
+            $categoryRequest = $request->query->get('c') ?: '-1';
+
+            $_searchResult = $productRepository->findProductsByCategoryAndName($categoryRequest, $productRequest);
 
             $searchResult = [];
 
             foreach($_searchResult as $product) {
-                $categoryKey = $product->getCategory()?->getId() . " " . $product->getCategory()?->getName() . " " . $product->getCategory()?->getSlug();
+                $categoryKey = $product->getCategory()?->getId() . ' ' . $product->getCategory()?->getName() . ' ' . $product->getCategory()?->getSlug();
                 $searchResult[$categoryKey][] = $product;
             }
             ksort($searchResult);
@@ -49,7 +52,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'category', requirements: ['slug' => Requirement::ASCII_SLUG])]
-    public function viewCategory($slug, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
+    public function viewCategory(Request $request, $slug, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
         // Rechercher la catégorie en fonction du slug saisi
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
@@ -61,8 +64,8 @@ class CategoryController extends AbstractController
 
         $searchResult = null;
 
-        if($request->query->get("p")) {
-            $searchResult = $productRepository->findProductsByCategoryAndName($category->getId(), $request->query->get("p"));
+        if($productRequest = $request->query->get('p')) {
+            $searchResult = $productRepository->findProductsByCategoryAndName($category->getId(), $productRequest);
         }
 
         // Rendre le template en passant la catégorie

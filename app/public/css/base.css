@@ -9,7 +9,7 @@
     --whiteColor: #fff;
     --greenColor: #3FBF4F;
     --redColor: #E84F4F;
-    --boxShadowColor: #ddd;
+    --boxShadowColor: #707070;
     --radiusBorder: 4px;
     --widthProductCard: 240px;
 }
@@ -35,9 +35,27 @@ a {
     text-decoration: none;
 }
 
-input {
+input:not([type="checkbox"], [type="radio"]),
+textarea {
+    display: block;
     font: inherit;
     font-weight: normal;
+    background-color: #fbfbfb;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radiusBorder);
+    transition: background-color .2s ease;
+}
+input:not([type="checkbox"], [type="radio"]):hover,
+textarea:hover,
+input:not([type="checkbox"], [type="radio"]):focus,
+textarea:focus {
+    background-color: var(--whiteColor);
+}
+input[type="checkbox"],
+input[type="radio"]{
+    margin-right: 5px;
 }
 
 button {

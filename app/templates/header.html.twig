@@ -2,8 +2,13 @@
 	<div class="header-app__content">
 		<div class="header-app__logo">
 			<a href="{{ path('app_client_home') }}" title="All4Sport">
-				<img src="{{ asset('media/images/header/logo.png') }}">
+				<img src="{{ asset('media/images/header/logo.png') }}" alt="Logo All4Sport">
 			</a>
+		</div>
+		<div class="header-app__search">
+			<form action="{{ path('app_client_categories') }}">
+				<input type="search" name="p" placeholder="Rechercher un produit...">
+			</form>
 		</div>
 		<nav class="header-app__nav">
 			<ul>

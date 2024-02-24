@@ -16,26 +16,37 @@
 
 {% block body %}
     <div class="app_container app_padding">
-        <form method="POST">
-            <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            <label>
-                Email
-                <input type="text" value="{{ last_username }}" name="email" class="form-control" autocomplete="username" required autofocus>
-            </label>
-            <label>
-                Mot de passe
-                <input type="password" name="password" class="form-control" autocomplete="current-password" required>
-            </label>
-            <label>
-                <input type="checkbox" name="_remember_me" checked>
-                Rester connecté
-            </label>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <button>Connexion</button>
-            <p class="GoToSign">Pas encore inscrit ? <a href="{{ path('app_client_register') }}">Inscrivez-vous</a> dès maintenant !</p>
-        </form>
+        <div class="form">
+            <form method="POST">
+                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <label>
+                    Email
+                    <input type="text" value="{{ last_username }}" name="email" class="form-control" autocomplete="username" required autofocus>
+                </label>
+                <label>
+                    Mot de passe
+                    <div class="toggle-password-button">
+                        <div id="toggle-password-button_icon" class="toggle-password-button_icon">
+                            <img src="{{ asset('media/images/form/eye-password-show.svg') }}" alt="Icon pour afficher/cacher le mot de passe">
+                        </div>
+                        <input type="password" name="password" class="form-control" autocomplete="current-password" required>
+                    </div>
+                </label>
+                <label>
+                    <input type="checkbox" name="_remember_me" checked>
+                    Rester connecté
+                </label>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button>Connexion</button>
+                <p class="GoToSign">Pas encore inscrit ? <a href="{{ path('app_client_register') }}">Inscrivez-vous</a> dès maintenant !</p>
+            </form>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts_body %}
+    <script src="{{ asset('js/form.js') }}"></script>
 {% endblock %}

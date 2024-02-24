@@ -30,9 +30,19 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('name', options: [
                 'label' => 'Nom *',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Vous devez renseigner un nom"
+                    ]),
+                ],
             ])
             ->add('firstname', options: [
                 'label' => 'Prénom *',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Vous devez renseigner un prénom"
+                    ]),
+                ],
             ])
             ->add('phone', options: [
                 'label' => 'Téléphone',
@@ -51,7 +61,7 @@ class RegistrationFormType extends AbstractType
                 'options' => [
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Entrer un mot de passe',
+                            'message' => 'Vous devez entrer un mot de passe',
                         ]),
                         new Length([
                             'min' => 12,
@@ -59,7 +69,7 @@ class RegistrationFormType extends AbstractType
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
                         ]),
-                    ]
+                    ],
                 ],
                 'first_options'  => ['label' => 'Mot de passe *'],
                 'second_options' => ['label' => 'Confirmation *'],
