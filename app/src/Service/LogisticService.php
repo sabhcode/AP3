@@ -76,7 +76,7 @@ class LogisticService {
 
     public function addShelves(): static {
 
-        for($i = 2; $i <= 12960; $i++) {
+        for($i = 1; $i <= 12960; $i++) {
             for($j = 1; $j <= 8; $j++) {
                 $shelf = new Shelf();
                 $shelf->setSection($this->sectionRepository->find($i));
