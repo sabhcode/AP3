@@ -32,15 +32,7 @@ class CategoryController extends AbstractController
             $productRequest = $request->query->get('p');
             $categoryRequest = $request->query->get('c') ?: '-1';
 
-            $_searchResult = $productRepository->findProductsByCategoryAndName($categoryRequest, $productRequest);
-
-            $searchResult = [];
-
-            foreach($_searchResult as $product) {
-                $categoryKey = $product->getCategory()?->getId() . ' ' . $product->getCategory()?->getName() . ' ' . $product->getCategory()?->getSlug();
-                $searchResult[$categoryKey][] = $product;
-            }
-            ksort($searchResult);
+            $searchResult = $productRepository->findProductsByCategoryAndName($categoryRequest, $productRequest, true);
 
         }
 

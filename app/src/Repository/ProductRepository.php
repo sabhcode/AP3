@@ -24,7 +24,7 @@ class ProductRepository extends ServiceEntityRepository
     /**
     * @return Product[] Returns an array of Product objects
     */
-    public function findProductsByCategoryAndName($category, $name): array
+    public function findProductsByCategoryAndName($category, $name, $sort = false): array
     {
         $query = $this->createQueryBuilder('p')
             ->where('p.name LIKE :name')
@@ -38,8 +38,23 @@ class ProductRepository extends ServiceEntityRepository
             ;
         }
 
-        return $query->getQuery()
-            ->getResult();
+        $result = $query->getQuery()->getResult();
+
+        if($sort) {
+
+            // Triage
+            $searchResult = [];
+
+            foreach($result as $product) {
+                $categoryKey = $product->getCategory()?->getId() . ' ' . $product->getCategory()?->getName() . ' ' . $product->getCategory()?->getSlug();
+                $searchResult[$categoryKey][] = $product;
+            }
+            ksort($searchResult);
+            $result = $searchResult;
+
+        }
+
+        return $result;
     }
 
 //    public function findOneBySomeField($value): ?Product
