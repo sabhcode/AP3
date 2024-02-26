@@ -67,6 +67,7 @@ class Product
     private Collection $orderDetails;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImg::class, orphanRemoval: true)]
+    #[Groups(['product:list', 'product:item'])]
     private Collection $productImgs;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockShelf::class)]
