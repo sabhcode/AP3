@@ -21,8 +21,8 @@ class LoginAPIController extends AbstractController
     )]
     public function login(Request $request, CredentialRepository $credentialRepository, UserRepository $userRepository, SerializerInterface $serializer): Response
     {
-        $email = htmlentities(trim($request->request->get('email')));
-        $password = htmlentities(trim($request->request->get('password')));
+        $email = htmlentities($request->request->get('email'));
+        $password = htmlentities($request->request->get('password'));
 
         if(!$email || !$password) {
             return new Response(status: 400);
