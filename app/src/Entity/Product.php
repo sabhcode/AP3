@@ -61,6 +61,7 @@ class Product
     private ?Supplier $supplier = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: StockStore::class)]
+    #[Groups(['product:list', 'product:item'])]
     private Collection $stockStores;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]

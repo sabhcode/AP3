@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use App\Entity\StockStore;
-use App\Repository\StoreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StoreRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
@@ -17,9 +18,11 @@ class Store
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['product:list', 'product:item'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['product:list', 'product:item'])]
     private ?string $country = null;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: StockStore::class)]

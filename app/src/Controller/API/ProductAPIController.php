@@ -2,10 +2,7 @@
 
 namespace App\Controller\API;
 
-use App\Entity\Credential;
-use App\Repository\CredentialRepository;
 use App\Repository\ProductRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,10 +55,12 @@ class ProductAPIController extends AbstractController
             return new Response(status: 400);
         }
 
-        return new JsonResponse($serializer->serialize(
+        $response = $serializer->serialize(
             $product,
             'json',
             ['groups' => 'product:item']
-        ), json: true);
+        );
+
+        return new JsonResponse($response, json: true);
     }
 }
