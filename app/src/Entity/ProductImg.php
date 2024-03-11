@@ -12,7 +12,6 @@ class ProductImg
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'productImgs')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['product:list', 'product:item'])]
     private ?Product $product = null;
 
     #[ORM\Id]

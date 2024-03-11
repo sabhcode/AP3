@@ -2,23 +2,12 @@
 
 namespace App\Entity;
 
-// API imports
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\Post;
-
 use App\Repository\OrderUserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ApiResource(
-    operations: [
-        new Get(normalizationContext: ['groups' => 'orderuser:item']),
-        new Post(normalizationContext: ['groups' => 'orderuser:item'])
-    ]
-)]
 #[ORM\Entity(repositoryClass: OrderUserRepository::class)]
 class OrderUser
 {

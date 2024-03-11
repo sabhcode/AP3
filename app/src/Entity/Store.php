@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Entity\StockStore;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
@@ -9,20 +11,26 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    operations: [
+        new GetCollection(normalizationContext: ['groups' => 'store:item'])
+    ]
+)]
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(options: ['unsigned' => true])]
+    #[Groups(['store:item', 'product:list', 'product:item'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['product:list', 'product:item'])]
+    #[Groups(['store:item', 'product:list', 'product:item'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['product:list', 'product:item'])]
+    #[Groups(['store:item', 'product:list', 'product:item'])]
     private ?string $country = null;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: StockStore::class)]

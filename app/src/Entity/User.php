@@ -16,11 +16,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
-    operations: [
-        new Get(normalizationContext: ['groups' => 'user:item']),
-    ]
-)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['credential'], message: 'Adresse email déjà utilisée')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

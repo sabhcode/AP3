@@ -23,7 +23,7 @@ class ProductAPIController extends AbstractController
         return new JsonResponse($serializer->serialize(
             $result,
             'json',
-            ['groups' => 'product:item']
+            ['groups' => 'product:list']
         ), json: true);
     }
 
