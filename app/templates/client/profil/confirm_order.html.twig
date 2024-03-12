@@ -127,7 +127,7 @@
 </head>
 <body>
 <div class="header">
-    <a href="http://localhost:8000">
+    <a href="http://{{ host }}{{ (host starts with 'www.localhost' ? ':8000' : null) }}">
         <img src="data:image/png;base64,{{ logo }}" alt="Logo All4Sport" width="60">
     </a>
     <h1 class="text_right">{{ title }}</h1>
