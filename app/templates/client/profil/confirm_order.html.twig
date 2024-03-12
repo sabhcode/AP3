@@ -17,6 +17,18 @@
             padding: 40px 20px;
         }
 
+        ul {
+            display: inline-block;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .text_left {
+            text-align: left;
+        }
+
         .text_center {
             text-align: center;
         }
@@ -28,6 +40,14 @@
         .text_important {
             font-weight: bold;
             text-transform: uppercase;
+        }
+
+        .text_bold {
+            font-weight: bold;
+        }
+
+        .mr-10 {
+            margin-right: 10px;
         }
 
         .void {
@@ -128,10 +148,18 @@
         <p>{{ (not order.getShippingCost() ? "All4Sport") }} {{ order.getAddress() }}</p>
     </div>
     <div class="order_infos">
-        <p>Commande n° {{ order.getId() }}</p>
-        <p>Client n° {{ user.getId() }}</p>
-        <p>Date de commande : {{ order.getDateTime()|format_date(locale="fr", pattern="dd/MM/y 'à' HH'h'mm") }}</p>
-        <p>Quantité de produit(s) : {{ order.getProductQuantity() }}</p>
+        <ul class="text_left mr-10">
+            <li>Commande</li>
+            <li>Client</li>
+            <li>Date de facture</li>
+            <li>Quantité de produits</li>
+        </ul>
+        <ul class="text_bold">
+            <li>n° {{ order.getId() }}</li>
+            <li>n° {{ user.getId() }}</li>
+            <li>{{ order.getDateTime()|format_date(locale="fr", pattern="dd/MM/y 'à' HH'h'mm") }}</li>
+            <li>{{ order.getProductQuantity() }}</li>
+        </ul>
     </div>
 </div>
 <div>
@@ -147,7 +175,7 @@
             <tr>
                 <td class="text_center product_quantity">{{ detail.getQuantity() }}</td>
                 <td class="product_name">{{ detail.getProduct().getName() }}</td>
-                <td class="text_center product_price">{{ detail.getUnitPrice()|format_currency('EUR')|replace({' ':' a'}) }}</td>
+                <td class="text_center product_price">{{ detail.getUnitPrice()|format_currency('EUR') }}</td>
                 <td class="text_center product_total_price">{{ (detail.getUnitPrice() * detail.getQuantity())|format_currency('EUR') }}</td>
             </tr>
         {% endfor %}
