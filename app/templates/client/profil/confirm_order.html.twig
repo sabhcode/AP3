@@ -12,13 +12,17 @@
         }
 
         body {
-            font-family: "Montserrat", sans-serif;
-            line-height: 1.2;
+            font-family: "DejaVu Sans";
+            line-height: 1;
             padding: 40px 20px;
         }
 
         .text_center {
             text-align: center;
+        }
+
+        .text_right {
+            text-align: right;
         }
 
         .text_important {
@@ -36,7 +40,7 @@
         }
 
         .header {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .header a {
@@ -104,9 +108,9 @@
 <body>
 <div class="header">
     <a href="http://localhost:8000">
-        <img src="data:image/png;base64,{{ logo }}" alt="Logo All4Sport" width="40">
+        <img src="data:image/png;base64,{{ logo }}" alt="Logo All4Sport" width="60">
     </a>
-    <h1 class="text_center">{{ title }}</h1>
+    <h1 class="text_right">{{ title }}</h1>
 </div>
 <div class="company_infos">
     <div>
@@ -143,7 +147,7 @@
             <tr>
                 <td class="text_center product_quantity">{{ detail.getQuantity() }}</td>
                 <td class="product_name">{{ detail.getProduct().getName() }}</td>
-                <td class="text_center product_price">{{ detail.getUnitPrice()|format_currency('EUR') }}</td>
+                <td class="text_center product_price">{{ detail.getUnitPrice()|format_currency('EUR')|replace({' ':' a'}) }}</td>
                 <td class="text_center product_total_price">{{ (detail.getUnitPrice() * detail.getQuantity())|format_currency('EUR') }}</td>
             </tr>
         {% endfor %}

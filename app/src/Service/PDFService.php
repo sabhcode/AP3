@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Dompdf\Dompdf;
-use JetBrains\PhpStorm\NoReturn;
 
 class PDFService {
 
@@ -16,10 +15,9 @@ class PDFService {
         $pdf->loadHtml($html);
         $pdf->render();
         $pdf->stream($filename, [
+            'compress' => true,
             "Attachment" => false
         ]);
-
-        exit();
 
     }
 

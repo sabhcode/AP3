@@ -3,6 +3,7 @@
 namespace App\Controller\Client;
 
 use App\Entity\OrderUser;
+use App\Entity\User;
 use App\Repository\OrderStateRepository;
 use App\Service\PDFService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +36,10 @@ class ProfilController extends AbstractController
     #[Route('/commande/{id}', name: 'my_order')]
     public function getOrder(OrderUser $order, OrderStateRepository $orderStateRepository): Response
     {
-        if($order->getUser()?->getId() === $this->getUser()?->getId()) {
+        /** @var User */
+        $user = $this->getUser();
+
+        if($order->getUser()?->getId() === $user->getId()) {
 
             $orderStates = $orderStateRepository->findAll();
 
@@ -51,10 +55,13 @@ class ProfilController extends AbstractController
     #[Route('/commande/{id}/pdf', name: 'my_confirm_order')]
     public function getConfirmOrder(OrderUser $order, PDFService $PDFService): Response
     {
-        if($order->getUser()?->getId() === $this->getUser()?->getId()) {
+        /** @var User */
+        $user = $this->getUser();
 
-            $title = 'Confirmation de commande';
-            $filename = 'confirmation-de-commande-num-' . $order->getId();
+        if($order->getUser()?->getId() === $user->getId()) {
+
+            $title = 'Facture';
+            $filename = 'facture-commande-num-' . $order->getId();
 
             $html = $this->renderView('client/profil/confirm_order.html.twig', [
                 'host' => $this->getParameter('app.host.client'),

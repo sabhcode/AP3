@@ -2,21 +2,20 @@
 
 namespace App\Controller\Client;
 
-use ApiPlatform\Api\UrlGeneratorInterface;
-use App\Entity\OrderDetail;
+use Exception;
 use App\Entity\OrderRank;
 use App\Entity\OrderUser;
+use App\Entity\OrderDetail;
+use App\Service\CartService;
+use App\Repository\StoreRepository;
 use App\Repository\OrderStateRepository;
 use App\Repository\StockShelfRepository;
-use App\Repository\StoreRepository;
-use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route(
     '/mon-panier',
