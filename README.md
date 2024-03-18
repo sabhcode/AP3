@@ -1,16 +1,16 @@
 # <div align="center">AP3 ALL4SPORT</div>
 
 > [!IMPORTANT]
-> [Documentation d'utilisation](../main/ressources/doc/utilisation.pdf "Documentation d'utilisation")  
-> [Documentation technique](../main/ressources/doc/documentation-technique-mise-en-production-ap3-groupe-1-2024.pdf "Documentation technique")  
-> [Qui A Fait Quoi ?](../main/ressources/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")  
-> [Photos du site](../main/ressources/photos "Photos du site")
+> [Documentation d'utilisation](/main/ressources/doc/utilisation.pdf "Documentation d'utilisation")  
+> [Documentation technique](/main/ressources/doc/documentation-technique-mise-en-production-ap3-groupe-1-2024.pdf "Documentation technique")  
+> [Qui A Fait Quoi ?](/main/ressources/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")  
+> [Photos du site](/main/ressources/photos "Photos du site")
 
 > [!NOTE]
-> [app](../main/app "app") - contient l'architecture de l'application ALL4SPORT  
-> [ressources](../main/ressources "ressources") - contient les fichiers de création de l'application (mcd, maquette, ...)
+> [app](/main/app "app") - contient l'architecture de l'application web ALL4SPORT  
+> [ressources](/main/ressources "ressources") - contient les fichiers de création, informations de l'application (mcd, maquette, doc, images, ...)
 
-> [!WARNING]
+> [!TIP]
 > | Outil  | Version |
 > | ------------- | ------------- |
 > | Visual Studio Code | 1.82.0 |
@@ -23,7 +23,7 @@
 > | Workbench | 8.0 |
 > | MySQL (InnoDB) | 8.0.31 |
 
-Bonnes pratiques :
+## Bonnes pratiques
 
 - Nommage des branches : Veuillez nommer vos branches de la sorte (nom-pageQueTuTraites-ceQueTuFaisDessus).
 - Nommage des variables : Veuillez respecter la norme du camelCase.
