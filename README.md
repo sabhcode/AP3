@@ -1,14 +1,14 @@
 # <div align="center">AP3 ALL4SPORT</div>
 
 > [!IMPORTANT]
-> [Documentation d'utilisation](/main/ressources/doc/utilisation.pdf "Documentation d'utilisation")  
-> [Documentation technique](/main/ressources/doc/documentation-technique-mise-en-production-ap3-groupe-1-2024.pdf "Documentation technique")  
-> [Qui A Fait Quoi ?](/main/ressources/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")  
-> [Photos du site](/main/ressources/photos "Photos du site")
+> [Documentation d'utilisation](/ressources/doc/utilisation.pdf "Documentation d'utilisation")  
+> [Documentation technique](/ressources/doc/documentation-technique-mise-en-production-ap3-groupe-1-2024.pdf "Documentation technique")  
+> [Qui A Fait Quoi ?](/ressources/doc/qui-a-fait-quoi.pdf "Qui A Fait Quoi ?")  
+> [Photos du site](/ressources/photos "Photos du site")
 
 > [!NOTE]
-> [app](/main/app "app") - contient l'architecture de l'application web ALL4SPORT  
-> [ressources](/main/ressources "ressources") - contient les fichiers de création, informations de l'application (mcd, maquette, doc, images, ...)
+> [app](/app "app") - contient l'architecture de l'application web ALL4SPORT  
+> [ressources](/ressources "ressources") - contient les fichiers de création, informations de l'application (mcd, maquette, doc, images, ...)
 
 > [!TIP]
 > | Outil  | Version |
