@@ -1,3 +1,5 @@
+Ce fichier présente un ememple de code d'un produit stocké dans un entrepôt
+
 B1M2D3.5
 
 B1-M2-D-3-.5
