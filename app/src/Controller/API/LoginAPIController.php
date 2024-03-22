@@ -49,6 +49,6 @@ class LoginAPIController extends AbstractController
         $response['user'] = $userRepository->findOneBy(['credential' => $credential]);
         $response['success'] = true;
 
-        return new JsonResponse($serializer->serialize($response, 'json'), json: true);
+        return new JsonResponse($serializer->serialize($response, 'json', ['groups' => 'user:item']), json: true);
     }
 }
