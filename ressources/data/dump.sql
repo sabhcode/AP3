@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: all4sport
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.36
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -61,6 +61,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
+INSERT INTO `order_detail` VALUES (1,11,2,1499.00),(2,1,2,22.00),(2,20,1,119.99);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,6 +71,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `order_rank` WRITE;
 /*!40000 ALTER TABLE `order_rank` DISABLE KEYS */;
+INSERT INTO `order_rank` VALUES (1,1,'2024-03-12 19:30:58'),(1,2,'2024-03-12 19:47:53');
 /*!40000 ALTER TABLE `order_rank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,6 +91,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `order_user` WRITE;
 /*!40000 ALTER TABLE `order_user` DISABLE KEYS */;
+INSERT INTO `order_user` VALUES (1,1,'2024-03-12 19:30:58',2998.00,20,2,NULL,NULL,NULL,'Tours'),(2,1,'2024-03-12 19:47:53',163.99,20,3,NULL,NULL,NULL,'Monte-Carlo');
 /*!40000 ALTER TABLE `order_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +142,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `stock_shelf` WRITE;
 /*!40000 ALTER TABLE `stock_shelf` DISABLE KEYS */;
-INSERT INTO `stock_shelf` VALUES (1,1,10),(1,2,5),(2,40000,4),(5,29238,9),(5,70000,5),(8,100200,8),(10,9121,26),(11,59595,3),(12,41291,82),(19,29387,17),(20,545,3);
+INSERT INTO `stock_shelf` VALUES (1,1,8),(1,2,5),(2,40000,4),(5,29238,9),(5,70000,5),(8,100200,8),(10,9121,26),(11,59595,1),(12,41291,82),(19,29387,17),(20,545,2);
 /*!40000 ALTER TABLE `stock_shelf` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +162,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,2,'Toulouse','France'),(2,1,'Lille','France'),(3,3,'Metz','France'),(4,1,'Paris','France'),(5,1,'Arras','France'),(6,1,'Rennes','France'),(7,1,'Reims','France'),(8,1,'Amiens','France'),(9,1,'Tours','France'),(10,3,'Lyon','France'),(11,3,'Bordeaux','France'),(12,2,'Monte-Carlo','Monaco');
+INSERT INTO `store` VALUES (1,2,'Toulouse','France',43.6047,1.4442),(2,1,'Lille','France',50.6292,3.0573),(3,3,'Metz','France',49.1193,6.1757),(4,1,'Paris','France',48.8566,2.3522),(5,1,'Arras','France',50.291,2.7775),(6,1,'Rennes','France',48.1173,-1.6778),(7,1,'Reims','France',49.2583,4.0317),(8,1,'Amiens','France',49.8941,2.2958),(9,1,'Tours','France',47.3941,0.6848),(10,3,'Lyon','France',45.764,4.8357),(11,3,'Bordeaux','France',44.8378,-0.5792),(12,2,'Monte-Carlo','Monaco',43.7401,7.4266);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-24 16:07:03
+-- Dump completed on 2024-03-22 13:58:21

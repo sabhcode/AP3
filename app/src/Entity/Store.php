@@ -33,6 +33,14 @@ class Store
     #[Groups(['store:item', 'product:list', 'product:item'])]
     private ?string $country = null;
 
+    #[ORM\Column]
+    #[Groups(['store:item', 'product:list', 'product:item'])]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    #[Groups(['store:item', 'product:list', 'product:item'])]
+    private ?float $longitude = null;
+
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: StockStore::class)]
     private Collection $stockStores;
 
@@ -112,6 +120,30 @@ class Store
     public function setWarehouse(?Warehouse $warehouse): static
     {
         $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): static
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): static
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }
