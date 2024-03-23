@@ -12,7 +12,7 @@ ORDER_USER: id [INTEGER], date_time [DATETIME], total_price_ht [DECIMAL(10,2)], 
 ORDER_DETAIL, 1n PRODUCT, 1n ORDER_USER : quantity [INTEGER], unit_price [DECIMAL(10,2)]
 PRODUCT: id [INTEGER], name [VARCHAR], description [TEXT], unit_price [DECIMAL(10,2)], images [VARCHAR(255)], slug [VARCHAR(255)]
 STOCK_STORE, 1n PRODUCT, 1n STORE : quantity [INTEGER]
-STORE: id [INTEGER], street [VARCHAR(100)], zip_code [VARCHAR(10)], city [VARCHAR(100)]
+STORE: id [INTEGER], city [VARCHAR(100)], country [VARCHAR(100)], latitude [DECIMAL(10,2)], longitude [DECIMAL(10,2)]
 DIVIDED BY, 06 BUILDING, 11 MODULE
 BUILDING: id [VARCHAR], code [CHAR(2)]
 
