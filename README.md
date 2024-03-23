@@ -31,4 +31,3 @@
 - Maintenabilité du code : Modularisez au maximum le code écrit et le factorisez avant tout push/merge.
 - Compréhension du code : Ne pas hésiter à insérer des commentaires.
 - Cohésion : Prévenir l'équipe avant et après chaque push/merge.
-
