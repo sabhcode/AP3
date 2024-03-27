@@ -1,4 +1,4 @@
-# <div align="center">AP3 ALL4SPORT</div>
+# <div align="center">![Logo de l'entreprise All4Sport](/app/assets/images/logo_git.png) AP3 All4Sport</div>
 
 > [!IMPORTANT]
 > [Documentation d'utilisation](/ressources/doc/utilisation.pdf "Documentation d'utilisation")  
