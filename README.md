@@ -13,14 +13,13 @@
 > [!TIP]
 > | Outil  | Version |
 > | ------------- | ------------- |
-> | Google Chrome | 116.0.5845.180 |
-> | Git | 2.42.0 |
-> | PHP | 8.3.3 |
-> | Symfony CLI | 5.8.11 |
+> | [Git](https://git-scm.com/downloads "Git") | 2.44.0 |
+> | [PHP](https://www.php.net/downloads "PHP") | 8.3.3 |
+> | [Symfony CLI](https://symfony.com/download "Symfony CLI") | 5.8.14 |
 > | Symfony | 6.3.12 |
-> | Composer | 2.6 |
-> | Workbench | 8.0 |
-> | MySQL Server | 8.0 |
+> | [Composer](https://getcomposer.org/download/ "Composer") | 2.6.2 |
+> | [Workbench](https://dev.mysql.com/downloads/installer/ "Workbench") | 8.0 |
+> | [MySQL Server](https://dev.mysql.com/downloads/installer/ "MySQL Server") | 8.0 |
 
 ## Bonnes pratiques
 
